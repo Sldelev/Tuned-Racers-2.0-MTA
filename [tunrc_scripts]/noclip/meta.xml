@@ -1,0 +1,5 @@
+<meta>
+	<info author="chris1384" name="Noclip" description="You feel free!" version="1.3" type="script" />
+	<script src="core_C.lua" type="client" cache="false"/>
+	<script src="core_S.lua" type="server"/>
+</meta>

@@ -1,0 +1,8 @@
+<meta>
+	<oop>true</oop>
+	<script src="setting.lua" type="server" cache="false"/>
+	<script src="server.lua" type="server" cache="false"/>
+	<script src="object/client.lua" type="client" cache="false"/>
+	<file src="object/object.dff"/>
+	<file src="object/object.txd"/>
+</meta>

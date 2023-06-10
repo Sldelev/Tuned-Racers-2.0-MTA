@@ -1,0 +1,7 @@
+<meta>
+	<script src="async.lua" type="client" cache="false"/>
+	<script src="snowmod.lua" type="client" cache="false"/>
+	<file src="img/lght.png" />
+	<file src="img/coronastar.png" />
+	<file src="snowmod.fx" />
+</meta>

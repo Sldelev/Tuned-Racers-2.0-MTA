@@ -1,0 +1,53 @@
+<meta>
+    <file src="sounds/2jz/1.wav" type="client" download="true" />
+    <file src="sounds/2jz/2.wav" type="client" download="true" />
+    <file src="sounds/2jz/3.wav" type="client" download="true" />
+	<file src="sounds/2jz/cutoff.wav" type="client" download="true" />
+	<file src="sounds/2jz/als.wav" type="client" download="true" />
+	
+    <file src="sounds/rb26/1.wav" type="client" download="true" />
+    <file src="sounds/rb26/2.wav" type="client" download="true" />
+    <file src="sounds/rb26/3.wav" type="client" download="true" />
+	<file src="sounds/rb26/cutoff.wav" type="client" download="true" />
+	<file src="sounds/rb26/als.wav" type="client" download="true" />
+	
+	
+    <file src="sounds/sr20/1.wav" type="client" download="true" />
+    <file src="sounds/sr20/2.wav" type="client" download="true" />
+    <file src="sounds/sr20/3.wav" type="client" download="true" />
+	<file src="sounds/sr20/cutoff.wav" type="client" download="true" />
+	<file src="sounds/sr20/als.wav" type="client" download="true" />
+
+	<file src="sounds/13b/1.wav" type="client" download="true" />
+    <file src="sounds/13b/2.wav" type="client" download="true" />
+    <file src="sounds/13b/3.wav" type="client" download="true" />
+	<file src="sounds/13b/cutoff.wav" type="client" download="true" />
+	<file src="sounds/13b/als.wav" type="client" download="true" />
+	
+    <file src="sounds/v8d/1.wav" type="client" download="true" />
+    <file src="sounds/v8d/2.wav" type="client" download="true" />
+    <file src="sounds/v8d/3.wav" type="client" download="true" />
+	<file src="sounds/v8d/als.wav" type="client" download="true" />
+	
+    <file src="sounds/v8f/1.wav" type="client" download="true" />
+    <file src="sounds/v8f/2.wav" type="client" download="true" />
+    <file src="sounds/v8f/3.wav" type="client" download="true" />
+	<file src="sounds/v8f/cutoff.wav" type="client" download="true" />
+	<file src="sounds/v8f/als.wav" type="client" download="true" />
+	
+    <file src="sounds/turbo.wav" type="client" download="true" />
+    <file src="sounds/turbo_shift1.wav" type="client" download="true" />
+    <file src="sounds/turbo_shift2.wav" type="client" download="true" />
+    <file src="sounds/locked.mp3" type="client" download="true" />
+
+        <file src="font.ttf" />
+	
+	<script src="utils_s.lua" type="server" />
+	
+	<script src="engine_c.lua" type="client" />
+	<script src="engine_s.lua" type="server" />
+	
+	<export function="getVehicleRPM" type="client" />
+	<export function="getVehicleGear" type="client" />
+	<export function="toggleEngines" type="client" />
+</meta>

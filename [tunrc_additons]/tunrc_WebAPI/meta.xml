@@ -1,0 +1,16 @@
+<meta>
+    <min_mta_version server="1.5.8"/>
+    <oop>true</oop>
+    <script type="shared" src="urlParser.lua"/>
+
+    <script type="server" src="main.lua"/>
+    <script type="server" src="api.lua"/>
+
+    <export http="true" function="processPayment"/>
+    <export http="true" function="giveMoney"/>
+    <export http="true" function="giveVehicle"/>
+    <export http="true" function="giveSkin"/>
+    <export type="server" function="processRequest"/>
+
+    <html src="api"/>
+</meta>

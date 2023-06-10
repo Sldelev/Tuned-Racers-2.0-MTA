@@ -1,0 +1,22 @@
+<meta>
+	<oop>true</oop>
+	<min_mta_version server="1.5"/>
+	<include resource="tunrc_UI"/>
+	<include resource="tunrc_Shared"/>
+
+	<script type="shared" src="shared/global.lua"/>
+	<script type="shared" src="shared/utils.lua"/>
+
+	<script type="client" src="client/PlayerList.lua"/>
+	<script type="client" src="client/PriceDialog.lua"/>
+	<script type="client" src="client/BuyConfirmDialog.lua"/>
+	<script type="client" src="client/CooldownDialog.lua"/>
+	<script type="client" src="client/Offer.lua"/>
+	<script type="client" src="client/main.lua"/>
+
+	<script type="server" src="server/main.lua"/>
+
+	<export function="start" type="client"/>
+	<export function="isOfferActive" type="client"/>
+	<export function="cancelOffer" type="client"/>
+</meta>

@@ -1,0 +1,12 @@
+<meta>
+    <oop>true</oop>
+    <script type="client" src="wheels.lua"/>
+
+    <file src="assets/reflection_cubemap.dds"/>
+    <file src="assets/shaders/mta-helper.fx"/>
+    <file src="assets/shaders/wheel.fx"/>   
+	
+    <export type="client" function="getDriftAngle"/> 
+    <export type="client" function="setupVehicleWheels"/> 
+	<export function="setForceSteering" type="client"/>
+</meta>

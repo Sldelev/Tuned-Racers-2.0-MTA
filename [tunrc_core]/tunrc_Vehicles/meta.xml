@@ -1,0 +1,82 @@
+<meta>
+	<oop>true</oop>
+	<min_mta_version client="1.5.2" server="1.5.2" />
+	<include resource="tunrc_Assets"/>
+	<!-- Shared -->
+	<script type="shared" src="shared/wheel_sizes.lua"/>	
+	<script type="shared" src="shared/handlings_table.lua"/>	
+	<!-- Client -->
+	<script type="client" src="client/glass_stickers.lua"/>
+	<script type="client" src="client/body_texture.lua"/>
+	<script type="client" src="client/colors.lua"/>
+	<script type="client" src="client/components.lua"/>
+	<script type="client" src="client/configuration.lua"/>
+	<script type="client" src="client/lights_sync.lua"/>
+	<script type="client" src="client/mileage.lua"/>
+	<script type="client" src="client/neon.lua"/>
+        <script type="client" src="client/numberplate.lua"/>
+
+	<!-- <script type="client" src="client/tyres_smoke.lua"/> -->
+	<script type="client" src="client/exhaust.lua"/>
+	<script type="client" src="client/VehicleShaders.lua"/>
+	<script type="client" src="client/actions.lua"/>
+	<script type="client" src="client/handling.lua"/>
+	<!-- Server -->
+	<script type="server" src="server/utils.lua"/>
+	<script type="server" src="server/suspension.lua"/>
+	<script type="server" src="server/bias.lua"/>
+	<script type="server" src="server/h_brakedist.lua"/>
+	<script type="server" src="server/h_brakepower.lua"/>
+	<script type="server" src="server/h_fronttires.lua"/>
+	<script type="server" src="server/h_backtires.lua"/>
+	<script type="server" src="server/h_loaddist.lua"/>
+	<script type="server" src="server/h_boost.lua"/>
+	<script type="server" src="server/h_steer.lua"/>
+	<script type="server" src="server/actions.lua"/>
+	<script type="server" src="server/handlings.lua"/>
+
+	<!-- Exports -->
+	<export type="client" function="getComponentsNames"/>
+	<export type="client" function="redrawGlassRenderTarget"/>
+	<export type="client" function="redrawBodyRenderTarget"/>
+	<export type="client" function="createVehicleRenderTarget"/>
+	<export type="client" function="createVehicleBodyRenderTarget"/>
+	<export type="client" function="toggleVehicleParam"/>
+	<export type="client" function="switchHandling"/>
+	<export type="shared" function="getModelDefaultWheelsSize"/>
+	<export type="shared" function="getVehicleHandlingTable"/>
+	<export type="shared" function="hasVehicleHandling"/>
+	<export type="server" function="forceVehicleHandling"/>
+	<export type="server" function="unforceVehicleHandling"/>
+	<export type="client" function="setData_NumberTable"/>
+
+	<!-- Assets -->
+	<file src="assets/light.png"/>
+	<file src="assets/selection.png"/>
+	<!-- Numberplate texture -->
+        <file src="assets/numberplates/numberplate_ny.png"/>
+	<file src="assets/numberplates/numberplate_nj.png"/>
+	<file src="assets/numberplates/numberplate_nc.png"/>
+	<file src="assets/numberplates/numberplate_ny1.png"/>
+	<file src="assets/numberplates/numberplate_ny2.png"/>
+	<file src="assets/numberplates/numberplate_virg.png"/>
+	<file src="assets/numberplates/numberplate_ohio.png"/>
+	<file src="assets/numberplates/numberplate_mont.png"/>
+	<file src="assets/numberplates/numberplate_haw.png"/>
+	<file src="assets/numberplates/numberplate_alas.png"/>
+	<file src="assets/numberplates/numberplate_col.png"/>
+	<file src="assets/numberplates/numberplate_rho.png"/>
+	<file src="assets/numberplates/numberplate_maine.png"/>
+	<file src="assets/numberplates/numberplate_tex.png"/>
+	<file src="assets/numberplates/numberplate_wash.png"/>
+	<file src="assets/numberplates/numberplate_scar.png"/>
+	<file src="assets/numberplates/numberplate_jp1.png"/>
+	<file src="assets/numberplates/numberplate_jp2.png"/>
+	<file src="assets/numberplates/numberplate_jp3.png"/>
+
+	<file src="assets/numberplate.ttf"/>
+	<file src="assets/japanfont.ttf"/>
+	<file src="assets/reflection.dds"/>
+	<file src="assets/shaders/mta-helper.fx"/>
+	<file src="assets/shaders/glass.fx"/>
+</meta>

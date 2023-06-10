@@ -1,0 +1,7 @@
+<meta>
+    <info author="PARADISE" description="MAPPING" version="1.0" type="map" />
+<script src="client.lua" type="client" />
+    <file src="Garage.txd" />
+    <file src="Garage.col" />
+    <file src="Garage.dff" />
+</meta>

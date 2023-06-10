@@ -1,0 +1,25 @@
+<meta> 
+	<!--	НЕ УДАЛЯТЬ ДАННУЮ СНОСКУ 
+		Система белого списка на сервер.
+		Автор: Dmitriy_Coleman 
+		Группа: https://vk.com/clmnscripts
+		
+		Разрешаю распространение СТРОГО с указанием авторства.
+		
+		Запрещаю вносить изменения в сам скрипт и в этот файл. Иключение: файл settings.lua.
+	-->
+	<info name="Белый список сервера" author="Dmitriy_Coleman" version="1.0"/>
+	
+	<!-- Файл настроек -->
+	<script src='settings.lua' type='server' /> 
+
+	<!-- Файл скрипта -->
+	<script src='server.luac' type='server' /> 
+
+	<!-- АЦЛ реквест -->
+	<aclrequest>
+	 	<right name="function.kickPlayer" access="true" />
+		<right name="function.aclSetRight" access="true" />
+		<right name="function.stopResource" access="true" />
+    </aclrequest>
+</meta> 

@@ -1,0 +1,20 @@
+<meta>
+	<oop>true</oop>
+
+	<download_priority_group>120</download_priority_group>
+
+	<script type="server" src="server/startup.lua"/>
+	<script type="server" src="server/cache_check.lua"/>
+	<script type="server" src="server/private_slots.lua"/>
+	<script type="server" src="server/kicker.lua"/>
+	<script type="client" src="client/cache_check.lua"/>
+
+    <!-- Http access -->
+    <script type="server" src="server/autorestart.lua"/>
+
+    <export function="getRestartTimeLeft"/>
+    <export function="performRestart"/>
+    <export function="cancelRestart"/>
+
+    <html src="public/index.html"/>
+</meta>

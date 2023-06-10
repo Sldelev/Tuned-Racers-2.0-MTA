@@ -1,0 +1,20 @@
+<map edf:definitions="editor_main,race">
+    <spawnpoint id="spawnpoint (Infernus) (1)" vehicle="411" posX="-69.8798828125" posY="68.23046875" posZ="8001.2861328125" rotX="0" rotY="0" rotZ="260.87911987305" ></spawnpoint>
+    <spawnpoint id="spawnpoint (Infernus) (2)" vehicle="411" posX="-78.5654296875" posY="69.626953125" posZ="8001.3256835938" rotX="0" rotY="0" rotZ="260.87911987305" ></spawnpoint>
+	<spawnpoint id="spawnpoint (Infernus) (3)" vehicle="411" posX="-89.869140625" posY="71.8505859375" posZ="8001.3203125" rotX="0" rotY="0" rotZ="258.41757202148" ></spawnpoint>
+	<spawnpoint id="spawnpoint (Infernus) (4)" vehicle="411" posX="-70.5810546875" posY="60.4755859375" posZ="8001.2822265625" rotX="0" rotY="0" rotZ="262.02197265625" ></spawnpoint>
+	<spawnpoint id="spawnpoint (Infernus) (5)" vehicle="411" posX="-78.1103515625" posY="61.7080078125" posZ="8001.3208007812" rotX="0" rotY="0" rotZ="262.10989379883" ></spawnpoint>
+	<spawnpoint id="spawnpoint (Infernus) (6)" vehicle="411" posX="-88.7861328125" posY="63.6796875" posZ="8001.3349609375" rotX="0" rotY="0" rotZ="259.03295898438" ></spawnpoint>
+    <checkpoint id="checkpoint () (1)" type="checkpoint" color="#00F9" size="2.25" nextid="checkpoint () (2)" posX="-14.798828125" posY="82.130859375" posZ="7999.2934570312" rotX="0" rotY="0" rotZ="49.538463592529" ></checkpoint>
+	<checkpoint id="checkpoint () (2)" type="checkpoint" color="#00F9" size="2.25" nextid="checkpoint () (3)" posX="-65.8759765625" posY="94.822265625" posZ="7998.4311523438" rotX="0" rotY="0" rotZ="8.8351640701294" ></checkpoint>
+	<checkpoint id="checkpoint () (3)" type="checkpoint" color="#00F9" size="2.25" nextid="checkpoint () (4)" posX="124.1142578125" posY="85.9814453125" posZ="7996.556640625" rotX="0" rotY="0" rotZ="264.21978759766" ></checkpoint>
+	<checkpoint id="checkpoint () (4)" type="checkpoint" color="#00F9" size="2.25" nextid="checkpoint () (5)" posX="206.2802734375" posY="84.384765625" posZ="7995.966796875" rotX="0" rotY="0" rotZ="282.15383911133" ></checkpoint>
+	<checkpoint id="checkpoint () (5)" type="checkpoint" color="#00F9" size="2.25" nextid="checkpoint () (6)" posX="248.2861328125" posY="107.734375" posZ="7996.2734375" rotX="0" rotY="0" rotZ="311.69232177734" ></checkpoint>
+	<checkpoint id="checkpoint () (6)" type="checkpoint" color="#00F9" size="2.25" nextid="checkpoint () (7)" posX="264.0693359375" posY="125.1494140625" posZ="7996.294921875" rotX="0" rotY="0" rotZ="324.17581176758" ></checkpoint>
+	<checkpoint id="checkpoint () (7)" type="checkpoint" color="#00F9" size="2.25" nextid="checkpoint () (8)" posX="271.6630859375" posY="137.3193359375" posZ="7996.2817382812" rotX="0" rotY="0" rotZ="331.82418823242" ></checkpoint>
+	<checkpoint id="checkpoint () (8)" type="checkpoint" color="#00F9" size="2.25" nextid="checkpoint () (9)" posX="266.1435546875" posY="168.455078125" posZ="7995.7392578125" rotX="0" rotY="0" rotZ="29.670330047607" ></checkpoint>
+	<checkpoint id="checkpoint () (9)" type="checkpoint" color="#00F9" size="2.25" nextid="checkpoint () (10)" posX="240.7822265625" posY="169.4677734375" posZ="7995.833984375" rotX="0" rotY="0" rotZ="137.7142791748" ></checkpoint>
+	<checkpoint id="checkpoint () (10)" type="checkpoint" color="#00F9" size="2.25" nextid="checkpoint () (11)" posX="222.5029296875" posY="130.6591796875" posZ="7996.2641601562" rotX="0" rotY="0" rotZ="140.61538696289" ></checkpoint>
+	<checkpoint id="checkpoint () (11)" type="checkpoint" color="#00F9" size="2.25" nextid="checkpoint () (12)" posX="170.3330078125" posY="97.140625" posZ="7996.744140625" rotX="0" rotY="0" rotZ="87.604393005371" ></checkpoint>
+    <checkpoint id="checkpoint () (12)" type="checkpoint" color="#00F9" size="2.25" posX="106.7958984375" posY="125.0927734375" posZ="7997.0668945312" rotX="0" rotY="0" rotZ="0"></checkpoint>
+</map>
