@@ -1,9 +1,0 @@
-<map edf:definitions="editor_main,race">
-    <spawnpoint id="spawnpoint (Infernus) (1)" vehicle="411" posX="-1657.6" posY="-168.10001" posZ="13.8" rotX="0" rotY="0" rotZ="315"></spawnpoint>
-    <spawnpoint id="spawnpoint (Infernus) (2)" vehicle="411" alpha="255" interior="0" posX="-1655.7" posY="-170.10001" posZ="13.9" rotX="0" rotY="0" rotZ="314.995"></spawnpoint>
-    <spawnpoint id="spawnpoint (Infernus) (3)" vehicle="411" alpha="255" interior="0" posX="-1653.6" posY="-172.10001" posZ="13.9" rotX="0" rotY="0" rotZ="314.995"></spawnpoint>
-    <spawnpoint id="spawnpoint (Infernus) (4)" vehicle="411" alpha="255" interior="0" posX="-1651.5" posY="-174.10001" posZ="13.9" rotX="0" rotY="0" rotZ="315"></spawnpoint>
-    <spawnpoint id="spawnpoint (Infernus) (5)" vehicle="411" alpha="255" interior="0" posX="-1649.5" posY="-176.10001" posZ="13.9" rotX="0" rotY="0" rotZ="315"></spawnpoint>
-    <spawnpoint id="spawnpoint (Infernus) (6)" vehicle="411" alpha="255" interior="0" posX="-1659.8" posY="-166" posZ="13.9" rotX="0" rotY="0" rotZ="314.995"></spawnpoint>
-    <checkpoint id="checkpoint () (1)" type="checkpoint" color="#00F9" size="2.25" posX="-1076.5" posY="406.39999" posZ="13.2" rotX="0" rotY="0" rotZ="0"></checkpoint>
-</map>

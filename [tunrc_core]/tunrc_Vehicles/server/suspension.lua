@@ -1,5 +1,5 @@
-local MIN_SUSPENSION_DEFAULT = 0.001
-local MAX_SUSPENSION_DEFAULT = 0.35
+local MIN_SUSPENSION_DEFAULT = GetMinSuspensionValue()
+local MAX_SUSPENSION_DEFAULT = GetMaxSuspensionValue()
 
 local overrideSuspension = {
 	toyota_mark110 		= {0.04, 0.2},

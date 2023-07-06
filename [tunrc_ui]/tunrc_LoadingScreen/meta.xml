@@ -1,7 +1,11 @@
 <meta>
-    <oop>true</oop>
-    <download_priority_group>1000</download_priority_group>
+  <min_mta_version client="1.5.8-9.20788" server="1.5.8"/>
+  <download_priority_group>100000</download_priority_group>
 
-    <script type="client" src="game.lua"/>
-    <export type="client" function="hideGame"/>
+  <script cache="false" src="client.lua" type="client"/>
+  <file src="logo.png" />
+  <file src="logo2.png" />
+
+  <export type="client" function="show"/>
+  <export type="client" function="hide"/>
 </meta>

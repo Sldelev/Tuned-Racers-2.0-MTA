@@ -3,6 +3,7 @@ local UI = exports.tunrc_UI
 local HIDE_CHAT = false
 local screenWidth, screenHeight = exports.tunrc_UI:getScreenSize()
 
+local BACKGROUND_COLOR = {13, 15, 17}
 local realSceenWidth, realScreenHeight = guiGetScreenSize()
 local backgroundScale = realScreenHeight / 720
 local backgroundWidth, backgroundHeight = 1280 * backgroundScale, 720 * backgroundScale
@@ -28,7 +29,7 @@ local function draw()
     rx1 = (rx1 - 0.5) % screenWidth
 	rx = (rx + 0.5) % screenWidth
 	animationProgress = math.min(1, animationProgress + ANIMATION_SPEED)
-	dxDrawImage(0, 0, backgroundWidth, backgroundHeight, backgroundTexture, 0, 0, 0, tocolor(255, 255, 255, 255 * animationProgress))
+	dxDrawRectangle(0, 0, realSceenWidth, realScreenHeight, tocolor(BACKGROUND_COLOR[1], BACKGROUND_COLOR[2], BACKGROUND_COLOR[3], 255 * animationProgress))
 	dxDrawText("Tuned Racers", 3, screenHeight - 14, 3, screenHeight - 14, tocolor(255, 255, 255, 100 * animationProgress))
 	if not root:getData("dbConnected") then
 		dxDrawText("The server is currently not available.\nСервер на данный момент недоступен.",
@@ -313,11 +314,9 @@ end
 addEventHandler("onClientResourceStart", resourceRoot, function ()
 	createLoginPanel()
 	createRegisterPanel()
-
+	
 	if not localPlayer:getData("username") then
 		fadeCamera(false, 0)
-		setVisible(true)
-		exports.tunrc_LoadingScreen:hideGame()
 	end
 end)
 

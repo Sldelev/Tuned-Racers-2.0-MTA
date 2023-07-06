@@ -65,7 +65,6 @@ function exitGarage(selectedCarId)
 	MusicPlayer.fadeOut()
 	enterExitGarage(false, selectedCarId)
 	setRadioChannel(0)
-	setTime( 8, 0 )
 	setWeather (7)
 end
 

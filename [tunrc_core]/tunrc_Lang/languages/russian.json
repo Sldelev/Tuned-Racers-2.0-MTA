@@ -44,16 +44,16 @@
 	"intro_press_to_start": "Нажмите ПРОБЕЛ чтобы продолжить",
 
 	"tutorial_garage_title": "Привет. Ты попал на самый лкушный сервер в мта. Сам ты сюда зашел, или это сделали за тебя - не знаю. Дальше придется почитать.",
-	"tutorial_garage_text": "TunedRacers это сервер про дрифт и стрит с некоторой изюминкой.Всё что тебе надо - это взять свою машину и посмотреть на карте на гонки дрифта, и развоз насвая. Там ты сможешь заработать бабосы на новые машины.",
+	"tutorial_garage_text": "TunedRacers это сервер про дрифт и стрит с некоторой изюминкой. Всё что тебе надо - это взять свою машину и посмотреть на карте на гонки дрифта. Там ты сможешь заработать бабосы на новые машины.",
 	
 	"tutorial_city_title": "Город",
     "tutorial_city_text": "Теперь, когда ты получил свою первую машину, перед тобой открывается огромный мир дрифта по дорогам Америки(конечно нет), теперь тебе нужно заработать хоть какие-то копейки в доставке насвая или обычным дрифтом, просто чтобы не быть серой массой среди других застоявшихся зевак ЛКУ мира",
 	
 	"help_panel_general_title": "Основное",
-	"help_panel_general_text": "ОСНОВНЫЕ КЛАВИШИ\nF1 - основная панель, телепорты, настройки\nF2 - включить/выключить курсор.\nЪ - Выставить время на 8 утра и погоду на Облачно 4\n1 - включить/выключить фары\nO - фоторежим\nI - скрыть/показать интерфейс\nДля заработка денег используйте гонки Дрифт и Доставку насвая\nОни находятся на карте",
+	"help_panel_general_text": "ОСНОВНЫЕ КЛАВИШИ\nF1 - основная панель, телепорты, настройки\nF2 - включить/выключить курсор.\nЪ - Выставить время на 8 утра и погоду на Облачно 4\n1 - включить/выключить фары\nO - фоторежим\nI - скрыть/показать интерфейс",
 	
 	"help_panel_questions_title": "FAQ",
-	"help_panel_questions_text": "Итак...Вы попали на сервер, ничего не понимая у вас возникает много вопросов: Как заработать денег? Что делать? О чём сервер? Эта вкладка специально отвечает на все самые популярные вопросы.\nКак зарабатывать? Есть 3 способа заработка на сервере: Дрифт-гонки, доставка травки, стрит дрифт. Дрифт-гонки, как и доставка травки расположены по всему штату SA, открыв карту на англ кнопку 'M' вы увидите точки заработка. Стрит дрифт состоит из нелегальных соревнований и обычных поездок по городу \nКак купить машину? Также на карте есть точка автосалона, либо команда /carshop вне автомобиля\n",
+	"help_panel_questions_text": "Итак...Вы попали на сервер, ничего не понимая у вас возникает много вопросов: Как заработать денег? Что делать? О чём сервер? Эта вкладка специально отвечает на все самые популярные вопросы.\nКак зарабатывать? Есть 2 способа заработка на сервере: Дрифт-гонки, стрит дрифт. Дрифт-гонки расположены по всему штату SA, открыв карту на англ кнопку 'M' вы увидите точки заработка. Стрит дрифт состоит из нелегальных соревнований и обычных поездок по городу \nКак купить машину? Также на карте есть точка автосалона, либо команда /carshop вне автомобиля\n",
 
 	"help_panel_garage_title": "Гараж",
 	"help_panel_garage_text": "Гараж - место, где всегда находятся все Ваши автомобили. Здесь вы также можете удалить любую свою машину. В разделе тюнинга вы можете кастомизировать свой автомобиль: сменить покраску, установить спойлеры или обвесы, создать винил на стёклах.\n\nТЮНИНГ\nКомпоненты - установка дисков, обвесов, спойлера, капота, смена номерного знака и штата.\nПокраска - изменение цвета различных деталей кузова, дисков.\nВинилы на стёкла - создание и редактирование наклеек.\nКонфигурация - изменение радиуса, вылета и развала колёс.",
@@ -78,6 +78,7 @@
 	"photo_mode_help_tips": "Показать/скрыть интерфейс и помощь",
 	"photo_mode_help_exit": "Выйти из фоторежима",
 	"photo_mode_help_hide": "Скрыть персонажа",
+	"photo_mode_help_composition": "Помощь композиции",
 
 	"photo_mode_param_time": "Время",
 	"photo_mode_param_weather": "Погода",
@@ -152,16 +153,18 @@
 
 	// Chat messages
 	"chat_message_login_success": "Вы успешно вошли",
-	"chat_message_player_join": "%s залетел на движ",
-	"chat_message_player_quit": "%s сьебал с серва (%s)",
+	"chat_message_player_join": "%s прилетел в штат",
+	"chat_message_player_quit": "%s уехал к родителям (%s)",
 	"chat_message_dont_flood": "Не флуди!",
 	"chat_message_muted": "Администратор временно запретил Вам отправлять сообщения",
-	"chat_adminsay_Admin": "CEO",
+	"chat_adminsay_Ceo": "CEO",
+	"chat_adminsay_Admin": "Admin",
 	"chat_adminsay_Moderator": "Staff",
 	"chat_premiumsay": "Премиум",
 	"chat_admin_mute": "Игрок %s получил мут от %s на %s сек.",
+	"chat_admin_mute_min": "Игрок %s получил мут от %s на %s мин.",
 	"chat_admin_unmute": "С игрока %s снят мут от %s.",
-	"chat_admin_ban": "Игрок %s получил в ебасосину от %s",
+	"chat_admin_ban": "Игрок %s получил бан от %s",
 
 	// Гараж
 	"garage_no_vehicle_error": "Вы должны находиться в машине, чтобы войти в гараж",
@@ -265,6 +268,15 @@
 	"garage_tuning_component_rpanel": "Задняя панель",
 	"garage_tuning_item_rpanel": "Задняя панель",
 	
+	"garage_tuning_component_addlights": "Доп. фары",
+	"garage_tuning_item_addlights": "Доп. фары",
+	
+	"garage_tuning_component_side_addskirts": "Накладки на юбки",
+	"garage_tuning_item_addskirt": "Накладки на юбки",
+	
+	"garage_tuning_component_rollingshell": "Подкапотка",
+	"garage_tuning_item_rollingshell": "Подкапотка",
+	
 	"garage_tuning_component_front_fends_dops": "Накладки на фендера",
 	"garage_tuning_item_fender_dop": "Накладка на фендер",
 	
@@ -290,21 +302,6 @@
 	"garage_tuning_paint_wheels_rear": "Цвет задних дисков",
 	"garage_tuning_paint_wheels": "Цвет дисков",
 	"garage_tuning_paint_spoiler": "Цвет спойлера",
-	"garage_tuning_paint_frontfends": "Цвет передних крыльев",
-	"garage_tuning_paint_frontbump": "Цвет переднего бампера",
-	"garage_tuning_paint_bonnet": "Цвет капота",
-	"garage_tuning_paint_sideskirts": "Цвет юбок",
-	"garage_tuning_paint_rearfends": "Цвет задних крыльев",
-	"garage_tuning_paint_rearbump": "Цвет заднего бампера",
-	"garage_tuning_paint_extraone": "Цвет экстра 1",
-	"garage_tuning_paint_extratwo": "Цвет экстра 2",
-	"garage_tuning_paint_extrathree": "Цвет экстра 3",
-	"garage_tuning_paint_extrafour": "Цвет экстра 4",
-	"garage_tuning_paint_frontfendleft": "Цвет переднего левого крыла",
-	"garage_tuning_paint_frontfendright": "Цвет переднего правого крыла",
-	"garage_tuning_paint_dops": "Цвет доп.деталей",
-	"garage_tuning_paint_lips": "Цвет губ",
-	"garage_tuning_paint_karkas": "Цвет каркаса",
 
 	"garage_tuning_paint_hue": "Оттенок",
 	"garage_tuning_paint_saturation": "Насыщенность",
@@ -347,34 +344,40 @@
 	"garage_tuning_stickers_numbers": "Цифры",
 	"garage_tuning_stickers_brands": "Бренды",
 	"garage_tuning_stickers_clubs": "Клубы",
+	"garage_tuning_stickers_bolts": "Болты",
+	"garage_tuning_stickers_flame": "Флеймы",
+	"garage_tuning_stickers_anime": "Аниме",
+	"garage_tuning_stickers_damage": "Повреждения",
+	"garage_tuning_stickers_partners": "Партнёры",
 
 	"garage_tuning_config_front_wheels": "Передние колёса",
 	"garage_tuning_config_rear_wheels": "Задние колёса",
 	"garage_tuning_config_suspension": "Подвеска",
-	
 	"garage_tuning_config_bias": "Пропорциональность подвески",
+	"garage_tuning_config_bias_label": "Пропорция подвески",
+	
+	"garage_tuning_config_veh_velocity": "Максимальная скорость",
+	"garage_tuning_config_veh_velocity_label": "Максимальная скорость",
+	
+	"garage_tuning_config_veh_mass": "Масса",
+	"garage_tuning_config_veh_mass_label": "Масса",
+	
+	"garage_tuning_config_veh_turnmass": "Ходовая масса",
+	"garage_tuning_config_veh_turnmass_label": "Ходовая масса",
+	
+	"garage_tuning_config_front_wheels": "Передние колёса",
+	
 	"garage_tuning_config_steer": "Выворот",
-	"garage_tuning_config_boost": "Мощность",
-	"garage_tuning_config_loadbias": "Пропорциональность сцепления",
-	"garage_tuning_config_reartires": "Давление задних колес",
-	"garage_tuning_config_fronttires": "Давление передних колес",
-	"garage_tuning_config_brakepower": "Тормозное усилие",
-	"garage_tuning_config_brakedist": "Пропорциональность тормозов",
+	"garage_tuning_config_steer_label": "Угол Выворота",
 
-	"garage_tuning_config_bias_label": "Пропорциональность",
-	"garage_tuning_config_steer_label": "Угол поворота колес",
-	"garage_tuning_config_boost_label": "Мощность",
-	"garage_tuning_config_loadbias_label": "Сцепление перед / зад",
-	"garage_tuning_config_reartires_label": "Улучшение сцепления",
-	"garage_tuning_config_fronttires_label": "Улучшение сцепления",
-	"garage_tuning_config_brakepower_label": "Тормоз",
-	"garage_tuning_config_brakedist_label": "Распределение тормоза",
+	"garage_tuning_config_wheels_castor": "Кастор",
+	"garage_tuning_config_wheels_castor_label": "Угол Кастора",
 	
 	"garage_tuning_config_upgrades": "Улучшения",
 	"garage_tuning_config_wheels_size": "Радиус колёс",
 
 	"garage_tuning_config_suspension_label": "Высота подвески",
-	"garage_tuning_config_wheels_size_label": "Радиус",
+	"garage_tuning_config_wheels_size_label": "Радиус колёс",
 
 	"garage_tuning_config_wheels_offset": "Вылет",
 	"garage_tuning_config_wheels_angle": "Развал",
@@ -400,7 +403,8 @@
 	"garage_help_move_selection": "Навигация",
 	"garage_help_select": "Выбрать",
 	"garage_help_back": "Назад",
-	"garage_help_move_camera": "Камера",
+	"garage_help_move_camera": "Свободная камера",
+	"garage_help_next_music": "Следующий трек",
 
 	"garage_sticker_editor_move": "Перемещение",
 	"garage_sticker_editor_scale": "Масштаб",
@@ -439,6 +443,7 @@
 
 	// Main panel
 	"main_panel_tab_account": "Аккаунт",
+	"main_panel_tab_achievements": "Достижения",
 	"main_panel_tab_teleport": "Телепорты",
 	"main_panel_tab_settings": "Настройки",
 	"main_panel_tab_garage": "Гараж",
@@ -447,6 +452,15 @@
 	"main_panel_garage_text": "Гараж",
 
 	"main_panel_teleport_players": "Игроков",
+	
+	"main_panel_teleport_city": "Города",
+	"main_panel_teleport_tracks": "Трассы",
+	"main_panel_teleport_mount": "Горы",
+	"main_panel_teleport_race": "Гонки",
+	
+	"main_panel_achiev_all_dp": "Все дрифт очки",
+	"main_panel_achiev_max_dp_session": "Макс. дрифт очки за 1 сессию",
+	"main_panel_achiev_all_play_time": "Общее игровое время",
 
 	"main_panel_account_sell_vehicle": "Продать машину",
 	"main_panel_account_donat": "Пин-Коды",
@@ -466,9 +480,11 @@
 	"main_panel_settings_section_graphics": "Настройки графики",
 	"main_panel_settings_language": "Язык",
 	"main_panel_settings_color": "Цвет интерфейса",
+	"main_panel_settings_collision": "Откл.Коллизии(Бета)",
 	"main_panel_settings_joinquit_messages": "Сообщения о подключениях",
 	"main_panel_settings_chat_timestamp": "Время отправки",
 	"main_panel_settings_reflections_cars": "Отражения на автомобилях",
+	"main_panel_settings_tyres_smoke": "Улучшенный дым от шин",
 	"main_panel_settings_reflections_water": "Отражения на воде",
 	"main_panel_settings_improved_car_lights": "Улучшенный эффект фар",
 	"main_panel_settings_improved_sky": "Улучшенное небо",
@@ -481,6 +497,7 @@
 	"main_panel_settings_background_music": "Фоновая музыка",
 	"main_panel_settings_smooth_steering": "Подруливание",
 	"main_panel_setting_change_password": "Изменить пароль",
+	"main_panel_setting_change_fps": "Изменить фпс",
 
 	"main_panel_password_change_title": "Изменение пароля аккаунта",
 	"main_panel_new_password_label": "Новый пароль",
@@ -492,6 +509,11 @@
 	"main_panel_password_change_message": "Смена пароля",
 	"main_panel_password_change_error": "Не удалось сменить пароль аккаунта",
 	"main_panel_password_change_success": "Пароль от аккаунта был успешно изменен",
+	
+	"main_panel_fps_change_title": "Изменение лимита фпс",
+	"main_panel_fps_label": "Новый лимит",
+	"main_panel_fps_placeholder": "Введите лимит фпс",
+	"main_panel_new_fps_accept": "Установить",
 
 	// Markers
 	"markers_garage_text": "Нажмите %q чтобы войти в гараж",
@@ -632,17 +654,18 @@
 
 	"context_menu_anim_hello": "Кинуть салам",
 	"context_menu_anim_no": "Присесть как ровный тип",
-	"context_menu_anim_bye": "Стоит поправляет кепу",
+	"context_menu_anim_bye": "Стоит серьёзный",
 	"context_menu_anim_wave": "Держит капот рукой",
-	"context_menu_anim_lay": "Упасть от солей",
+	"context_menu_anim_lay": "Упал лежит",
 	"context_menu_anim_sit": "Стоит оперевшись на стену",
-	"context_menu_anim_fucku": "Fuck u",
+	"context_menu_anim_fucku": "Показывает дорогу",
 	"context_menu_anim_serious": "Ковыряться под машиной",
 	"context_menu_anim_smoke_a": "Курит стоя",
 	"context_menu_anim_smoke_b": "Курит с упором ногой",
 	"context_menu_anim_drink_a": "Опереться на что то",
-	"context_menu_anim_drink_b": "Бля, стяжки слетели",
+	"context_menu_anim_drink_b": "Сидит руками чёта делает",
 	"context_menu_anim_dance_a": "Болтает руками",
+	"context_menu_anim_cower_a": "Руки поднял поймали",
 
 	// Duels
 	"duel_invite_error_title": "Ошибка",

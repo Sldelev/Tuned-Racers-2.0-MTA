@@ -1,6 +1,6 @@
 MusicPlayer = {}
 local MUStunrc_VOLUME = 0.45
-local TRACKS_COUNT = 20
+local TRACKS_COUNT = 21
 
 local currentTrack = 1
 local sound
@@ -62,7 +62,7 @@ local function playNextTrack()
     if isElement(sound) then
         destroyElement(sound)
     end
-    sound = playSound("assets/music/" .. tostring(currentTrack) .. ".mp3", false)
+    sound = playSound("assets/music/" .. tostring(currentTrack) .. ".ogg", false)
     sound:setEffectEnabled("reverb", false)
     showTrackInfo(true)
 end

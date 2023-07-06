@@ -4,7 +4,8 @@
 	<include resource="tunrc_Assets"/>
 	<!-- Shared -->
 	<script type="shared" src="shared/wheel_sizes.lua"/>	
-	<script type="shared" src="shared/handlings_table.lua"/>	
+	<script type="shared" src="shared/handlings_table.lua"/>
+	<script type="shared" src="shared/config.lua"/>
 	<!-- Client -->
 	<script type="client" src="client/glass_stickers.lua"/>
 	<script type="client" src="client/body_texture.lua"/>
@@ -13,27 +14,28 @@
 	<script type="client" src="client/configuration.lua"/>
 	<script type="client" src="client/lights_sync.lua"/>
 	<script type="client" src="client/mileage.lua"/>
-	<script type="client" src="client/neon.lua"/>
-        <script type="client" src="client/numberplate.lua"/>
+	<!-- <script type="client" src="client/neon.lua"/> -->
+    <!-- <script type="client" src="client/numberplate.lua"/> -->
 
-	<!-- <script type="client" src="client/tyres_smoke.lua"/> -->
+	<script type="client" src="client/tyres_smoke.lua"/>
 	<script type="client" src="client/exhaust.lua"/>
 	<script type="client" src="client/VehicleShaders.lua"/>
 	<script type="client" src="client/actions.lua"/>
 	<script type="client" src="client/handling.lua"/>
 	<!-- Server -->
 	<script type="server" src="server/utils.lua"/>
-	<script type="server" src="server/suspension.lua"/>
-	<script type="server" src="server/bias.lua"/>
-	<script type="server" src="server/h_brakedist.lua"/>
-	<script type="server" src="server/h_brakepower.lua"/>
-	<script type="server" src="server/h_fronttires.lua"/>
-	<script type="server" src="server/h_backtires.lua"/>
-	<script type="server" src="server/h_loaddist.lua"/>
-	<script type="server" src="server/h_boost.lua"/>
-	<script type="server" src="server/h_steer.lua"/>
 	<script type="server" src="server/actions.lua"/>
 	<script type="server" src="server/handlings.lua"/>
+	
+	<!-- Server HandlingCustomizing -->
+	
+	<script type="server" src="s_hanglings/h_velocity.lua"/>
+	<script type="server" src="s_hanglings/h_mass.lua"/>
+	<script type="server" src="s_hanglings/h_turnmass.lua"/>
+	<script type="server" src="s_hanglings/h_wheels_handling.lua"/>
+	<script type="server" src="server/suspension.lua"/>
+	<script type="server" src="server/bias.lua"/>
+	<script type="server" src="server/h_steer.lua"/>
 
 	<!-- Exports -->
 	<export type="client" function="getComponentsNames"/>
@@ -49,33 +51,16 @@
 	<export type="server" function="forceVehicleHandling"/>
 	<export type="server" function="unforceVehicleHandling"/>
 	<export type="client" function="setData_NumberTable"/>
+	
+	<export type="shared" function="GetMaxSuspensionValue"/>
+	<export type="shared" function="GetMinSuspensionValue"/>
+	<export type="shared" function="GetMaxSteerValue"/>
+	<export type="shared" function="GetMinSteerValue"/>
 
 	<!-- Assets -->
 	<file src="assets/light.png"/>
 	<file src="assets/selection.png"/>
 	<!-- Numberplate texture -->
-        <file src="assets/numberplates/numberplate_ny.png"/>
-	<file src="assets/numberplates/numberplate_nj.png"/>
-	<file src="assets/numberplates/numberplate_nc.png"/>
-	<file src="assets/numberplates/numberplate_ny1.png"/>
-	<file src="assets/numberplates/numberplate_ny2.png"/>
-	<file src="assets/numberplates/numberplate_virg.png"/>
-	<file src="assets/numberplates/numberplate_ohio.png"/>
-	<file src="assets/numberplates/numberplate_mont.png"/>
-	<file src="assets/numberplates/numberplate_haw.png"/>
-	<file src="assets/numberplates/numberplate_alas.png"/>
-	<file src="assets/numberplates/numberplate_col.png"/>
-	<file src="assets/numberplates/numberplate_rho.png"/>
-	<file src="assets/numberplates/numberplate_maine.png"/>
-	<file src="assets/numberplates/numberplate_tex.png"/>
-	<file src="assets/numberplates/numberplate_wash.png"/>
-	<file src="assets/numberplates/numberplate_scar.png"/>
-	<file src="assets/numberplates/numberplate_jp1.png"/>
-	<file src="assets/numberplates/numberplate_jp2.png"/>
-	<file src="assets/numberplates/numberplate_jp3.png"/>
-
-	<file src="assets/numberplate.ttf"/>
-	<file src="assets/japanfont.ttf"/>
 	<file src="assets/reflection.dds"/>
 	<file src="assets/shaders/mta-helper.fx"/>
 	<file src="assets/shaders/glass.fx"/>

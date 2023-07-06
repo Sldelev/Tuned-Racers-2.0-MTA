@@ -31,6 +31,7 @@ function CarNamePanel:setValue(value)
 end
 
 function CarNamePanel:draw(fadeProgress)
+	dxDrawText(self.text, 3, 3, self.resolution.x, self.resolution.y, tocolor(10, 10, 10), 0.5, Assets.fonts.carNameText, "center", "center")
 	dxDrawText(self.text, 0, 0, self.resolution.x, self.resolution.y, tocolor(255, 255, 255), 0.5, Assets.fonts.carNameText, "center", "center")
 end
 

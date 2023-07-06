@@ -57,6 +57,17 @@ addCommand("givemoney", "admin", function (admin, player, amount)
 	return exports.tunrc_Core:givePlayerMoney(player, amount)
 end)
 
+addCommand("setpremium", "admin", function (admin, player, duration)
+	exports.tunrc_Logger:log("admin", string.format("Admin: %s (%s) | Command: %s | Target Player: %s (%s) | Amount: %s",
+		tostring(admin.name),
+		tostring(admin:getData("username")),
+		"givemoney",
+		tostring(player.name),
+		tostring(player:getData("username")),
+		tostring(duration)))	
+	return exports.tunrc_Core:setPlayerPremium(player, duration)
+end)
+
 addCommand("givexp", "admin", function (admin, player, amount)
 	exports.tunrc_Logger:log("admin", string.format("Admin: %s (%s) | Command: %s | Target Player: %s (%s) | Amount: %s",
 		tostring(admin.name),
@@ -135,15 +146,16 @@ addCommand("ban", "moderator", function (admin, player, duration, reason)
 	return exports.tunrc_Core:banPlayer(player, duration, reason)
 end)
 
-addCommand("mute", "moderator", function (admin, player, duration)
+addCommand("mute", { "moderator", "judge" }, function (admin, player, duration, reason)
 	if exports.tunrc_Core:mutePlayer(player, duration) then
-		exports.tunrc_Logger:log("admin", string.format("Admin: %s (%s) | Command: %s | Target Player: %s (%s) | Duration: %s",
+		exports.tunrc_Logger:log("admin", string.format("Admin: %s (%s) | Command: %s | Target Player: %s (%s) | Duration: %s | Reason: %s",
 			tostring(admin.name),
 			tostring(admin:getData("username")),
 			"mute",
 			tostring(player.name),
 			tostring(player:getData("username")),
-			tostring(duration)))	
+			tostring(duration),
+			tostring(reason)))
 		triggerClientEvent("tunrc_Admin.showMessage", resourceRoot, "mute", admin, player, duration)
 	end
 end)

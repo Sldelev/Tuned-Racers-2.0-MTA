@@ -55,6 +55,17 @@ function givePlayerXP(player, xp)
 	return true
 end
 
+function setPlayerPremium(player, duration)
+	if not isElement(player) then
+		return false
+	end
+	if type(duration) ~= "number" then
+		return false
+	end
+	player:setData("premium_expires", duration)
+	return true
+end
+
 function banPlayer(...)
 	return Bans.banPlayer(...)
 end

@@ -170,13 +170,20 @@ local function stopMouseLook()
 	end
 end
 
+local function ToggleMouseLook()
+	if mouseLookEnabled == true then
+		stopMouseLook()
+	else
+		startMouseLook()
+	end
+end
+
 function CameraManager.start()
 	CameraManager.setState("startingCamera", true)
 	addEventHandler("onClientPreRender", root, update)
 	addEventHandler("onClientCursorMove", root, mouseMove)
 	addEventHandler("onClientKey", root, handleKey)
-	bindKey("mouse1", "down", startMouseLook)
-	bindKey("mouse1", "up", stopMouseLook)
+	bindKey("m", "down", ToggleMouseLook)
 
 	--exports.tunrc_CameraViews:resetCameraView()
 end
@@ -185,8 +192,6 @@ function CameraManager.stop()
 	removeEventHandler("onClientPreRender", root, update)
 	removeEventHandler("onClientCursorMove", root, mouseMove)
 	removeEventHandler("onClientKey", root, handleKey)
-	unbindKey("mouse1", "down", startMouseLook)
-	unbindKey("mouse1", "up", stopMouseLook)
 	Camera.setTarget(localPlayer)
 end
 

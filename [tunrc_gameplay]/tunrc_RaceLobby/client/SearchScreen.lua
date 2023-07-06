@@ -120,7 +120,7 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
 		y = (screenSize.y - panelHeight) / 1.7,
 		width = panelWidth,
 		height = panelHeight,
-		type = "transparent"
+		type = "light"
 	}
 	UI:addChild(ui.panel)
 

@@ -1,4 +1,5 @@
 <meta>
+	<oop>true</oop>
     <file src="sounds/2jz/1.wav" type="client" download="true" />
     <file src="sounds/2jz/2.wav" type="client" download="true" />
     <file src="sounds/2jz/3.wav" type="client" download="true" />
@@ -27,6 +28,7 @@
     <file src="sounds/v8d/1.wav" type="client" download="true" />
     <file src="sounds/v8d/2.wav" type="client" download="true" />
     <file src="sounds/v8d/3.wav" type="client" download="true" />
+	<file src="sounds/v8d/cutoff.wav" type="client" download="true" />
 	<file src="sounds/v8d/als.wav" type="client" download="true" />
 	
     <file src="sounds/v8f/1.wav" type="client" download="true" />

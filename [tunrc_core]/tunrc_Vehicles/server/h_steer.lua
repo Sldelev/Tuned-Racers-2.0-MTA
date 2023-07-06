@@ -1,5 +1,5 @@
-local MIN_STEER_DEFAULT = 0
-local MAX_STEER_DEFAULT = 100
+local MIN_STEER_DEFAULT = GetMinSteerValue()
+local MAX_STEER_DEFAULT = GetMaxSteerValue()
 
 local overrideSteer = {
 }

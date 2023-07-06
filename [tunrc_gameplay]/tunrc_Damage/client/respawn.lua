@@ -9,7 +9,7 @@ setTimer(function ()
         return
     end
 
-    if localPlayer.vehicle.inWater then
+    if localPlayer.vehicle.inWater and getVehicleType(localPlayer.vehicle) == "Automobile" then
         triggerServerEvent("tunrc_Damage.respawn", resourceRoot)
         flipMyVehicle()
         makeVehicleBlink(localPlayer.vehicle)

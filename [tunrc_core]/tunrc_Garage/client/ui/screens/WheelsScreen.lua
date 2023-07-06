@@ -1,8 +1,8 @@
 WheelsScreen = Screen:subclass "WheelsScreen"
 
 local menuInfos = {}
-menuInfos["FrontWheels"] = {position = Vector3(1, -2, 0.2), angle = -15, header="garage_tuning_config_front_wheels"}
-menuInfos["RearWheels"] = {position = Vector3(-1.25, -2, 0.2), angle = -15, header="garage_tuning_config_rear_wheels"}
+menuInfos["FrontWheels"] = {position = Vector3(1, -2, -0.5), angle = -15, header="garage_tuning_config_front_wheels"}
+menuInfos["RearWheels"] = {position = Vector3(-1.25, -2, -0.5), angle = -15, header="garage_tuning_config_rear_wheels"}
 
 function WheelsScreen:init(wheelsSide)
 	self.disabled = false

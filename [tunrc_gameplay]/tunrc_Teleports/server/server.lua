@@ -26,6 +26,25 @@ local mapsTeleports = {
 	meihan = Vector3 { x = 2790,   y = 471,   z = 7260 },
 	usui = Vector3 { x = -2194,   y = 1121,   z = 5753 },
 	tsu = Vector3 { x = -52,   y = 1425,   z = 7320 },
+	bihoku = Vector3 { x = -4692,   y = -3184,   z = 2136 },
+	okutama = Vector3 { x = -663,   y = -2851,   z = 3060 },
+	primring = Vector3 { x = 2890,   y = -174,   z = 7350 },
+	yz  = Vector3 { x = -7926,   y = -1448,   z = 4145 },
+	galdori = Vector3 { x = -2912,   y = -2127,   z = 7050 },
+	tsuchi = Vector3 { x = 2501,   y = -2421,   z = 10200 },
+	happo = Vector3 { x = 1362,   y = 1126,   z = 3825 },
+	iro = Vector3 { x = -2157,   y = 885,   z = 8775 },
+	myogi = Vector3 { x = 2415,   y = -1891,   z = 8235 },
+	nagao = Vector3 { x = -34,   y = -24,   z = 9100 },
+	nano = Vector3 { x = 1500,   y = 395,   z = 12300 },
+	tsukuba = Vector3 { x = -2548,   y = 269,   z = 5820 },
+	atron = Vector3 { x = 60,   y = -260,   z = 2210 },
+	
+	--races
+	d1 = Vector3 { x = 725,   y = -1395,   z = 20 },
+	d2 = Vector3 { x = 1935,   y = 2022,   z = 20 },
+	d3 = Vector3 { x = 2049,   y = 997,   z = 30 },
+	d4 = Vector3 { x = 92.7,   y = -24.88,   z = 2210 },
 }
 
 local cityTeleportNames = {

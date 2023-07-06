@@ -45,6 +45,7 @@ local localPlayerMenu = {
 	{ locale = "context_menu_anim_drink_a", click = playAnim("drink_a")},
 	{ locale = "context_menu_anim_drink_b", click = playAnim("drink_b")},
 	{ locale = "context_menu_anim_dance_a", click = playAnim("dance_a")},
+	{ locale = "context_menu_anim_cower_a", click = playAnim("cower_a")},
 }
 
 function playerMenu:init(player)

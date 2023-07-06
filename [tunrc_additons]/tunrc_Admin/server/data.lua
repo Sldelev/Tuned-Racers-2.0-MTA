@@ -20,22 +20,16 @@ addEventHandler("tunrc_Admin.requireGiftKeysList", resourceRoot, function ()
 end)
 
 addEvent("tunrc_Admin.createGiftKeys", true)
-addEventHandler("tunrc_Admin.createGiftKeys", resourceRoot, function (options, count)
+addEventHandler("tunrc_Admin.createGiftKeys", resourceRoot, function (options)
 	if not isPlayerAdmin(client) then
 		return
 	end
 	if type(options) ~= "table" then
 		return 
 	end
-	if type(count) ~= "number" or count <= 0 then
-		return
-	end
-	count = math.min(1000, count)
 
 	local keysList = {}
-	for i = 1, count do
-		exports.tunrc_Core:createGiftKey(options)
-	end
+	exports.tunrc_Core:createGiftKey(options)
 	triggerClientEvent(client, "tunrc_Admin.updatedKeys", resourceRoot)
 end)
 

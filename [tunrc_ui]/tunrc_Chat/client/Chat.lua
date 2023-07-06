@@ -7,7 +7,7 @@ local MAX_TAB_WIDTH = 72
 local MAX_LINE_LENGTH = 80
 local TAB_PADDING = 10
 
-local MESSAGES_RT_SIZE = Vector2(600, 600)
+local MESSAGES_RT_SIZE = Vector2(650, 600)
 
 local forceVisible = false
 local isVisible = false
@@ -267,12 +267,13 @@ function drawTabs()
 		local themeColor = {exports.tunrc_UI:getThemeColor()}
 		local color
 		local backgroundColor
+		local lineColor = tocolor(255,255,255)
 		if tab.name == activeTabName then
 			color = tocolor(255, 255, 255, 255)
-			backgroundColor = tocolor(themeColor[1], themeColor[2], themeColor[3], alpha)
+			backgroundColor = tocolor(themeColor[1], themeColor[2], themeColor[3], 150)
 		else
-			color = tocolor(themeColor[1], themeColor[2], themeColor[3], 255)
-			backgroundColor = tocolor(255, 255, 255, alpha)
+			color = tocolor(150, 150, 150, 150)
+			backgroundColor = tocolor(0, 0, 0, 100)
 		end
 
 		dxDrawRectangle(x, y, width + TAB_PADDING * 2, height + TAB_PADDING * 2, backgroundColor)

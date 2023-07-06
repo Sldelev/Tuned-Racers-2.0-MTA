@@ -1,6 +1,6 @@
 local ui = {}
 local stats = {}
-local maxStatsValue = 500
+local maxStatsValue = 100
 
 local function draw()
     if not admin.isPanelVisible() then

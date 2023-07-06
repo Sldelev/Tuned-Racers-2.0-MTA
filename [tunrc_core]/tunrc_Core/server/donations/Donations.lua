@@ -11,7 +11,7 @@ function Donations.setup()
 		{ name="money",   type="bigint", options="UNSIGNED DEFAULT 0" },
 		{ name="xp", 	  type="bigint", options="UNSIGNED DEFAULT 0" },
 		{ name="car", type="int",	 options="UNSIGNED DEFAULT 0" },
-		{ name="skin", type="smallint",	 options="UNSIGNED DEFAULT 0" }
+		{ name="premium", type="int",	 options="UNSIGNED DEFAULT 0" }
 	}, "FOREIGN KEY (user_id)\n\tREFERENCES users("..DatabaseTable.ID_COLUMN_NAME..")\n\tON DELETE CASCADE")
 
 	setTimer(Donations.update, DONATIONS_UPDATE_INTERVAL * 1000, 0)
@@ -48,17 +48,17 @@ function giveUserCar(username, modelId)
 	end)
 end
 
-function giveUserSkin(username, modelId)
-	if type(username) ~= "string" or type(modelId) ~= "number" then
+function giveUserPremium(username, duration)
+	if type(username) ~= "string" or type(duration) ~= "number" then
 		return
 	end
 	return Users.getByUsername(username, {"_id"}, function(result)
 		if not result or not result[1] or not result[1]._id then
 			outputDebugString("Donate: Invalid username " .. username)
-			return
+			return 
 		end
-		DatabaseTable.insert(DONATIONS_TABLE_NAME, { user_id = result[1]._id, skin = modelId }, function (result)
-			outputDebugString(("Donate: Skin %d to '%s'"):format(modelId, username))
+		DatabaseTable.insert(DONATIONS_TABLE_NAME, { user_id = result[1]._id, premium = duration }, function (result)
+			outputDebugString("Premium for '" .. tostring(username) .. "'" .. duration)
 		end)
 	end)
 end
@@ -100,15 +100,20 @@ local function giveDonationToPlayer(player, donation)
 			if type(currentPremium) ~= "number" then
 				currentPremium = 0
 			end
-			local timestamp = getRealTime().timestamp
+			local timestamp = getRealTime(false).timestamp
 			local premiumExpireDate = 0
+			if currentPremium > timestamp then
+				premiumExpireDate = 0
+				outputDebugString("End player premium")
+			end
 			if currentPremium < timestamp then
 				premiumExpireDate = timestamp + premiumDuration
-				--outputDebugString("Started player premium")
+				outputDebugString("Started player premium")
 			else
 				premiumExpireDate = currentPremium + premiumDuration
-				--outputDebugString("Added player premium")
+				outputDebugString("Added player premium")
 			end
+			player:setData("premium_expires", premiumExpireDate)
 		end
 		triggerClientEvent(player, "tunrc_Core.donation", player)
 		exports.tunrc_Logger:log("donations", string.format("Given donation %s to player %s (%s)",

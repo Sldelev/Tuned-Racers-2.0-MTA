@@ -131,8 +131,9 @@ local function decrypting()
 
 		processValue = processValue or 1
 		processName = processName or 'Готово'
-		drawProgress( processValue, processName )
+		exports.tunrc_Loadingscreen:show()
 	else
+		exports.tunrc_Loadingscreen:hide()
 		removeEventHandler( 'onClientRender', root, decrypting )
 		debug.sethook( _, h1, h2, h3 )
 	end

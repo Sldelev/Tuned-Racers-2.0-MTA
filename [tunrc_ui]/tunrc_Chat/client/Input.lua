@@ -1,6 +1,6 @@
 Input = {}
 
-local MAX_MESSAGE_LENGTH = 128
+local MAX_MESSAGE_LENGTH = 256
 
 local REPEAT_KEY_WAIT = 500
 local REPEAT_KEY_DELAY = 50

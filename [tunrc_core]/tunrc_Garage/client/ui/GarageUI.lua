@@ -161,6 +161,7 @@ function GarageUI.resetHelpText()
 		{control = exports.tunrc_Lang:getString("controls_arrows"), action = exports.tunrc_Lang:getString("garage_help_move_selection")},
 		{control = exports.tunrc_Lang:getString("controls_enter"), action = exports.tunrc_Lang:getString("garage_help_select")},
 		{control = exports.tunrc_Lang:getString("controls_backspace"), action = exports.tunrc_Lang:getString("garage_help_back")},
-		{control = exports.tunrc_Lang:getString("controls_mouse"), action = exports.tunrc_Lang:getString("garage_help_move_camera")},
+		{control = exports.tunrc_Lang:getString("M"), action = exports.tunrc_Lang:getString("garage_help_move_camera")},
+		{control = exports.tunrc_Lang:getString("N"), action = exports.tunrc_Lang:getString("garage_help_next_music")},
 	})
 end

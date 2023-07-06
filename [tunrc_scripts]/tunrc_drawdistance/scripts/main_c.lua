@@ -80,7 +80,7 @@ local processObjectsForLowLOD = function (res, mapRoot)
 							
 							setLowLODElement(object, lowLODObject)
 							
-							engineSetModelLODDistance(model, 90) 
+							engineSetModelLODDistance(model, 70) 
 							local scale = getObjectScale(object) or 1
 							if scale ~= 1 then
 								setObjectScale( lowLODObject, scale)

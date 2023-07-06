@@ -78,19 +78,18 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
 	ui.searchKeyEdit = GuiEdit(0.34, 0.01, 0.65, 0.05, "", true, ui.panel)
 	ui.refreshButton = GuiButton(0.34, 0.84 + 0.07, 0.325, 0.07, "Refresh", true, ui.panel)
 	ui.removeButton = GuiButton(0.34 + 0.325, 0.84 + 0.07, 0.325, 0.07, "Remove key", true, ui.panel)
-
+	
 	local y = 0.015
-	GuiLabel(0.02, y, 0.5, 0.05, "Money", true, ui.panel)
+	GuiLabel(0.02, y, 0.5, 0.05, "Key", true, ui.panel)
 	y = y + 0.05
-	ui.moneyEdit = GuiEdit(0.02, y, 0.3, 0.05, "0", true, ui.panel)
+	ui.keyEdit = GuiEdit(0.02, y, 0.3, 0.05, "Key", true, ui.panel)
 
-	y = y + 0.08
-	GuiLabel(0.02, y, 0.5, 0.05, "XP", true, ui.panel)
 	y = y + 0.05
-	ui.xpEdit = GuiEdit(0.02, y, 0.3, 0.05, "0", true, ui.panel)	
+	ui.moneyEdit = GuiEdit(0.02, y, 0.3, 0.05, "Money", true, ui.panel)
 
-	y = y + 0.08
-	GuiLabel(0.02, y, 0.5, 0.05, "Car", true, ui.panel)
+	y = y + 0.05
+	ui.xpEdit = GuiEdit(0.02, y, 0.3, 0.05, "XP", true, ui.panel)	
+
 	y = y + 0.05
 	ui.carsSelect = GuiComboBox(0.02, y, 0.3, 0.35, "None", true, ui.panel)
 
@@ -120,6 +119,8 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
 	end, false)
 
 	addEventHandler("onClientGUIClick", ui.createButton, function ()
+		local key = ui.keyEdit.text or "TRC"
+		if key == 0 then key = "TRC" end
 		local money = tonumber(ui.moneyEdit.text) or 0
 		if money == 0 then money = nil end
 		local xp = tonumber(ui.xpEdit.text) or 0
@@ -128,12 +129,16 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
 		if ui.carsSelect.selected >= 0 then
 			car = carNamesList[ui.carsSelect.selected + 1]
 		end
+		local count = tonumber(ui.countEdit.text) or 0
+		if count == 0 then count = nil end
 		addDiffToCreated = true
 		triggerServerEvent("tunrc_Admin.createGiftKeys", resourceRoot, {
+			key = key,
 			money = money,
 			xp = xp,
-			car = car
-		}, tonumber(ui.countEdit.text) or 0)
+			car = car,
+			count = count
+		})
 	end, false)	
 
 	addEventHandler("onClientGUIClick", ui.removeButton, function ()

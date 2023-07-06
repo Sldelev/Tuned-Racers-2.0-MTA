@@ -85,10 +85,10 @@ function Assets.loadSticker(id)
 	if Assets.textures[assetName] then
 		return Assets.textures[assetName]
 	end
-	Assets.textures[assetName] = exports.tunrc_Assets:createTexture("stickers/" .. id .. "prev.png", "dxt5")
+	Assets.textures[assetName] = exports.tunrc_Stickers:createTexture("stickers/" .. id .. "prev.png", "dxt5")
 	if not isElement(Assets.textures[assetName]) then
 		outputDebugString("No preview for sticker " .. tostring(id))
-		Assets.textures[assetName] = exports.tunrc_Assets:createTexture("stickers/" .. id .. ".png", "dxt5")
+		Assets.textures[assetName] = exports.tunrc_Stickers:createTexture("stickers/" .. id .. ".png", "dxt5")
 	end
 	return Assets.textures[assetName]
 end

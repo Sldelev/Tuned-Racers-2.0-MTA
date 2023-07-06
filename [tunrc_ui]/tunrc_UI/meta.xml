@@ -41,6 +41,8 @@
 	<file src="themes/orange.json"/>
 	<file src="themes/green.json"/>
 	<file src="themes/black.json"/>
+	<file src="themes/light_pink.json"/>
+	<file src="themes/light_brown.json"/>
 
 	<!-- Сгенерированный список экспортов -->
 	<export type="client" function="getScreenSize"/>

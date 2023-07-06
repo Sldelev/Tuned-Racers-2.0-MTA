@@ -7,10 +7,6 @@ local NAMETAG_SCALE = 3.5
 local CONFIG_PROPERTY_NAME = "graphics.nametags"
 local CONFIG_PROPERTY_NAME_SELF = "graphics.self_nametags"
 
-local CROWN_SIZE = 70
-
-local HP_BAR_HEIGHT = 15
-
 local premiumColor = {255, 165, 0}
 
 local nametagFont = "default"
@@ -29,7 +25,8 @@ local function dxDrawNametagText(text, x1, y1, x2, y2, color, scale)
 end
 
 addEventHandler("onClientRender", root, function ()
-	if not nametagsVisible then
+	nametagsVisible = exports.tunrc_Config:getProperty(CONFIG_PROPERTY_NAME)
+	if nametagsVisible == false then
 		return
 	end
 	local tr, tg, tb = exports.tunrc_UI:getThemeColor()
@@ -51,20 +48,6 @@ addEventHandler("onClientRender", root, function ()
 					r, g, b = unpack(premiumColor)
 				end
 				local textWidth = dxDrawNametagText(name, nx, ny, nx + width, ny + height, tocolor(r, g, b, a), scale)
-				if info.premium then
-					local cx = nx + width / 2 - textWidth / 2 - CROWN_SIZE * scale * 1.2
-					local crownSize = CROWN_SIZE * scale
-					dxDrawImage(cx, ny -  CROWN_SIZE / 2 * scale, crownSize, crownSize, crownTexture, 0, 0, 0, tocolor(r, g, b, a))
-					cx = nx + width / 2 + textWidth / 2 + CROWN_SIZE * scale * 0.2
-					dxDrawImage(cx, ny -  CROWN_SIZE / 2 * scale, crownSize, crownSize, crownTexture, 0, 0, 0, tocolor(r, g, b, a))
-				end
-				-- Отрисовка HP
-				if not player.vehicle then
-					local offset = height * 2.9
-					dxDrawRectangle(nx - 1, ny + offset - 1, width + 1 , HP_BAR_HEIGHT * scale + 2, tocolor(0, 0, 0, 150))					
-					dxDrawRectangle(nx, ny + offset, width * player.health / 100, HP_BAR_HEIGHT * scale, tocolor(r, g, b, a))
-					dxDrawRectangle(nx, ny + offset, width * player.health / 100, HP_BAR_HEIGHT * scale, tocolor(r, g, b, a))
-				end
 			end
 		end
 	end
@@ -75,8 +58,10 @@ local function showPlayer(player)
 		return false
 	end
 	setPlayerNametagShowing(player, false)
+	
+	SelfnametagsVisible = exports.tunrc_Config:getProperty(CONFIG_PROPERTY_NAME_SELF)
 
-	if not SelfnametagsVisible and player == localPlayer then
+	if SelfnametagsVisible == false and player == localPlayer then
 		return
 	end
 	streamedPlayers[player] = {
@@ -128,7 +113,6 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
 	-- ped.health = 76
 
 	nametagFont = dxCreateFont("assets/font.ttf", 50)
-	crownTexture = exports.tunrc_Assets:createTexture("crown.png")
 end)
 
 function setVisible(visible)
@@ -143,6 +127,7 @@ addEvent("tunrc_Config.update", false)
 addEventHandler("tunrc_Config.update", root, function (key, value)
 	if key == CONFIG_PROPERTY_NAME then
 		setVisible(value)
+		showPlayer(player)
 	elseif key == CONFIG_PROPERTY_NAME_SELF then
 		setSelfVisible(value)
 	end

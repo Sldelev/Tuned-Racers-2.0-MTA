@@ -51,7 +51,7 @@ local function showPlayerRaceFinish(player, race, time, rank, score)
 		score = 1
 	end
 	
-	local prize = racePrizes[rank].money + (score / 100)
+	local prize = racePrizes[rank].money + (score / 200)
     if type(prize) ~= "number" then
         outputDebugString("tunrc_RaceLobby: showPlayerRaceFinish - no prize")
         prize = 0
@@ -65,10 +65,10 @@ local function showPlayerRaceFinish(player, race, time, rank, score)
     exports.tunrc_Core:givePlayerMoney(player, prize)
     exports.tunrc_Core:givePlayerXP(player, exp)
 
-    exports.tunrc_RaceManager:raceRemovePlayer(race, player)
     for i, p in ipairs(totalPlayers) do
         triggerClientEvent(p, "RaceLobby.playerFinished", resourceRoot, player, prize, exp, rank, time, score)
     end
+	exports.tunrc_RaceManager:raceRemovePlayer(race, player)
     fadeCamera(player, true, 1)
 end
 

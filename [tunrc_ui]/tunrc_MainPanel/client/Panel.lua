@@ -5,7 +5,7 @@ local height = 380
 local panel
 -- Табы
 TABS_HEIGHT = 50
-local tabsNames = {"account", "teleport", "settings", "garage"}
+local tabsNames = {"account","achievements", "teleport", "settings", "garage"}
 local tabsButtons = {}
 local tabs = {}
 local tabsHandlers = {}
@@ -24,20 +24,63 @@ function Panel.create()
     }
     UI:addChild(panel)
 
-    if screenHeight >= 710 then
-        local logoTexture = exports.tunrc_Assets:createTexture("logo.png")
-        local textureWidth, textureHeight = dxGetMaterialSize(logoTexture)
-        local logoWidth = 300
-        local logoHeight = textureHeight * 300 / textureWidth
-        local logoImage = UI:createImage({
-            x       = (width - logoWidth) / 2,
-            y       = -logoHeight - 25,
-            width   = logoWidth,
-            height  = logoHeight,
-            texture = logoTexture
-        })
-        UI:addChild(panel, logoImage)
-    end
+	-- никнейм
+	local usernameLabel = UI:createDpLabel {
+		x = 0,
+		y = -60,
+		width = width / 3, height = 50,
+		text = "---",
+		type = "primary",
+		fontType = "defaultLarger"
+	}
+	UI:addChild(panel, usernameLabel)
+	UIDataBinder.bind(usernameLabel, "username", function (value)
+		return string.upper(tostring(value))
+	end)
+	-- группа игрока
+	local usernameLabelText = UI:createDpLabel {
+		x = 0 , y = -25,
+		width = width / 3, height = 50,
+		text = "Admin",
+		color = tocolor(205, 205, 205, 255),
+		fontType = "defaultSmall",
+		locale = "main_panel_account_player"
+	}
+	UI:addChild(panel, usernameLabelText)
+	UIDataBinder.bind(usernameLabelText, "group", function (value)
+		if not value then
+			return exports.tunrc_Lang:getString("groups_player")
+		else
+			return exports.tunrc_Lang:getString("groups_" .. tostring(value))
+		end
+	end)
+	-- деньги
+	local moneyLabel = UI:createDpLabel {
+	x = width - width / 3 ,
+	y = -60,
+	width = width / 3, height = 50,
+	text = "$0",
+	type = "primary",
+	fontType = "defaultLarger",
+	alignX = "right"
+	}
+	UI:addChild(panel, moneyLabel)
+	UIDataBinder.bind(moneyLabel, "money", function (value)
+	 return "$" .. tostring(value)
+	 end)
+	 
+	 -- Подпись
+	local moneyLabelText = UI:createDpLabel {
+	 	x = width - width / 3 ,
+		y = -25,
+	 	width = width / 3, height = 50,
+		text = "Money",
+	 	color = tocolor(205, 205, 205, 255),
+	 	fontType = "defaultSmall",
+	 	alignX = "right",
+	 	locale = "main_panel_account_money"
+	 }
+	 UI:addChild(panel, moneyLabelText)
 
     -- Табы
     local tabWidth = width / #tabsNames
@@ -61,7 +104,7 @@ function Panel.addTab(name)
         y          = TABS_HEIGHT,
         width      = width,
         height     = height - TABS_HEIGHT,
-        type       = "transparent",
+        type       = "light",
         scrollable = true
     }
     UI:addChild(panel, tab)
@@ -144,6 +187,11 @@ end
 
 tabsHandlers.teleport = function ()
     TeleportTab.refresh()
+end
+
+tabsHandlers.achievements = function ()
+    UIDataBinder.refresh()
+    AchievementsTab.refresh()
 end
 
 tabsHandlers.account = function ()

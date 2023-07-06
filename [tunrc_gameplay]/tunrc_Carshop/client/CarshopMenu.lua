@@ -1,5 +1,6 @@
 CarshopMenu = {}
 local renderTarget
+local screenSize = {guiGetScreenSize()}
 local MENU_OFFSET = Vector3(0, 0, 1.6)
 local position = Vector3()
 local size = Vector2(1.5, 0.55)
@@ -25,25 +26,30 @@ local themeColor = {0, 0, 0}
 local themeColorHex = "#FFFFFF"
 
 local function draw()
-	dxSetRenderTarget(renderTarget)
-	dxDrawRectangle(0, 0, resolution.x, resolution.y, tocolor(42, 40, 41))
-	dxDrawRectangle(0, 0, resolution.x, headerHeight, tocolor(32, 30, 31))	
+	dxDrawRectangle(1920 - screenSize[1], 25, resolution.x, resolution.y, tocolor(0, 0, 0, 25))
 
 -- Цена
 	local priceText = ""
 	if Carshop.currentVehicleInfo.price > 0 then
-		priceText = "₽" .. tostring(Carshop.currentVehicleInfo.price)
+			priceTextPremium = "$" .. tostring(Carshop.currentVehicleInfo.price / 1.25)
+			priceText = "$" .. tostring(Carshop.currentVehicleInfo.price)
 	else
 		priceText = exports.tunrc_Lang:getString("price_free")
 	end
-	dxDrawText(priceText, 0, 0, resolution.x - 20, headerHeight, tocolor(themeColor[1], themeColor[2], themeColor[3]), 1, labelFont, "right", "center")
-
+	if localPlayer:getData("isPremium") then
+		dxDrawText(priceTextPremium, 1920 - screenSize[1], 50, 1920 - screenSize[1] + resolution.x - 20, headerHeight + 30, tocolor(themeColor[1], themeColor[2], themeColor[3]), 1, labelFont, "right", "center")
+		dxDrawRectangle(1920 - screenSize[1] + 300, 40, 60, 10, tocolor(200, 0, 0, 200), true)
+		dxDrawText(priceText, 1920 - screenSize[1], 50, 1920 - screenSize[1] + resolution.x - 20, headerHeight - 30, tocolor(themeColor[1], themeColor[2], themeColor[3]), 1, labelFont, "right", "center")
+	else
+		dxDrawText(priceText, 1920 - screenSize[1], 50, 1920 - screenSize[1] + resolution.x - 20, headerHeight, tocolor(themeColor[1], themeColor[2], themeColor[3]), 1, labelFont, "right", "center")
+	end
+	
 	local priceWidth = dxGetTextWidth(priceText, 1, labelFont)
 
 	local headerText = Carshop.currentVehicleInfo.name
 	local hearderWidth = dxGetTextWidth(headerText, 1, headerFont)
 	local hearderScale = math.min(1, (resolution.x - 60 - priceWidth) / hearderWidth)
-	dxDrawText(headerText, 20, 0, resolution.x - 20 - priceWidth, headerHeight, tocolor(255, 255, 255), hearderScale, headerFont, "left", "center", true)
+	dxDrawText(headerText, (1920 - screenSize[1]) + 20, 50, (1920 - screenSize[1]) + resolution.x - 20 - priceWidth, headerHeight, tocolor(255, 255, 255), hearderScale, headerFont, "left", "center", true)
 
 	local buyButtonActive = true
 	local buyButtonText = exports.tunrc_Lang:getString("carshop_buy_button")
@@ -64,11 +70,11 @@ local function draw()
 		buyButtonText = exports.tunrc_Lang:getString("carshop_need_premium")
 	end
 	if not buyButtonActive then
-		dxDrawRectangle(0, resolution.y - headerHeight, resolution.x, headerHeight, tocolor(32, 30, 31))	
-		dxDrawText(buyButtonText, 20, resolution.y - headerHeight, resolution.x, resolution.y, tocolor(255, 255, 255, 150), 1, headerFont, "center", "center")		
+		dxDrawRectangle(1920 - screenSize[1], resolution.y - headerHeight + 25, resolution.x, headerHeight, tocolor(32, 30, 31))	
+		dxDrawText(buyButtonText, 1920 - screenSize[1], resolution.y - headerHeight + 50, 1920 - screenSize[1] + resolution.x, resolution.y, tocolor(255, 255, 255, 150), 1, headerFont, "center", "center")		
 	else
-		dxDrawRectangle(0, resolution.y - headerHeight, resolution.x, headerHeight, tocolor(themeColor[1], themeColor[2], themeColor[3]))	
-		dxDrawText(buyButtonText, 20, resolution.y - headerHeight, resolution.x, resolution.y, tocolor(255, 255, 255), 1, headerFont, "center", "center")	
+		dxDrawRectangle(1920 - screenSize[1], resolution.y - headerHeight + 25, resolution.x, headerHeight, tocolor(themeColor[1], themeColor[2], themeColor[3]))	
+		dxDrawText(buyButtonText, 1920 - screenSize[1], resolution.y - headerHeight + 50, 1920 - screenSize[1] + resolution.x, resolution.y, tocolor(255, 255, 255), 1, headerFont, "center", "center")	
 	end
 
 	--[[local y = headerHeight
@@ -92,19 +98,6 @@ local function draw()
 	end
 	dxDrawText(labelText .. ": " .. themeColorHex .. valueText, 0, y, resolution.x, y + labelHeight, tocolor(255, 255, 255), 1, labelFont, "center", "center", false, false, false, true)
 	]]
-	dxSetRenderTarget()
-
-	local halfHeight = Vector3(0, 0, size.y / 2)
-	local rad = math.rad(rotation)
-	local lookOffset = Vector3(math.cos(rad), math.sin(rad), 0)
-	dxDrawMaterialLine3D(
-		position + halfHeight, 
-		position - halfHeight, 
-		renderTarget, 
-		size.x, 
-		tocolor(255, 255, 255, 250),
-		position + lookOffset
-	)
 end
 
 function CarshopMenu.start(basePosition)

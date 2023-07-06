@@ -30,7 +30,7 @@ local function getTimeString(value)
 end
 
 local function draw()
-	if RaceTimer.isActive then
+	if not RaceTimer.isActive then
 		return false
 	end
 	local x = screenSize.x / 2 - panelWidth / 2

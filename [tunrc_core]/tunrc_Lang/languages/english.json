@@ -44,16 +44,16 @@
 	"intro_press_to_start": "Press SPACE to start",
 
 	"tutorial_garage_title": "Hi. You got on the most boring server in MTA. You came here yourself, or it was done for you - I don't know. Then you'll have to read.",
-	"tutorial_garage_test": "TunedRacers is a server about drift and street with some zest.All you have to do is take your car and look at the drift race on the map, and deliver it to us. There you can earn money for new cars.",
+	"tutorial_garage_test": "TunedRacers is a server about drift and street with some zest.All you have to do is take your car and look at the drift race on the map. There you can earn money for new cars.",
     
 	"tutorial_city_title": "City",
     "tutorial_city_text": "Now that you've got your first car, a huge world of drifting on the roads of America opens up in front of you (of course not), now you need to earn at least some pennies in drift racing (drift mode is by default in your car) or in the delivery of your car, just so as not to be a gray mass among other stagnant onlookers of the Tuned Racers",
 	
 	"help_panel_general_title": "General",
-	"help_panel_general_text": "Keys:\nF1 - main panel, teleports, settings\nF2 - cursor\n] - Set time to 8 am and weather to Cloudy 4\n1 - toggle lights\nO - photo mode\nI toggle UI\nto earn game currency, there are drift races and delivery of hemp",
+	"help_panel_general_text": "Keys:\nF1 - main panel, teleports, settings\nF2 - cursor\n] - Set time to 8 am and weather to Cloudy 4\n1 - toggle lights\nO - photo mode\nI toggle UI",
 
 	"help_panel_questions_title": "FAQ",
-	"help_panel_questions_text": "So...You got to the server without understanding anything, you have a lot of questions: How to make money? What to do? What is the server about? This tab specifically answers all the most popular questions.\nHow to earn money? There are 3 ways to earn money on the server: Drift racing, hemp delivery, street drift. Drift racing, as well as hemp delivery are located throughout the state of SA, opening the map on the English button 'M' you will see the points of earnings. Street drift consists of illegal competitions and regular trips around the city.\nHow to buy a car? There is also a car dealership point on the map, or a team /carshop outside the car\n",
+	"help_panel_questions_text": "So...You got to the server without understanding anything, you have a lot of questions: How to make money? What to do? What is the server about? This tab specifically answers all the most popular questions.\nHow to earn money? There are 2 ways to earn money on the server: Drift racing, street drift. Drift racing are located throughout the state of SA, opening the map on the English button 'M' you will see the points of earnings. Street drift consists of illegal competitions and regular trips around the city.\nHow to buy a car? There is also a car dealership point on the map, or a team /carshop outside the car\n",
 
 	"help_panel_garage_title": "Garage",
 	"help_panel_garage_text": "You can use garage to access all your cars. You can also use it to remove your car and to customize it.",
@@ -88,6 +88,7 @@
 	"photo_mode_param_weather": "Weather",
 	"photo_mode_param_weather_unknown": "Unknown",
 	"photo_mode_help_hide": "Hide ped",
+	"photo_mode_help_composition": "Composition help",
 
 	// =============================================
 	// ================ Login panel ================
@@ -159,10 +160,12 @@
 	"chat_message_player_quit": "Player %s has left the server (%s)",
 	"chat_message_dont_flood": "Don't flood!",
 	"chat_message_muted": "You are temporary muted by administrator",
+	"chat_adminsay_Ceo": "CEO",
 	"chat_adminsay_Admin": "Admin",
 	"chat_adminsay_Moderator": "Moderator",
 	"chat_premiumsay": "Premium",
 	"chat_admin_mute": "Player %s has been muted by %s for %s seconds",
+	"chat_admin_mute_min": "Игрок %s получил мут от %s на %s minutes.",
 	"chat_admin_unmute": "Players %s has been unmuted by %s.",
 	"chat_admin_ban": "Player %s has been banned %s",
 
@@ -270,6 +273,15 @@
 	"garage_tuning_component_rpanel": "Rear panel",
 	"garage_tuning_item_rpanel": "Rear panel",
 	
+	"garage_tuning_component_addlights": "Add. lights",
+	"garage_tuning_item_addlights": "Add. lights",
+	
+	"garage_tuning_component_rollingshell": "Underbonnet",
+	"garage_tuning_item_rollingshell": "Underbonnet",
+	
+	"garage_tuning_component_side_addskirts": "Skirts Additions",
+	"garage_tuning_item_addskirt": "Skirts Additions",
+	
 	"garage_tuning_component_front_fends_dops": "Front fenders pads",
 	"garage_tuning_item_fender_dop": "Front fender pad",
 	
@@ -353,28 +365,33 @@
 	"garage_tuning_stickers_numbers": "Numbers",
 	"garage_tuning_stickers_brands": "Brands",
 	"garage_tuning_stickers_clubs": "Clubs",
+	"garage_tuning_stickers_bolts": "Bolts",
+	"garage_tuning_stickers_flame": "Flames",
+	"garage_tuning_stickers_anime": "Anime",
+	"garage_tuning_stickers_damage": "Damages",
+	"garage_tuning_stickers_partners": "Partners",
 
 	"garage_tuning_config_front_wheels": "Front wheels",
 	"garage_tuning_config_rear_wheels": "Rear wheels",
 	"garage_tuning_config_suspension": "Suspension",
 	
+	"garage_tuning_config_wheels_castor": "Caster",
+	"garage_tuning_config_wheels_castor_label": "Caster Angle",
+	
 	"garage_tuning_config_bias": "Bias Suspension",
 	"garage_tuning_config_steer": "Steering Lock",
-	"garage_tuning_config_boost": "Max Velocity",
-	"garage_tuning_config_loadbias": "Load Bias",
-	"garage_tuning_config_reartires": "Traction Loss",
-	"garage_tuning_config_fronttires": "Traction Multiplier",
-	"garage_tuning_config_brakepower": "Brake Deceleration",
-	"garage_tuning_config_brakedist": "Brake Bias",
 
-	"garage_tuning_config_bias_label": "Bias",
-	"garage_tuning_config_steer_label": "Steering",
-	"garage_tuning_config_boost_label": "Velocity",
-	"garage_tuning_config_loadbias_label": "Load Bias",
-	"garage_tuning_config_reartires_label": "Traction",
-	"garage_tuning_config_fronttires_label": "Multiplier",
-	"garage_tuning_config_brakepower_label": "Brake",
-	"garage_tuning_config_brakedist_label": "Bias",
+	"garage_tuning_config_bias_label": "Bias Suspension",
+	"garage_tuning_config_steer_label": "Steering Lock",
+	
+	"garage_tuning_config_veh_velocity": "Max Velocity",
+	"garage_tuning_config_veh_velocity_label": "Max Velocity",
+	
+	"garage_tuning_config_veh_mass": "Mass",
+	"garage_tuning_config_veh_mass_label": "Mass",
+	
+	"garage_tuning_config_veh_turnmass": "Turn mass",
+	"garage_tuning_config_veh_turnmass_label": "Turn mass",
 	
 	"garage_tuning_config_upgrades": "Upgrades",
 	"garage_tuning_config_wheels_size": "Wheels radius",
@@ -405,7 +422,8 @@
 	"garage_help_move_selection": "Navigation",
 	"garage_help_select": "Select",
 	"garage_help_back": "Go back",
-	"garage_help_move_camera": "Camera",
+	"garage_help_move_camera": "Free camera",
+	"garage_help_next_music": "Next Music",
 
 	"garage_sticker_editor_move": "Move",
 	"garage_sticker_editor_rotate": "Rotate",
@@ -458,6 +476,7 @@
 	// ============ Main panel ============
 	// ====================================
 	"main_panel_tab_account": "Account",
+	"main_panel_tab_achievements": "Achievements",
 	"main_panel_tab_teleport": "Teleports",
 	"main_panel_tab_settings": "Settings",
 	"main_panel_tab_garage": "Garage",
@@ -466,6 +485,11 @@
 	"main_panel_garage_text": "Garage",
 
 	"main_panel_teleport_players": "Players",
+	
+	"main_panel_teleport_city": "Citys",
+	"main_panel_teleport_tracks": "Tracks",
+	"main_panel_teleport_mount": "Mountains",
+	"main_panel_teleport_race": "Races",
 
 	"main_panel_account_sell_vehicle": "Sell vehicle",
 	"main_panel_account_donat": "Gift Panel",
@@ -485,9 +509,11 @@
 	"main_panel_settings_section_graphics": "Graphics settings",
 	"main_panel_settings_language": "Language",
 	"main_panel_settings_color": "UI color",
+	"main_panel_settings_collision": "Off Veh.Collisions(BETA)",
 	"main_panel_settings_joinquit_messages": "Join/quit messages",
 	"main_panel_settings_chat_timestamp": "Sending time",
 	"main_panel_settings_reflections_cars": "Cars reflections",
+	"main_panel_settings_tyres_smoke": "Improved tire smoke",
 	"main_panel_settings_reflections_water": "Water reflections",
 	"main_panel_settings_improved_car_lights": "Improved car lights",
 	"main_panel_settings_improved_sky": "Improved sky",
@@ -500,6 +526,7 @@
 	"main_panel_settings_smooth_steering": "Smooth steering",
 	"main_panel_settings_background_music": "Background music",
 	"main_panel_setting_change_password": "Change password",
+	"main_panel_setting_change_fps": "Change fps limit",
 
 	"main_panel_password_change_title": "Change account password",
 	"main_panel_new_password_label": "New password",
@@ -511,6 +538,11 @@
 	"main_panel_password_change_message": "Password change",
 	"main_panel_password_change_error": "Failed to change your password",
 	"main_panel_password_change_success": "You have successfully changed your account password",
+	
+	"main_panel_fps_change_title": "Change FPS limit",
+	"main_panel_fps_label": "New limit",
+	"main_panel_fps_placeholder": "Enter FPS limit",
+	"main_panel_new_fps_accept": "Setup",
 
 	// ==========================================
 	// ================ Markers =================
@@ -666,6 +698,7 @@
 	"context_menu_anim_drink_a": "Drinking Cola",
 	"context_menu_anim_drink_b": "Drinking Budweiser",
 	"context_menu_anim_dance_a": "Dancing",
+	"context_menu_anim_cower_a": "Stay HandsUp",
 
 	// Duels
 	"duel_invite_error_title": "Error",

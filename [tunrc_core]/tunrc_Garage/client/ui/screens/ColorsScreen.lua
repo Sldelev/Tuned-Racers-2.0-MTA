@@ -5,6 +5,7 @@ function ColorsScreen:init(componentName)
 	local bodyColorPrice, bodyColorLevel = unpack(exports.tunrc_Shared:getTuningPrices("body_color"))
 	self.componentsSelection = ComponentSelection({
 		{name="BodyColor",       camera="bodyColor",       locale="garage_tuning_paint_body", price = bodyColorPrice, level = bodyColorLevel},
+		{name="SmokeColor",       camera="bodyColor",       locale="garage_tuning_smoke_color", price = bodyColorPrice, level = bodyColorLevel},
 	})
 	local vehicle = GarageCar.getVehicle()
 	-- Если на машине установлены передние диски

@@ -74,11 +74,11 @@ function giveVehicle(username, modelId)
     return exports.tunrc_core:giveUserCar(username, tonumber(modelId))
 end
 
-function giveSkin(username, modelId)
+function givePremium(username, duration)
     if not hostname or hostname ~= TRADEMC_IP then
         outputDebugString("WebAPI: Bad request from '" .. tostring(hostname) .. "'")
         return "Bad request"
     end
 
-    return exports.tunrc_core:giveUserSkin(username, tonumber(modelId))
+    return exports.tunrc_core:giveUserPremium(username, tonumber(duration))
 end

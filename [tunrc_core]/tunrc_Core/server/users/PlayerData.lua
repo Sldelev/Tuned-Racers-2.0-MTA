@@ -10,14 +10,18 @@ local loadFields = {
 	"xp",
 	"group",
 	"premium_expires",
-	"last_sell_time"
+	"last_sell_time",
+	"max_drift_points_session",
+	"drift_points"
 }
 local saveFields = {
 	"skin",
 	"money",
 	"playtime",
 	"xp",
-	"premium_expires"
+	"premium_expires",
+	"max_drift_points_session",
+	"drift_points"
 }
 local protectFields = {
 	"_id",

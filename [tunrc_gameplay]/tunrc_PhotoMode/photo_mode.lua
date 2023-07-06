@@ -304,6 +304,8 @@ local function onKey(key, isDown)
 		changeWeather(false)
 	elseif key == "n" then
 		setPlayerAlph()
+	elseif key == "3" then
+		ComposHelpToggle()
 	else
 		local screenshotBoundKeys = getBoundKeys("screenshot")
 		if screenshotBoundKeys then

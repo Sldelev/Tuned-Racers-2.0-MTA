@@ -21,12 +21,14 @@ local startupResources = {
 	"bravado_buffalo",
 	"dinka_jester",
 	"ubermacht_sentinel",
+	"declasse_burrito",
 
 	-- Important
 	"geoip",
 
 	-- Assets
 	"tunrc_Assets",
+	"tunrc_Stickers",
 	-- Configuration
 	"tunrc_Config",
 	"tunrc_Shared",
@@ -65,6 +67,8 @@ local startupResources = {
 	"tunrc_Anims",
 	"tunrc_Vehicles",
 	"tunrc_WheelsManager",
+	"tunrc_RaceManager",
+	"tunrc_RaceLobby",
 	"tunrc_PhotoMode",
 	"tunrc_DriftPoints",
 	"tunrc_Garage",
@@ -110,6 +114,19 @@ local startupResources = {
 	"tunrc_ebisu_higashi_map",
 	"tunrc_meihan_map",
 	"tunrc_spb",
+	"tunrc_galdori",
+	"tunrc_okutama",
+	"tunrc_primring",
+	"tunrc_yz_circuit",
+	"tunrc_bihoku",
+	"tunrc_atron",
+	"tunrc_happo",
+	"tunrc_irohasaka",
+	"tunrc_myogi",
+	"tunrc_nagao",
+	"tunrc_nanohanadai",
+	"tunrc_tsuchi",
+	"tunrc_tsukuba",
 	
 	--jobs
 	
@@ -117,52 +134,19 @@ local startupResources = {
 
 	-- Non-important assets
 	"tunrc_wheels",
-	"tunrc_CacheLock",
 	"tunrc_carsounds",
-	"tunrc_DriftSound",
-	"tunrc_Skins",
-	"r_misc_a",
-	"photocam",
 	"tunrc_commands",
 	"tunrc_drawdistance",
 	"tunrc_fpsping",
 	"tunrc_lgtex",
 	"tunrc_setTimeWeather",
 	"tunrc_marker_creator",
-	"tunrc_billard",
-	"tunrc_roulette",
-	"tct",
+	"tunrc_dontfallbike",
 	
-}
-
-local UIresourses = {
-
-	"tunrc_HUD",
-	"tunrc_WorldMap",
-	"tunrc_Nametags",
-	"tunrc_HideUI",
-	"tunrc_Chat",
-
-	"tunrc_LoginPanel",
-	"tunrc_TabPanel",
-	"tunrc_MainPanel",
-	"tunrc_HelpPanel",
-	"tunrc_ModeratorPanel",
-	"tunrc_CarInfoPanel",
-	"tunrc_GiftsPanel",
-
 }
 
 -- Test
 -- startupResources = {"tunrc_Utils", "tunrc_Config", "tunrc_Lang", "tunrc_Chat"}
-
-function restartUI ()
-	for i, resourcesUI in ipairs(UIresourses) do
-		stopResource(resourcesUI)
-		startResource(resourcesUI)
-	end
-end
-addCommandHandler ( "restartUI", restartUI )
 
 local function processResourceByName(resourceName, start)
 	local resource = getResourceFromName(resourceName)

@@ -5,6 +5,10 @@ local colorButtonsList = {
     { name = "red" },
     { name = "purple" },
     { name = "blue" },
+	{ name = "green" },
+	{ name = "orange" },
+	{ name = "light_pink" },
+	{ name = "light_brown" },
 	{ name = "black" },
 }
 local languageButtonsList = {
@@ -33,6 +37,7 @@ function SettingsTab.create()
 
     -- Подпись к кнопкам выбора языка
     y = y + 25
+	local GameSelectionY = y
     UI:addChild(ui.panel, UI:createDpLabel {
         x        = 20,
         y        = y,
@@ -58,29 +63,90 @@ function SettingsTab.create()
         languageButton.button = button
         langX = langX + 25
     end
+	
+	-- Коллизия
+    y = y + 30
+    ui.collisionCheckbox = UI:createDpCheckbox {
+        x      = 20,
+        y      = y + 5,
+        width  = 20,
+        height = 20
+    }
+    UI:addChild(ui.panel, ui.collisionCheckbox)
+    UI:setState(ui.collisionCheckbox, exports.tunrc_Config:getProperty("game.coll"))
+    UI:addChild(ui.panel, UI:createDpLabel {
+        x        = 50,
+        y        = y,
+        width    = width / 3,
+        height   = 30,
+        fontType = "defaultSmall",
+        type     = "dark",
+        locale   = "main_panel_settings_collision"
+    })
+	
+	-- Отображение ников
+    y = y + 30
+    ui.nametagsCheckbox = UI:createDpCheckbox {
+        x      = 20,
+        y      = y + 5,
+        width  = 20,
+        height = 20
+    }
+    UI:addChild(ui.panel, ui.nametagsCheckbox)
+    UI:setState(ui.nametagsCheckbox, exports.tunrc_Config:getProperty("graphics.nametags"))
 
+    UI:addChild(ui.panel, UI:createDpLabel {
+        x        = 50,
+        y        = y,
+        width    = width / 3,
+        height   = 30,
+        text     = "",
+        fontType = "defaultSmall",
+        type     = "dark",
+        locale   = "main_panel_settings_nametags"
+    })
+	
+	-- Музыка
+    y = y + 30
+    ui.musicCheckbox = UI:createDpCheckbox {
+        x      = 20,
+        y      = y + 5,
+        width  = 20,
+        height = 20
+    }
+    UI:addChild(ui.panel, ui.musicCheckbox)
+    UI:setState(ui.musicCheckbox, exports.tunrc_Config:getProperty("game.background_music"))
 
+    UI:addChild(ui.panel, UI:createDpLabel {
+        x        = 50,
+        y        = y,
+        width    = width / 3,
+        height   = 30,
+        text     = "",
+        fontType = "defaultSmall",
+        type     = "dark",
+        locale   = "main_panel_settings_background_music"
+    })
+	
     local colorButtonsX = width * 0.6
+	GameSelectionY = GameSelectionY
     -- Подпись к кнопкам выбора цвета
-    y = y - 20
     UI:addChild(ui.panel, UI:createDpLabel {
         x        = colorButtonsX,
-        y        = y,
+        y        = GameSelectionY,
         width    = width / 3,
         height   = 30,
         fontType = "defaultSmall",
         type     = "dark",
         locale   = "main_panel_settings_color"
     })
-
-    y = y + 20
     local colorButtonX = colorButtonsX
     local circleTexture = exports.tunrc_Assets:createTexture("buttons/circle.png", "argb", false, "clamp")
     -- Кнопки выбора цвета
     for i, colorButton in ipairs(colorButtonsList) do
         local button = UI:createDpImageButton({
             x       = colorButtonX,
-            y       = y + 5,
+            y       = GameSelectionY + 25,
             width   = 20,
             height  = 20,
             color   = tocolor(exports.tunrc_UI:getThemeColor(colorButton.name)),
@@ -90,6 +156,69 @@ function SettingsTab.create()
         colorButton.button = button
         colorButtonX = colorButtonX + 25
     end
+	 -- Отображение спидометра
+	GameSelectionY = GameSelectionY + 55
+    ui.speedoChechbox = UI:createDpCheckbox {
+        x      = colorButtonsX,
+        y      = GameSelectionY,
+        width  = 20,
+        height = 20
+    }
+    UI:addChild(ui.panel, ui.speedoChechbox)
+    UI:setState(ui.speedoChechbox, exports.tunrc_Config:getProperty("ui.draw_speedo"))
+
+    UI:addChild(ui.panel, UI:createDpLabel {
+        x        = colorButtonsX + 30,
+        y        = GameSelectionY - 5,
+        width    = width / 3,
+        height   = 30,
+        fontType = "defaultSmall",
+        type     = "dark",
+        locale   = "main_panel_settings_screen_draw_speedo"
+    })
+	
+	-- Отображение своего ника
+	GameSelectionY = GameSelectionY + 30
+    ui.SelfnametagsCheckbox = UI:createDpCheckbox {
+        x      = colorButtonsX,
+        y      = GameSelectionY,
+        width  = 20,
+        height = 20
+    }
+    UI:addChild(ui.panel, ui.SelfnametagsCheckbox)
+    UI:setState(ui.SelfnametagsCheckbox, exports.tunrc_Config:getProperty("graphics.self_nametags"))
+
+    UI:addChild(ui.panel, UI:createDpLabel {
+        x        = colorButtonsX + 30,
+        y        = GameSelectionY - 5,
+        width    = width / 3,
+        height   = 30,
+        text     = "",
+        fontType = "defaultSmall",
+        type     = "dark",
+        locale   = "main_panel_settings_selfnametags"
+    })
+	
+	-- Подруливание
+    GameSelectionY = GameSelectionY + 30
+    ui.smoothSteering = UI:createDpCheckbox {
+		x      = colorButtonsX,
+        y      = GameSelectionY,
+        width  = 20,
+        height = 20
+    }
+    UI:addChild(ui.panel, ui.smoothSteering)
+    UI:setState(ui.smoothSteering, exports.tunrc_Config:getProperty("graphics.smooth_steering"))
+
+    UI:addChild(ui.panel, UI:createDpLabel {
+        x        = colorButtonsX + 30,
+        y        = GameSelectionY - 5,
+        width    = width / 3,
+        height   = 30,
+        fontType = "defaultSmall",
+        type     = "dark",
+        locale   = "main_panel_settings_smooth_steering"
+    }) 
 
     -- Раздел настроек чата
     y = y + 30
@@ -237,10 +366,11 @@ function SettingsTab.create()
     })
 
     -- Размытие
-    y = y + 30
+    local x = width * 0.6
+	graphicsSectionY = graphicsSectionY
     ui.blurChechbox = UI:createDpCheckbox {
-        x      = 20,
-        y      = y + 4,
+        x      = x,
+        y      = graphicsSectionY + 4,
         width  = 20,
         height = 20
     }
@@ -248,60 +378,17 @@ function SettingsTab.create()
     UI:setState(ui.blurChechbox, exports.tunrc_Config:getProperty("ui.blur"))
 
     UI:addChild(ui.panel, UI:createDpLabel {
-        x        = 50,
-        y        = y,
+        x        = x + 30,
+        y        = graphicsSectionY,
         width    = width / 3,
         height   = 30,
         fontType = "defaultSmall",
         type     = "dark",
         locale   = "main_panel_settings_screen_blur"
-    })
-	
-	 -- Отображение спидометра
-    y = y + 30
-    ui.speedoChechbox = UI:createDpCheckbox {
-        x      = 20,
-        y      = y + 4,
-        width  = 20,
-        height = 20
-    }
-    UI:addChild(ui.panel, ui.speedoChechbox)
-    UI:setState(ui.speedoChechbox, exports.tunrc_Config:getProperty("ui.draw_speedo"))
+    })  
 
-    UI:addChild(ui.panel, UI:createDpLabel {
-        x        = 50,
-        y        = y,
-        width    = width / 3,
-        height   = 30,
-        fontType = "defaultSmall",
-        type     = "dark",
-        locale   = "main_panel_settings_screen_draw_speedo"
-    })
-	
-    -- Винилы на стёкла
-    local x = width * 0.6
-    ui.glassVynilsCheckbox = UI:createDpCheckbox {
-        x      = x,
-        y      = graphicsSectionY + 4,
-        width  = 20,
-        height = 20
-    }
-    UI:addChild(ui.panel, ui.glassVynilsCheckbox)
-    UI:setState(ui.glassVynilsCheckbox, exports.tunrc_Config:getProperty("graphics.enable_glass_vynils"))
-
-    UI:addChild(ui.panel, UI:createDpLabel {
-        x        = x + 30,
-        y        = graphicsSectionY,
-        width    = width / 3,
-        height   = 30,
-        text     = "",
-        fontType = "defaultSmall",
-        type     = "dark",
-        locale   = "main_panel_settings_enable_glass_vynils"
-    })
-
-    -- Снег
-    graphicsSectionY = graphicsSectionY + 30
+	 -- Улучшенные отстрелы
+	graphicsSectionY = graphicsSectionY + 30
     ui.snowCheckbox = UI:createDpCheckbox {
         x      = x,
         y      = graphicsSectionY + 4,
@@ -322,97 +409,31 @@ function SettingsTab.create()
         locale   = "main_panel_settings_snow"
     })
 	
-	-- Отображение ников
-    graphicsSectionY = graphicsSectionY + 30
-    ui.nametagsCheckbox = UI:createDpCheckbox {
+		-- дым от шин
+	graphicsSectionY = graphicsSectionY + 30
+    ui.smokeCheckbox = UI:createDpCheckbox {
         x      = x,
         y      = graphicsSectionY + 4,
         width  = 20,
         height = 20
     }
-    UI:addChild(ui.panel, ui.nametagsCheckbox)
-    UI:setState(ui.nametagsCheckbox, exports.tunrc_Config:getProperty("graphics.nametags"))
-
+    UI:addChild(ui.panel, ui.smokeCheckbox)
+    UI:setState(ui.smokeCheckbox, exports.tunrc_Config:getProperty("graphics.tyres_smoke"))
     UI:addChild(ui.panel, UI:createDpLabel {
         x        = x + 30,
         y        = graphicsSectionY,
         width    = width / 3,
         height   = 30,
-        text     = "",
         fontType = "defaultSmall",
         type     = "dark",
-        locale   = "main_panel_settings_nametags"
+        locale   = "main_panel_settings_tyres_smoke"
     })
-	-- Отображение своего ника
-    graphicsSectionY = graphicsSectionY + 30
-    ui.SelfnametagsCheckbox = UI:createDpCheckbox {
-        x      = x,
-        y      = graphicsSectionY + 4,
-        width  = 20,
-        height = 20
-    }
-    UI:addChild(ui.panel, ui.SelfnametagsCheckbox)
-    UI:setState(ui.SelfnametagsCheckbox, exports.tunrc_Config:getProperty("graphics.self_nametags"))
-
-    UI:addChild(ui.panel, UI:createDpLabel {
-        x        = x + 30,
-        y        = graphicsSectionY,
-        width    = width / 3,
-        height   = 30,
-        text     = "",
-        fontType = "defaultSmall",
-        type     = "dark",
-        locale   = "main_panel_settings_selfnametags"
-    })
-    -- Музыка
-    graphicsSectionY = graphicsSectionY + 30
-    ui.musicCheckbox = UI:createDpCheckbox {
-        x      = x,
-        y      = graphicsSectionY + 4,
-        width  = 20,
-        height = 20
-    }
-    UI:addChild(ui.panel, ui.musicCheckbox)
-    UI:setState(ui.musicCheckbox, exports.tunrc_Config:getProperty("game.background_music"))
-
-    UI:addChild(ui.panel, UI:createDpLabel {
-        x        = x + 30,
-        y        = graphicsSectionY,
-        width    = width / 3,
-        height   = 30,
-        text     = "",
-        fontType = "defaultSmall",
-        type     = "dark",
-        locale   = "main_panel_settings_background_music"
-    })
-
-    -- Подруливание
-    graphicsSectionY = graphicsSectionY + 30
-    ui.smoothSteering = UI:createDpCheckbox {
-        x      = x,
-        y      = graphicsSectionY + 4,
-        width  = 20,
-        height = 20
-    }
-    UI:addChild(ui.panel, ui.smoothSteering)
-    UI:setState(ui.smoothSteering, exports.tunrc_Config:getProperty("graphics.smooth_steering"))
-
-    UI:addChild(ui.panel, UI:createDpLabel {
-        x        = x + 30,
-        y        = graphicsSectionY,
-        width    = width / 3,
-        height   = 30,
-        fontType = "defaultSmall",
-        type     = "dark",
-        locale   = "main_panel_settings_smooth_steering"
-    })        
 
     -- Отступ снизу
+	
+	-- Кнопка смены пароля
     y = y + 60
     UI:setHeight(ui.panel, y)
-
-    local passwordButtonWidth  = 180
-    local passwordButtonHeight = 50
     ui.passwordChangeButton = UI:createDpButton {
         x      = x + 250,
         y      = height - 325,
@@ -422,6 +443,16 @@ function SettingsTab.create()
         type   = "primary"
     }
     UI:addChild(ui.panel, ui.passwordChangeButton)
+	-- Кнопка смены лимита фпс
+    ui.fpsChangeButton = UI:createDpButton {
+        x      = x + 250,
+        y      = height - 275,
+        width  = width / 3,
+        height = 50,
+        locale = "main_panel_setting_change_fps",
+        type   = "primary"
+    }
+    UI:addChild(ui.panel, ui.fpsChangeButton)
 end
 
 addEvent("tunrc_UI.click", false)
@@ -446,6 +477,9 @@ addEventHandler("tunrc_UI.click", resourceRoot, function(widget)
     if widget == ui.joinQuitMessagesCheckbox then
         playClickSound = true
         exports.tunrc_Config:setProperty("chat.joinquit_messages", UI:getState(widget))
+	elseif widget == ui.collisionCheckbox then
+        playClickSound = true
+        exports.tunrc_Config:setProperty("game.coll", UI:getState(widget))
     elseif widget == ui.chatTimestampCheckbox then
         playClickSound = true
         exports.tunrc_Config:setProperty("chat.timestamp", UI:getState(widget))
@@ -455,9 +489,6 @@ addEventHandler("tunrc_UI.click", resourceRoot, function(widget)
 	elseif widget == ui.speedoChechbox then
         playClickSound = true
         exports.tunrc_Config:setProperty("ui.draw_speedo", UI:getState(widget))
-	elseif widget == ui.bodyVynilsChechbox then
-        playClickSound = true
-        exports.tunrc_Config:setProperty("ui.bodyVynils", UI:getState(widget))
     elseif widget == ui.improvedSkyCheckbox then
         playClickSound = true
         exports.tunrc_Config:setProperty("graphics.improved_sky", UI:getState(widget))
@@ -473,9 +504,9 @@ addEventHandler("tunrc_UI.click", resourceRoot, function(widget)
     elseif widget == ui.reflectionsCheckbox then
         playClickSound = true
         exports.tunrc_Config:setProperty("graphics.reflections_cars", UI:getState(widget))
-    elseif widget == ui.glassVynilsCheckbox then
+	elseif widget == ui.smokeCheckbox then
         playClickSound = true
-        exports.tunrc_Config:setProperty("graphics.enable_glass_vynils", UI:getState(widget))
+        exports.tunrc_Config:setProperty("graphics.tyres_smoke", UI:getState(widget))
     elseif widget == ui.smoothSteering then
         playClickSound = true
         exports.tunrc_Config:setProperty("graphics.smooth_steering", UI:getState(widget))        
@@ -494,6 +525,10 @@ addEventHandler("tunrc_UI.click", resourceRoot, function(widget)
     elseif widget == ui.passwordChangeButton then
         Panel.setVisible(false)
         PasswordPanel.show()
+        exports.tunrc_Sounds:playSound("ui_select.wav")
+	elseif widget == ui.fpsChangeButton then
+        Panel.setVisible(false)
+        FpsPanel.show()
         exports.tunrc_Sounds:playSound("ui_select.wav")
     end
 

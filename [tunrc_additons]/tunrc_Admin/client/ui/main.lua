@@ -59,7 +59,7 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
 		(screenSize.y - windowSize.y) / 2,
 		windowSize.x,
 		windowSize.y, 
-		"San Fierro Admin Panel", 
+		"TunerRacers", 
 		false)
 	ui.window.sizable = false
 	ui.window.movable = true

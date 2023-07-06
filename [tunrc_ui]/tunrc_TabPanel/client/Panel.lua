@@ -1,11 +1,12 @@
 Panel = {}
 local screenWidth, screenHeight
 local renderTarget
-local headerColor = tocolor(29, 29, 29)
-local itemColor = tocolor(42, 40, 41)
+local headerColor = tocolor(29, 29, 29, 175)
+local itemColor = tocolor(42, 40, 41, 150)
+local lineColor = tocolor(255, 255, 255)
 local highlightedColor = tocolor(255, 255, 255)
 
-local panelWidth = 500
+local panelWidth = 350
 local panelHeight
 local headerHeight = 50
 local itemHeight = 40
@@ -33,8 +34,7 @@ local function draw()
 	local w, h = 500, 50
 	local y = screenHeight / 2 - panelHeight / 2
 	local panelX = screenWidth / 2 - panelWidth / 2
-	dxDrawImage(screenWidth / 2 - logoWidth / 2, y, logoWidth, logoHeight, logoTexture)
-	y = y + logoHeight + 10
+	y = y + 200
 	dxDrawRectangle(panelX, y, panelWidth, headerHeight * 2 + itemsCount * itemHeight, headerColor)
 	local x = panelX
 	for i, column in ipairs(columns) do
@@ -44,7 +44,7 @@ local function draw()
 	end
 	y = y + headerHeight
 	local itemY = y
-	dxDrawRectangle(screenWidth / 2 - panelWidth / 2, y, panelWidth, itemsCount * itemHeight, itemColor)
+	--dxDrawRectangle(screenWidth / 2 - panelWidth / 2, y, panelWidth, itemsCount * itemHeight, itemColor)
 	for i = scrollOffset + 1, math.min(itemsCount + scrollOffset, #playersList) do
 		local item = playersList[i]
 		local color = itemColor
@@ -55,7 +55,8 @@ local function draw()
 			color = highlightedColor
 		end
 		x = panelX
-		dxDrawRectangle(x, y, panelWidth, itemHeight, color)
+		--dxDrawRectangle(x, y, panelWidth, itemHeight, color)
+		dxDrawRectangle(x, y, panelWidth, 2, lineColor)
 		if item.isGroup then
 			dxDrawText(item.text, x, y, x + panelWidth, y + headerHeight * 0.8, tocolor(255, 255, 255), 1, itemFont, "center", "center", true)
 		else

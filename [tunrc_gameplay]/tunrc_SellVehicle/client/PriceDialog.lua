@@ -34,8 +34,7 @@ function PriceDialog.show(player)
 
     targetPlayer = player
     targetPlayerName = exports.tunrc_Utils:removeHexFromString(targetPlayer.name)
-    minPrice = exports.tunrc_Shared:getVehiclePrices(
-        exports.tunrc_Shared:getVehicleNameFromModel(localPlayer.vehicle.model))[1]
+    minPrice = 0
 
     UI:setText(ui.salePriceInput, "")
     UI:setText(ui.title, exports.tunrc_Lang:getString("sell_vehicle_sell_title"):format(targetPlayerName))

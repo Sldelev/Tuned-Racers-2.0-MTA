@@ -217,16 +217,16 @@ float4 PixelShaderFunction(PSInput PS) : COLOR0
     float3 vReflection = reflect(PS.View,PS.Normal);
 
     // Hack in some bumpyness
-    vReflection.x+= vNp2.x * 0.5;
-    vReflection.y+= vNp2.y * 0.5;
+    vReflection.x+= vNp2.x * 0.1;
+    vReflection.y+= vNp2.y * 0.1;
     // Sample environment map using this reflection vector:
     float4 envMap = texCUBE( ReflectionSampler, -vReflection.xzy );
     // Premultiply by alpha:
 
     envMap.rgb = pow(envMap.rgb, 3);
     // Brighten the environment map sampling result:
-    envMap.rgb *= 0.2;
-    envMap.rgb += PS.BottomColor.rgb;   
+    envMap.rgb *= 0.1;
+    envMap.rgb += PS.BottomColor.rgb;
     // Sample dust texture:
 
     // Combine result of environment map reflection with the paint color:

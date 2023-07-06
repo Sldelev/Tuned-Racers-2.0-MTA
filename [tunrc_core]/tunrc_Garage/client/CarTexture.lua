@@ -24,6 +24,12 @@ function CarTexture.start()
 		return
 	end
 	
+	if localPlayer:getData("isPremium") then
+		MAX_STICKER_COUNT = 5000
+	else
+		MAX_STICKER_COUNT = 3000
+	end
+	
 	editorStickers = {}
 	CarTexture.reset()
 	CarTexture.redraw()

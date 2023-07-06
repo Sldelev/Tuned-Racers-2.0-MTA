@@ -24,6 +24,7 @@ VehicleTuning.defaultTuningTable = {
 	LipsColor = {220, 220, 220},            -- Передний фендер
 	WheelsColorR 	= {220, 220, 220, 128},	-- Цвет задних дисков
 	WheelsColorF 	= {220, 220, 220, 128},	-- Цвет передних дисков
+	SmokeColor 	= {220, 220, 220},	-- Цвет передних дисков
 	NeonColor 		= false,			-- Цвет неона
 	SpoilerColor	= false,			-- Цвет спойлера
 
@@ -41,6 +42,7 @@ VehicleTuning.defaultTuningTable = {
 	WheelsOffsetR	= 0, -- Вынос задних колёс
 	WheelsF 		= 0, -- Передние диски
 	WheelsR 		= 0, -- Задние диски
+	WheelsCastor  = 5, -- Кастор
 
 	-- Компоненты
 	Spoilers 		= 0, -- Спойлер	

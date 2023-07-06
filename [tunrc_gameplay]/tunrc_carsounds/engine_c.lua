@@ -368,36 +368,66 @@ function updateEngines(dt)
 							end 
 							
 							data.sounds[5] = playSound3D("sounds/turbo_shift"..sound..".wav", x, y, z, false)
-							setSoundVolume(data.sounds[5], 0.6*ENGINE_VOLUME_MASTER)
+							setSoundVolume(data.sounds[5], 0.2*ENGINE_VOLUME_MASTER)
 							
 							if not data.throttle then 
 								data.turboValue = 0
 							end
 						end
 						
-						if data.activeALS and als[model] and not isElement(data.sounds[6]) then 
-							data.sounds[6] = playSound3D("sounds/"..soundPack.."/als.wav", x, y, z, false)
+						local exhid = vehicle:getData("Exh")
+						local ex, ey, ez = getVehicleComponentPosition(vehicle, "Exh" .. tostring(exhid) )
+						local rotex, rotey, rotez = getVehicleComponentRotation(vehicle, "Exh" .. tostring(exhid))
+						
+						local exhef = createEffect("gunsmoke", ex, ey, ez, 0, 0, 0)
+						setEffectSpeed(exhef, 1)
+							if velocity > 20 then
+								setEffectDensity(exhef, 0.09)
+							elseif velocity < 20 then
+								setEffectDensity(exhef, 0.2)
+							end
+						data.effects[exhef] = {ex, ey, ez, -180, rotey, rotez}
+						setTimer(function()
+									data.effects[exhef] = nil
+								end, 100, 1)
+								
+						if getVehicleComponentVisible(vehicle, "ExhSecond" .. tostring(exhid)) == true then
+						local exhef1 = createEffect("gunsmoke", -ex, ey, ez, 0, 0, 0)
+						setEffectSpeed(exhef1, 1)
+							if velocity > 20 then
+								setEffectDensity(exhef1, 0.09)
+							elseif velocity < 20 then
+								setEffectDensity(exhef1, 0.2)
+							end
+						data.effects[exhef1] = {-ex, ey, ez, -180, rotey, rotez}
+						setTimer(function()
+									data.effects[exhef1] = nil
+								end, 100, 1)
+						end
+						
+						if data.activeALS and not isElement(data.sounds[6]) then
+							
+							data.sounds[6] = playSound3D("sounds/"..soundPack.."/als.wav", ex, ey, ez, false)
 							setSoundVolume(data.sounds[6], 0.8)
 							setSoundSpeed(data.sounds[6], 1.1)
 							--setSoundEffectEnabled(data.sounds[6], "reverb", true)
 							setSoundEffectEnabled(data.sounds[6], "echo", true)
 							setSoundEffectEnabled(data.sounds[6], "compressor", true)
-							
-							for _, offset in ipairs((als[model] or {})) do
 								
-								local ef = createEffect("gunflash", x, y, z, 0, 0, 0)		
-								local eflight = createLight(0, x, y, z, 1, 204, 122, 0)
-								setEffectSpeed(ef, 0.8) 
+								local ef = createEffect("gunflash", ex, ey, ez, 0, 0, 0)
+								setEffectSpeed(ef, 0.8)
 								setEffectDensity(ef, 2)
-								data.effects[ef] = {offset[1], offset[2], offset[3], 90, 0, 180} 
+								data.effects[ef] = {ex, ey, ez, -90, rotey, rotez} 
+								if getVehicleComponentVisible(vehicle, "ExhSecond" .. tostring(exhid)) == true then
+									local ef1 = createEffect("gunflash", -ex, ey, ez, 0, 0, 0)
+									setEffectSpeed(ef1, 0.8)
+									setEffectDensity(ef1, 2)
+									data.effects[ef1] = {-ex, ey, ez, -90, rotey, rotez} 
+								end
 								setTimer(function()
 									data.effects[ef] = nil
 									destroyElement(ef)
 								end, 1000, 1)
-								setTimer(function()
-									destroyElement(eflight)
-								end, 100, 1)
-							end 
 							
 							data.activeALS = false
 						end

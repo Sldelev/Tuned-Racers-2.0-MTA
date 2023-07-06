@@ -55,6 +55,7 @@
 	<export type="server" function="updateUserAccount"/>
 	<export type="server" function="getUserPlayer"/>
 	<export type="server" function="givePlayerMoney"/>
+	<export type="server" function="setPlayerPremium"/>
 	<export type="server" function="givePlayerXP"/>
 	<export type="server" function="logoutOfflineUsers"/>
 	<export type="server" function="banPlayer"/>
@@ -65,6 +66,7 @@
 	<export type="server" function="isPlayerMuted"/>
 	<export type="server" function="giveUserMoney"/>
 	<export type="server" function="giveUserCar"/>
+	<export type="server" function="giveUserPremium"/>
 	<!-- Фукнции для работы с домами -->
 	<export type="server" function="buyPlayerHouse"/>
 	<export type="server" function="setPlayerHouse"/>

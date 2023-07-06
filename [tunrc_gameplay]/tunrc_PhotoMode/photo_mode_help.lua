@@ -13,6 +13,7 @@ local helpLines = {
 	{keys = {CONTROLS.NEXT_WEATHER:upper(), CONTROLS.PREVIOUS_WEATHER:upper()},	locale = "photo_mode_help_weather"},
 	{keys = {"I"},																locale = "photo_mode_help_tips"},
 	{keys = {"N"},																locale = "photo_mode_help_hide"},
+	{keys = {"3"},																locale = "photo_mode_help_composition"},
 	{keys = {PHOTO_MODE_KEY:upper()},													locale = "photo_mode_help_exit"}
 }
 
@@ -28,9 +29,12 @@ local font
 local themeColor = {}
 local targetAlpha = 0
 local alpha = targetAlpha
+local ComposHelp = 0
 
 function PhotoModeHelp.start()
 	font = exports.tunrc_Assets:createFont("Roboto-Regular.ttf", 14)
+	ComposHelp1 = DxTexture("assets/1.png")
+	ComposHelp2 = DxTexture("assets/2.png")
 	targetAlpha = 230
 	alpha = 0
 
@@ -59,6 +63,16 @@ end
 function PhotoModeHelp.stop()
 	if isElement(font) then
 		destroyElement(font)
+	end
+end
+
+function ComposHelpToggle()
+	if ComposHelp == 0 then
+		ComposHelp = 1
+	elseif ComposHelp == 1 then
+		ComposHelp = 2
+	elseif ComposHelp == 2 then
+		ComposHelp = 0
 	end
 end
 
@@ -147,7 +161,16 @@ local function drawParams()
 		"right",
 		"center"
 	)
+	
+	if ComposHelp == 0 then
+		return
+	elseif ComposHelp == 1 then
+		dxDrawImage (0, 0, screenSize.x, screenSize.y, ComposHelp1, 0, 0, 0 )
+	elseif ComposHelp == 2 then
+		dxDrawImage (0, 0, screenSize.x, screenSize.y, ComposHelp2, 0, 0, 0 )
+	end
 end
+
 
 function PhotoModeHelp.draw()
 	alpha = alpha + (targetAlpha - alpha) * 0.1

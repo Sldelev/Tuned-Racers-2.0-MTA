@@ -6,6 +6,7 @@ ComponentScreen = Screen:subclass "ComponentScreen"
 local menuInfos = {}
 menuInfos["Bodykits"]  = {position =  Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_bodykits"}
 menuInfos["FrontBump"]  = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_bumper"}
+menuInfos["Rollingshells"]  = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_rollingshell"}
 menuInfos["Turbos"]  = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_turbos"}
 menuInfos["Grills"]  = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_grills"}
 menuInfos["Frontnumber"]  = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_frontnumber"}
@@ -26,6 +27,7 @@ menuInfos["Diffusors"]   = {position =  Vector3(1.5, -2, 0.4),   angle = 185,ite
 menuInfos["WheelsF"]    = {position = Vector3(0.5, -1.5, 0.4),   angle = -50, item_locale="garage_tuning_item_wheel"}
 menuInfos["WheelsR"]    = {position = Vector3(-1, -1.5, 0.4),   angle = -50, item_locale="garage_tuning_item_wheel"}
 menuInfos["Skirts"] = {position = Vector3(-0.5, -2, 0.4), angle = 170, item_locale="garage_tuning_item_skirt"}
+menuInfos["AddSkirts"] = {position = Vector3(-0.5, -2, 0.4), angle = 170, item_locale="garage_tuning_item_addskirt"}
 menuInfos["RearFends"]  = {position =  Vector3(1.5, -2, 0.4),   angle = 185,item_locale="garage_tuning_item_fender"}
 menuInfos["Rpanels"]  = {position =  Vector3(1.5, -2, 0.4),   angle = 185,item_locale="garage_tuning_item_rpanel"}
 menuInfos["FrontFends"] = {position = Vector3(0, -2, 0.4),   angle = 0,  item_locale="garage_tuning_item_fender"}
@@ -39,6 +41,7 @@ menuInfos["Eng"]    = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale=
 menuInfos["Exhaust"]    = {position = Vector3(1.5, -2, 0.4),   angle = 190,item_locale="garage_tuning_item_exhaust"}
 menuInfos["RearLights"] = {position =  Vector3(1.5, -2, 0.4),   angle = 185,item_locale="garage_tuning_item_lights"}
 menuInfos["FrontLights"] = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_lights"}
+menuInfos["AddLights"] = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_addlights"}
 menuInfos["SideLights"] = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_sidelights"}
 menuInfos["FaraR"] = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_farar"}
 menuInfos["FaraL"] = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_faral"}
@@ -46,7 +49,7 @@ menuInfos["Dops"] = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="g
 menuInfos["Seats"] = {position = Vector3(1.5, -2, 0.4),  angle = 20, item_locale="garage_tuning_item_seats"}
 menuInfos["Steering"] = {position = Vector3(-1.5, 2, 0.4),  angle = 20, item_locale="garage_tuning_item_steer"}
 menuInfos["Torpeda"] = {position = Vector3(1.5, -2, 0.4),  angle = 20, item_locale="garage_tuning_item_torpeda"}
-menuInfos["Karkas"] = {position = Vector3(1.5, -2, 0.4),  angle = 20, item_locale="garage_tuning_item_karkas"}
+menuInfos["Karkas"] = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_karkas"}
 menuInfos["Acces"] = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_acces"}
 menuInfos["Intercooler"]  = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_intercooler"}
 
@@ -125,7 +128,7 @@ end
 
 function ComponentScreen:show()
     self.super:show()
-    if self.componentName == "RightLight" or self.componentName == "LeftLight" or self.componentName == "FrontLights" or self.componentName == "RearLights" or self.componentName == "RearBump" or self.componentName == "Rnomers" then
+    if self.componentName == "RightLight" or self.componentName == "LeftLight" or self.componentName == "FrontLights" or self.componentName == "RearLights" or self.componentName == "RearBump" or self.componentName == "Rnomers" or self.componentName == "AddLights" then
         GarageCar.getVehicle():setData("LightsState", true, false)
     end
 end

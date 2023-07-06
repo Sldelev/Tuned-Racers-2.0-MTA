@@ -15,6 +15,10 @@ function Users.setup()
         { name="money", type="bigint", options="UNSIGNED NOT NULL DEFAULT 0" },
         -- Количество минут, проведённых в игре
         { name="playtime", type="int", options="UNSIGNED NOT NULL DEFAULT 0" },
+		 -- дрифт очки за 1 сессию
+        { name="max_drift_points_session", type="int", options="UNSIGNED NOT NULL DEFAULT 0" },
+		 -- Всего дрифт очков
+        { name="drift_points", type="int", options="UNSIGNED NOT NULL DEFAULT 0" },
         -- Скин
         { name="skin", type="smallint", options="UNSIGNED NOT NULL DEFAULT 0" },
         -- Дата регистрации
@@ -359,7 +363,7 @@ local function checkPlayerPremium(player)
         return
     end
 
-    if premiumExpireDate < getRealTime().timestamp then
+    if premiumExpireDate < getRealTime(false).timestamp then
         player:setData("isPremium", false)
         player:setData("premium_expires", 0)
         outputDebugString("Premium expired for " .. tostring(player.name))
@@ -377,4 +381,5 @@ setTimer(function ()
 
     logoutOfflineUsers()
     exports.tunrc_Logger:log("auth", "Autosave completed")
-end, AUTOSAVE_INTERVAL * 60 * 1000, 0)
+	--outputDebugString("Autosave completed")
+end, 60 * 1000, 0)

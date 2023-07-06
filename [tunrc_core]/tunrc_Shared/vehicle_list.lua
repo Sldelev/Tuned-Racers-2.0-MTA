@@ -9,7 +9,9 @@ tunerc_bravura = 401,
 tunerc_buffalo = 402,
 tunerc_sentinel = 405,
 tunerc_banshee = 429,
-tunerc_zr350 = 477
+tunerc_zr350 = 477,
+tunerc_blazer = 471,
+tunerc_burrito = 482
 }
 
 -- Названия в том виде, в котором они будут отображаться
@@ -20,10 +22,12 @@ local vehiclesReadableNames = {
 	tunerc_euros = "Annis Euros",
 	tunerc_club = "BF Club",
 	tunerc_bravura = "BF Bravura",
-	tunerc_buffalo = "Bravado Buffalo",
-	tunerc_sentinel = "Übermacht Sentinel",
+	tunerc_buffalo = "Bravado Buffalo W.I.P",
+	tunerc_sentinel = "Übermacht Sentinel W.I.P",
 	tunerc_banshee = "Bravado Banshee",
-	tunerc_zr350 = "Annis ZR-350"
+	tunerc_zr350 = "Annis ZR-350 W.I.P",
+	tunerc_blazer = "Nagasaki Blazer W.I.P",
+	tunerc_burrito = "Declasse Burrito W.I.P"
 }
 
 -- Функции

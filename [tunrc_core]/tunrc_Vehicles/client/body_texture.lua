@@ -65,7 +65,7 @@ local function drawSticker(sticker, selected)
 	end
 	local texture = stickersTextures[stickerId]
 	if not isElement(texture) then
-		stickersTextures[stickerId] = exports.tunrc_Assets:createTexture("stickers/" .. tostring(stickerId) .. ".png")
+		stickersTextures[stickerId] = exports.tunrc_Stickers:createTexture("stickers/" .. tostring(stickerId) .. ".png")
 		texture = stickersTextures[stickerId]
 	end
 	x = x * _TEX_MULT

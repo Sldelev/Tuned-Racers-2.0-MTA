@@ -13,20 +13,11 @@ function GiftKeys.setup()
 		{ name="money", 	type="bigint", options="UNSIGNED DEFAULT 0"},
 		{ name="xp", 		type="bigint", options="UNSIGNED DEFAULT 0" },
 		{ name="car", 		type="MEDIUMTEXT" },
+		{ name="count", 		type="bigint", options="UNSIGNED DEFAULT 0" },
+		{ name="user_name", 		type="varchar", size=50},
 		-- Дополнительные данные в JSON
 		{ name="data", 		type="MEDIUMTEXT" },		
 	})
-end
-
-local function generateKey()
-	keysCounter = keysCounter + 1
-	local str = base64Encode(
-		tostring(getRealTime().timestamp) .. "_" .. 
-		tostring(math.random(1000, 9999)) .. "_" .. 
-		tostring(getTickCount()) .. "_" ..
-		tostring(keysCounter))
-
-	return string.sub(md5(teaEncode(str, GIFT_KEY_SECRET)), 1, GIFT_KEY_LENGTH)
 end
 
 function GiftKeys.add(options)
@@ -39,22 +30,21 @@ function GiftKeys.add(options)
 	if type(options.money) ~= "number" then options.money = nil end
 	if type(options.xp) ~= "number" then options.xp = nil end
 	if type(options.car) ~= "string" then options.car = nil end
+	if type(options.count) ~= "number" then options.count = nil end
 	-- Проверка значений полей
 	if options.money and options.money < 0 then options.money = nil end
 	if options.xp and options.xp < 0 then options.xp = nil end
+	if options.count and options.count < 0 then options.count = nil end
 	-- Если такая машина не существует
 	if not exports.tunrc_Shared:getVehicleModelFromName(options.car) then options.car = nil end
 
 	-- Генерация нового ключа
-	local key = generateKey()
-	if not key then 
-		return false
-	end
 	local success = DatabaseTable.insert(GIFT_KEYS_TABLE_NAME, { 
-		key = key, 
+		key = options.key, 
 		money = options.money,
 		xp = options.xp,
-		car = options.car
+		car = options.car,
+		count = options.count
 	}, function (result)
 		if result then
 			triggerEvent("tunrc_Core.giftKeyAdded", resourceRoot, key)
@@ -71,11 +61,6 @@ function GiftKeys.getKeys(where)
 end
 
 function GiftKeys.isKeyValid(key)
-	if type(key) ~= "string" then
-		return false
-	end
-	local result, count = DatabaseTable.select(GIFT_KEYS_TABLE_NAME, {"key"}, { key = key })
-	return count > 0
 end
 
 local function giveKeyGiftsToPlayer(player, options)
@@ -118,10 +103,19 @@ local function giveKeyGiftsToPlayer(player, options)
 	return true
 end
 
-function GiftKeys.activate(key, player)
-	if type(key) ~= "string" or not isElement(player) then
+function GiftKeys.activate(key, player, username)
+	if count == 0 then
+		GiftKeys.remove(key.key)
+		return false
+	end
+	if not isElement(player) then
 		outputDebugString("ERROR: Failed to activate gift key '" .. tostring(key) .. "' for player '" .. tostring(player) .. "'")
 		triggerClientEvent(player, "tunrc_Core.keyActivation", resourceRoot, false)
+		return false
+	end
+	
+	if DatabaseTable.select(GIFT_KEYS_TABLE_NAME, {"user_name"}, { key = key.key }) == player:getData("username") then
+		outputDebugString("ERROR: Failed to activate gift key '" .. tostring(key) .. "' for player '" .. tostring(player) .. "' key already used")
 		return false
 	end
 
@@ -132,8 +126,8 @@ function GiftKeys.activate(key, player)
 			local key = result[1]
 			if giveKeyGiftsToPlayer(player, key) then
 				exports.tunrc_Logger:log("giftkeys", "Key activated: " .. tostring(key.key) .. " for " .. tostring(player.name))
-				GiftKeys.remove(key.key)
-				triggerClientEvent(player, "tunrc_Core.keyActivation", resourceRoot, true, key)				
+				triggerClientEvent(player, "tunrc_Core.keyActivation", resourceRoot, true, key)
+				DatabaseTable.update(GIFT_KEYS_TABLE_NAME, {user_name = player:getData("username")}, {key = key.key})
 			else
 				triggerClientEvent(player, "tunrc_Core.keyActivation", resourceRoot, false)
 			end
@@ -142,9 +136,6 @@ function GiftKeys.activate(key, player)
 end
 
 function GiftKeys.remove(key)
-	if type(key) ~= "string" then
-		return false
-	end
 	local success = DatabaseTable.delete(GIFT_KEYS_TABLE_NAME, { key = key }, function (result)
 		if result then
 			outputDebugString("Key removed: " .. tostring(key))

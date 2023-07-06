@@ -1,6 +1,6 @@
 Colors = {}
 
-local THEME_NAMES = {"purple", "blue", "red", "black"}
+local THEME_NAMES = {"purple", "blue", "red", "green", "orange", "light_pink", "light_brown", "black"}
 local DEFAULT_THEME_NAME = "red"
 local DEFAULT_THEME = {
 	white			= {255, 255, 255},

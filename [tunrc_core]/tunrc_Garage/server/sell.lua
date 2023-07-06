@@ -36,6 +36,11 @@ addEventHandler("tunrc_Garage.sellVehicle", resourceRoot, function (vehicleId)
 		return
 	end
 	local price = getVehicleSellPrice(vehicleName, vehicleInfo.mileage)
+		if client:getData("isPremium") then
+			price = price / 1.25
+		else
+			price = price
+		end
 	if not price then
 		outputDebugString("Sell error: No vehicle price")
 		return

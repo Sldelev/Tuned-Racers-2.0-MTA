@@ -9,7 +9,7 @@
     <export http="true" function="processPayment"/>
     <export http="true" function="giveMoney"/>
     <export http="true" function="giveVehicle"/>
-    <export http="true" function="giveSkin"/>
+	<export http="true" function="givePremium"/>
     <export type="server" function="processRequest"/>
 
     <html src="api"/>

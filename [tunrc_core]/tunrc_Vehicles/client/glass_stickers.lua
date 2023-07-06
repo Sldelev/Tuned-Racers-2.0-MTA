@@ -88,7 +88,7 @@ local function drawSticker(sticker, selected)
 	end
 	local texture = stickersTextures[stickerId]
 	if not isElement(texture) then
-		stickersTextures[stickerId] = exports.tunrc_Assets:createTexture("stickers/" .. tostring(stickerId) .. ".png", "dxt5")
+		stickersTextures[stickerId] = exports.tunrc_Stickers:createTexture("stickers/" .. tostring(stickerId) .. ".png", "dxt5")
 		texture = stickersTextures[stickerId]
 	end
 	x = x * _TEX_MULT
@@ -113,10 +113,6 @@ local function drawSticker(sticker, selected)
 end
 
 function redrawGlassRenderTarget(renderTarget, stickers, selected)
-	Active = exports.tunrc_Config:getProperty(GLASS_VINYLS_ENABLED)
-	if Active == false then
-		return
-	end
 	if not isElement(renderTarget) then
 		return
 	end

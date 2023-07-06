@@ -15,8 +15,8 @@ function DpPanel.create(properties)
 	end
 	
 	local widget = Rectangle.create(properties)
-	if properties.color == "transparent" then
-		widget.color = tocolor(0, 0, 0, 0)
+	if properties.type == "transparent" then
+		widget.color = tocolor(0, 0, 0, 100)
 	else
 		widget.color = Colors.color(panelColors[exports.tunrc_Utils:defaultValue(properties.type, "light")])
 	end

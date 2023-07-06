@@ -32,7 +32,11 @@ addEventHandler("tunrc_Carshop.buyVehicle", resourceRoot, function (model)
 		return
 	end
 	if exports.tunrc_Core:addPlayerVehicle(client, model) then
-		client:setData("money", money - priceInfo[1])
+		if client:getData("isPremium") then
+			client:setData("money", money - (priceInfo[1] / 1.25))
+		else
+			client:setData("money", money - priceInfo[1])
+		end
 		triggerClientEvent(client, "tunrc_Carshop.buyVehicle", resourceRoot, true)
 	else
 		triggerClientEvent(client, "tunrc_Carshop.buyVehicle", resourceRoot, false)

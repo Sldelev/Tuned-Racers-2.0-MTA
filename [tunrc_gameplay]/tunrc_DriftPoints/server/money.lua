@@ -28,6 +28,11 @@ addEventHandler("tunrc_DriftPoints.earnedPoints", resourceRoot, function (points
         xp = xp + 1
         restXp[client] = restXp[client] - 1
     end
+	
+	if points > client:getData("max_drift_points_session") then
+		client:setData("max_drift_points_session", points)
+	end
+	client:setData("drift_points", client:getData("drift_points") + points)
 
     exports.tunrc_Core:givePlayerMoney(client, math.floor(money))
 	exports.tunrc_Core:givePlayerXP(client, math.floor(xp))

@@ -41,12 +41,15 @@ local function setupVehicleHandling(vehicle)
 	for k, v in pairs(handlingsTable) do
 		setVehicleHandling(vehicle, k, v, false)
 	end
-	
+	-- Напрямую влияет на поведение автомобиля
+	updateVehicleMaxVelocity(vehicle) -- Максимальная скорость
+	updateVehicleSteer(vehicle) -- Выворот
+	updateVehicleMass(vehicle) -- Масса
+	updateVehicleTurnMass(vehicle) -- Ходовая Масса
+	updateVehicleWheelAcceleration(vehicle) -- Ускорение зависимое от развала задней оси
+	-- Имеет меньшее воздействие
 	updateVehicleBias(vehicle)
 	updateVehicleSuspension(vehicle)
-	--updateVehicleBrakepower(vehicle)
-	--updateVehicleBrakedist(vehicle)
-	updateVehicleSteer(vehicle)
 end
 
 addEvent("onVehicleCreated", false)
@@ -61,7 +64,7 @@ end)
 addEventHandler("onResourceStart", resourceRoot, function ()
 
 	for i, v in ipairs(getElementsByType("vehicle")) do
-		v:setData("activeHandling", "street")
+		v:setData("activeHandling", "drift")
 	end
 end)
 

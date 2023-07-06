@@ -98,12 +98,12 @@ function RaceCheckpoints.showNext()
 	currentCheckpoint = currentCheckpoint + 1
 
 	local x, y, z = unpack(checkpointsList[currentCheckpoint])
-	hitMarker = createMarker(x, y, z - 1, "cylinder", 3, 0, 0, 0, 0)
+	hitMarker = createMarker(x, y, z - 1, "cylinder", 5, 0, 0, 0, 0)
 	hitMarker.dimension = localPlayer.dimension
 
 	if settings.checkpointsVisible then
 		local r,g,b = exports.tunrc_UI:getThemeColor()
-		currentMarker = createMarker(x, y, z, "checkpoint", 2, r, g, b)
+		currentMarker = createMarker(x, y, z, "checkpoint", 4, r, g, b)
 		currentMarker.dimension = localPlayer.dimension
 
 		local isLast = currentCheckpoint == #checkpointsList
@@ -113,7 +113,7 @@ function RaceCheckpoints.showNext()
 			local x, y, z = unpack(cp)
 			currentMarker:setTarget(x, y, z)
 
-			nextMarker = createMarker(x, y, z, "checkpoint", 2, r, g, b, 100)
+			nextMarker = createMarker(x, y, z, "checkpoint", 4, r, g, b, 100)
 			nextMarker.dimension = localPlayer.dimension
 			local isLast = currentCheckpoint + 1 == #checkpointsList
 			if isLast then

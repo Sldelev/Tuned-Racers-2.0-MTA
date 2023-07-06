@@ -33,6 +33,7 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
 	PropsStorage.setDefault("graphics.vynils_resolution", 4)
 	-- Параметры игры
 	PropsStorage.setDefault("game.background_music", true)
+	PropsStorage.setDefault("game.coll", false)
 	PropsStorage.save()
 end)
 

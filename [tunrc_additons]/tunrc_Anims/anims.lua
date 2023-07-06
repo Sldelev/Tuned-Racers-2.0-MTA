@@ -14,6 +14,7 @@ local anims = {
 	drink_a = {"BD_FIRE", "BD_PANIC_LOOP"},
 	drink_b = {"BOMBER", "BOM_PLANT_LOOP"},
 	dance_a = {"RAPPING", "RAP_A_LOOP"},
+	cower_a = {"PED", "HANDSUP", false},
 
 	--Ped > IDLE_Chat
 }

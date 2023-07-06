@@ -11,6 +11,8 @@ local vehiclesPrices = {
 	tunerc_sentinel = {4800, 1},
 	tunerc_banshee = {6500, 1},
 	tunerc_zr350 = {5400, 1},
+	tunerc_blazer = {6000, 1},
+	tunerc_burrito = {8000, 1},
 }
 
 function getVehiclePrices(name)

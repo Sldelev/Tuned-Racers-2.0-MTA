@@ -5,4 +5,7 @@
 	<script src="photo_mode_help.lua" type="client" />
 
 	<file src="sound.wav"/>
+	
+	<file src="assets/1.png"/>
+	<file src="assets/2.png"/>
 </meta>

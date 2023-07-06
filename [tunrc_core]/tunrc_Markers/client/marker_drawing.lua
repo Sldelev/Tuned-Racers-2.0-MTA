@@ -14,6 +14,10 @@ local MARKER_TEXT_OFFSET = Vector3(0, 0, 2)
 
 local markersToDraw = {}
 
+-- Цвет маркера
+
+local themeColor = {exports.tunrc_UI:getThemeColor()}
+
 -- Текст на экране
 local screenTextFont
 local screenTextBottomOffset = 60
@@ -24,71 +28,43 @@ local markerKey = "g"
 
 local markerTypes = {}
 markerTypes.garage = {
-	color = {225, 225, 225},
-	icon = "assets/garage_icon.png",
+	color = {50, 50, 50},
 	text = "assets/garage_text.png",
 	string = "markers_garage_text"
 }
 
 markerTypes.city = {
-	color = {212, 0, 40},
-	icon = "assets/city_icon.png",
+	color = {50, 50, 50},
 	text = "assets/city_text.png",
 	string = "markers_city_text"
 }
 
 markerTypes.showroom = {
-	color = {212, 0, 40},
-	icon = "assets/showroom_icon.png",
+	color = {50, 50, 50},
 	text = "assets/showroom_text.png",
 	string = "markers_showroom_text"
 }
 
 markerTypes.house = {
-	color = {212, 0, 40},
-	icon = "assets/house_floor.png",
-	iconSize = 1,
+	color = {50, 50, 50},
 	text = "assets/house_icon.png",
 	string = "markers_house_enter_text"
 }
 
-markerTypes.stripclub = {
-	color = {212, 0, 40},
-	icon = "assets/house_floor.png",
-	iconSize = 1,
-	text = "assets/strip_icon.png",
-	string = "markers_strip_enter_text"
-}
-
 markerTypes.race = {
-	color = {255, 255, 255},
-	icon = "assets/race_icon.png",
-	iconSize = 6.25,
+	color = {50, 50, 50},
 	text = "assets/race_text.png",
-	string = "markers_race_enter_text",
-	noPaint = true
+	string = "markers_race_enter_text"
 }
 
 markerTypes.drift = {
-	color = {255, 255, 255},
-	icon = "assets/drift_icon.png",
-	iconSize = 6.25,
+	color = {50, 50, 50},
 	text = "assets/drift_text.png",
-	string = "markers_drift_enter_text",
-	noPaint = true
-}
-
-markerTypes.tofu = {
-	color = {255, 255, 255},
-	icon = "assets/race_icon.png",
-	iconSize = 12.5,
-	text = "assets/tofu_text.png",
-	string = "markers_tofu_text",
-	noPaint = true
+	string = "markers_drift_enter_text"
 }
 
 markerTypes.exit = {
-	color = {212, 0, 40},
+	color = {50, 50, 50},
 	text = "assets/exit_icon.png",
 	string = "markers_house_exit_text"
 }
@@ -167,9 +143,9 @@ local function drawMarker(marker)
 	then
 		if not markerProperties.noPaint then
 			color = {
-				232 + math.sin(t * MARKER_ANIMATION_SPEED) * 23, 
-				20 + math.sin(t * MARKER_ANIMATION_SPEED) * 20,
-				60 + math.sin(t * MARKER_ANIMATION_SPEED) * 30,
+				225 + math.sin(t * MARKER_ANIMATION_SPEED) * 23, 
+				225 + math.sin(t * MARKER_ANIMATION_SPEED) * 20,
+				225 + math.sin(t * MARKER_ANIMATION_SPEED) * 30,
 				255
 			}
 		end

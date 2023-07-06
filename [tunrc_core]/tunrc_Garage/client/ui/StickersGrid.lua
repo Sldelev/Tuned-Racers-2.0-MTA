@@ -14,8 +14,13 @@ function StickersGrid:init()
 		{icon = Assets.textures.stickersSection1, 	text = exports.tunrc_Lang:getString("garage_tuning_stickers_geometry")},
 		{icon = Assets.textures.stickersSection4, 	text = exports.tunrc_Lang:getString("garage_tuning_stickers_letters")},
 		{icon = Assets.textures.stickersSection5, 	text = exports.tunrc_Lang:getString("garage_tuning_stickers_numbers")},
-		{icon = Assets.textures.stickersSection6, 	text = exports.tunrc_Lang:getString("garage_tuning_stickers_slaps")},
-		{icon = Assets.textures.stickersSection7, 	text = exports.tunrc_Lang:getString("garage_tuning_stickers_brands")},
+		{icon = Assets.textures.stickersSection7, 	text = exports.tunrc_Lang:getString("garage_tuning_stickers_slaps")},
+		{icon = Assets.textures.stickersSection9, 	text = exports.tunrc_Lang:getString("garage_tuning_stickers_brands")},
+		{icon = Assets.textures.stickersSection8, 	text = exports.tunrc_Lang:getString("garage_tuning_stickers_bolts")},
+		{icon = Assets.textures.stickersSection10, 	text = exports.tunrc_Lang:getString("garage_tuning_stickers_flame")},
+		{icon = Assets.textures.stickersSection2, 	text = exports.tunrc_Lang:getString("garage_tuning_stickers_anime")},
+		{icon = Assets.textures.stickersSection3, 	text = exports.tunrc_Lang:getString("garage_tuning_stickers_damage")},
+		{icon = Assets.textures.stickersSection6, 	text = exports.tunrc_Lang:getString("garage_tuning_stickers_partners")},
 	})
 	self.y = self.y + self.panel.height / 2
 	self.panel.x = self.x

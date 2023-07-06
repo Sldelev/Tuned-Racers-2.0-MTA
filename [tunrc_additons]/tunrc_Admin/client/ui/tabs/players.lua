@@ -102,6 +102,7 @@ local function updateSelectedPlayer()
 
 	ui.player.giveXP.enabled 	 = not not player
 	ui.player.giveMoney.enabled  = not not player
+	ui.player.setPremium.enabled  = not not player
 	ui.player.resetHouse.enabled = not not player
 	ui.player.giveCar.enabled 	 = not not player
 	ui.player.removeCar.enabled  = false
@@ -180,6 +181,8 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
 	y = y + buttonHeight
 	ui.player.giveMoney = GuiButton(x, y, buttonWidth, buttonHeight, "Give money", true, ui.panel)
 	y = y + buttonHeight
+	ui.player.setPremium = GuiButton(x, y, buttonWidth, buttonHeight, "set premium", true, ui.panel)
+	y = y + buttonHeight
 	ui.player.setHouse = GuiButton(x, y, buttonWidth, buttonHeight, "Set house", true, ui.panel)	
 	y = y + buttonHeight
 	ui.player.resetHouse = GuiButton(x, y, buttonWidth, buttonHeight, "Reset house", true, ui.panel)
@@ -218,6 +221,19 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
 				return
 			end
 			triggerServerEvent("tunrc_Admin.executeCommand", resourceRoot, "givemoney", selectedPlayer, value)
+		end)
+	end, false)
+	
+	addEventHandler("onClientGUIClick", ui.player.setPremium, function ()
+		if not selectedPlayer then
+			return
+		end
+		local name = exports.tunrc_Utils:removeHexFromString(selectedPlayer.name)
+		admin.ui.showValueWindow("Set premium", "Set premium to player " .. name, 0, function (value)
+			if type(value) ~= "number" or value <= 0 then
+				return
+			end
+			triggerServerEvent("tunrc_Admin.executeCommand", resourceRoot, "setpremium", selectedPlayer, value)
 		end)
 	end, false)
 

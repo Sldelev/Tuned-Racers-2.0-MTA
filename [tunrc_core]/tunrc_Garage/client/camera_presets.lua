@@ -27,169 +27,6 @@ cameraPresets.freeLookCamera = {
 	roll = 0
 }
 
---НИХУЯ СЕБЕ--
-
-cameraPresets.selectingFrontFendColor = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
-cameraPresets.selectingFrontBumpColor = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
-cameraPresets.selectingKarkasColor = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
-cameraPresets.selectingBonnetColor = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
-cameraPresets.selectingSideSkirtsColor = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
-cameraPresets.selectingRearFendColor = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -180,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
-cameraPresets.selectingRearBumpColor = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -180,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
-cameraPresets.selectingExtraOneColor = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
-cameraPresets.selectingExtraTwoColor = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-cameraPresets.selectingExtraThreeColor = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
-cameraPresets.selectingExtraFourColor = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
-cameraPresets.selectingKarkasColor = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
-cameraPresets.selectingDopsColor = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
-cameraPresets.lipsColor = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
-cameraPresets.selectingLipsColor = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
-cameraPresets.selectingFenderRightColor = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
-cameraPresets.selectingFenderLeftColor = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = 35,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
-cameraPresets.fenderLeftColor = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
 ----------------------------------------------------------
 
 -- Дым	
@@ -226,6 +63,26 @@ cameraPresets.frontBump = {
 
 -- Передний бампер при покупке
 cameraPresets.previewFrontBump = {
+	targetPosition = Vector3(0, 0, 0),
+	rotationHorizontal = -50,
+	rotationVertical = 10,
+	distance = 8,
+	FOV = 50,
+	roll = 0
+}
+
+-- Передний бампер при покупке
+cameraPresets.previewRollingshells = {
+	targetPosition = Vector3(0, 0, 0),
+	rotationHorizontal = -50,
+	rotationVertical = 10,
+	distance = 8,
+	FOV = 50,
+	roll = 0
+}
+
+-- Передний бампер при покупке
+cameraPresets.previewAddLights = {
 	targetPosition = Vector3(0, 0, 0),
 	rotationHorizontal = -50,
 	rotationVertical = 10,
@@ -501,6 +358,16 @@ cameraPresets.previewSkirts = {
 	roll = 0
 }
 
+-- Юбки при покупке
+cameraPresets.previewAddSkirts = {
+	targetPosition = Vector3(0, 0, 0),
+	rotationHorizontal = 200,
+	rotationVertical = 10,
+	distance = 6.5,
+	FOV = 50,
+	roll = 0
+}
+
 ----------------------------------------------------------
 
 -- Колесо
@@ -554,6 +421,15 @@ cameraPresets.wheelsSize = {
 }
 
 cameraPresets.previewWheelsSize = {
+	targetPosition = Vector3(0, 0, 0),
+	rotationHorizontal = -90,
+	rotationVertical = 10,
+	distance = 8,
+	FOV = 50,
+	roll = 0	
+}
+
+cameraPresets.previewWheelsCastor = {
 	targetPosition = Vector3(0, 0, 0),
 	rotationHorizontal = -90,
 	rotationVertical = 10,
@@ -699,22 +575,13 @@ cameraPresets.previewTorpeda = {
 
 ----------------------------------------------------------
 
--- Каркасы
-cameraPresets.karkas = {
-	targetPosition = Vector3(0, 1, 0),
-	rotationHorizontal = -10,
-	rotationVertical = 20,
-	distance = 6,
-	FOV = 50,
-	roll = 0
-}
 
 -- Каркасы при покупке
 cameraPresets.previewKarkas = {
-	targetPosition = Vector3(1, 1, 0),
-	rotationHorizontal = -10,
+	targetPosition = Vector3(0, 0, 0),
+	rotationHorizontal = -50,
 	rotationVertical = 10,
-	distance = 6,
+	distance = 8,
 	FOV = 50,
 	roll = 0
 }
@@ -854,7 +721,7 @@ cameraPresets.previewDops = {
 
 ----------------------------------------------------------
 
--- Подвеска
+-- Настройки
 cameraPresets.suspension = {
 	targetPosition = Vector3(0, 0, 0),
 	rotationHorizontal = -50,
@@ -873,7 +740,7 @@ cameraPresets.previewSuspension = {
 	roll = 0	
 }
 
-cameraPresets.boost = {
+cameraPresets.bias = {
 	targetPosition = Vector3(0, 0, 0),
 	rotationHorizontal = -50,
 	rotationVertical = 10,
@@ -882,25 +749,7 @@ cameraPresets.boost = {
 	roll = 0
 }
 
-cameraPresets.previewBoost = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
-cameraPresets.loadbias = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
-cameraPresets.previewLoadBias = {
+cameraPresets.previewBias = {
 	targetPosition = Vector3(0, 0, 0),
 	rotationHorizontal = -50,
 	rotationVertical = 10,
@@ -927,7 +776,7 @@ cameraPresets.previewSteering = {
 	roll = 0
 }
 
-cameraPresets.bias = {
+cameraPresets.previewveh_velocity = {
 	targetPosition = Vector3(0, 0, 0),
 	rotationHorizontal = -50,
 	rotationVertical = 10,
@@ -936,7 +785,7 @@ cameraPresets.bias = {
 	roll = 0
 }
 
-cameraPresets.previewBias = {
+cameraPresets.previewveh_mass = {
 	targetPosition = Vector3(0, 0, 0),
 	rotationHorizontal = -50,
 	rotationVertical = 10,
@@ -944,71 +793,7 @@ cameraPresets.previewBias = {
 	FOV = 50,
 	roll = 0
 }
-
-
-cameraPresets.fronttires = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
-cameraPresets.previewFrontTires = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-cameraPresets.reartires = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
-cameraPresets.previewRearTires = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
-cameraPresets.brakepower = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
-cameraPresets.previewBrakepower = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
-cameraPresets.brakedist = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
-cameraPresets.previewBrakedist = {
+cameraPresets.previewveh_turnmass = {
 	targetPosition = Vector3(0, 0, 0),
 	rotationHorizontal = -50,
 	rotationVertical = 10,

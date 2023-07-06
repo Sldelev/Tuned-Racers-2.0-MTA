@@ -19,7 +19,7 @@ function random_keis_create ()
 		destroyElement(picups)
 		destroyElement(blips)
 		exports.tunrc_Core:givePlayerMoney(player, money)
-		exports.tunrc_Chat:message(root, "global","#550000" .. "Игрок "..getPlayerName(player).." нашел конфетку и получил "..money)
+		exports.tunrc_Chat:message(root, "global","#550000" .. "Игрок "..getPlayerName(player).." нашел конфетку и получил "..money .."$")
 		setTimer(random_keis_create, 60000 * times, 1)
 	end)
 end

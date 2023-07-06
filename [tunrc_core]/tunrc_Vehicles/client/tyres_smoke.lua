@@ -23,10 +23,10 @@ local function detectVehicleDrift(vehicle)
 end
 
 local function checkVehicleOnGround(vehicle)
-	local ox, oy, oz = vehicle:getComponentPosition("wheel_lb_dummy")
+	local ox1, oy1, oz1 = vehicle:getComponentPosition("wheel_lb_dummy")
 	local vehicleMatrix = vehicle.matrix
-	local centerPosition1 = vehicleMatrix:transformPosition(0, oy, oz)
-	local centerPosition2 = vehicleMatrix:transformPosition(0, oy, oz - 0.5)
+	local centerPosition1 = vehicleMatrix:transformPosition(0, oy1, oz1)
+	local centerPosition2 = vehicleMatrix:transformPosition(0, oy1, oz1 - 0.5)
 	return not isLineOfSightClear(centerPosition1, centerPosition2, true, false, false, true, false)
 end
 
@@ -35,7 +35,7 @@ local function update()
 		-- Left wheel
 		local ox, oy, oz = vehicle:getComponentPosition("wheel_lb_dummy")
 		local vehicleMatrix = vehicle.matrix
-		local leftPosition = vehicleMatrix:transformPosition(ox, oy, oz)						
+		local leftPosition = vehicleMatrix:transformPosition(ox, oy, oz)					
 		exports.tunrc_Particles:setEmitterPosition(emitters.leftEmitter, leftPosition.x, leftPosition.y, leftPosition.z)
 		-- Right wheel
 		ox, oy, oz = vehicle:getComponentPosition("wheel_rb_dummy")
@@ -64,7 +64,7 @@ local function update()
 				exports.tunrc_Particles:setEmitterOption(emitters.leftEmitter, "startSize", startSize)
 				exports.tunrc_Particles:setEmitterOption(emitters.rightEmitter, "startSize", startSize)
 
-				local endSize = {10 * sizeMul, 15 * sizeMul}
+				local endSize = {4 * sizeMul, 10 * sizeMul}
 				exports.tunrc_Particles:setEmitterOption(emitters.leftEmitter, "endSize", endSize)
 				exports.tunrc_Particles:setEmitterOption(emitters.rightEmitter, "endSize", endSize)
 
@@ -104,7 +104,7 @@ local function update()
 				exports.tunrc_Particles:setEmitterOption(emitters.leftEmitter, "startSize", startSize)
 				exports.tunrc_Particles:setEmitterOption(emitters.rightEmitter, "startSize", startSize)
 
-				local endSize = {5 * sizeMul, 10 * sizeMul}
+				local endSize = {2 * sizeMul, 8 * sizeMul}
 				exports.tunrc_Particles:setEmitterOption(emitters.leftEmitter, "endSize", endSize)
 				exports.tunrc_Particles:setEmitterOption(emitters.rightEmitter, "endSize", endSize)
 

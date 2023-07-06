@@ -28,15 +28,12 @@ function DpCheckbox.create(properties)
 		else
 			self.color = self.colors.normal
 		end
-		Drawing.setColor(Colors.color("gray_dark"))
-		Drawing.line(self.x - 1, self.y, self.x + self.width + 1, self.y, borderSize)
-		Drawing.line(self.x + self.width, self.y - 1, self.x + self.width, self.y + self.height + 1, borderSize)
-		Drawing.line(self.x + self.width + 1, self.y + self.height, self.x - 1, self.y + self.height, borderSize)
-		Drawing.line(self.x, self.y + self.height, self.x, self.y, borderSize)
 		if self.state then
 			Drawing.setColor(self.color)
-			Drawing.rectangle(self.x + boxOffset, self.y + boxOffset, self.width - boxOffset * 2, self.height - boxOffset * 2)
+		else
+			Drawing.setColor(Colors.color("gray_dark"))
 		end
+		Drawing.rectangle(self.x, self.y, self.width, self.height)
 		--Drawing.setColor(self.textColor)
 	end
 	return widget

@@ -9,6 +9,7 @@ local numberplateInfo = exports.tunrc_Shared:getTuningPrices("numberplate")
 local componentsList = {
 	{name="FrontBump", 	camera="frontBump",  	locale="garage_tuning_component_front_bump", animate={component="FrontBump%u", 		offset=Vector3(0, 0.1, 0)}},
 	{name="Fbadge", 	camera="frontBump",  	locale="garage_tuning_component_fbadge"},
+	{name="Rollingshells", 	camera="frontBump",  	locale="garage_tuning_component_rollingshell"},
 	{name="Turbos", 	camera="frontBump",  	locale="garage_tuning_component_turbos"},
 	{name="Grills", 	camera="frontBump",  	locale="garage_tuning_component_grills"},
 	{name="Frontnumber", 	camera="frontBump",  	locale="garage_tuning_component_frontnumber"},
@@ -30,6 +31,7 @@ local componentsList = {
 	{name="Rpanels", 	camera="rearBump", 		locale="garage_tuning_component_rpanel"},
 	{name="RearFends", 	camera="rearBump", 	locale="garage_tuning_component_rear_fends", animate={component="RearFends%u", 		offset=Vector3(0.05, 0, 0)}},
 	{name="Skirts", camera="skirts", 		locale="garage_tuning_component_side_skirts",animate={component="Skirts%u", 	offset=Vector3(0.1, 0, 0)}},
+	{name="AddSkirts", camera="skirts", 		locale="garage_tuning_component_side_addskirts"},
 	{name="FrontFends", camera="frontBump", 	locale="garage_tuning_component_front_fends",animate={component="FrontFends%u", 	offset=Vector3(0.05, 0, 0)}},
 	{name="FrontFendsDops", 	camera="frontBump", 		locale="garage_tuning_component_front_fends_dops"},
 	{name="Fpanels", 	camera="frontBump", 		locale="garage_tuning_component_fpanel"},
@@ -39,6 +41,7 @@ local componentsList = {
 	{name="Bonnets", 	camera="frontBump", 		locale="garage_tuning_component_bonnet",	 animate={component="Bonnets%u", 		offset=Vector3(0, 0, 0.05)}},
 	{name="Eng", 	camera="frontBump", 		locale="garage_tuning_component_engine",	 animate={component="Eng%u", 		offset=Vector3(0, 0, 0.1)}},
 	{name="FrontLights",camera="frontBump", 	locale="garage_tuning_component_front_lights"},
+	{name="AddLights",camera="frontBump", 	locale="garage_tuning_component_addlights"},
 	{name="SideLights"      ,camera="frontBump", 	locale="garage_tuning_component_sidelights"},
 	{name="FaraR"      ,camera="frontBump", 	locale="garage_tuning_component_FaraR"},
 	{name="Dops"       ,camera="frontBump", 	locale="garage_tuning_component_Dops"},		
@@ -110,11 +113,6 @@ function ComponentsScreen:onKey(key)
 		local componentName = self.componentsSelection:getSelectedComponentName()
 		if componentName == "Numberplate" then
 			self.screenManager:showScreen(NumberplateScreen())
-		else
-			self.screenManager:showScreen(ComponentScreen(componentName))
-		end
-		if componentName == "SteeringTexture" then
-			self.screenManager:showScreen(SteeringWheelScreen())
 		else
 			self.screenManager:showScreen(ComponentScreen(componentName))
 		end

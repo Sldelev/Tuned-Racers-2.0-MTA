@@ -14,6 +14,7 @@ local unfreezeTimer
 
 -- Дата, которая округляется при сохранении
 local configurationData = {
+	--Настройки визуальные
     "WheelsOffsetF",
     "WheelsOffsetR",
     "WheelsWidthF",
@@ -21,14 +22,14 @@ local configurationData = {
     "WheelsAngleF",
     "WheelsAngleR",
     "WheelsSize",
+	"WheelsCastor",
+	--Настройки влияющие на автомобиль
     "Bias",
-	"Boost",
-    "LoadBias",
-    "RearTires",
-    "FrontTires",
-    "Brakepower",
-    "Brakedist",
 	"Steer",
+	"veh_mass",
+	"veh_acceleration",
+	"veh_turnmass",
+	"veh_velocity",
     "Suspension",
 }
 -- Цвета, которые выставляются белыми по умолчанию и округляются
@@ -36,6 +37,7 @@ local colorsData = {
     "BodyColor",
     "WheelsColorR",
     "WheelsColorF",
+	"SmokeColor",
     "SpoilerColor"
 }
 -- Дата, которая копируется как есть
@@ -48,8 +50,12 @@ local copyData = {
     "DriftHandling"
 }
 
-local function setData(key, value)
+function setData(key, value)
     vehicle:setData(key, value, false)
+end
+
+function getData(key)
+    vehicle:getData(key, value)
 end
 
 local function updateVehicle()
@@ -70,8 +76,8 @@ local function updateVehicle()
     if type(vehiclesList[currentVehicle].tuning) == "string" then
         currentTuningTable = fromJSON(vehiclesList[currentVehicle].tuning)
     end
-
-    if isTimer(unfreezeTimer) then killTimer(unfreezeTimer) end
+	
+	 if isTimer(unfreezeTimer) then killTimer(unfreezeTimer) end
     unfreezeTimer = setTimer(function ()
         if not isElement(vehicle) then
             killTimer(unfreezeTimer)
@@ -80,12 +86,7 @@ local function updateVehicle()
         if vehicle.position.z - CAR_POSITION.z > 0.5 then
             vehicle.position = CAR_POSITION
         end
-        if currentTuningTable.Suspension and tonumber(currentTuningTable.Suspension) > 0.01 then
-            vehicle.velocity = Vector3(0, 0, 0.01)
-        else
-            vehicle.velocity = Vector3(0, 0, -0.01)
-        end
-        if currentTuningTable.Bias and tonumber(currentTuningTable.Bias) > 0.2 then
+        if currentTuningTable.Suspension and tonumber(currentTuningTable.Suspension) > 0.5 then
             vehicle.velocity = Vector3(0, 0, 0.01)
         else
             vehicle.velocity = Vector3(0, 0, -0.01)
@@ -266,16 +267,8 @@ function GarageCar.resetTuning()
     if type(suspensionHeight) == "number" then
         GarageCar.applyHandling("Suspension", suspensionHeight)
     end
-
-    -- Высота подвески
-    local suspensionRake = currentTuningTable["Rake"]
-    if not suspensionRake then
-        suspensionRake = 0.45
-    end
-    if type(suspensionRake) == "number" then
-        GarageCar.applyHandling("Rake", suspensionRake)
-    end
 	
+	-- выворот
 	local steeringLock = currentTuningTable["Steer"]
     if not steeringLock then
         steeringLock = 55
@@ -285,9 +278,10 @@ function GarageCar.resetTuning()
         GarageCar.applyHandling("Steer", steeringLock)
     end
 	
+	-- Пропорция подвески
 	local suspensionFrontRearBias = currentTuningTable["Bias"]
     if not suspensionFrontRearBias then
-        suspensionFrontRearBias = 0.5
+        suspensionFrontRearBias = 0.4
     end
     if type(suspensionFrontRearBias) == "number" then
         GarageCar.applyHandling("Bias", suspensionFrontRearBias)
@@ -303,7 +297,7 @@ function GarageCar.resetTuning()
     end
 
      if not currentTuningTable["Numberplate"] then
-        GarageCar.applyTuning("Numberplate", "SFSC")
+        GarageCar.applyTuning("Numberplate", "TRC")
     end
 	
 	if not currentTuningTable["Country"] then
@@ -411,8 +405,8 @@ function GarageCar.isComponentRemovable(name)
       return false
   end
   local removableComponents = {
-     "FrontBump", "RearBump", "SideSkirts", "Bonnets", "Spoilers",
-    "RightLight", "LeftLight", "RearLights", "Lips", "PSeats", "Extraone", "Extratwo", "Extrathree", "Extrafour", "Extrafive", "Intercooler", "FrontFends", "FrontFendsR", "FrontFendsL","FrontLights", "FaraR", "FaraL", "RearFends",
+     "FrontBump", "Fpanels", "RearBump", "SideSkirts", "Bonnets", "Spoilers",
+    "RightLight", "LeftLight", "RearLights", "Lips", "PSeats", "Extraone", "Extratwo", "Extrathree", "Extrafour", "Extrafive", "Intercooler", "FrontFends", "FrontFendsDops", "FrontFendsR", "FrontFendsL","FrontLights", "FaraR", "FaraL", "RearFends",
     "Frontnumber", "Rearnumber", "Grills", "Boots", "Mirrors", "SideLights", "Diffusors", "LeftFend", "Acces", "Roof", "Rbadge", "Dops", "Fbadge", "Skirts", "RightFend"
   }
   for _, value in ipairs(removableComponents) do

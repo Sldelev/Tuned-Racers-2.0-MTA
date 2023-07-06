@@ -9,16 +9,13 @@ function ConfigurationsScreen:init(componentName)
 	local suspensionPrice, suspensionLevel = unpack(exports.tunrc_Shared:getTuningPrices("suspension"))
 	local upgradesLevel = exports.tunrc_Shared:getTuningPrices("upgrades_level")
 	self.componentsSelection = ComponentSelection({
-		{name="Upgrades",   camera="upgrades",   locale="garage_tuning_config_upgrades",   price = 0, level = upgradesLevel},
+		--{name="Upgrades",   camera="upgrades",   locale="garage_tuning_config_upgrades",   price = 0, level = upgradesLevel},
 		{name="Suspension", camera="suspension", locale="garage_tuning_config_suspension", price = suspensionPrice, level = suspensionLevel},
-		{name="Bias", camera="bias", locale="garage_tuning_config_bias", price = 0, level = 0},
-		--{name="Boost", camera="boost", locale="garage_tuning_config_boost", price = 20, level = 0},
-		--{name="LoadBias", camera="loadbias", locale="garage_tuning_config_loadbias", price = 0, level = 0},
-		--{name="RearTires", camera="reartires", locale="garage_tuning_config_reartires", price = 0, level = 0},
-		--{name="FrontTires", camera="fronttires", locale="garage_tuning_config_fronttires", price = 0, level = 0},
-		--{name="Brakepower", camera="brakepower", locale="garage_tuning_config_brakepower", price = 0, level = 0},
-		{name="Steer", camera="bias", locale="garage_tuning_config_steer", price = 0, level = 0},
-		--{name="Brakedist", camera="brakedist", locale="garage_tuning_config_brakedist", price = 0, level = 0}
+		{name="Bias", camera="bias", locale="garage_tuning_config_bias", price = suspensionPrice, level = suspensionLevel},
+		{name="Steer", camera="bias", locale="garage_tuning_config_steer", price = suspensionPrice, level = suspensionLevel},
+		{name="veh_velocity", camera="bias", locale="garage_tuning_config_veh_velocity", price = suspensionPrice, level = suspensionLevel},
+		{name="veh_mass", camera="bias", locale="garage_tuning_config_veh_mass", price = suspensionPrice, level = suspensionLevel},
+		{name="veh_turnmass", camera="bias", locale="garage_tuning_config_veh_turnmass", price = suspensionPrice, level = suspensionLevel},
 	})
 
 	local vehicle = GarageCar.getVehicle()
@@ -35,6 +32,7 @@ function ConfigurationsScreen:init(componentName)
 	end
 	if hasWheels then
 		self.componentsSelection:addComponent("WheelsSize", "wheelsSize", "garage_tuning_config_wheels_size", nil, unpack(exports.tunrc_Shared:getTuningPrices("wheels_size")))
+		self.componentsSelection:addComponent("WheelsCastor", "wheelsSize", "garage_tuning_config_wheels_castor")
 	end
 
 	if componentName then

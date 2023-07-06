@@ -2,18 +2,23 @@
 
 local vehicleWheels = {}
 
--- Передние/задние колёса
+local WHEEL_LF_DUMMY = "wheel_lf_dummy"
+local WHEEL_RF_DUMMY = "wheel_rf_dummy"
+local WHEEL_LB_DUMMY = "wheel_lb_dummy"
+local WHEEL_RB_DUMMY = "wheel_rb_dummy"
+
+-- Front/rear wheels
 local frontWheels = {
-	["wheel_lf_dummy"] = true,
-	["wheel_rf_dummy"] = true
+    [WHEEL_LF_DUMMY] = true,
+    [WHEEL_RF_DUMMY] = true
 }
 local rearWheels = {
-	["wheel_lb_dummy"] = true,
-	["wheel_rb_dummy"] = true
+    [WHEEL_LB_DUMMY] = true,
+    [WHEEL_RB_DUMMY] = true
 }
 
 -- Все колёса
-local wheelsNames = {"wheel_rf_dummy", "wheel_lf_dummy", "wheel_rb_dummy", "wheel_lb_dummy"}
+local wheelsNames = {WHEEL_RF_DUMMY, WHEEL_LF_DUMMY, WHEEL_RB_DUMMY, WHEEL_LB_DUMMY}
 
 -- Модели объектов колёс
 local wheelsModels = {1025,1073,1074,1075,1076,1077,1078,1079,1080,1081,1082,1083,1084,1085,1096,1097,1098,2101,2102,2103,2104,2106,2107,2108,2109,2110,2111,2112,2115,2116,2117,2118,2119,2120,2127,2826,2827,2828,2829,3071,3072,3077,2128,2129,2130,2131}
@@ -30,6 +35,7 @@ local dataNames = {
 	["WheelsSize"] 		= true,
 	["WheelsColorR"] 	= true,
 	["WheelsColorF"] 	= true,
+	["WheelsCastor"] 	= true,
 }
 
 -- Подруливание
@@ -37,18 +43,22 @@ local CONFIG_PROPERTY_NAME = "graphics.smooth_steering"
 local steeringHelpEnabled = false
 local steeringSmoothing = 0.8
 
+local localVehicleSteering = {}
+for i, name in ipairs(wheelsNames) do
+    localVehicleSteering[name] = 0
+end
+
 local shaderReflectionTexture
 local wheelsHiddenOffset = Vector3(0, 0, -1000)
 
 local WHEELS_SIZE_MIN = 0.53
-local WHEELS_SIZE_MAX = 0.70
+local WHEELS_SIZE_MAX = 0.8
 
 local WHEELS_CAMBER_MAX = 16
 local WHEELS_WIDTH_MIN = 0.15
 local WHEELS_WIDTH_MAX = 0.80
 
 local overrideWheelsScale = {
-	tunerc_club = 1.1,
 }
 
 local forceSteering = {}
@@ -116,6 +126,7 @@ local function updateVehicleWheels(vehicle)
 			local wheelCamber = 10
 			local wheelWidth = 0.15
 			local wheelColor = {255, 255, 255}
+			local wheelsCastor = vehicle:getData("WheelsCastor") or 0
 			if frontWheels[name] then
 				wheelWidth = vehicle:getData("WheelsWidthF") or 0
 				wheelCamber = vehicle:getData("WheelsAngleF") or 0
@@ -137,6 +148,7 @@ local function updateVehicleWheels(vehicle)
 			end
 			-- Обновить развал и толщину
 			if isElement(wheel.shader) then
+				wheel.shader:setValue("CastorCoeff", wheelsCastor)
 				wheel.shader:setValue("sCamber", -wheelCamber * WHEELS_CAMBER_MAX)
 				wheel.shader:setValue("sWidth", WHEELS_WIDTH_MIN + wheelWidth * (WHEELS_WIDTH_MAX - WHEELS_WIDTH_MIN))
 				-- Цвет колеса
@@ -267,11 +279,6 @@ local function wrapAngle(value)
 	return value
 end
 
-local localVehicleSteering = {}
-for i, name in ipairs(wheelsNames) do
-	localVehicleSteering[name] = 0
-end
-
 -- Обновление положения колёс
 addEventHandler("onClientPreRender", root, function ()
 	if getKeyState("space") then
@@ -290,31 +297,69 @@ addEventHandler("onClientPreRender", root, function ()
 		local steeringMul = 1
 		local isLocalVehicle = vehicle == localPlayer.vehicle
 		if isLocalVehicle and spaceDown then
-			steeringMul = 0
+			--steeringMul = 0
 		end
 		local rotationX, rotationY, rotationZ = getElementRotation(vehicle)
 		local vehicleMatrix = vehicle.matrix
+		local _,_,rrot = getVehicleComponentRotation(vehicle, WHEEL_RF_DUMMY)
+        if not rrot then
+            rrot = 0
+        end
+        local isWheelRight = false
+        local isWheelLeft = false
+        if rrot > 180 then
+            isWheelRight = true
+        elseif rrot == 0 then
+            isWheelRight = false
+            isWheelLeft = false
+        else
+            isWheelLeft = true
+        end
 		for name, wheel in pairs(wheels) do
 			if wheel.custom then
 				local rx, ry, rz = vehicle:getComponentRotation(name)
 				local position = vehicleMatrix:transformPosition(wheel.position[1], wheel.position[2], wheel.position[3])
 				local steering = 0
-				if name == "wheel_rf_dummy" then
-					local angleOffset = wrapAngle(rz + 180) - 180
-					if steeringHelpEnabled then
-						steering = driftAngle * 0.6 + angleOffset * driftMul * steeringMul
-					else
-						steering = angleOffset
-					end
-				elseif name == "wheel_lf_dummy" then
-					local angleOffset = rz - 180
-					if steeringHelpEnabled then
-						steering = driftAngle * 0.6 + angleOffset * driftMul  * steeringMul + 180
-					else
-						steering = angleOffset + 180
-					end					
-				else
+				local castorRot = 0
+				if name == WHEEL_RF_DUMMY then
+                    local angleOffset = wrapAngle(rz + 180) - 180
+                    if steeringHelpEnabled then
+                        steering = driftAngle * 0.6 + angleOffset * driftMul * steeringMul
+                    else
+                        steering = angleOffset
+                    end
+                    if isWheelLeft then
+                        castorRot = -(rz) / 34
+                        if isLocalVehicle then
+                            castorRot = -(localVehicleSteering[name]) / 34
+                        end
+                    elseif isWheelRight then
+                        castorRot = (360 - rz ) / 34
+                        if isLocalVehicle then
+                            castorRot = -(localVehicleSteering[name]) / 34
+                        end
+                    end
+                elseif name == WHEEL_LF_DUMMY then
+                    local angleOffset = rz - 180
+                    if steeringHelpEnabled then
+                        steering = driftAngle * 0.6 + angleOffset * driftMul * steeringMul + 180
+                    else
+                        steering = angleOffset + 180
+                    end
+                    if isWheelLeft then
+                        castorRot = (rz - 180) / 34
+                        if isLocalVehicle then
+                            castorRot = (localVehicleSteering[name] - 180) / 34
+                        end
+                    elseif isWheelRight then
+                        castorRot = -(180 - rz) / 34
+                        if isLocalVehicle then
+                            castorRot = -(180 - localVehicleSteering[name]) / 34
+                        end
+                    end
+                else
 					steering = rz
+					castorRot = 0
 				end
 				local currentSteering = steering
 				if isLocalVehicle and steeringHelpEnabled then
@@ -326,18 +371,14 @@ addEventHandler("onClientPreRender", root, function ()
 					wheel.position[1],
 					wheel.position[2],
 					wheel.position[3] + (wheel.object.scale - WHEELS_SIZE_MIN - 0.1) * 0.5)
-				setElementRotation(wheel.object, rotationX, rotationY, rotationZ)
+				--setElementRotation(wheel.object, rotationX, rotationY, rotationZ)
 				if wheel.object.dimension ~= vehicle.dimension then
 					wheel.object.dimension = vehicle.dimension
 				end
 
 				wheel.shader:setValue("sRotationX", rx)
 				wheel.shader:setValue("sRotationZ", currentSteering)
-				wheel.shader:setValue("sAxis", {vehicle.matrix.up.x, vehicle.matrix.up.y, vehicle.matrix.up.z})
-				
-				addCommandHandler ( "wheelrot", function()
-					outputDebugString(currentSteering)
-				end)
+				wheel.shader:setValue("Castor", castorRot)
 			end
 			vehicle:setComponentVisible(name, not wheel.custom)
 		end

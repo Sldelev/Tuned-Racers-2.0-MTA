@@ -4,6 +4,7 @@ local priceSources = {
 	BodyColor = "body_color",
 	WheelsColorF = "wheels_color",
 	WheelsColorR = "wheels_color",
+	SmokeColor = "body_color",
 	SpoilerColor = "spoiler_color"
 }
 
@@ -12,6 +13,7 @@ local colorMenus = {
 	["WheelsColorF"]  = {locale="garage_tuning_paint_wheels",  position = Vector3(-0.5, -2, 0.4), angle = 15},
 	["WheelsColorR"]  = {locale="garage_tuning_paint_wheels",  position = Vector3(-1, -2, 0.4), angle = 15},
 	["SpoilerColor"] = {locale="garage_tuning_paint_spoiler", position = Vector3(-1, -2, 0.4),   angle = 185},
+	["SmokeColor"]    = {locale="garage_tuning_smoke_color",    position = Vector3(-1, -2, 0.4),   angle = 10},
 
 }
 

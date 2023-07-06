@@ -47,24 +47,12 @@ local function draw()
 
 	local primaryColor = tocolor(themeColor[1], themeColor[2], themeColor[3], 255)
 	dxDrawText(
-		"₽#FFFFFF" .. tostring(localPlayer:getData("money")),
+		"$#FFFFFF" .. tostring(localPlayer:getData("money")),
 		0, 20,
 		screenSize.x - 20, screenSize.y,
 		primaryColor,
 		1,
 		fonts.money,
-		"right",
-		"top",
-		false, false, false, true
-	)
-
-	dxDrawText(
-		exports.tunrc_Lang:getString("player_level") .. ": #FFFFFF" .. tostring(localPlayer:getData("level")),
-		0, 60,
-		screenSize.x - 20, screenSize.y,
-		primaryColor,
-		1,
-		fonts.level,
 		"right",
 		"top",
 		false, false, false, true
@@ -162,7 +150,7 @@ function Carshop.start()
 	vehicle = createVehicle(411, CARSHOP_POSITION + VEHICLE_OFFSET , VEHICLE_ROTATION)
 	vehicle.alpha = 0
 	vehicle.dimension = LOCAL_DIMENSION
-	vehicle:setData("Numberplate", "SFSC")
+	vehicle:setData("Numberplate", "TRC")
 
 	toggleAllControls(false)
 	exports.tunrc_HUD:setVisible(false)

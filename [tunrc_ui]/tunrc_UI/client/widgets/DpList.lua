@@ -12,6 +12,7 @@ function DpList.create(properties)
 
 	local widget = Widget.create(properties)
 	widget.text = exports.tunrc_Utils:defaultValue(properties.text, "")
+	widget.hovertext = exports.tunrc_Utils:defaultValue(properties.hovertext, "")
 	widget.alignX = exports.tunrc_Utils:defaultValue(properties.alignX, "center")
 	widget.alignY = exports.tunrc_Utils:defaultValue(properties.alignY, "center")
 	widget.items = exports.tunrc_Utils:defaultValue(properties.items, {})
@@ -42,6 +43,7 @@ function DpList.create(properties)
 			if isHover then
 				self.activeItem = i
 				Drawing.setColor(Colors.color("primary"))
+				Drawing.text(self.x, self.y + 20, self.width, self.height, self.hovertext, align, "center", true, false)
 			else
 				if i % 2 == 0 then
 					Drawing.setColor(backgroundColor1)

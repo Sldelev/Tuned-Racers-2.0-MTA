@@ -13,21 +13,21 @@ local componentsFromData = {
 	["RearFends"]	= true, 	-- Задние фендеры
 	["Acces"]		= true, 	-- Аксессуары
 	["Lips"]		= true, 	-- Губы
-	["Dops"]		= true, 	-- Губы
+	["Dops"]		= true, 	-- доп детали
 	["FaraL"]		= true, 	-- фара слева
 	["FaraR"]		= true, 	-- фара справа
     ["Seats"]	= true, 	-- сидения
 	["Steering"]	= true, 	-- срули
 	["Torpeda"]	= true, 	-- торпеда
 	["Karkas"]	= true, 	-- защитная балка чтобы по голове не дало
-    ["Acces"]	= true, 	-- асесуары
+    ["Acces"]	= true, 	-- акссесуары
 	["Canards"]	= true, 	-- канарды
-	["Diffusors"]	= true, 	-- канарды
-	["Intercooler"]	= true,
+	["Diffusors"]	= true, 	-- диффузоры
+	["Intercooler"]	= true,		-- интеркулеры
 	["Eng"]	= true, 	-- двигателя
 	["Exh"]	= true,  	-- выхлопы
-	["Rbadge"]	= true,  	-- выхлопы
-	["Fbadge"]	= true,  	-- выхлопы
+	["Rbadge"]	= true,  	-- задние шильдики
+	["Fbadge"]	= true,  	-- передние шильдики
 	["Canardsr"]	= true,  	-- канарды сзади
 	["Boots"]	= true,  	-- багажники
 	["RoofS"]	= true,  	-- спойлера на крыше
@@ -41,10 +41,13 @@ local componentsFromData = {
 	["Mirrors"]	= true,  	-- зеркала
 	["SideLights"]	= true,  	-- поворотники
 	["Turbos"]	= true,  	-- турбина
-	["RearGls"]	= true,  	-- турбина
-	["FrontFendsDops"]	= true,  	-- задние стёкла
+	["RearGls"]	= true,  	-- заднее стекло
+	["FrontFendsDops"]	= true,  	-- накладки на фендера
 	["Fpanels"]	= true,  	-- передние панели
-	["Rpanels"]	= true,  	-- передние панели
+	["Rpanels"]	= true,  	-- задние панели
+	["AddLights"]	= true,  	-- доп фары
+	["AddSkirts"]	= true,  	-- накладки на юбки
+	["Rollingshells"]	= true,  	-- подкапотки
 }
 
 -- Апгрейды, которые нужно обновлять из даты
@@ -65,6 +68,7 @@ local function updateVehicleTuningComponent(vehicle, componentName, forceId)
 		vehicle:setComponentVisible(name, false)
 		vehicle:setComponentVisible(componentName .. "Glass" .. tostring(i), false)
 		vehicle:setComponentVisible(componentName .. "Misc" .. tostring(i), false)
+		vehicle:setComponentVisible(componentName .. "Second" .. tostring(i), false)
 		if i > 0 and not vehicle:getComponentPosition(name) then
 			break
 		end
@@ -83,6 +87,7 @@ local function updateVehicleTuningComponent(vehicle, componentName, forceId)
 	vehicle:setComponentVisible(componentName .. tostring(id), true)
 	vehicle:setComponentVisible(componentName .. "Glass" .. tostring(id), true)
 	vehicle:setComponentVisible(componentName .. "Misc" .. tostring(id), true)
+	vehicle:setComponentVisible(componentName .. "Second" .. tostring(id), true)
 
 	if not isElement(vehicle) then return false end
 	if type(componentName) ~= "string" or not componentsFromData[componentName] then

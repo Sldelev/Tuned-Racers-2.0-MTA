@@ -35,7 +35,11 @@ function SellCarScreen:draw()
 	dxDrawRectangle(0, 0, screenSize.x, screenSize.y, tocolor(0, 0, 0, 150 * self.fadeProgress))
 	local text = ""
 	if self.canSell then
-		text = self.text .. " " .. self.colorHex .. "$" .. tostring(self.price) .. "#FFFFFF?"
+		if localPlayer:getData("isPremium") then
+			text = self.text .. " " .. self.colorHex .. "$" .. tostring(self.price / 1.25) .. "#FFFFFF?"
+		else
+			text = self.text .. " " .. self.colorHex .. "$" .. tostring(self.price) .. "#FFFFFF?"
+		end
 	else
 		text = self.text
 	end

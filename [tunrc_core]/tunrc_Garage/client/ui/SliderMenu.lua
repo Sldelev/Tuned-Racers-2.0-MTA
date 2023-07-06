@@ -1,27 +1,36 @@
 SliderMenu = TuningMenu:subclass "SliderMenu"
 
+local ScreenX,ScreenY = guiGetScreenSize()
+
 local PARAM_CHANGE_SPEED = 1
 local SLOW_SPEED_MUL = 0.14
 
-function SliderMenu:init(headerText, labelText, position, rotation, bars, factor, minValue, maxValue)
-	self.super:init(position, rotation, Vector2(1.4, 0.8))
+function SliderMenu:init(headerText, position, rotation, bars)
+	self.super:init(position, rotation, Vector2(1.4, 0.3 + 0.4 * #bars))
 	self.headerHeight = 70
 	self.headerText = headerText
 
 	self.labelHeight = 50
+	
+	self.ScreenX = ScreenX * 0.01
+	self.ScreenY = ScreenY / 2
 
-	self.barHeight = 20
+	self.barHeight = 4
 	self.barOffset = 20
 
-	self.bars = {
-		{text = labelText, value = 0},
-	}
+	self.bars = {}
+	for i, bar in pairs(bars) do
+		self.bars[i] = {
+			text = exports.tunrc_Lang:getString(bar.label),
+			value = bar.value or 0,
+			factor = bar.factor or 100,
+			minValue = bar.minValue or 0,
+			maxValue = bar.maxValue or 1
+		}
+	end
+
 	self.activeBar = 1
 	self.price = 0
-
-	self.factor = factor or 100
-	self.minValue = minValue or 0
-	self.maxValue = maxValue or 1
 end
 
 function SliderMenu:getValue()
@@ -32,25 +41,22 @@ function SliderMenu:setValue(value)
 	if type(value) ~= "number" then
 		return false
 	end
-	value = math.min(1, math.max(0, value))
-	self.bars[self.activeBar].value = value
+	local bar = self.bars[self.activeBar]
+	value = math.min(bar.maxValue, math.max(bar.minValue, value))
+	bar.value = value
 end
 
 function SliderMenu:draw(fadeProgress)
-	self.super:draw(fadeProgress)
 
-	dxSetRenderTarget(self.renderTarget, true)
-	dxDrawRectangle(0, 0, self.resolution.x, self.resolution.y, tocolor(42, 40, 41))
-	dxDrawRectangle(0, 0, self.resolution.x, self.headerHeight, tocolor(32, 30, 31))
-	dxDrawText(self.headerText, 20, 0, self.resolution.x, self.headerHeight, tocolor(255, 255, 255), 1, Assets.fonts.colorMenuHeader, "left", "center")
+	dxDrawRectangle(0, 0, self.resolution.x - self.ScreenX, ScreenY, tocolor(0, 0, 0, 125))
 
 	local priceText = ""
 	if self.price > 0 then
 		priceText = "$" .. tostring(self.price)
-	else
+	elseif self.price == 0 then
 		priceText = exports.tunrc_Lang:getString("price_free")
 	end
-	dxDrawText(priceText, 0, 0, self.resolution.x - 20, self.headerHeight, tocolor(Garage.themePrimaryColor[1], Garage.themePrimaryColor[2], Garage.themePrimaryColor[3]), 1, Assets.fonts.colorMenuPrice, "right", "center")
+	dxDrawText(priceText, self.ScreenX, self.ScreenY, self.resolution.x - 20, self.ScreenY, tocolor(Garage.themePrimaryColor[1], Garage.themePrimaryColor[2], Garage.themePrimaryColor[3]), 1, Assets.fonts.colorMenuPrice, "right", "center")
 
 	local y = self.headerHeight
 	local barWidth = self.resolution.x - self.barOffset * 4
@@ -65,27 +71,26 @@ function SliderMenu:draw(fadeProgress)
 		end
 
 		-- Подпись
-		dxDrawText(bar.text, 0, y, self.resolution.x, y + self.labelHeight, tocolor(255, 255, 255, a), 1, Assets.fonts.menuLabel, "center", "center")
+		dxDrawText(bar.text, self.ScreenX, self.ScreenY, self.ScreenX, self.ScreenY - self.labelHeight, tocolor(255, 255, 255, a), 1, Assets.fonts.menuLabel, "left", "center")
 		y = y + self.labelHeight
 
 		-- Полоса
 		if i == self.activeBar then
-			dxDrawRectangle(self.barOffset - 1, y - 1, barWidth + 2, self.barHeight + 2, tocolor(255, 255, 255, 255))
+			dxDrawRectangle(self.barOffset - 1, self.ScreenY - 1, barWidth + 2, self.barHeight + 2, tocolor(255, 255, 255, 255))
 		end
-		dxDrawRectangle(self.barOffset, y, barWidth, self.barHeight, tocolor(32, 30, 31))
+		dxDrawRectangle(self.barOffset, self.ScreenY, barWidth, self.barHeight, tocolor(32, 30, 31))
 
 		-- Ползунок
-		local x = (barWidth) * (bar.value / self.maxValue)
+		local x = (barWidth) * (bar.value / bar.maxValue)
 		x = self.barOffset + math.max(0, math.min(x, barWidth + cursorSize)) - cursorSize / 2
-		dxDrawRectangle(x, y - cursorSize, cursorSize, self.barHeight + cursorSize * 2, tocolor(r, g, b))
+		dxDrawCircle(x, self.ScreenY + 2, cursorSize, 0, 360, tocolor(r, g, b), tocolor(r, g, b), 32)
 
 		-- Значение
-		dxDrawText(("%.1f"):format(self.factor * bar.value), self.barOffset + barWidth, y, self.resolution.x, y + self.barHeight, tocolor(255, 255, 255, a), 1, Assets.fonts.componentItem, "center", "center")
+		dxDrawText(("%.1f"):format(bar.factor * bar.value), self.barOffset + barWidth, self.ScreenY, self.ScreenX, self.ScreenY + 50 + self.barHeight, tocolor(255, 255, 255, a), 1, Assets.fonts.componentItem, "center", "center")
 
 		y = y + self.barHeight * 2
 	end
 
-	dxSetRenderTarget()
 end
 
 
@@ -112,9 +117,10 @@ function SliderMenu:increase(dt)
 	if getKeyState("lalt") then
 		speedMul = SLOW_SPEED_MUL
 	end
-	self.bars[self.activeBar].value = self.bars[self.activeBar].value + PARAM_CHANGE_SPEED * (self.maxValue - self.minValue) * speedMul * dt
-	if self.bars[self.activeBar].value > self.maxValue then
-		self.bars[self.activeBar].value = self.maxValue
+	local bar = self.bars[self.activeBar]
+	bar.value = bar.value + PARAM_CHANGE_SPEED * (bar.maxValue - bar.minValue) * speedMul * dt
+	if bar.value > bar.maxValue then
+		bar.value = bar.maxValue
 	end
 end
 
@@ -123,8 +129,9 @@ function SliderMenu:decrease(dt)
 	if getKeyState("lalt") then
 		speedMul = SLOW_SPEED_MUL
 	end
-	self.bars[self.activeBar].value = self.bars[self.activeBar].value - PARAM_CHANGE_SPEED * (self.maxValue - self.minValue) * speedMul * dt
-	if self.bars[self.activeBar].value < self.minValue then
-		self.bars[self.activeBar].value = self.minValue
+	local bar = self.bars[self.activeBar]
+	bar.value = bar.value - PARAM_CHANGE_SPEED * (bar.maxValue - bar.minValue) * speedMul * dt
+	if bar.value < bar.minValue then
+		bar.value = bar.minValue
 	end
 end

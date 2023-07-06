@@ -4,6 +4,7 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
 	-- Создать табы
 	AccountTab.create()
 	TeleportTab.create()
+	AchievementsTab.create()
 	SettingsTab.create()
 	Panel.showTab("account")
 	Panel.setVisible(false)
@@ -16,6 +17,7 @@ end
 bindKey("F1", "down", function ()
 	Panel.setVisible(not Panel.isVisible())
 	PasswordPanel.hide()
+	FpsPanel.hide()
 end)
 
 bindKey("backspace", "down", function ()

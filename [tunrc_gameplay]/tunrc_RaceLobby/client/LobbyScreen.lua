@@ -169,6 +169,7 @@ function LobbyScreen.setVisible(visible)
         
         local mapInfo = exports.tunrc_RaceManager:getMapInfo(LobbyScreen.mapName) or {}
         local mapGamemode = mapInfo.gamemode
+		local raceName = mapInfo.name
         if not localPlayer.vehicle or localPlayer.vehicle.controller ~= localPlayer then
             exports.tunrc_UI:showMessageBox(
                 exports.tunrc_Lang:getString("race_error_title"), 
@@ -191,7 +192,7 @@ function LobbyScreen.setVisible(visible)
         titleText =
             exports.tunrc_Lang:getString("lobby_screen_field_title") ..
             ": " .. themeColorHEX ..
-            exports.tunrc_Lang:getString("race_type_" .. mapGamemode)
+            exports.tunrc_Lang:getString(raceName)
 
         titleWidth = dxGetTextWidth(titleText, 1, fonts.title, true)
         titleHeight = dxGetFontHeight(1, fonts.title)
