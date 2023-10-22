@@ -42,6 +42,12 @@ function Drawing.circle(x, y, radius)
 	dxDrawCircle(x, y, radius, 0, 360, drawColor, drawColor, 32, 1, Drawing.POST_GUI)
 end
 
+function Drawing.nonCircle(x, y, radius, startangle, endangle)
+	x = x + drawX
+	y = y + drawY
+	dxDrawCircle(x, y, radius, startangle, endangle, drawColor, drawColor, 32, 1, Drawing.POST_GUI)
+end
+
 function Drawing.line(x1, y1, x2, y2, width)
 	x1 = x1 + drawX
 	y1 = y1 + drawY
@@ -56,8 +62,8 @@ function Drawing.text(x, y, width, height, text, alignX, alignY, clip, wordBreak
 	dxDrawText(text, x, y, x + width, y + height, drawColor, 1, drawFont, alignX, alignY, clip, wordBreak, Drawing.POST_GUI, false, colorCoded)
 end
 
-function Drawing.image(x, y, width, height, image)
+function Drawing.image(x, y, width, height, image, rotation)
 	x = x + drawX
 	y = y + drawY
-	dxDrawImage(x, y, width, height, image, 0, 0, 0, drawColor, Drawing.POST_GUI)
+	dxDrawImage(x, y, width, height, image, rotation, 0, 0, drawColor, Drawing.POST_GUI)
 end

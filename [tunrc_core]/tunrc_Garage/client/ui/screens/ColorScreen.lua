@@ -4,15 +4,21 @@ local priceSources = {
 	BodyColor = "body_color",
 	WheelsColorF = "wheels_color",
 	WheelsColorR = "wheels_color",
+	BoltsColorF = "wheels_color",
+	BoltsColorR = "wheels_color",
 	SmokeColor = "body_color",
-	SpoilerColor = "spoiler_color"
+	RollcageColor = "body_color",
+	EngBlockColor = "body_color"
 }
 
 local colorMenus = {
 		["BodyColor"]    = {locale="garage_tuning_paint_body",    position = Vector3(-1, -2, 0.4),   angle = 10},
 	["WheelsColorF"]  = {locale="garage_tuning_paint_wheels",  position = Vector3(-0.5, -2, 0.4), angle = 15},
 	["WheelsColorR"]  = {locale="garage_tuning_paint_wheels",  position = Vector3(-1, -2, 0.4), angle = 15},
-	["SpoilerColor"] = {locale="garage_tuning_paint_spoiler", position = Vector3(-1, -2, 0.4),   angle = 185},
+	["BoltsColorF"]  = {locale="garage_tuning_paint_bolts",  position = Vector3(-0.5, -2, 0.4), angle = 15},
+	["BoltsColorR"]  = {locale="garage_tuning_paint_bolts",  position = Vector3(-1, -2, 0.4), angle = 15},
+	["RollcageColor"] = {locale="garage_tuning_paint_rollcage", position = Vector3(-1, -2, 0.4),   angle = 10},
+	["EngBlockColor"] = {locale="garage_tuning_paint_engblock", position = Vector3(-1, -2, 0.4),   angle = 10},
 	["SmokeColor"]    = {locale="garage_tuning_smoke_color",    position = Vector3(-1, -2, 0.4),   angle = 10},
 
 }
@@ -38,6 +44,11 @@ function ColorScreen:init(componentName)
 	self.colorPreviewEnabled = true
 
 	CameraManager.setState("selecting" .. componentName, false, 3)
+	
+	self.helpPanel = HelpPanel({
+		{ keys = {"F"}, 				locale = "garage_tuning_paint_copy_color"},
+		{ keys = {"Z"}, 				locale = "garage_sticker_editor_help_toggle"},
+	})
 
 	self.copyToAllWheels = false
 end
@@ -50,11 +61,15 @@ end
 function ColorScreen:draw()
 	self.super:draw()
 	self.colorMenu:draw(self.fadeProgress)
+	if self.componentName == "WheelsColorF" or self.componentName == "WheelsColorR" then
+		self.helpPanel:draw(self.fadeProgress)
+	end
 end
 
 function ColorScreen:update(deltaTime)
 	self.super:update(deltaTime)
 	self.colorMenu:update(deltaTime)
+	self.helpPanel:update(deltaTime)
 
 	if getKeyState("arrow_r") then
 		self.colorMenu:increase(deltaTime)
@@ -65,14 +80,14 @@ function ColorScreen:update(deltaTime)
 		if self.componentName == "BodyColor" then
 			CarTexture.previewBodyColor(self.colorMenu:getColor())
 		else
-		GarageCar.previewTuning(self.componentName, {self.colorMenu:getColor()})
-		if self.copyToAllWheels then
-			if self.componentName == "WheelsColorF" then
-				GarageCar.previewTuning("WheelsColorR", {self.colorMenu:getColor()})
-			elseif self.componentName == "WheelsColorR" then
-				GarageCar.previewTuning("WheelsColorR", {self.colorMenu:getColor()})
+			GarageCar.previewTuning(self.componentName, {self.colorMenu:getColor()})
+			if self.copyToAllWheels then
+				if self.componentName == "WheelsColorF" then
+					GarageCar.previewTuning("WheelsColorR", {self.colorMenu:getColor()})
+				elseif self.componentName == "WheelsColorR" then
+					GarageCar.previewTuning("WheelsColorF", {self.colorMenu:getColor()})
+				end
 			end
-		end
 		end
 	end
 end
@@ -84,6 +99,8 @@ function ColorScreen:onKey(key)
 		self.colorMenu:selectPreviousBar()
 	elseif key == "arrow_d" then
 		self.colorMenu:selectNextBar()
+	elseif key == "z" then
+		self.helpPanel:toggle()
 	elseif key == "f" then
 		if string.find(self.componentName, "WheelsColor") then
 			self.copyToAllWheels = not self.copyToAllWheels
@@ -105,7 +122,7 @@ function ColorScreen:onKey(key)
 					if this.componentName == "WheelsColorF" then
 						GarageCar.applyTuning("WheelsColorR", {this.colorMenu:getColor()})
 					elseif this.componentName == "WheelsColorR" then
-						GarageCar.applyTuning("WheelsColorR", {this.colorMenu:getColor()})
+						GarageCar.applyTuning("WheelsColorF", {this.colorMenu:getColor()})
 					end
 				end
 			end

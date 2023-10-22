@@ -2,8 +2,7 @@ local SPAM_INTERVAL = 15
 local SPAM_COLOR = "#406C7F"
 local spamMessages = {
     "*Группа вк :  #FFFFFFvk.com/tunrc",
-    "*Автодонат на сайте : #FFFFFFhttps://tunedracershop.trademc.org",
-	"*Если что-то не понимаете : #FFFFFFF9"
+    "*Автодонат на сайте : #FFFFFFhttps://tunedracershop.trademc.org"
 }
 local currentMessage = 1
 

@@ -1,16 +1,17 @@
 local cameraViews = {
-	false, -- Обычная камера
+	0,1,2,3,5, -- Обычная камера
 	DriftView,
-	BonnetView
+	DriftViewA,
+	CockpitView
 }
-local currentCameraViewIndex = 1
+local currentCameraViewIndex = 3
 local currentCameraView
 
 local function startCameraView(cameraView)
 	if currentCameraView then
 		currentCameraView.stop()
 	end
-	if cameraView then
+	if cameraView and type(cameraView) == "table" then
 		cameraView.start()
 		currentCameraView = cameraView
 		--toggleControl("change_camera", false)
@@ -22,7 +23,7 @@ local function startCameraView(cameraView)
 			currentCameraView = nil
 		end
 		if localPlayer.vehicle then
-			setCameraViewMode(2)
+			setCameraViewMode(cameraView)
 		else
 			--toggleControl("change_camera", true)
 		end
@@ -37,7 +38,7 @@ addEventHandler("onClientKey", root, function (key, down)
 	if key ~= "v" then
 		return
 	end
-	if localPlayer:getData("activeUI") and localPlayer:getData("activeUI") ~= "raceUI" then
+	if not localPlayer:getData("activeUI") and localPlayer:getData("activeUI") ~= "raceUI" then
 		return 
 	end
 	if not localPlayer.vehicle then
@@ -45,7 +46,7 @@ addEventHandler("onClientKey", root, function (key, down)
 		return
 	end
 	currentCameraViewIndex = currentCameraViewIndex + 1
-	if currentCameraViewIndex == 4 then
+	if currentCameraViewIndex > 8 then
 		currentCameraViewIndex = 1
 	end
 	if currentCameraViewIndex > #cameraViews then

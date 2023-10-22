@@ -1,6 +1,6 @@
 local gameplaySettings = {
-	start_vehicle = "tunerc_elegy",
-    default_vehicle_color = {100, 100, 100},
+	start_vehicle = "tunrc_zr350",
+    default_vehicle_color = {150, 150, 150},
 	
 	start_money = 5000,
 	

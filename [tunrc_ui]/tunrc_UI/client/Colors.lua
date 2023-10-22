@@ -8,6 +8,7 @@ local DEFAULT_THEME = {
 
 	gray_darker 	= {29, 29, 29},
 	gray_dark 		= {42, 40, 41},
+	gray_dark_alpha = {50, 50, 50, 150},
 	gray 			= {54, 52, 53},
 	gray_light 		= {196, 203, 209},
 	gray_lighter 	= {222, 230, 233},

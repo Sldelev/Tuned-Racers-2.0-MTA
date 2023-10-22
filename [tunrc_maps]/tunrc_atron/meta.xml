@@ -1,0 +1,47 @@
+<meta>
+    <oop>true</oop>
+	<info type="map" name="daikoku" author="sdlevin" description="remap" version="3" />
+ 
+	<script src="client.lua" type="client" />
+ 
+	<file src="atr01.txd" type="client" />
+ 
+ 
+	<file src="atr01.dff" type="client" />
+	<file src="atr02.dff" type="client" />
+	<file src="atr03.dff" type="client" />
+	<file src="atr04.dff" type="client" />
+	<file src="atr05.dff" type="client" />
+	<file src="atr06.dff" type="client" />
+	<file src="atr07.dff" type="client" />
+	<file src="atr08.dff" type="client" />
+	<file src="atr09.dff" type="client" />
+	<file src="atr10.dff" type="client" />
+	<file src="atr11.dff" type="client" />
+	<file src="atr12.dff" type="client" />
+	<file src="atr13.dff" type="client" />
+	<file src="atr14.dff" type="client" />
+	<file src="atr15.dff" type="client" />
+	<file src="atr16.dff" type="client" />
+	<file src="atr17.dff" type="client" />
+
+	<file src="atr01.col" type="client" />
+	<file src="atr02.col" type="client" />
+	<file src="atr03.col" type="client" />
+	<file src="atr04.col" type="client" />
+	<file src="atr05.col" type="client" />
+	<file src="atr06.col" type="client" />
+	<file src="atr07.col" type="client" />
+	<file src="atr08.col" type="client" />
+	<file src="atr09.col" type="client" />
+	<file src="atr10.col" type="client" />
+	<file src="atr11.col" type="client" />
+	<file src="atr12.col" type="client" />
+	<file src="atr13.col" type="client" />
+	<file src="atr14.col" type="client" />
+	<file src="atr15.col" type="client" />
+	<file src="atr16.col" type="client" />
+	<file src="atr17.col" type="client" />
+
+<map src="atr.map" dimension="-1"></map>
+</meta>

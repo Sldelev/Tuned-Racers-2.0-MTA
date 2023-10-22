@@ -1,0 +1,31 @@
+<meta>
+    <oop>true</oop>
+	<info type="map" name="daikoku" author="sdlevin" description="remap" version="3" />
+ 
+	<script src="client.lua" type="client" />
+ 
+	<file src="nanohanadai.txd" type="client" />
+ 
+ 
+	<file src="nanohanadai1.dff" type="client" />
+	<file src="nanohanadai2.dff" type="client" />
+	<file src="nanohanadai3.dff" type="client" />
+	<file src="nanohanadai4.dff" type="client" />
+	<file src="nanohanadai5.dff" type="client" />
+	<file src="nanohanadai6.dff" type="client" />
+	<file src="nanohanadai7.dff" type="client" />
+	<file src="nanohanadai8.dff" type="client" />
+	<file src="nanohanadai9.dff" type="client" />
+	
+	<file src="nanohanadai1.col" type="client" />
+	<file src="nanohanadai2.col" type="client" />
+	<file src="nanohanadai3.col" type="client" />
+	<file src="nanohanadai4.col" type="client" />
+	<file src="nanohanadai5.col" type="client" />
+	<file src="nanohanadai6.col" type="client" />
+	<file src="nanohanadai7.col" type="client" />
+	<file src="nanohanadai8.col" type="client" />
+	<file src="nanohanadai9.col" type="client" />
+
+<map src="nanohanadai.map" dimension="-1"></map>
+</meta>

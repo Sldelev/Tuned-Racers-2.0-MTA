@@ -1,51 +1,10 @@
 <meta>
-<file src="1025.dff" type="client" />
-<file src="1073.dff" type="client" />
-<file src="1074.dff" type="client" />
-<file src="1075.dff" type="client" />
-<file src="1076.dff" type="client" />
-<file src="1077.dff" type="client" />
-<file src="1078.dff" type="client" />
-<file src="1079.dff" type="client" />
-<file src="1080.dff" type="client" />
-<file src="1081.dff" type="client" />
-<file src="1082.dff" type="client" />
-<file src="1083.dff" type="client" />
-<file src="1084.dff" type="client" />
-<file src="1085.dff" type="client" />
-<file src="1096.dff" type="client" />
-<file src="1097.dff" type="client" />
-<file src="1098.dff" type="client" />
-<file src="2101.dff" type="client" />
-<file src="2102.dff" type="client" />
-<file src="2103.dff" type="client" />
-<file src="2104.dff" type="client" />
-<file src="2106.dff" type="client" />
-<file src="2107.dff" type="client" />
-<file src="2108.dff" type="client" />
-<file src="2109.dff" type="client" />
-<file src="2110.dff" type="client" />
-<file src="2111.dff" type="client" />
-<file src="2112.dff" type="client" />
-<file src="2115.dff" type="client" />
-<file src="2116.dff" type="client" />
-<file src="2117.dff" type="client" />
-<file src="2118.dff" type="client" />
-<file src="2119.dff" type="client" />
-<file src="2120.dff" type="client" />
-<file src="2127.dff" type="client" />
-<file src="2826.dff" type="client" />
-<file src="2827.dff" type="client" />
-<file src="2828.dff" type="client" />
-<file src="2829.dff" type="client" />
-<file src="3071.dff" type="client" />
-<file src="3072.dff" type="client" />
-<file src="3077.dff" type="client" />
-<file src="2128.dff" type="client" />
-<file src="2129.dff" type="client" />
-<file src="2130.dff" type="client" />
-<file src="2131.dff" type="client" />
-<file src="wheels.txd" type="client" />
 	
 	<script src="client.lua" type="client" />
+	
+	<file src="wheels.txd" type="client" />
+	
+	<file src="advrcngt.dff" type="client" />
+	<file src="advrrciii.dff" type="client" />
+	<file src="advrcrgii.dff" type="client" />
 </meta>

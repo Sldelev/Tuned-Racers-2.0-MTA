@@ -7,10 +7,3 @@ function toggleVehicleParam(action, value)
 	end
 	triggerServerEvent("tunrc_Vehicles.vehicleAction", resourceRoot, action, value)
 end
-
-bindKey("1", "down", function ()
-    if not isElement(localPlayer.vehicle) then
-        return
-    end
-    triggerServerEvent("tunrc_Vehicles.vehicleAction", resourceRoot, "lights")
-end)

@@ -79,9 +79,6 @@ function CarTexture.reset()
 	bodyColor = vehicle:getData("BodyColor")
 	editorStickers = {}
 	editorStickers = vehicle:getData("stickers")
-	if not editorStickers then
-		editorStickers = {}
-	end
 	CarTexture.redraw()
 end
 

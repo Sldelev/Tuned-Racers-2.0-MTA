@@ -1,0 +1,11 @@
+<meta>
+    <info author="[GT]zorrigas y [GT]Scarface" description="Robada Pass" version="2.0" type="map" />
+ <script src="1.lua" type="client" />
+    <file src="meihan.txd" />
+    <file src="meihan1.dff" />
+	<file src="meihan2.dff" />
+	<file src="meihan1.col" />
+	<file src="meihan2.col" />
+	
+	<map src="meihan.map" dimension="-1"></map>
+</meta>

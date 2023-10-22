@@ -91,6 +91,7 @@ printMetaExport("removeChild")
 local widgetsList = {
 	"Rectangle",
 	"Circle",
+	"NonCircle",
 	"Button",
 	"Image",
 	"TextField",
@@ -101,7 +102,8 @@ local widgetsList = {
 	"DpLabel",
 	"DpImageButton",
 	"DpList",
-	"DpCheckbox"
+	"DpCheckbox",
+	"TrcRoundedRectangle"
 }
 
 local function createWidgetProxy(name, resourceRoot, ...)
@@ -135,7 +137,9 @@ local publicPropertiesList = {
 	-- TextField
 	"alignX", "alignY", "clip", "wordBreak", "colorCoded",
 	-- Dp
-	"colors", "type", "state", "activeItem", "items"
+	"colors", "type", "state", "activeItem", "items",
+	-- Trc
+	"startangle", "endangle"
 }
 
 for i, name in ipairs(publicPropertiesList) do

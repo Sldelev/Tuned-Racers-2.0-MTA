@@ -1,10 +1,21 @@
 <meta>
     <oop>true</oop>
-    <script type="client" src="wheels.lua"/>
-
+	<!-- Client -->
+    <script type="client" src="wheels.lua" cache="false"/>
+	<!-- Assets -->
     <file src="assets/reflection_cubemap.dds"/>
+	<!-- NormalMaps -->
+	<file src="assets/tyre_n.dds"/>
+	<file src="assets/brake_n.dds"/>
+	<file src="assets/flat_n.dds"/>
+	<file src="assets/vehicle_generic_metal_n.png"/>
+	
+	<!-- Specular -->
+	<file src="assets/carpaint_flakes_s.dds"/>
+	
+	<!-- Shaders -->
     <file src="assets/shaders/mta-helper.fx"/>
     <file src="assets/shaders/wheel.fx"/>   
-
+	<!-- Exports -->
 	<export function="setForceSteering" type="client"/>
 </meta>

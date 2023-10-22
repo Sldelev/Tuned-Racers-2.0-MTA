@@ -22,6 +22,7 @@
 	"groups_player": "Player",
 	"groups_Moderator": "Moderator",
 	"groups_Admin": "Admin",
+	"groups_Ceo": "CEO",
 
 	"race_type_drift": "Drift",
 	"race_type_drag": "Drag",
@@ -47,7 +48,7 @@
 	"tutorial_garage_test": "TunedRacers is a server about drift and street with some zest.All you have to do is take your car and look at the drift race on the map. There you can earn money for new cars.",
     
 	"tutorial_city_title": "City",
-    "tutorial_city_text": "Now that you've got your first car, a huge world of drifting on the roads of America opens up in front of you (of course not), now you need to earn at least some pennies in drift racing (drift mode is by default in your car) or in the delivery of your car, just so as not to be a gray mass among other stagnant onlookers of the Tuned Racers",
+    "tutorial_city_text": "Now that you've got your first car, a huge world of drifting on the roads of America opens up in front of you (of course not), now you need to earn at least some pennies in drift racing (drift mode is by default in your car), just so as not to be a gray mass among other stagnant onlookers of the Tuned Racers",
 	
 	"help_panel_general_title": "General",
 	"help_panel_general_text": "Keys:\nF1 - main panel, teleports, settings\nF2 - cursor\n] - Set time to 8 am and weather to Cloudy 4\n1 - toggle lights\nO - photo mode\nI toggle UI",
@@ -63,6 +64,25 @@
 	
     "help_panel_developers_title": "Developers",
     "help_panel_developers_text": "CEO: Cryingdevilz",
+	
+	// Tutorial
+	
+	"tutorial_panel_main_lable": "Tutorial",
+	"tutorial_panel_text_one": "And so... Most likely, you squandered the standard tutorial when logging on to the server, so you turned here because you don't understand anything.\n Switching through the tabs on the up, you can find out how this or that system works on the server.",
+	"tutorial_panel_text_two": "Let's start with perhaps the most important thing - MONEY.\n Earnings come from racing and selling cars to players, through these 2 ways you can earn money (we do not take into account donat) for new cars, tuning and so on.\n Races can be ridden both solo and with other people (the more people in the race, the more each of you will earn).To get into the race, you need to press F1, go to the teleports menu, select the races tab and select any race from the list, then press 'G' to enter the race menu and wait 10 seconds.\n The sale of cars will be scheduled in a separate tab.",
+	"tutorial_panel_text_three": "The car dealership is located on the left side of the garage, you can also get into the car dealership by command / carshop after exiting the car.\n Cars can be bought for both game and donat currency, if you have a premium, all cars will have a 20% discount",
+	"tutorial_panel_text_four": "/garage - Enter the garage.\n/carshop - enter the car dealership (outside the car).\n dt id - change of the game dimension (id is the dimension number from 0 to 999).\n skin id - change the skin on the server (id is the skin number from 0 to 312).\n Commands such as dt and skin need to be entered into the console on F8",
+	"tutorial_panel_text_five": "To sell a car, it must first of all be YOURS (oddly enough) and it must not be your only car.Now all you need is for the player you want to sell to be close to you (preferably standing right next to your car), you need to press F1 and click on the button on the right 'Sell the car', then select the player you need, set the price and put up an offer to buy the player-buyer.",
+	"tutorial_panel_text_six": "Base car control buttons:\n'/' - Emergency signal\n'.' - Turn signal right\n',' - Turn signal left\n'1' - Turn on/off lights\n'-' - Previous music\n'=' - Next music",
+	
+	"tutorial_panel_cancel_button": "Close",
+	"tutorial_panel_main_button": "Main",
+	"tutorial_panel_money_button": "Money earn",
+	"tutorial_panel_carshop_button": "Carshop",
+	"tutorial_panel_commands_button": "Commands",
+	"tutorial_panel_carsell_button": "Car sell",
+	"tutorial_panel_carcontrol_button": "Control",
+	"markers_tutorial_enter_text": "Press 'G' to open tutorial",
 
 	
 	//maps
@@ -162,8 +182,8 @@
 	"chat_message_muted": "You are temporary muted by administrator",
 	"chat_adminsay_Ceo": "CEO",
 	"chat_adminsay_Admin": "Admin",
-	"chat_adminsay_Moderator": "Moderator",
-	"chat_premiumsay": "Premium",
+	"chat_adminsay_Moderator": "Staff",
+	"chat_premiumsay": "★",
 	"chat_admin_mute": "Player %s has been muted by %s for %s seconds",
 	"chat_admin_mute_min": "Игрок %s получил мут от %s на %s minutes.",
 	"chat_admin_unmute": "Players %s has been unmuted by %s.",
@@ -261,6 +281,9 @@
 	"garage_tuning_component_grills": "Grills",
 	"garage_tuning_item_grills": "Grill",
 	
+	"garage_tuning_component_filters": "Intake manifold",
+	"garage_tuning_component_doors": "Doors",
+	
 	"garage_tuning_component_turbos": "Turbo",
 	"garage_tuning_item_turbos": "Garret Rev.5",
 	
@@ -291,6 +314,20 @@
 	"garage_tuning_component_sidelights": "Turn signal lights",
 	"garage_tuning_item_sidelights": "Turn signal light",
 	
+	"garage_tuning_component_interior": "Interior",
+	"garage_tuning_item_interior": "Interior",
+	
+	"garage_tuning_component_doorcards": "Door cards",
+	"garage_tuning_item_doorcards": "Door cards",
+	
+	"garage_tuning_component_dials": "Dials",
+	"garage_tuning_item_dial": "Dials",
+	
+	"garage_tuning_component_front_hcatcha": "Hood locks",
+	"garage_tuning_item_hcatcha": "Hood locks",
+	
+	"garage_tuning_component_body_rollcage": "Bodyshell rollbar",
+	
 	"garage_tuning_item_rbadge": "Rear badge",
 	"garage_tuning_item_fbadge": "Front badge",
 	"garage_tuning_component_rbadge": "Rear badges",
@@ -304,9 +341,16 @@
 	"garage_tuning_paint_body": "Body color",
 	"garage_tuning_paint_shine": "Shine",
 	"garage_tuning_smoke_color": "Smoke color",
+	"garage_tuning_paint_rollcage": "Rollcage color",
+	"garage_tuning_rollcage_color": "Rollcage color",
+	"garage_tuning_paint_engblock": "Cover cylinder head color",
+	"garage_tuning_engblock_color": "Cover cylinder head color",
 	"garage_tuning_paint_wheels_front": "Front rims color",
 	"garage_tuning_paint_wheels_rear": "Rear rims color",
+	"garage_tuning_paint_bolts_front": "Front bolts color",
+	"garage_tuning_paint_bolts_rear": "Rear bolts color",
 	"garage_tuning_paint_wheels": "Rims color",
+	"garage_tuning_paint_bolts": "Bolts color",
 	"garage_tuning_paint_spoiler": "Spoiler color",
 	"garage_tuning_paint_frontfends": "Front fenders color",
 	"garage_tuning_paint_frontbump": "Front bumper color",
@@ -328,6 +372,8 @@
 	"garage_tuning_paint_saturation": "Saturation",
 	"garage_tuning_paint_brightness": "Brightness",
 	"garage_tuning_paint_opacity": "Opacity",
+	
+	"garage_tuning_paint_copy_color": "Copy color to all wheels",
 
 	"garage_tuning_item_bumper": "Bumper",
 	"garage_tuning_item_spoiler": "Spoiler",
@@ -352,6 +398,16 @@
 	"garage_tuning_item_extrafive": "Extra detail",
 	"garage_tuning_item_lips": "Lip",
 	
+	// Колёса
+	
+	"garage_tuning_item_wheel_1": "Advan Racing GT",
+	"garage_tuning_item_wheel_2": "Advan Racing RC III",
+	"garage_tuning_item_wheel_3": "Advan Racing RG II",
+	
+	
+	// ========================================
+	// ================ Tuning ================
+	// ========================================
 
 	"garage_tuning_side_top": "Top side",
 	"garage_tuning_side_right": "Right side",
@@ -496,13 +552,19 @@
 	"main_panel_account_carinfo": "Car Info",
 	"main_panel_account_help": "Help",
 	"main_panel_account_money": "Money",
+	"main_panel_account_donatmoney": "Donat",
 	"main_panel_account_admin": "Admin",
 	"main_panel_account_player": "Player",
-	"main_panel_account_level": "Level progress",
+	"main_panel_account_level": "Level",
 	"main_panel_account_regtime": "Registration date",
 	"main_panel_account_playtime": "Hours in-game",
 	"main_panel_account_cars_count": "Cars in garage",
 	"main_panel_account_premium": "Premium expires",
+	
+	"main_panel_settings_inteface_button": "Interface",
+	"main_panel_settings_gameplay_button": "Gameplay",
+	"main_panel_settings_graphics_button": "Graphics",
+	"main_panel_settings_sound_button": "Sounds",
 
 	"main_panel_settings_section_game": "Game settings",
 	"main_panel_settings_section_chat": "Chat settings",
@@ -510,23 +572,30 @@
 	"main_panel_settings_language": "Language",
 	"main_panel_settings_color": "UI color",
 	"main_panel_settings_collision": "Off Veh.Collisions(BETA)",
+	"main_panel_settings_alt_garage": "Alt. Garage model",
 	"main_panel_settings_joinquit_messages": "Join/quit messages",
 	"main_panel_settings_chat_timestamp": "Sending time",
-	"main_panel_settings_reflections_cars": "Cars reflections",
-	"main_panel_settings_tyres_smoke": "Improved tire smoke",
-	"main_panel_settings_reflections_water": "Water reflections",
-	"main_panel_settings_improved_car_lights": "Improved car lights",
-	"main_panel_settings_improved_sky": "Improved sky",
 	"main_panel_settings_screen_blur": "Screen blur",
 	"main_panel_settings_screen_draw_speedo": "Draw Speedometer",
+	"main_panel_settings_screen_draw_drift_points": "Draw Drift-Points",
 	"main_panel_settings_enable_glass_vynils": "Windows Vinyls",
-	"main_panel_settings_snow": "Improved flames",
 	"main_panel_settings_nametags": "Displaying nicknames",
 	"main_panel_settings_selfnametags": "Displaying self nickname",
 	"main_panel_settings_smooth_steering": "Smooth steering",
 	"main_panel_settings_background_music": "Background music",
+	"main_panel_settings_radar_rotate": "Rotating radar",
 	"main_panel_setting_change_password": "Change password",
 	"main_panel_setting_change_fps": "Change fps limit",
+	
+	"main_panel_settings_reflections_cars": "Cars reflections",
+	"main_panel_settings_reflections_water": "Water reflections",
+	"main_panel_settings_improved_car_lights": "Improved car lights",
+	"main_panel_settings_improved_sky": "Improved sky",
+	"main_panel_settings_wetroad": "improved rain",
+	"main_panel_settings_snow": "Improved flames",
+	"main_panel_settings_tyres_smoke": "Improved tire smoke",
+	"main_panel_settings_ssao": "SSAO",
+	"main_panel_settings_fxaa": "FXAA",
 
 	"main_panel_password_change_title": "Change account password",
 	"main_panel_new_password_label": "New password",
@@ -543,6 +612,29 @@
 	"main_panel_fps_label": "New limit",
 	"main_panel_fps_placeholder": "Enter FPS limit",
 	"main_panel_new_fps_accept": "Setup",
+	
+	// OVERALPANEL
+	
+	"overallpanel_hello": "Hi, ",
+	"overallpanel_welcome_back": "Welcome back!",
+	"overallpanel_dashboard_label": "Your Dashboard is ready to work",
+	
+	"overallpanel_teleports_text": "Teleports",
+	"overallpanel_settings_label": "Settings",
+	"overallpanel_help_label": "Help",
+	"overallpanel_garage_label": "Garage",
+	"overallpanel_music_text": "Music",
+	"overallpanel_music_count_text": "Available tracks:",
+	"overallpanel_money_label": "Money",
+	"overallpanel_all_earned_label": "Total earned by drift:",
+	"overallpanel_gift_panel_label": "Gift keys",
+	"overallpanel_sell_vehicle_label": "Sell vehicle",
+	
+	// OVERALPANEL TELEPORTS BUTTONS	
+	"overallpanel_citys_text": "Citys",
+	"overallpanel_tracks_text": "Tracks",
+	"overallpanel_mountains_text": "Mountains",
+	"overallpanel_races_text": "Races",
 
 	// ==========================================
 	// ================ Markers =================
@@ -641,9 +733,11 @@
 	"carshop_label_acceleration": "Acceleration",
 	"carshop_label_control": "Control",
 
-	"carshop_buy_button": "Add to garage",
+	"carshop_buy_button": "Buy for $",
+	"carshop_buy_button_donat": "Buy for ¤",
 	"carshop_required_level": "Required level %s",
 	"carshop_no_money": "Not enough money",
+	"carshop_no_donat_money": "Not enough donat money",
 	"carshop_no_slots": "No slots in garage",
 	"carshop_need_premium": "Premium required",
 	"carshop_buy_error_title": "Failed to buy car",
@@ -753,6 +847,7 @@
 	"gift_key_input_placeholder": "Gift key",
 	"gift_key_message_title": "Gift Keys",
 	"gift_key_message_fail": "Failed to activate your key",
+	"gift_key_message_use_wait": "Wait 24 hours for repeat key use!",
 	"gift_key_message_success": "You have successfully activated your key!",
 
 	// Lobby screen

@@ -20,6 +20,9 @@ local showingProgress = 0
 local SHOWING_SPEED = 8
 local HIDING_SPEED = 8
 
+PROPERTY_SHOW_POINTS = "ui.draw_points"
+local isEnabled = true
+
 -- Тряска
 local isShaking = false
 local shakingAmount = 0
@@ -39,6 +42,10 @@ local bonusOffset = 60
 local bonusAnimationSpeed = 1.5
 
 function PointsDrawing.show()
+	local isEnabled = exports.tunrc_Config:getProperty(PROPERTY_SHOW_POINTS)
+	if not isEnabled then
+		return false
+	end
 	if state == "hide" or state == "hiding" then
 		state = "showing"
 		targetAlpha = 255
@@ -80,7 +87,7 @@ local function dxDrawTextShadow(text, x1, y1, x2, y2, color, scale, font, alignX
 	if not alpha then
 		alpha = 255
 	end
-	dxDrawText(text, x1 + 2, y1 + 2, x2 + 2, y2 + 2, tocolor(0, 0, 0, alpha), scale, font, alignX, alignY, false, false, false, false, false, textRotation)
+	dxDrawText(text, x1 + 1, y1 + 1, x2 + 1, y2 + 1, tocolor(0, 0, 0, alpha), scale, font, alignX, alignY, false, false, false, false, false, textRotation)
 	dxDrawText(text, x1, y1, x2, y2, color, scale, font, alignX, alignY, false, false, false, false, false, textRotation)
 end
 
@@ -118,24 +125,24 @@ function PointsDrawing.draw()
 	if state == "showing" or state == "hiding" then
 	    local mulX = textX + textWidth + 5
 		local mulY = textY
-		dxDrawTextShadow(pointsCount, textX, textY, textX + textWidth, textY + textHeight, tocolor(255, 255, 255, alpha), 1, font, "center", "center", 0, alpha)
-		dxDrawTextShadow(string.format('%.f',getDriftAngle()), mulX + 35, mulY + 20, textX + textWidth, textY + textHeight, tocolor(255, 255, 255, alpha), 0.5, font, "center", "center", 0, alpha)
+		dxDrawTextShadow(pointsCount, textX, textY, textX + textWidth, textY + textHeight, tocolor(themeColor[1], themeColor[2], themeColor[3], alpha), 1, font, "center", "center", 0, alpha)
+		dxDrawTextShadow(string.format('%.f',getDriftAngle()), mulX - 30, mulY + 60, textX + textWidth, textY + textHeight, tocolor(255, 255, 255, alpha), 0.5, font, "center", "center", 0, alpha)
 	elseif state == "show" then
 	    local mulX = textX + textWidth + 5
 		local mulY = textY
-		dxDrawTextShadow(pointsCount, textX, textY, textX + textWidth, textY + textHeight, tocolor(255, 255, 255), 1, font, "center", "center", textRotation)
-		dxDrawTextShadow(string.format('%.f',getDriftAngle()), mulX + 35, mulY + 20, textX + textWidth, textY + textHeight, tocolor(255, 255, 255), 0.5, font, "center", "center", textRotation)
+		dxDrawTextShadow(pointsCount, textX, textY, textX + textWidth, textY + textHeight, tocolor(themeColor[1], themeColor[2], themeColor[3]), 1, font, "center", "center", textRotation)
+		dxDrawTextShadow(string.format('%.f',getDriftAngle()), mulX - 30, mulY + 60, textX + textWidth, textY + textHeight, tocolor(255, 255, 255), 0.5, font, "center", "center", textRotation)
 		
 		if currentMultiplier > 0 and not isCollision then
-			local mulText = "X" .. tostring(currentMultiplier)
+			local mulText = "x" .. tostring(currentMultiplier)
 			local mulTextWidth = dxGetTextWidth(mulText, 1, font2)
 			local mulX = textX + textWidth + 5
 			local mulY = textY			
 				
 			if multiplierAlpha > 0 then
-				dxDrawText(mulText, mulX, mulY, mulX + mulTextWidth, mulY + textHeight / 2, tocolor(themeColor[1], themeColor[2], themeColor[3], 255 * multiplierAlpha), 1 + 1 * multiplierAlpha, font2, "center", "center", false, false, false, false, false, textRotation)
+				dxDrawText(mulText, mulX, mulY + 30, mulX + mulTextWidth, mulY + textHeight / 2, tocolor(255, 255, 255, 255 * multiplierAlpha), 0.75, font, "center", "center", false, false, false, false, false, textRotation)
 			end
-			dxDrawTextShadow(mulText, mulX, mulY, mulX + mulTextWidth, mulY + textHeight / 2, tocolor(themeColor[1], themeColor[2], themeColor[3]), 1, font2, "center", "center", textRotation)
+			dxDrawTextShadow(mulText, mulX, mulY + 30, mulX + mulTextWidth, mulY + textHeight / 2, tocolor(255, 255, 255), 0.75, font, "center", "center", textRotation)
 		end
 
 		if bonusAnimation < 1 then
@@ -148,7 +155,6 @@ function PointsDrawing.draw()
 	local mulX = textX + textWidth + 5
 		local mulY = textY
 		dxDrawText(pointsCount, textX, textY, textX + textWidth, textY + textHeight, tocolor(255, 255, 255, hidingTextAlpha), hidingTextScale, font, "center", "center", false, false, false, false, false, currentPointsAngle)
-		dxDrawText(string.format('%.f',getDriftAngle()), mulX + 35, mulY + 20, textX + textWidth, textY + textHeight, tocolor(255, 255, 255, hidingTextAlpha), hidingTextScale, font, "center", "center", false, false, false, false, false, currentPointsAngle)
 	end
 end
 

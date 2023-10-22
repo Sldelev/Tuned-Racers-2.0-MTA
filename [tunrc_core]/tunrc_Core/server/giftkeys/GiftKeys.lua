@@ -104,6 +104,9 @@ local function giveKeyGiftsToPlayer(player, options)
 end
 
 function GiftKeys.activate(key, player, username)
+	local timestamp = getRealTime(false).timestamp
+    local leftCodeUseTime = player:getData("last_code_use_time") or timestamp
+	
 	if count == 0 then
 		GiftKeys.remove(key.key)
 		return false
@@ -113,6 +116,10 @@ function GiftKeys.activate(key, player, username)
 		triggerClientEvent(player, "tunrc_Core.keyActivation", resourceRoot, false)
 		return false
 	end
+	
+	if leftCodeUseTime > timestamp then
+        return false
+    end
 	
 	if DatabaseTable.select(GIFT_KEYS_TABLE_NAME, {"user_name"}, { key = key.key }) == player:getData("username") then
 		outputDebugString("ERROR: Failed to activate gift key '" .. tostring(key) .. "' for player '" .. tostring(player) .. "' key already used")
@@ -125,6 +132,9 @@ function GiftKeys.activate(key, player, username)
 		else
 			local key = result[1]
 			if giveKeyGiftsToPlayer(player, key) then
+				player:setData("last_code_use_time", timestamp + 86400 )
+				Users.saveAccount(player)
+				outputDebugString(player:getData("last_code_use_time"))
 				exports.tunrc_Logger:log("giftkeys", "Key activated: " .. tostring(key.key) .. " for " .. tostring(player.name))
 				triggerClientEvent(player, "tunrc_Core.keyActivation", resourceRoot, true, key)
 				DatabaseTable.update(GIFT_KEYS_TABLE_NAME, {user_name = player:getData("username")}, {key = key.key})

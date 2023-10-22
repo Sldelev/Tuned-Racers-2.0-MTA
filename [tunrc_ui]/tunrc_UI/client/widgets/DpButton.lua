@@ -6,7 +6,8 @@ DpButton = {}
 local buttonColors = {
 	default = "default",
 	default_dark = "gray_darker",
-	primary = "primary"
+	primary = "primary",
+	transparent = "transparent"
 }
 
 --- Создать кнопку

@@ -21,6 +21,7 @@
 	<script type="client" src="client/stickers_list.lua" cache="true"/>
 	<script type="client" src="client/colors_utils.lua" cache="true"/>
 	<script type="client" src="client/Assets.lua" cache="true"/>
+	<script type="client" src="client/utils.lua"/>
 	<!-- Интерфейс -->
 	<!-- Менеджер экранов -->
 	<script type="client" src="client/ui/screens/Screen.lua" cache="true"/>
@@ -131,4 +132,5 @@
 	<file src="assets/music/19.ogg"/>
 	<file src="assets/music/20.ogg"/>
 	<file src="assets/music/21.ogg"/>
+	<file src="assets/music/22.ogg"/>
 </meta>

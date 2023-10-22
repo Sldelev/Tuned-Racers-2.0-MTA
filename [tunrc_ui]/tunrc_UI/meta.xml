@@ -21,6 +21,7 @@
 	<script type="client" src="client/widgets/Widget.lua"/>
 	<script type="client" src="client/widgets/Rectangle.lua"/>
 	<script type="client" src="client/widgets/Circle.lua"/>
+	<script type="client" src="client/widgets/NonCircle.lua"/>
 	<script type="client" src="client/widgets/TextField.lua"/>
 	<script type="client" src="client/widgets/Button.lua"/>
 	<script type="client" src="client/widgets/Image.lua"/>
@@ -33,6 +34,7 @@
 	<script type="client" src="client/widgets/DpImageButton.lua"/>
 	<script type="client" src="client/widgets/DpCheckbox.lua"/>
 	<script type="client" src="client/widgets/DpList.lua"/>
+	<script type="client" src="client/widgets/TrcRoundedRectangle.lua"/>
 
 	<!-- Темы -->
 	<file src="themes/blue.json"/>
@@ -60,6 +62,7 @@
 	<export type="client" function="removeChild"/>
 	<export type="client" function="createRectangle"/>
 	<export type="client" function="createCircle"/>
+	<export type="client" function="createNonCircle"/>
 	<export type="client" function="createDpList"/>
 	<export type="client" function="createButton"/>
 	<export type="client" function="createImage"/>
@@ -71,6 +74,7 @@
 	<export type="client" function="createDpLabel"/>
 	<export type="client" function="createDpImageButton"/>
 	<export type="client" function="createDpCheckbox"/>
+	<export type="client" function="createTrcRoundedRectangle"/>
 	<export type="client" function="getX"/>
 	<export type="client" function="setX"/>
 	<export type="client" function="getY"/>
@@ -105,4 +109,8 @@
 	<export type="client" function="getItems"/>
 	<export type="client" function="getState"/>
 	<export type="client" function="setState"/>
+	<export type="client" function="getStartangle"/>
+	<export type="client" function="setStartangle"/>
+	<export type="client" function="getEndangle"/>
+	<export type="client" function="setEndangle"/>
 </meta>

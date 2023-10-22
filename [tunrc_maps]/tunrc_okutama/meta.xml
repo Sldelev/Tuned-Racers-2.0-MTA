@@ -1,0 +1,30 @@
+<meta>
+    <info name="Okutama Mountain" type="map"/>
+
+    <file src="okutama.txd" type="client" />
+
+    <file src="okutama1.col" type="client" />
+    <file src="okutama2.col" type="client" />
+    <file src="okutama3.col" type="client" />
+    <file src="okutama4.col" type="client" />
+    <file src="okutama5.col" type="client" />
+    <file src="okutama6.col" type="client" />
+    <file src="okutama7.col" type="client" />
+    <file src="okutama8.col" type="client" />
+    <file src="okutama9.col" type="client" />
+    <file src="okutama10.col" type="client" />
+
+    <file src="okutama1.dff" type="client" />
+    <file src="okutama2.dff" type="client" />
+    <file src="okutama3.dff" type="client" />
+    <file src="okutama4.dff" type="client" />
+    <file src="okutama5.dff" type="client" />
+    <file src="okutama6.dff" type="client" />
+    <file src="okutama7.dff" type="client" />
+    <file src="okutama8.dff" type="client" />
+    <file src="okutama9.dff" type="client" />
+    <file src="okutama10.dff" type="client" />
+
+	<script type="client" src="client.lua"/>
+	<map src="okutama.map" dimension="-1"></map>
+</meta>

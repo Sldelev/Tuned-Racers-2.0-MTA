@@ -28,7 +28,6 @@ local configurationData = {
 	"Steer",
 	"veh_mass",
 	"veh_acceleration",
-	"veh_turnmass",
 	"veh_velocity",
     "Suspension",
 }
@@ -37,16 +36,17 @@ local colorsData = {
     "BodyColor",
     "WheelsColorR",
     "WheelsColorF",
+	"BoltsColorR",
+    "BoltsColorF",
 	"SmokeColor",
-    "SpoilerColor"
+	"RollcageColor",
+	"EngBlockColor",
+	"ChromePower"
 }
 -- Дата, которая копируется как есть
 local copyData = {
     "Numberplate",
-	"SteeringTexture",
-	"Country",
     "StreetHandling",
-	"OffroadHandling",
     "DriftHandling"
 }
 
@@ -244,7 +244,7 @@ function GarageCar.resetTuning()
 
     -- Цвета
     if not currentTuningTable.BodyColor then
-        currentTuningTable.BodyColor = {205, 205, 205}
+        currentTuningTable.BodyColor = {150, 150, 150}
     end
     for i, name in ipairs(colorsData) do
         if currentTuningTable[name] then
@@ -281,7 +281,7 @@ function GarageCar.resetTuning()
 	-- Пропорция подвески
 	local suspensionFrontRearBias = currentTuningTable["Bias"]
     if not suspensionFrontRearBias then
-        suspensionFrontRearBias = 0.4
+        suspensionFrontRearBias = 0.3
     end
     if type(suspensionFrontRearBias) == "number" then
         GarageCar.applyHandling("Bias", suspensionFrontRearBias)
@@ -371,10 +371,7 @@ function GarageCar.hasComponent(name, id)
     if not name then
         return false
     end
-    if  name == "Spoilers" or
-        name == "Numberplate" or
-		name == "SteeringTexture" or
-		name == "Country" or
+    if	name == "Numberplate" or
         name == "WheelsF" or
         name == "WheelsR"
     then
@@ -389,23 +386,12 @@ function GarageCar.hasComponent(name, id)
     return not not vehicle:getComponentPosition(name .. tostring(id))
 end
 
-function GarageCar.hasDefaultSpoilers()
-    local carNames = {
-        nissan_r32 = true
-    }
-    return not carNames[GarageCar.getName()]
-end
-
-function GarageCar.hasCustomSpoiler(id)
-    return not not vehicle:getComponentPosition("Spoilers" .. tostring(id))
-end
-
 function GarageCar.isComponentRemovable(name)
   if not name then
       return false
   end
   local removableComponents = {
-     "FrontBump", "Fpanels", "RearBump", "SideSkirts", "Bonnets", "Spoilers",
+     "FrontBump", "Fpanels", "RearBump", "SideSkirts", "Bonnets", "Splrs",
     "RightLight", "LeftLight", "RearLights", "Lips", "PSeats", "Extraone", "Extratwo", "Extrathree", "Extrafour", "Extrafive", "Intercooler", "FrontFends", "FrontFendsDops", "FrontFendsR", "FrontFendsL","FrontLights", "FaraR", "FaraL", "RearFends",
     "Frontnumber", "Rearnumber", "Grills", "Boots", "Mirrors", "SideLights", "Diffusors", "LeftFend", "Acces", "Roof", "Rbadge", "Dops", "Fbadge", "Skirts", "RightFend"
   }
@@ -422,9 +408,7 @@ function GarageCar.getComponentsCount(name)
     if not name then
         return 0
     end
-    if  name == "Spoilers" or
-        name == "Numberplate" or
-		name == "SteeringTexture" or
+    if  name == "Numberplate" or
         name == "WheelsF" or
         name == "WheelsR"
     then

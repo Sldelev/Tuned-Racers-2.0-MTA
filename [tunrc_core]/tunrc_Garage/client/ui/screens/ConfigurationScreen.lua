@@ -23,12 +23,6 @@ menuInfos["veh_mass"] = {
 	header="garage_tuning_config_veh_mass", 
 	label="garage_tuning_config_veh_mass_label"
 }
-menuInfos["veh_turnmass"] = {
-	position = Vector3(1, -2, 0.4),
-	angle = 20,
-	header="garage_tuning_config_veh_turnmass", 
-	label="garage_tuning_config_veh_turnmass_label"
-}
 menuInfos["WheelsSize"] = {position = Vector3(0.5, -2, 0.4), angle = -90, header="garage_tuning_config_wheels_size", label="garage_tuning_config_wheels_size_label"}
 menuInfos["WheelsCastor"] = {
 	position = Vector3(0.5, -2, 0.4),
@@ -93,14 +87,6 @@ function ConfigurationScreen:init(dataName)
 		bar.maxValue = 300
 		price = unpack(exports.tunrc_Shared:getTuningPrices("suspension"))
 	elseif self.dataName == "veh_mass" then
-		self.applyForce = true
-		self.dataType = "handling"
-		local bar = self.menu.bars[1]
-		bar.factor = 1
-		bar.minValue = 0
-		bar.maxValue = 50000
-		price = unpack(exports.tunrc_Shared:getTuningPrices("suspension"))
-	elseif self.dataName == "veh_turnmass" then
 		self.applyForce = true
 		self.dataType = "handling"
 		local bar = self.menu.bars[1]

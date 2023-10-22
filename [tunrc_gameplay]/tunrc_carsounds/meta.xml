@@ -18,6 +18,18 @@
     <file src="sounds/sr20/3.wav" type="client" download="true" />
 	<file src="sounds/sr20/cutoff.wav" type="client" download="true" />
 	<file src="sounds/sr20/als.wav" type="client" download="true" />
+	
+	<file src="sounds/boxer/1.wav" type="client" download="true" />
+    <file src="sounds/boxer/2.wav" type="client" download="true" />
+    <file src="sounds/boxer/3.wav" type="client" download="true" />
+	<file src="sounds/boxer/cutoff.wav" type="client" download="true" />
+	<file src="sounds/boxer/als.wav" type="client" download="true" />
+	
+	<file src="sounds/honda_engine/1.wav" type="client" download="true" />
+    <file src="sounds/honda_engine/2.wav" type="client" download="true" />
+    <file src="sounds/honda_engine/3.wav" type="client" download="true" />
+	<file src="sounds/honda_engine/cutoff.wav" type="client" download="true" />
+	<file src="sounds/honda_engine/als.wav" type="client" download="true" />
 
 	<file src="sounds/13b/1.wav" type="client" download="true" />
     <file src="sounds/13b/2.wav" type="client" download="true" />

@@ -18,6 +18,11 @@ function DpList.create(properties)
 	widget.items = exports.tunrc_Utils:defaultValue(properties.items, {})
 	widget.columns = exports.tunrc_Utils:defaultValue(properties.columns, {})
 	widget.activeItem = 1
+	
+	widget.darkToggle = properties.darkToggle
+	widget.darkColor = properties.darkColor
+	widget.hoverColor = properties.hoverColor
+	widget.hoverDarkColor = properties.hoverDarkColor
 
 	if not properties.colors then
 		properties.colors = {}
@@ -42,13 +47,17 @@ function DpList.create(properties)
 			-- Фон
 			if isHover then
 				self.activeItem = i
-				Drawing.setColor(Colors.color("primary"))
+				if properties.darkToggle == true and exports.tunrc_Config:getProperty("ui.dark_mode") then 
+					Drawing.setColor(properties.hoverDarkColor)
+				else
+					Drawing.setColor(properties.hoverColor)
+				end
 				Drawing.text(self.x, self.y + 20, self.width, self.height, self.hovertext, align, "center", true, false)
 			else
-				if i % 2 == 0 then
-					Drawing.setColor(backgroundColor1)
+				if properties.darkToggle == true and exports.tunrc_Config:getProperty("ui.dark_mode") then 
+					Drawing.setColor(properties.darkColor)
 				else
-					Drawing.setColor(backgroundColor2)
+					Drawing.setColor(properties.color)
 				end
 			end
 			Drawing.rectangle(self.x, y, self.width, ITEM_HEIGHT)
@@ -70,10 +79,10 @@ function DpList.create(properties)
 						end
 						alpha = alpha * a
 					end
-					if isHover then
-						Drawing.setColor(Colors.color(textColorHover, alpha))
+					if properties.darkToggle == true and exports.tunrc_Config:getProperty("ui.dark_mode") then 
+						Drawing.setColor(properties.color)
 					else
-						Drawing.setColor(Colors.color(textColor, alpha))
+						Drawing.setColor(properties.darkColor)
 					end
 
 				end

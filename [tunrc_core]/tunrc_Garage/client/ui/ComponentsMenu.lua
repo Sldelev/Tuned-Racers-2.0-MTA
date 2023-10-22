@@ -26,7 +26,7 @@ end
 function MenuItem:draw(fadeProgress)
 	self.super:draw(fadeProgress)
 	local textAlpha = self.alpha
-	local priceColor = tocolor(255, 255, 255, self.alpha)
+	local priceColor = tocolor(Garage.themePrimaryColor[1], Garage.themePrimaryColor[2], Garage.themePrimaryColor[3], self.alpha)
 	local levelColor = tocolor(Garage.themePrimaryColor[1], Garage.themePrimaryColor[2], Garage.themePrimaryColor[3], self.alpha)
 	if self.price > localPlayer:getData("money") then
 		available = false
@@ -35,18 +35,17 @@ function MenuItem:draw(fadeProgress)
 	end
 	dxSetRenderTarget(self.renderTarget, true)
 	local color = tocolor(ITEM_BACKGROUND_COLOR[1], ITEM_BACKGROUND_COLOR[2], ITEM_BACKGROUND_COLOR[3], self.alpha * fadeProgress)
-	dxDrawRectangle(0, 0, self.resolution.x, self.resolution.y, color)
-	dxDrawText(tostring(self.name), 0, 0, self.resolution.x * 0.6, self.resolution.y, tocolor(255, 255, 255, textAlpha), 1, Assets.fonts.componentItem, "center", "center")
+	--dxDrawRectangle(0, 0, self.resolution.x, self.resolution.y, color)
+	dxDrawText(tostring(self.name), self.resolution.x / 2 + 2, 2, self.resolution.x * 0.6, self.resolution.y, tocolor(0, 0, 0, textAlpha), 1, Assets.fonts.componentItem, "center", "center")
+	dxDrawText(tostring(self.name), self.resolution.x / 2, 0, self.resolution.x * 0.6, self.resolution.y, tocolor(255, 255, 255, textAlpha), 1, Assets.fonts.componentItem, "center", "center")
 
 	local starSize = self.resolution.y * 0.28
-	local starX = self.resolution.x - 55
 	if self.level > 0 then
 		if self.level > localPlayer:getData("level") then
 			levelColor = tocolor(255, 255, 255, self.alpha * 0.25)
 		end
-		dxDrawImage(starX, self.resolution.y / 2 - starSize / 2, starSize, starSize, Assets.textures.levelIcon, 0, 0, 0, levelColor)
-
-		dxDrawText(tostring(self.level), starX + starSize + 2, 0, self.resolution.x, self.resolution.y, levelColor, 1, Assets.fonts.componentItemInfo, "left", "center")
+		dxDrawText("★" .. tostring(self.level), self.resolution.x * 0.3 + 2, 40 + 2, self.resolution.x, self.resolution.y, tocolor(0, 0, 0, textAlpha), 1, Assets.fonts.componentItemInfo, "center", "center")
+		dxDrawText("★" .. tostring(self.level), self.resolution.x * 0.3, 40, self.resolution.x, self.resolution.y, levelColor, 1, Assets.fonts.componentItemInfo, "center", "center")
 	end
 	if self.price >= 0 then
 		local priceText = ""
@@ -55,7 +54,8 @@ function MenuItem:draw(fadeProgress)
 		else
 			priceText = exports.tunrc_Lang:getString("price_free")
 		end
-		dxDrawText(priceText, self.resolution.x * 0.4, 0, starX - 10, self.resolution.y, priceColor, 1, Assets.fonts.componentItemInfo, "right", "center")
+		dxDrawText(priceText, self.resolution.x * 0.01 + 2, 40 + 2, self.resolution.x * 0.95, self.resolution.y, tocolor(0, 0, 0, textAlpha), 1, Assets.fonts.componentItemInfo, "center", "center")
+		dxDrawText(priceText, self.resolution.x * 0.01, 40, self.resolution.x * 0.95, self.resolution.y, priceColor, 1, Assets.fonts.componentItemInfo, "center", "center")
 	end
 	dxSetRenderTarget()
 end

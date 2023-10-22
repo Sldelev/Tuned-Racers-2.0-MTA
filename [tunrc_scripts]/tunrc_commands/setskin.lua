@@ -14,8 +14,6 @@ addCommandHandler("skin", function (player, commandName, skin)
     elseif skin < MIN_SKIN_ID or skin > MAX_SKIN_ID then
       exports.tunrc_Chat:message(player, "global", "Неверный ID скина.", r, g, b)
       exports.tunrc_Chat:message(player, "global", ("Использование: /skin [%d-%d]"):format(MIN_SKIN_ID, MAX_SKIN_ID), r, g, b)
-	elseif skin == 20 or skin == 11 or skin == 17 or skin == 16 or skin == 12 or skin == 102 or skin == 61 or skin == 7 or skin == 103 or skin == 23 or skin == 21 or skin == 25 or skin == 18 or skin == 15 or skin == 81 or skin == 14 or skin == 271 then
-      exports.tunrc_Chat:message(player, "global", "Это приватный скин, его использовать нельзя", r, g, b)
     elseif skin == player.model then
       exports.tunrc_Chat:message(player, "global", ("У вас уже установлен скин %d."):format(skin), r, g, b)
       exports.tunrc_Chat:message(player, "global", ("Использование: /skin [%d-%d]"):format(MIN_SKIN_ID, MAX_SKIN_ID), r, g, b)

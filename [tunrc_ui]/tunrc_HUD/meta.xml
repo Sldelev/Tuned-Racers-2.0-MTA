@@ -9,27 +9,12 @@
 	<script type="client" src="client/Speedometer.lua"/>
 	<script type="client" src="client/Radar.lua"/>
 	<script type="client" src="client/exports.lua"/>
+	<script type="client" src="client/UIDataBinder.lua"/>
 
 	<export type="client" function="setVisible"/>
 	<export type="client" function="showAll"/>
 	<export type="client" function="setRadarVisible"/>
 	<export type="client" function="setSpeedometerVisible"/>
-
-	<file src="assets/textures/speedometer/1.png"/>
-	<file src="assets/textures/speedometer/2.png"/>
-	<file src="assets/textures/speedometer/3.png"/>
-	<file src="assets/textures/speedometer/4.png"/>
-	<file src="assets/textures/speedometer/5.png"/>
-	<file src="assets/textures/speedometer/n.png"/>
-	<file src="assets/textures/speedometer/r.png"/>
-	<file src="assets/textures/speedometer/circle.png"/>
-	<file src="assets/textures/speedometer/circle1.png"/>
-	<file src="assets/textures/speedometer/circle2.png"/>
-	<file src="assets/textures/speedometer/circle3.png"/>
-	<file src="assets/textures/speedometer/numbers.png"/>
-	<file src="assets/textures/speedometer/light_numb.png"/>
-	<file src="assets/textures/speedometer/lights_limiter.png"/>
-	<file src="assets/textures/speedometer/mask.png"/>
 	
 	<file src="assets/textures/radar/arrow.png"/>
 	<file src="assets/textures/radar/mask.png"/>
@@ -184,6 +169,5 @@
 	<file src="assets/textures/radar/map/radar140.png"/>
 	<file src="assets/textures/radar/map/radar141.png"/>
 	<file src="assets/textures/radar/map/radar142.png"/>
-	<file src="assets/textures/radar/map/radar143.png"/>	
-	<file src="assets/fonts/speed.ttf"/>
+	<file src="assets/textures/radar/map/radar143.png"/>
 </meta>

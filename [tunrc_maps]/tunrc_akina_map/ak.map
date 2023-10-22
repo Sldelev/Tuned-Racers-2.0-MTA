@@ -1,0 +1,33 @@
+<map edf:definitions="editor_main">
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1730	" doublesided="true" scale="1" dimension="0"	posX="4938.6" posY="-1621.5" posZ="3046.5"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1729	" doublesided="true" scale="1" dimension="0"	posX="5073.55" posY="-1373.69" posZ="3057.518"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1728	" doublesided="true" scale="1" dimension="0"	posX="5344.98" posY="-1333.36" posZ="3077.463"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1727	" doublesided="true" scale="1" dimension="0"	posX="5566.94" posY="-1410.33" posZ="3099.467"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1726	" doublesided="true" scale="1" dimension="0"	posX="5881.89" posY="-1391.66" posZ="3108.214"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1725	" doublesided="true" scale="1" dimension="0"	posX="6003.1" posY="-1256.38" posZ="3126.44"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1724	" doublesided="true" scale="1" dimension="0"	posX="5868.3" posY="-1217.7" posZ="3140"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1723	" doublesided="true" scale="1" dimension="0"	posX="5895.34" posY="-1065" posZ="3157.004"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1722	" doublesided="true" scale="1" dimension="0"	posX="5876.4" posY="-892.34" posZ="3169.997"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1721	" doublesided="true" scale="1" dimension="0"	posX="5889.39" posY="-742.34" posZ="3178.996"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1720	" doublesided="true" scale="1" dimension="0"	posX="5883.3" posY="-612.23" posZ="3191.99"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1719	" doublesided="true" scale="1" dimension="0"	posX="5561.33" posY="-483.234" posZ="3194.989"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1718	" doublesided="true" scale="1" dimension="0"	posX="5241.36" posY="-443.22" posZ="3191.988"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1717	" doublesided="true" scale="1" dimension="0"	posX="5415" posY="-308.9" posZ="3203.936"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1716	" doublesided="true" scale="1" dimension="0"	posX="5772.11" posY="-29.2305" posZ="3210.105"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1715	" doublesided="true" scale="1" dimension="0"	posX="5929.29" posY="237.724" posZ="3218.985"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1714	" doublesided="true" scale="1" dimension="0"	posX="5785.3" posY="32.75" posZ="3230.982"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1713	" doublesided="true" scale="1" dimension="0"	posX="5548.3" posY="-120.247" posZ="3235.983"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1712	" doublesided="true" scale="1" dimension="0"	posX="5311.3" posY="-149.24" posZ="3236.983"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1711	" doublesided="true" scale="1" dimension="0"	posX="5309.55" posY="37.4004" posZ="3242.759"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1710	" doublesided="true" scale="1" dimension="0"	posX="5434.26" posY="215.7" posZ="3242.978"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1709	" doublesided="true" scale="1" dimension="0"	posX="5492.24" posY="423.69" posZ="3237.98"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1708	" doublesided="true" scale="1" dimension="0"	posX="5595.04" posY="644.53" posZ="3249.401"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1707	" doublesided="true" scale="1" dimension="0"	posX="5665.23" posY="688.68" posZ="3264.983"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1706	" doublesided="true" scale="1" dimension="0"	posX="5648" posY="976.988" posZ="3265.96"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1705	" doublesided="true" scale="1" dimension="0"	posX="5498" posY="1170.8" posZ="3270.614"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1704	" doublesided="true" scale="1" dimension="0"	posX="5795.71" posY="1077.66" posZ="3289.325"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1703	" doublesided="true" scale="1" dimension="0"	posX="5807.82" posY="1198" posZ="3298.74"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1702	" doublesided="true" scale="1" dimension="0"	posX="5541.19" posY="1312.28" posZ="3293.921"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1701	" doublesided="true" scale="1" dimension="0"	posX="5422.27" posY="1505.83" posZ="3289.488"	rotX="0" rotY="0" rotZ="0"></object>
+<object id="object () (1)" breakable="true" interior="0" alpha="255"  model="	1700	" doublesided="true" scale="1" dimension="0"	posX="5349.68" posY="1735.05" posZ="3292.33"	rotX="0" rotY="0" rotZ="0"></object>
+</map>

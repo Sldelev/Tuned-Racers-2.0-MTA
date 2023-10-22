@@ -5,16 +5,20 @@ function ColorsScreen:init(componentName)
 	local bodyColorPrice, bodyColorLevel = unpack(exports.tunrc_Shared:getTuningPrices("body_color"))
 	self.componentsSelection = ComponentSelection({
 		{name="BodyColor",       camera="bodyColor",       locale="garage_tuning_paint_body", price = bodyColorPrice, level = bodyColorLevel},
+		{name="EngBlockColor",       camera="bodyColor",       locale="garage_tuning_engblock_color", price = bodyColorPrice, level = bodyColorLevel},
+		{name="RollcageColor",       camera="bodyColor",       locale="garage_tuning_rollcage_color", price = bodyColorPrice, level = bodyColorLevel},
 		{name="SmokeColor",       camera="bodyColor",       locale="garage_tuning_smoke_color", price = bodyColorPrice, level = bodyColorLevel},
 	})
 	local vehicle = GarageCar.getVehicle()
 	-- Если на машине установлены передние диски
 	if vehicle:getData("WheelsF") and vehicle:getData("WheelsF") > 0 then
 		self.componentsSelection:addComponent("WheelsColorF", "wheelLF", "garage_tuning_paint_wheels_front", nil, unpack(exports.tunrc_Shared:getTuningPrices("wheels_color")))
+		self.componentsSelection:addComponent("BoltsColorF", "wheelLF", "garage_tuning_paint_bolts_front", nil, unpack(exports.tunrc_Shared:getTuningPrices("wheels_color")))
 	end
 	-- Если на машине установлены задние диски
 	if vehicle:getData("WheelsR") and vehicle:getData("WheelsR") > 0 then
 		self.componentsSelection:addComponent("WheelsColorR", "wheelLB", "garage_tuning_paint_wheels_rear", nil, unpack(exports.tunrc_Shared:getTuningPrices("wheels_color")))
+		self.componentsSelection:addComponent("BoltsColorR", "wheelLB", "garage_tuning_paint_bolts_rear", nil, unpack(exports.tunrc_Shared:getTuningPrices("wheels_color")))
 	end
 	if componentName then
 		self.componentsSelection:showComponentByName(componentName)

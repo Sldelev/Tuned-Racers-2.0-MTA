@@ -4,6 +4,7 @@ local loadFields = {
 	"username",
 	"skin",
 	"money",
+	"donatmoney",
 	"lastseen",
 	"playtime",
 	"register_time",
@@ -12,27 +13,32 @@ local loadFields = {
 	"premium_expires",
 	"last_sell_time",
 	"max_drift_points_session",
-	"drift_points"
+	"drift_points",
+	"last_code_use_time"
 }
 local saveFields = {
 	"skin",
 	"money",
+	"donatmoney",
 	"playtime",
 	"xp",
 	"premium_expires",
 	"max_drift_points_session",
-	"drift_points"
+	"drift_points",
+	"last_code_use_time"
 }
 local protectFields = {
 	"_id",
 	"level",
 	"money",
+	"donatmoney",
 	"xp",
 	"group",
 	"isMuted",
 	"isPremium",
 	"premium_expires",
-	"last_sell_time"
+	"last_sell_time",
+	"last_code_use_time"
 }
 
 local function filterData(dataName, value)

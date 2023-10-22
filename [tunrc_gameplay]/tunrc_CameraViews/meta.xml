@@ -2,7 +2,9 @@
 	<oop>true</oop>
 
 	<script type="client" src="client/DriftView.lua"/>
-	<script type="client" src="client/BonnetView.lua"/>
+	<script type="client" src="client/DriftViewA.lua"/>
+	<script type="client" src="client/CockpitView.lua"/>
+	<script type="client" src="client/cockpit_offsets.txt"/>
 	<script type="client" src="client/main.lua"/>
 
     <export type="client" function="resetCameraView"/>

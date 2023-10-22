@@ -1,0 +1,17 @@
+<map edf:definitions="editor_main">
+    <object id="object (bigwhiete_SFE) (1)" breakable="true" interior="0" alpha="255" model="1700" doublesided="true" scale="1" dimension="-1" posX="-249.37801" posY="291.104" posZ="10000" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (copshop_sfe) (1)" breakable="true" interior="0" alpha="255" model="1701" doublesided="true" scale="1" dimension="-1" posX="-12.183" posY="17.942" posZ="10037.58" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (copbits_sfe) (1)" breakable="true" interior="0" alpha="255" model="1702" doublesided="true" scale="1" dimension="-1" posX="113.795" posY="-73.408" posZ="10073.969" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (chinatown_sfe9) (1)" breakable="true" interior="0" alpha="255" model="1703" doublesided="true" scale="1" dimension="-1" posX="224.922" posY="-204.83501" posZ="10109.9221" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (landshit_24_sfe) (1)" breakable="true" interior="0" alpha="255" model="1704" doublesided="true" scale="1" dimension="-1" posX="385.47198" posY="-548.72601" posZ="10133.3931" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (carspaces_sfe) (2)" breakable="true" interior="0" alpha="255" model="1705" doublesided="true" scale="1" dimension="-1" posX="445.82101" posY="-471.08099" posZ="10198.6799" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (fire_esc_SFE02) (1)" breakable="true" interior="0" alpha="255" model="1706" doublesided="true" scale="1" dimension="-1" posX="717.20398" posY="-678.95398" posZ="10236.9031" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (landshit_18_sfe) (1)" breakable="true" interior="0" alpha="255" model="1707" doublesided="true" scale="1" dimension="-1" posX="1078.995" posY="-858.95099" posZ="10258.408" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (chinatown_sfe20) (1)" breakable="true" interior="0" alpha="255" model="1708" doublesided="true" scale="1" dimension="-1" posX="1093.603" posY="-1028.153" posZ="10291.6689" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (chin_sfe1121) (1)" breakable="true" interior="0" alpha="255" model="1709" doublesided="true" scale="1" dimension="-1" posX="1322.614" posY="-1269.8101" posZ="10330.8379" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (chbackbit8_sfe) (1)" breakable="true" interior="0" alpha="255" model="1710" doublesided="true" scale="1" dimension="-1" posX="1561.5811" posY="-1425.153" posZ="10352.49" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (chinatown_sfe8) (1)" breakable="true" interior="0" alpha="255" model="1711" doublesided="true" scale="1" dimension="-1" posX="1856.3781" posY="-1608.818" posZ="10333.4121" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (chinatown_sfe1) (1)" breakable="true" interior="0" alpha="255" model="1712" doublesided="true" scale="1" dimension="-1" posX="2041.708" posY="-1714.3571" posZ="10292.585" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (cables3) (1)" breakable="true" interior="0" alpha="255" model="1713" doublesided="true" scale="1" dimension="-1" posX="1935.963" posY="-2094.699" posZ="10257.3359" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (BIGCENTRAL_SFE) (1)" breakable="true" interior="0" alpha="255" model="1714" doublesided="true" scale="1" dimension="-1" posX="2262.4021" posY="-2345.6841" posZ="10224.719" rotX="0" rotY="0" rotZ="25"></object>
+</map>

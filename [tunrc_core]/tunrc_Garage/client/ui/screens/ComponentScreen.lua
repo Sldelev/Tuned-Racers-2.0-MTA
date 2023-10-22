@@ -5,6 +5,8 @@ ComponentScreen = Screen:subclass "ComponentScreen"
 -- Расположение 3D меню для разных компонентов
 local menuInfos = {}
 menuInfos["Bodykits"]  = {position =  Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_bodykits"}
+menuInfos["Doors"]    = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_doors"}
+menuInfos["BodyRollcage"] = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_body_rollcage"}
 menuInfos["FrontBump"]  = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_bumper"}
 menuInfos["Rollingshells"]  = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_rollingshell"}
 menuInfos["Turbos"]  = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_turbos"}
@@ -14,12 +16,12 @@ menuInfos["Fbadge"]  = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale
 menuInfos["Canards"]  = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_canards"}
 menuInfos["Lips"]  = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_lips"}
 menuInfos["RearGls"]  = {position =  Vector3(1.5, -2, 0.4),   angle = 185, item_locale="garage_tuning_item_reargls"}
-menuInfos["Spoilers"]   = {position =  Vector3(1.5, -2, 0.4),   angle = 185,item_locale="garage_tuning_item_spoiler"}
+menuInfos["Splrs"]   = {position =  Vector3(1.5, -2, 0.4),   angle = 185,item_locale="garage_tuning_item_spoiler"}
 menuInfos["Boots"]   = {position =  Vector3(1.5, -2, 0.4),   angle = 185,item_locale="garage_tuning_item_boot"}
 menuInfos["Rbadge"]   = {position =  Vector3(1.5, -2, 0.4),   angle = 185,item_locale="garage_tuning_item_rbadge"}
 menuInfos["Roof"]   = {position =  Vector3(1.5, -2, 0.4),   angle = 185,item_locale="garage_tuning_item_roof"}
 menuInfos["RoofS"]   = {position = Vector3(1.5, -2, 0.4),   angle = 185,item_locale="garage_tuning_item_roofs"}
-menuInfos["RearBump"]   = {position =  Vector3(1.5, -2, 0.4),   angle = 185,item_locale="garage_tuning_item_bumper"}
+menuInfos["RearBump"]   = {position =  Vector3(1.5, -2, 0.4),   angle = 185,item_locale="garage_tuning_item_r_bumper"}
 menuInfos["Rearnumber"]   = {position =  Vector3(1.5, -2, 0.4),   angle = 185,item_locale="garage_tuning_item_rearnumber"}
 menuInfos["Canardsr"]   = {position =  Vector3(1.5, -2, 0.4),   angle = 185,item_locale="garage_tuning_item_canardsr"}
 menuInfos["Exh"]   = {position =  Vector3(1.5, -2, 0.4),   angle = 185,item_locale="garage_tuning_item_exhaust"}
@@ -28,16 +30,18 @@ menuInfos["WheelsF"]    = {position = Vector3(0.5, -1.5, 0.4),   angle = -50, it
 menuInfos["WheelsR"]    = {position = Vector3(-1, -1.5, 0.4),   angle = -50, item_locale="garage_tuning_item_wheel"}
 menuInfos["Skirts"] = {position = Vector3(-0.5, -2, 0.4), angle = 170, item_locale="garage_tuning_item_skirt"}
 menuInfos["AddSkirts"] = {position = Vector3(-0.5, -2, 0.4), angle = 170, item_locale="garage_tuning_item_addskirt"}
-menuInfos["RearFends"]  = {position =  Vector3(1.5, -2, 0.4),   angle = 185,item_locale="garage_tuning_item_fender"}
+menuInfos["RearFends"]  = {position =  Vector3(1.5, -2, 0.4),   angle = 185,item_locale="garage_tuning_item_rfender"}
 menuInfos["Rpanels"]  = {position =  Vector3(1.5, -2, 0.4),   angle = 185,item_locale="garage_tuning_item_rpanel"}
 menuInfos["FrontFends"] = {position = Vector3(0, -2, 0.4),   angle = 0,  item_locale="garage_tuning_item_fender"}
 menuInfos["FrontFendsDops"] = {position = Vector3(0, -2, 0.4),   angle = 0,  item_locale="garage_tuning_item_fender_dop"}
 menuInfos["Fpanels"] = {position = Vector3(0, -2, 0.4),   angle = 0,  item_locale="garage_tuning_item_fpanel"}
 menuInfos["Mirrors"] = {position = Vector3(0, -2, 0.4),   angle = 0,  item_locale="garage_tuning_item_mirrors"}
-menuInfos["FrontFendsR"] = {position = Vector3(0, -2, 0.4),   angle = 0,  item_locale="garage_tuning_item_fender"}
-menuInfos["FrontFendsL"] = {position = Vector3(0, 2, 0.4),   angle = 0,  item_locale="garage_tuning_item_fender"}
+menuInfos["Dials"] = {position = Vector3(0, -2, 0.4),   angle = 0,  item_locale="garage_tuning_item_dial"}
+menuInfos["DoorCards"] = {position = Vector3(0, 2, 0.4),   angle = 0,  item_locale="garage_tuning_item_doorcards"}
 menuInfos["Bonnets"]    = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_bonnet"}
+menuInfos["Hcatcha"]    = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_hcatcha"}
 menuInfos["Eng"]    = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_engine"}
+menuInfos["Filters"]    = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_filter"}
 menuInfos["Exhaust"]    = {position = Vector3(1.5, -2, 0.4),   angle = 190,item_locale="garage_tuning_item_exhaust"}
 menuInfos["RearLights"] = {position =  Vector3(1.5, -2, 0.4),   angle = 185,item_locale="garage_tuning_item_lights"}
 menuInfos["FrontLights"] = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_lights"}
@@ -47,8 +51,8 @@ menuInfos["FaraR"] = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="
 menuInfos["FaraL"] = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_faral"}
 menuInfos["Dops"] = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_dops"}
 menuInfos["Seats"] = {position = Vector3(1.5, -2, 0.4),  angle = 20, item_locale="garage_tuning_item_seats"}
-menuInfos["Steering"] = {position = Vector3(-1.5, 2, 0.4),  angle = 20, item_locale="garage_tuning_item_steer"}
-menuInfos["Torpeda"] = {position = Vector3(1.5, -2, 0.4),  angle = 20, item_locale="garage_tuning_item_torpeda"}
+menuInfos["Stwheel"] = {position = Vector3(1.5, 2, 0.4),  angle = 190, item_locale="garage_tuning_item_steer"}
+menuInfos["Interior"] = {position = Vector3(1.5, -2, 0.4),  angle = 20, item_locale="garage_tuning_item_interior"}
 menuInfos["Karkas"] = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_karkas"}
 menuInfos["Acces"] = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_acces"}
 menuInfos["Intercooler"]  = {position = Vector3(0, -2, 0.4),   angle = 0, item_locale="garage_tuning_item_intercooler"}
@@ -77,11 +81,17 @@ function ComponentScreen:init(name)
 
     local menuInfo = menuInfos[name]
     local items = {}
-    local itemName = exports.tunrc_Lang:getString(menuInfo.item_locale)
     local vehicleModel = self.vehicle.model
     local vehicleComponents = getVehicleComponents(self.vehicle)
     local componentsCount = TuningConfig.getComponentsCount(vehicleModel, self.componentName)
     for i = 1, componentsCount + 1 do
+		if name == "WheelsF" or name == "WheelsR" then
+			itemName = exports.tunrc_Lang:getString(menuInfo.item_locale .. "_" .. tostring(i - 1))
+		elseif name == "FaraR" or name == "FaraL" then
+			itemName = exports.tunrc_Lang:getString(vehicleModel .. "_" .. "garage_tuning_item_fara" .. "_" .. tostring(i - 1))
+		else
+			itemName = exports.tunrc_Lang:getString(vehicleModel .. "_" .. menuInfo.item_locale .. "_" .. tostring(i - 1))
+		end
         if name ~= "Spoilers" or (name == "Spoilers" and hasSpoiler(i - 1)) then
             if i == 1 then
               table.insert(items, {
@@ -101,7 +111,7 @@ function ComponentScreen:init(name)
                   if type(level) ~= "number" then
                       level = 1
                   end
-                  local name = itemName .. " " .. tostring(i - 1)
+                  local name = itemName
                   table.insert(items, {name = name, price = price, level = level})
               end
             end
@@ -128,7 +138,7 @@ end
 
 function ComponentScreen:show()
     self.super:show()
-    if self.componentName == "RightLight" or self.componentName == "LeftLight" or self.componentName == "FrontLights" or self.componentName == "RearLights" or self.componentName == "RearBump" or self.componentName == "Rnomers" or self.componentName == "AddLights" then
+    if self.componentName == "RightLight" or self.componentName == "LeftLight"or self.componentName == "LeftLight" or self.componentName == "FrontLights" or self.componentName == "RearLights" or self.componentName == "RearBump" or self.componentName == "Rnomers" or self.componentName == "AddLights" then
         GarageCar.getVehicle():setData("LightsState", true, false)
     end
 end
@@ -163,21 +173,8 @@ function ComponentScreen:onItemChanged()
             GarageCar.previewTuning("WheelsAngle" .. letter, 0)
             GarageCar.previewTuning("WheelsWidth" .. letter, 0)
         end
-        -- Сбросить цвет
-        GarageCar.previewTuning("WheelsColor" .. letter, {255, 255, 255})
 
         GarageCar.previewTuning(self.componentName, componentId)
-    elseif self.componentName == "Spoilers" then
-        local bodyColor = GarageCar.getVehicle():getData("BodyColor")
-        if bodyColor then
-            GarageCar.previewTuning("SpoilerColor", bodyColor)
-        end
-        if not GarageCar.hasDefaultSpoilers() and componentId > 0 then
-            local defaultSpoilers = exports.tunrc_Shared:getTuningPrices("spoilers")
-            GarageCar.previewTuning(self.componentName, componentId + #defaultSpoilers)
-        else
-            GarageCar.previewTuning(self.componentName, componentId)
-        end
     else
         GarageCar.previewTuning(self.componentName, componentId)
     end
@@ -213,17 +210,6 @@ function ComponentScreen:onKey(key)
                         GarageCar.applyTuning("WheelsOffset" .. letter, 0)
                         GarageCar.applyTuning("WheelsAngle" .. letter, 0)
                         GarageCar.applyTuning("WheelsWidth" .. letter, 0)
-                    end
-                    -- Сбросить цвет
-                    GarageCar.applyTuning("WheelsColor" .. letter, {255, 255, 255})
-                elseif this.componentName == "Spoilers" then
-                    if not GarageCar.hasDefaultSpoilers() then
-                        local defaultSpoilers = exports.tunrc_Shared:getTuningPrices("spoilers")
-                        if componentId > 0 then
-                            GarageCar.applyTuning(this.componentName, componentId + #defaultSpoilers)
-                        end
-                    else
-                        GarageCar.applyTuning(this.componentName, componentId)
                     end
                 end
             end

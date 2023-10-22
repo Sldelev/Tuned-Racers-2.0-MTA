@@ -1,0 +1,11 @@
+<map>
+	<object id="mtaclub.eu" breakable="true" interior="0" alpha="255" dimension="-1" model="1700" scale="1" doublesided="false" collisions="true" posX="1198.77" posY="-356.532" posZ="12126.143" rotX="0" rotY="-0" rotZ="-93.803473"></object>
+	<object id="mtaclub.eu" breakable="true" interior="0" alpha="255" dimension="-1" model="1701" scale="1" doublesided="false" collisions="true" posX="1091.64" posY="-188.208" posZ="12130.406" rotX="0" rotY="-0" rotZ="-93.803473"></object>
+	<object id="mtaclub.eu" breakable="true" interior="0" alpha="255" dimension="-1" model="1702" scale="1" doublesided="false" collisions="true" posX="1265.89" posY="-166.061" posZ="12182.249" rotX="0" rotY="-0" rotZ="-93.803473"></object>
+	<object id="mtaclub.eu" breakable="true" interior="0" alpha="255" dimension="-1" model="1703" scale="1" doublesided="false" collisions="true" posX="1475.88" posY="-260.753" posZ="12180.953" rotX="0" rotY="-0" rotZ="-93.803473"></object>
+	<object id="mtaclub.eu" breakable="true" interior="0" alpha="255" dimension="-1" model="1704" scale="1" doublesided="false" collisions="true" posX="1505.06" posY="-177.535" posZ="12193.475" rotX="0" rotY="-0" rotZ="-93.803473"></object>
+	<object id="mtaclub.eu" breakable="true" interior="0" alpha="255" dimension="-1" model="1705" scale="1" doublesided="false" collisions="true" posX="1377.56" posY="9.44815" posZ="12192.006" rotX="0" rotY="-0" rotZ="-93.803473"></object>
+	<object id="mtaclub.eu" breakable="true" interior="0" alpha="255" dimension="-1" model="1706" scale="1" doublesided="false" collisions="true" posX="1316.4" posY="229.697" posZ="12180.507" rotX="0" rotY="-0" rotZ="-93.803473"></object>
+	<object id="mtaclub.eu" breakable="true" interior="0" alpha="255" dimension="-1" model="1707" scale="1" doublesided="false" collisions="true" posX="1569.21" posY="88.0655" posZ="12256.381" rotX="0" rotY="-0" rotZ="-93.803473"></object>
+	<object id="mtaclub.eu" breakable="true" interior="0" alpha="255" dimension="-1" model="1708" scale="1" doublesided="false" collisions="true" posX="1468.68" posY="428.069" posZ="12218.872" rotX="0" rotY="-0" rotZ="-93.803473"></object>
+</map>

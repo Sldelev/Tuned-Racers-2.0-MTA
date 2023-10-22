@@ -10,7 +10,17 @@ float sRotationZ = 0;
 float offset = 0;
 float4 sColor = float4(1, 1, 1, 1);
 
+float flakesSize = 12; // размер, допустим я на стёкла ставил 25, на кузов 1, ориентируйся на эти цифры, 1 стандарт
+float normalFactor = 3; // насколько сильно давить нормали (от 0 до 1)
+float ChromePower = 0.1; // сила отражения хрома
+
+float4 ColorFlakes = float4(0.0,0.0,0.0,1); // это я накинул доп освещение, если тебе не нужно выкинь
+
+float4 ColorNormals = float4(0.4,0.4,0.4,1); // цвет нормалек
+
 texture sReflectionTexture;
+texture sNormalTexture;
+texture sSpecularTexture;
 
 //---------------------------------------------------------------------
 // Include some common stuff
@@ -23,6 +33,24 @@ sampler Sampler0 = sampler_state
     MinFilter       = Linear;
     MagFilter       = Linear;
     MipFilter       = Linear;
+};
+
+sampler SpecularSampler = sampler_state // Спекуляр
+{
+   Texture = (sSpecularTexture);
+   MAGFILTER = LINEAR;
+   MINFILTER = LINEAR;
+   MIPFILTER = POINT;
+   MIPMAPLODBIAS = 0.000000;
+};
+
+sampler NormalSampler = sampler_state // это нормал мап сам
+{
+   Texture = (sNormalTexture);
+   MAGFILTER = LINEAR;
+   MINFILTER = LINEAR;
+   MIPFILTER = POINT;
+   MIPMAPLODBIAS = 0.000000;
 };
 
 samplerCUBE ReflectionSampler = sampler_state
@@ -59,6 +87,7 @@ struct PSInput
     float3 NormalSurf : TEXCOORD4;
     float3 View : TEXCOORD5;
     float4 BottomColor : TEXCOORD6;
+	float3 SparkleTex : TEXCOORD7;
     float4 Diffuse2 : COLOR1;
 };
 
@@ -151,8 +180,18 @@ PSInput VertexShaderFunction(VSInput VS)
     PS.Binormal = normalize(mul(Binormal, gWorldInverseTranspose).xyz);
     PS.Normal = normalize( mul(VS.Normal, (float3x3)gWorld) );
     PS.NormalSurf = VS.Normal;
+	
+	MTAFixUpNormal( VS.Normal );
 
-    PS.Diffuse = MTACalcGTABuildingDiffuse(VS.Diffuse);
+    PS.SparkleTex.x = fmod( VS.Position.x, 10 ) * 50.0;
+    PS.SparkleTex.y = fmod( VS.Position.y, 10 ) * 50.0;
+    PS.SparkleTex.z = fmod( VS.Position.z, 10 ) * 50.0;
+	
+	float specPower = gMaterialSpecPower;
+	
+	PS.Diffuse2.rgb = ColorFlakes.rgb*MTACalculateSpecular( gCameraDirection, gLight0Direction, PS.Normal, specPower );
+    PS.Diffuse2.rgb = saturate(PS.Diffuse2.rgb);
+    PS.Diffuse = MTACalcGTACompleteDiffuse(PS.Normal, VS.Diffuse);
     return PS;
 }
 
@@ -162,82 +201,71 @@ float4 PixelShaderFunction(PSInput PS) : COLOR0
 
     float4 paintColor = sColor;
     float4 maptex = tex2D(Sampler0, PS.TexCoord.xy);
-    float4 delta = maptex - float4(0, 0, 0, 1);
+    float4 delta = float4(0, 0, 0, 1);
     if (dot(delta,delta) < 0.2) {
         float4 Color = maptex * PS.Diffuse * 1;
         Color.a = PS.Diffuse.a;
         return Color;
     }
-    // Some settings for something or another
-    float microflakePerturbation = 1.00;
-    float normalPerturbation = 1.00;
-    float microflakePerturbationA = 0.10;
 
     // Compute paint colors
     float4 base = gMaterialAmbient;
+	
+	// залупа под спекуляр
+	
+	float4 vFlakesSpecular = tex2D(SpecularSampler, PS.TexCoord.xy*flakesSize);
 
     // Get the surface normal
     float3 vNormal = PS.Normal;
 
-    // Micro-flakes normal map is a high frequency normalized
-    // vector noise map which is repeated across the surface.
-    // Fetching the value from it for each pixel allows us to
-    // compute perturbed normal for the surface to simulate
-    // appearance of micro-flakes suspended in the coat of paint:
+	float4 vFlakesNormal = tex2D(NormalSampler, PS.TexCoord.xy);
 
-    // This shader simulates two layers of micro-flakes suspended in
-    // the coat of paint. To compute the surface normal for the first layer,
-    // the following formula is used:
-    // Np1 = ( a * Np + b * N ) / || a * Np + b * N || where a << b
-    //
-    float3 vNp1 = normalPerturbation * vNormal ;
+    vFlakesNormal = 2 * vFlakesNormal - 1.0;
 
-    // To compute the surface normal for the second layer of micro-flakes, which
-    // is shifted with respect to the first layer of micro-flakes, we use this formula:
-    // Np2 = ( c * Np + d * N ) / || c * Np + d * N || where c == d
-    float3 vNp2 = vNormal;
+    float3 vNp2 = ( vFlakesNormal ) ;
 
-    // The view vector (which is currently in world space) needs to be normalized.
-    // This vector is normalized in the pixel shader to ensure higher precision of
-    // the resulting view vector. For this highly detailed visual effect normalizing
-    // the view vector in the vertex shader and simply interpolating it is insufficient
-    // and produces artifacts.
     float3 vView = normalize( PS.View );
 
-    // Transform the surface normal into world space (in order to compute reflection
-    // vector to perform environment map look-up):
     float3x3 mTangentToWorld = transpose( float3x3( PS.Tangent, PS.Binormal, PS.Normal ) );
-    float3 vNormalWorld = normalize( mul( mTangentToWorld, vNormal ));
-
-    // Compute reflection vector resulted from the clear coat of paint on the metallic
-    // surface:
-    float fNdotV = saturate(dot( vNormalWorld, vView));
+    float3 vNp2World = normalize( mul( mTangentToWorld, vNp2 ));
+    float fFresnel2 = saturate( dot( vNp2World, vView ));
 
     // Count reflection vector
     float3 vReflection = reflect(PS.View,PS.Normal);
 
     // Hack in some bumpyness
-    vReflection.x+= vNp2.x * 0.1;
-    vReflection.y+= vNp2.y * 0.1;
+    vReflection.x+= vFlakesSpecular.x * 0.05;
+    vReflection.y+= vFlakesSpecular.y * 0.05;
     // Sample environment map using this reflection vector:
     float4 envMap = texCUBE( ReflectionSampler, -vReflection.xzy );
     // Premultiply by alpha:
 
     envMap.rgb = pow(envMap.rgb, 3);
     // Brighten the environment map sampling result:
-    envMap.rgb *= 0.1;
+    envMap.rgb *= ChromePower;
     envMap.rgb += PS.BottomColor.rgb;
     // Sample dust texture:
 
     // Combine result of environment map reflection with the paint color:
-    float fEnvContribution = 1.0 - 0.5 * fNdotV;
+    float fEnvContribution = 1.0 - 0.5 * fFresnel2;
 
     float4 finalColor = envMap * fEnvContribution / 2 + base * 0.1;
+	
     finalColor.rgb += PS.Diffuse2.rgb * 0.75;
     finalColor.a = 0.5;
     // Bodge in the car colors
     float4 Color;
     Color.rgb = 0.01 + finalColor + paintColor * PS.Diffuse;
+	
+	// те самые заветные нормал мапы
+
+    float4 normals = pow( fFresnel2, 6 )*normalFactor;
+
+    normals *= ColorNormals + vFlakesSpecular;
+
+    normals.rgb = normals.rgb*normals.rgb*normals.rgb;
+	
+	Color += normals*0.3;
 
     Color *= maptex;
     Color.a = PS.Diffuse.a;
@@ -251,6 +279,7 @@ technique tec0
 {
     pass P0
     {
+		DepthBias=-0.000000002;
         VertexShader = compile vs_2_0 VertexShaderFunction();
         PixelShader  = compile ps_2_0 PixelShaderFunction();
     }

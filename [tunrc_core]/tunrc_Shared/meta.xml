@@ -5,6 +5,7 @@
 	<script type="shared" src="vehicle_tuning.lua"/>
 	<script type="shared" src="vehicle_prices.lua"/>
 	<script type="shared" src="vehicle_classes.lua"/>
+	<script type="shared" src="vehicle_desc.lua"/>
 	<script type="shared" src="tuning_prices.lua"/>
 	<script type="shared" src="player_economics.lua"/>
 	<script type="shared" src="gameplay_settings.lua"/>
@@ -19,6 +20,7 @@
 	<export type="shared" function="getVehicleComponentTable"/>
 	<export type="shared" function="getVehicleTuningTable"/>
 	<export type="shared" function="getVehiclePrices"/>
+	<export type="shared" function="getVehicleDescription"/>
 	<export type="shared" function="getTuningPrices"/>
 	<export type="shared" function="getEconomicsProperty"/>
 

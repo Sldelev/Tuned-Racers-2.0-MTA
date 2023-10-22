@@ -1,0 +1,4 @@
+<meta>
+	<script type="client" cache="false" src="client.lua" />
+	<file src="alphafix.fxc" />
+</meta>

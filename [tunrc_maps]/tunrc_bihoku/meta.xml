@@ -1,0 +1,16 @@
+<meta>
+    <info name="Bihoku" type="map"/>
+
+    <file src="bihoku.txd" type="client" />
+
+    <file src="bihoku1.col" type="client" />
+    <file src="bihoku2.col" type="client" />
+    <file src="bihokutree.col" type="client" />
+
+    <file src="bihoku1.dff" type="client" />
+    <file src="bihoku2.dff" type="client" />
+    <file src="bihokutree.dff" type="client" />
+	
+	<script type="client" src="client.lua"/>
+	<map src="bihoku.map" dimension="-1"></map>
+</meta>

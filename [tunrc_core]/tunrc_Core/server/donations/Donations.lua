@@ -9,6 +9,7 @@ function Donations.setup()
 		{ name="user_id", type=DatabaseTable.ID_COLUMN_TYPE, options="NOT NULL" },
 		-- Вещи, которые даёт ключ
 		{ name="money",   type="bigint", options="UNSIGNED DEFAULT 0" },
+		{ name="donatmoney",   type="bigint", options="UNSIGNED DEFAULT 0" },
 		{ name="xp", 	  type="bigint", options="UNSIGNED DEFAULT 0" },
 		{ name="car", type="int",	 options="UNSIGNED DEFAULT 0" },
 		{ name="premium", type="int",	 options="UNSIGNED DEFAULT 0" }
@@ -29,6 +30,21 @@ function giveUserMoney(username, amount)
 		end
 		DatabaseTable.insert(DONATIONS_TABLE_NAME, { user_id = result[1]._id, money = amount }, function (result)
 			outputDebugString(("Donate: $%d to '%s'"):format(amount, username))
+		end)
+	end)
+end
+
+function giveUserDonatMoney(username, amount)
+	if type(username) ~= "string" or type(amount) ~= "number" then
+		return
+	end
+	return Users.getByUsername(username, {"_id"}, function(result)
+		if not result or not result[1] or not result[1]._id then
+			outputDebugString("Donate: Invalid username " .. username)
+			return
+		end
+		DatabaseTable.insert(DONATIONS_TABLE_NAME, { user_id = result[1]._id, donatmoney = amount }, function (result)
+			outputDebugString(("Donate: ¤%d to '%s'"):format(amount, username))
 		end)
 	end)
 end
@@ -73,6 +89,10 @@ local function giveDonationToPlayer(player, donation)
 		if type(money) ~= "number" then
 			money = 0
 		end
+		local donatmoney = donation.donatmoney
+		if type(donatmoney) ~= "number" then
+			donatmoney = 0
+		end
 		local xp = donation.xp
 		if type(xp) ~= "number" then
 			xp = 0
@@ -83,9 +103,16 @@ local function giveDonationToPlayer(player, donation)
 		if money < 0 then
 			money = 0
 		end
+		
+		if donatmoney < 0 then
+			donatmoney = 0
+		end
 
 		if money > 0 then
 			givePlayerMoney(player, money)
+		end
+		if donatmoney > 0 then
+			givePlayerDonatMoney(player, donatmoney)
 		end
 		if xp > 0 then
 			givePlayerXP(player, xp)

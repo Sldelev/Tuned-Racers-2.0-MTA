@@ -62,7 +62,7 @@ end
 
 --San Fierro Markers
 
-local sf1 = exports.tunrc_Markers:createMarker("showroom", Vector3 { x = -1654, y = 1212, z = 7.25 }, -45)
+local sf1 = exports.tunrc_Markers:createMarker("showroom", Vector3 { x = 558, y = -1286, z = 17.25 }, -45)
 addEvent("tunrc_Markers.use", false)
 addEventHandler("tunrc_Markers.use", sf1, enterCarshop)
 local blip = createBlip(0, 0, 0, 55)

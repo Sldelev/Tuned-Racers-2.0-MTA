@@ -1,6 +1,6 @@
 MusicPlayer = {}
 local MUStunrc_VOLUME = 0.45
-local TRACKS_COUNT = 21
+local TRACKS_COUNT = 22
 
 local currentTrack = 1
 local sound

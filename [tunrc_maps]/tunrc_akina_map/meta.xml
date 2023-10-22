@@ -1,0 +1,75 @@
+<meta>
+    <oop>true</oop>
+	<info type="map" name="akina" author="sdlevin" description="remap" version="3" />
+ 
+	<script src="client.lua" type="client" />
+ 
+	<file src="ak1.txd" type="client" />
+ 
+ 
+	<file src="ak1.dff" type="client" />
+	<file src="ak2.dff" type="client" />
+	<file src="ak3.dff" type="client" />
+	<file src="ak4.dff" type="client" />
+	<file src="ak5.dff" type="client" />
+	<file src="ak6.dff" type="client" />
+	<file src="ak7.dff" type="client" />
+	<file src="ak8.dff" type="client" />
+	<file src="ak9.dff" type="client" />
+	<file src="ak10.dff" type="client" />
+	<file src="ak11.dff" type="client" />
+	<file src="ak12.dff" type="client" />
+	<file src="ak13.dff" type="client" />
+	<file src="ak14.dff" type="client" />
+	<file src="ak15.dff" type="client" />
+	<file src="ak16.dff" type="client" />
+	<file src="ak17.dff" type="client" />
+	<file src="ak18.dff" type="client" />
+	<file src="ak19.dff" type="client" />
+	<file src="ak20.dff" type="client" />
+	<file src="ak21.dff" type="client" />
+	<file src="ak22.dff" type="client" />
+	<file src="ak23.dff" type="client" />
+	<file src="ak24.dff" type="client" />
+	<file src="ak25.dff" type="client" />
+	<file src="ak26.dff" type="client" />
+	<file src="ak27.dff" type="client" />
+	<file src="ak28.dff" type="client" />
+	<file src="ak29.dff" type="client" />
+<file src="ak30.dff" type="client" />
+<file src="ak31.dff" type="client" />
+
+	<file src="ak1.col" type="client" />
+	<file src="ak2.col" type="client" />
+	<file src="ak3.col" type="client" />
+	<file src="ak4.col" type="client" />
+	<file src="ak5.col" type="client" />
+	<file src="ak6.col" type="client" />
+	<file src="ak7.col" type="client" />
+	<file src="ak8.col" type="client" />
+	<file src="ak9.col" type="client" />
+	<file src="ak10.col" type="client" />
+	<file src="ak11.col" type="client" />
+	<file src="ak12.col" type="client" />
+	<file src="ak13.col" type="client" />
+	<file src="ak14.col" type="client" />
+	<file src="ak15.col" type="client" />
+	<file src="ak16.col" type="client" />
+	<file src="ak17.col" type="client" />
+	<file src="ak18.col" type="client" />
+	<file src="ak19.col" type="client" />
+	<file src="ak20.col" type="client" />
+	<file src="ak21.col" type="client" />
+	<file src="ak22.col" type="client" />
+	<file src="ak23.col" type="client" />
+	<file src="ak24.col" type="client" />
+	<file src="ak25.col" type="client" />
+	<file src="ak26.col" type="client" />
+	<file src="ak27.col" type="client" />
+	<file src="ak28.col" type="client" />
+	<file src="ak29.col" type="client" />
+<file src="ak30.col" type="client" />
+<file src="ak31.col" type="client" />
+
+<map src="ak.map" dimension="-1"></map>
+</meta>

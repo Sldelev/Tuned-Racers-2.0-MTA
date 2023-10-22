@@ -23,7 +23,13 @@ function Assets.start()
 		tuningColorIcon = DxTexture("assets/images/icons/color.png"),
 		tuningVinylsIcon = DxTexture("assets/images/icons/vinyls.png"),
 		tuningSettingsIcon = DxTexture("assets/images/icons/settings.png"),
-
+		
+		garage_menu_go_city = exports.tunrc_Assets:createTexture("garage_icons/garage_menu_go_city.png", "dxt5"),
+		garage_menu_customize = exports.tunrc_Assets:createTexture("garage_icons/garage_menu_customize.png", "dxt5"),
+		garage_menu_sell = exports.tunrc_Assets:createTexture("garage_icons/garage_menu_sell.png", "dxt5"),
+		
+		component1 = exports.tunrc_Assets:createTexture("garage_icons/garage_menu_sell.png", "dxt5"),
+		
 		buttonCircle = DxTexture("assets/images/button_circle.png"),
 		levelIcon = exports.tunrc_Assets:createTexture("level.png"),
 

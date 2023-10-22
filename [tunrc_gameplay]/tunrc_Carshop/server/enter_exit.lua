@@ -1,4 +1,4 @@
-local carshopPosition = Vector3 { x = -1639.2, y = 1202.87, z = 7.25 } 
+local carshopPosition = Vector3 { x = 558, y = -1286, z = 17.25 } 
 
 addEvent("tunrc_Carshop.enter", true)
 addEventHandler("tunrc_Carshop.enter", resourceRoot, function ()

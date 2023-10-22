@@ -12,13 +12,13 @@
 DatabaseConfig = {
 	dbType = "mysql",
 
-	host = "46.174.50.7",
+	host = "195.18.27.241",
 	port = 3306,
-	dbName = "u32162_tunedrc",
+	dbName = "gs62427",
 
 	-- Auth
-	username = "u32162_tunedrcadmin",
-	password = "N6g2T4c2G7",
+	username = "gs62427",
+	password = "CEGgAmFunw",
 
 	options = {
 		autoreconnect = 1

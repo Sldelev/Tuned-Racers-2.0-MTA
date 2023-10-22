@@ -1,0 +1,97 @@
+<meta>
+    <oop>true</oop>
+	<info type="map" name="daikoku" author="sdlevin" description="remap" version="3" />
+ 
+	<script src="client.lua" type="client" />
+ 
+	<file src="nagao.txd" type="client" />
+ 
+ 
+	<file src="nagao1.dff" type="client" />
+	<file src="nagao2.dff" type="client" />
+	<file src="nagao3.dff" type="client" />
+	<file src="nagao4.dff" type="client" />
+	<file src="nagao5.dff" type="client" />
+	<file src="nagao6.dff" type="client" />
+	<file src="nagao7.dff" type="client" />
+	<file src="nagao8.dff" type="client" />
+	<file src="nagao9.dff" type="client" />
+	<file src="nagao10.dff" type="client" />
+	<file src="nagao11.dff" type="client" />
+	<file src="nagao12.dff" type="client" />
+	<file src="nagao13.dff" type="client" />
+	<file src="nagao14.dff" type="client" />
+	<file src="nagao15.dff" type="client" />
+	<file src="nagao16.dff" type="client" />
+	<file src="nagao17.dff" type="client" />
+	<file src="nagao18.dff" type="client" />
+	<file src="nagao19.dff" type="client" />
+	<file src="nagao20.dff" type="client" />
+	<file src="nagao21.dff" type="client" />
+	<file src="nagao22.dff" type="client" />
+	<file src="nagao23.dff" type="client" />
+	<file src="nagao24.dff" type="client" />
+	<file src="nagao25.dff" type="client" />
+	<file src="nagao26.dff" type="client" />
+	<file src="nagao27.dff" type="client" />
+	<file src="nagao28.dff" type="client" />
+	<file src="nagao29.dff" type="client" />
+<file src="nagao30.dff" type="client" />
+<file src="nagao31.dff" type="client" />
+<file src="nagao32.dff" type="client" />
+<file src="nagao33.dff" type="client" />
+<file src="nagao34.dff" type="client" />
+<file src="nagao35.dff" type="client" />
+<file src="nagao36.dff" type="client" />
+<file src="nagao37.dff" type="client" />
+<file src="nagao38.dff" type="client" />
+<file src="nagao39.dff" type="client" />
+<file src="nagao40.dff" type="client" />
+<file src="nagao41.dff" type="client" />
+<file src="nagao42.dff" type="client" />
+
+	<file src="nagao1.col" type="client" />
+	<file src="nagao2.col" type="client" />
+	<file src="nagao3.col" type="client" />
+	<file src="nagao4.col" type="client" />
+	<file src="nagao5.col" type="client" />
+	<file src="nagao6.col" type="client" />
+	<file src="nagao7.col" type="client" />
+	<file src="nagao8.col" type="client" />
+	<file src="nagao9.col" type="client" />
+	<file src="nagao10.col" type="client" />
+	<file src="nagao11.col" type="client" />
+	<file src="nagao12.col" type="client" />
+	<file src="nagao13.col" type="client" />
+	<file src="nagao14.col" type="client" />
+	<file src="nagao15.col" type="client" />
+	<file src="nagao16.col" type="client" />
+	<file src="nagao17.col" type="client" />
+	<file src="nagao18.col" type="client" />
+	<file src="nagao19.col" type="client" />
+	<file src="nagao20.col" type="client" />
+	<file src="nagao21.col" type="client" />
+	<file src="nagao22.col" type="client" />
+	<file src="nagao23.col" type="client" />
+	<file src="nagao24.col" type="client" />
+	<file src="nagao25.col" type="client" />
+	<file src="nagao26.col" type="client" />
+	<file src="nagao27.col" type="client" />
+	<file src="nagao28.col" type="client" />
+	<file src="nagao29.col" type="client" />
+<file src="nagao30.col" type="client" />
+<file src="nagao31.col" type="client" />
+<file src="nagao32.col" type="client" />
+<file src="nagao33.col" type="client" />
+<file src="nagao34.col" type="client" />
+<file src="nagao35.col" type="client" />
+<file src="nagao36.col" type="client" />
+<file src="nagao37.col" type="client" />
+<file src="nagao38.col" type="client" />
+<file src="nagao39.col" type="client" />
+<file src="nagao40.col" type="client" />
+<file src="nagao41.col" type="client" />
+<file src="nagao42.col" type="client" />
+
+<map src="nagao.map" dimension="-1"></map>
+</meta>

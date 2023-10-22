@@ -1,0 +1,11 @@
+<map>
+<object id="mtaclub.eu" breakable="true" interior="0" alpha="255" dimension="0" model="1700" scale="1" doublesided="false" collisions="true" posX="-346.38556" posY="-39.80934" posZ="2409.59175" rotX="0" rotY="0" rotZ="0"></object>
+<object id="mtaclub.eu" breakable="true" interior="0" alpha="255" dimension="0" model="1701" scale="1" doublesided="false" collisions="true" posX="399.58392" posY="-120.25769" posZ="2388.88984" rotX="0" rotY="0" rotZ="0"></object>
+<object id="mtaclub.eu" breakable="true" interior="0" alpha="255" dimension="0" model="1702" scale="1" doublesided="false" collisions="true" posX="203.61444" posY="-27.42925" posZ="2385.22414" rotX="0" rotY="0" rotZ="0"></object>
+<object id="mtaclub.eu" breakable="true" interior="0" alpha="255" dimension="0" model="1703" scale="1" doublesided="false" collisions="true" posX="303.61444" posY="-77.10272" posZ="2386.7131" rotX="0" rotY="0" rotZ="0"></object>
+<object id="mtaclub.eu" breakable="true" interior="0" alpha="255" dimension="0" model="1704" scale="1" doublesided="false" collisions="true" posX="124.18733" posY="-1.9283" posZ="2385.33495" rotX="0" rotY="0" rotZ="0"></object>
+<object id="mtaclub.eu" breakable="true" interior="0" alpha="255" dimension="0" model="1705" scale="1" doublesided="false" collisions="true" posX="24.18733" posY="-8.39365" posZ="2387.56385" rotX="0" rotY="0" rotZ="0"></object>
+<object id="mtaclub.eu" breakable="true" interior="0" alpha="255" dimension="0" model="1706" scale="1" doublesided="false" collisions="true" posX="-213.05225" posY="51.37747" posZ="2402.03855" rotX="0" rotY="0" rotZ="0"></object>
+<object id="mtaclub.eu" breakable="true" interior="0" alpha="255" dimension="0" model="1707" scale="1" doublesided="false" collisions="true" posX="-79.71889" posY="4.42969" posZ="2390.56723" rotX="0" rotY="0" rotZ="0"></object>
+<object id="mtaclub.eu" breakable="true" interior="0" alpha="255" dimension="0" model="1708" scale="1" doublesided="false" collisions="true" posX="-146.38556" posY="41.57019" posZ="2397.97082" rotX="0" rotY="0" rotZ="0"></object>
+</map>

@@ -92,7 +92,6 @@ function Input.open()
 	inputActive = true
 
 	addEventHandler("onClientCharacter", root, insert)
-	localPlayer:setData("activeUI", "chatInput")
 	return true
 end
 
@@ -111,7 +110,6 @@ function Input.close()
 	currentInputText = nil
 
 	removeEventHandler("onClientCharacter", root, insert)
-	localPlayer:setData("activeUI", false)
 	return true
 end
 

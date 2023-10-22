@@ -183,7 +183,8 @@ function CameraManager.start()
 	addEventHandler("onClientPreRender", root, update)
 	addEventHandler("onClientCursorMove", root, mouseMove)
 	addEventHandler("onClientKey", root, handleKey)
-	bindKey("m", "down", ToggleMouseLook)
+	bindKey("mouse1", "down", startMouseLook)
+	bindKey("mouse1", "up", stopMouseLook)
 
 	--exports.tunrc_CameraViews:resetCameraView()
 end
@@ -192,6 +193,8 @@ function CameraManager.stop()
 	removeEventHandler("onClientPreRender", root, update)
 	removeEventHandler("onClientCursorMove", root, mouseMove)
 	removeEventHandler("onClientKey", root, handleKey)
+	unbindKey("mouse1", "down", startMouseLook)
+	unbindKey("mouse1", "up", stopMouseLook)
 	Camera.setTarget(localPlayer)
 end
 

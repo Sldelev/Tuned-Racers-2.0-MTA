@@ -7,21 +7,24 @@
 	<script type="shared" src="shared/handlings_table.lua"/>
 	<script type="shared" src="shared/config.lua"/>
 	<!-- Client -->
-	<script type="client" src="client/glass_stickers.lua"/>
-	<script type="client" src="client/body_texture.lua"/>
+	<script type="client" src="client/glass_stickers.lua" cache="false"/>
+	<script type="client" src="client/body_texture.lua" cache="false"/>
 	<script type="client" src="client/colors.lua"/>
 	<script type="client" src="client/components.lua"/>
 	<script type="client" src="client/configuration.lua"/>
 	<script type="client" src="client/lights_sync.lua"/>
 	<script type="client" src="client/mileage.lua"/>
-	<!-- <script type="client" src="client/neon.lua"/> -->
-    <!-- <script type="client" src="client/numberplate.lua"/> -->
-
+    <script type="client" src="client/numberplate.lua"/>
 	<script type="client" src="client/tyres_smoke.lua"/>
 	<script type="client" src="client/exhaust.lua"/>
-	<script type="client" src="client/VehicleShaders.lua"/>
+	<script type="client" src="client/VehicleShaders.lua" cache="false"/>
 	<script type="client" src="client/actions.lua"/>
 	<script type="client" src="client/handling.lua"/>
+	<!-- Additional Colors -->	
+	<script type="client" src="client/colors/engblock_color.lua"/>
+	<script type="client" src="client/colors/rollcage_color.lua"/>
+	<!-- Normal Maps Script -->
+	<script type="client" src="client/veh_normals.lua"/>
 	<!-- Server -->
 	<script type="server" src="server/utils.lua"/>
 	<script type="server" src="server/actions.lua"/>
@@ -31,8 +34,6 @@
 	
 	<script type="server" src="s_hanglings/h_velocity.lua"/>
 	<script type="server" src="s_hanglings/h_mass.lua"/>
-	<script type="server" src="s_hanglings/h_turnmass.lua"/>
-	<script type="server" src="s_hanglings/h_wheels_handling.lua"/>
 	<script type="server" src="server/suspension.lua"/>
 	<script type="server" src="server/bias.lua"/>
 	<script type="server" src="server/h_steer.lua"/>
@@ -60,8 +61,27 @@
 	<!-- Assets -->
 	<file src="assets/light.png"/>
 	<file src="assets/selection.png"/>
-	<!-- Numberplate texture -->
 	<file src="assets/reflection.dds"/>
+	<file src="assets/garage_reflection.dds"/>
+	<!-- Normal Maps -->
+	<file src="assets/normals/kanjo_turbo_n.png" />
+	<file src="assets/normals/vehicle_generic_detail2_n.png" />
+	<file src="assets/normals/vehicle_generic_tyrewall_n.png" />
+	<file src="assets/normals/vehicle_generic_cplate_n.png" />
+	<file src="assets/normals/vehicle_generic_carbon_n.png" />
+	<file src="assets/normals/vehicle_generic_mesh3_n.dds" />
+	<file src="assets/normals/flat_n.dds" />
+	
+	<!-- Specular Maps -->
+	<file src="assets/speculars/carpaint_flakes_s.dds" />
+	
+	<!-- Numberplate texture -->
+	<file src="assets/numberplate.png"/>
+	<file src="assets/numberplate.ttf"/>
+	
+	<!-- Shaders -->
 	<file src="assets/shaders/mta-helper.fx"/>
 	<file src="assets/shaders/glass.fx"/>
+	<file src="assets/shaders/body_shader.fx"/>
+	<file src="assets/shaders/shader.fx"/>
 </meta>

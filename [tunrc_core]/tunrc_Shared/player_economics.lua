@@ -7,21 +7,21 @@ local playerEconomics = {
 	duel_bet_max = 500,
 
 	-- Количество денег за 100000 очков дрифта
-	drift_money = 100,
+	drift_money = 500,
 	-- Количество опыта за 100000 очков дрифта
-	drift_xp = 25,
+	drift_xp = 350,
 
 	-- Процент от цены авто при продаже
 	vehicle_sell_min_mileage_factor = 0.9,
 	vehicle_sell_max_mileage = 500,
 
 	race_prizes = {
-		{ xp = 6, money = 50 },
-		{ xp = 6, money = 45 },
-		{ xp = 6, money = 40 },
-		{ xp = 6, money = 35 },
-		{ xp = 6, money = 30 },
-		{ xp = 6, money = 25 },
+		{ xp = 20, money = 50 },
+		{ xp = 19, money = 45 },
+		{ xp = 18, money = 40 },
+		{ xp = 17, money = 35 },
+		{ xp = 16, money = 30 },
+		{ xp = 14, money = 25 },
 	},
 
 	tofu_prize = 50,

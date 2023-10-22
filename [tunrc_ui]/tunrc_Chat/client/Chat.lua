@@ -6,35 +6,18 @@ local MAX_VISIBLE_TABS = 6
 local MAX_TAB_WIDTH = 72
 local MAX_LINE_LENGTH = 80
 local TAB_PADDING = 10
+local UI = exports.tunrc_UI
 
 local MESSAGES_RT_SIZE = Vector2(650, 600)
 
 local forceVisible = false
-local isVisible = false
+local isVisible = true
 local chatTabs = {}
 local activeTabName
 local highlightedTabName
 local screenSize = Vector2(guiGetScreenSize())
 local chatHistoryCurrent
 local chatRenderTarget
-
-function Chat.setVisible(visible)
-	visible = not not visible
-
-	if visible == isVisible then
-		return false
-	end
-
-	if not visible then
-		Input.close()
-	end
-
-	isVisible = visible
-end
-
-function Chat.isVisible()
-	return isVisible
-end
 
 function Chat.removeTab(name)
 	if type(name) ~= "string" then
@@ -233,71 +216,59 @@ local function drawMessages()
 	end
 end
 
-function drawTabs()
-	local mouseVisible = isCursorShowing()
-	local mx, my = getCursorPosition()
-	if mx then
-		mx, my = mx * screenSize.x, my * screenSize.y
-	else
-		mx = 0
-		my = 0
-	end
+-- Создание табов чата
 
-	local scale = 1.0
-	local font = "default-bold"
-	local x = 32
-	local y = 16
-	local height = dxGetFontHeight(scale, font)
-	local limitTabs = not (my > y / 2 and my < y + height)
-	highlightedTabName = nil
-	for i, tab in ipairs(chatTabs) do
-		local width = math.min(dxGetTextWidth(tab.title, scale, font), MAX_TAB_WIDTH)
-		local alpha = 200
-		if mx > x and mx < x + width + TAB_PADDING * 2 and my > y and my < y + height + TAB_PADDING * 2 then
-			limitTabs = false
-			alpha = 255
+addEventHandler("onClientResourceStart", resourceRoot, function ()
 
-			if getKeyState("mouse1") then
-				Chat.setActiveTab(tab.name)
-			end
+		TabPanelShadow = UI:createTrcRoundedRectangle {
+			x       = 30,
+			y       = 15,
+			width   = 60,
+			height  = 30,
+			radius = 15,
+			color = tocolor(0, 0, 0, 100)
+			}
+		UI:addChild(TabPanelShadow)
 
-			highlightedTabName = tab.name
+		TabPanel = UI:createTrcRoundedRectangle {
+			x       = -2,
+			y       = -2,
+			width   = 60,
+			height  = 30,
+			radius = 10,
+			color = tocolor(220, 220, 220),
+			hover = true,
+			hoverColor = tocolor(130, 130, 200),
+			darkToggle = true,
+			darkColor = tocolor(50, 50, 50),
+			hoverDarkColor = tocolor(30, 30, 30)
+			}
+		UI:addChild(TabPanelShadow, TabPanel)
+		
+		local TabTitle = UI:createDpLabel {
+		x = 30,
+		y = 2,
+		width = 0,
+		height = 0,
+		text = "TunedRacers",
+		alignX = "center",
+		color = tocolor (50, 50, 50, 150),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255, 150),
+		fontType = "lightSmall"
+	}
+	UI:addChild(TabPanel, TabTitle)
+	UIDataBinder.bind(TabTitle, "activeTab", function (value)
+		if Chat.getActiveTab() == "global" then
+			return exports.tunrc_Lang:getString("chat_tab_all")
+		elseif Chat.getActiveTab() == "local" then
+			return	exports.tunrc_Lang:getString("chat_tab_local")
+		elseif Chat.getActiveTab() == "illegal" then
+			return	exports.tunrc_Lang:getString("chat_tab_illegal")
 		end
+	end)
 
-		local themeColor = {exports.tunrc_UI:getThemeColor()}
-		local color
-		local backgroundColor
-		local lineColor = tocolor(255,255,255)
-		if tab.name == activeTabName then
-			color = tocolor(255, 255, 255, 255)
-			backgroundColor = tocolor(themeColor[1], themeColor[2], themeColor[3], 150)
-		else
-			color = tocolor(150, 150, 150, 150)
-			backgroundColor = tocolor(0, 0, 0, 100)
-		end
-
-		dxDrawRectangle(x, y, width + TAB_PADDING * 2, height + TAB_PADDING * 2, backgroundColor)
-		dxDrawText(tab.title, x + TAB_PADDING, y + TAB_PADDING, x + TAB_PADDING + width, y + TAB_PADDING + height, color, scale, font, "left", "center", true)
-
-		if tab.name == highlightedTabName and not tab.unremovable then
-			local closeScale = scale / 1.2
-			local closeWidth = dxGetTextWidth("✕", scale, font)
-			local closeHeight = dxGetFontHeight(closeScale, font)
-			local closeX, closeY = x + TAB_PADDING * 2 + width, y
-			dxDrawText("✕", closeX - closeWidth, closeY, closeX, closeY + closeHeight, color, closeScale, font, "right", "top", false)
-			if mx > closeX - closeWidth and mx < closeX and my > closeY and my < closeY + closeHeight then
-				if getKeyState("mouse1") then
-					Chat.removeTab(tab.name)
-				end
-			end
-		end
-
-		x = x + TAB_PADDING * 2 + width
-		if i == MAX_VISIBLE_TABS and limitTabs then
-			break
-		end
-	end
-end
+end)
 
 function drawInput()
 	if not Input.isActive() then
@@ -382,9 +353,9 @@ function drawchat ()
 	if not isVisible then
 		return
 	end
-	drawTabs()
 	dxDrawImage(32, 56, MESSAGES_RT_SIZE, chatRenderTarget)
 	drawInput()
+	UIDataBinder.refresh()
 end
 addEventHandler("onClientRender", root, drawchat)
 
@@ -398,6 +369,26 @@ addEventHandler("onClientRestore", root, function (didClearRenderTargets)
 	Chat.redrawMessages()
 end)
 
+function Chat.setVisible(visible)
+	visible = not not visible
+
+	if visible == isVisible then
+		return false
+	end
+
+	if not visible then
+		Input.close()
+	end
+
+	isVisible = visible
+	
+	UI:setVisible(TabPanelShadow, visible)
+end
+
+function Chat.isVisible()
+	return isVisible
+end
+
 setTimer(showChat, 1000, 0, false)
 bindKey("F7", "down",
 	function ()
@@ -407,3 +398,19 @@ bindKey("F7", "down",
 
 bindKey("pgup", "down", Chat.historyUp)
 bindKey("pgdn", "down", Chat.historyDown)
+
+addEvent("tunrc_UI.click", false)
+addEventHandler("tunrc_UI.click", resourceRoot, function (widget)
+    if widget == TabPanel then
+	
+		if Chat.getActiveTab() == "global" then
+			return Chat.setActiveTab("local")
+		elseif Chat.getActiveTab() == "local" then
+			return	Chat.setActiveTab("illegal")
+		elseif Chat.getActiveTab() == "illegal" then
+			return	Chat.setActiveTab("global")
+		end
+		
+	end
+
+end)

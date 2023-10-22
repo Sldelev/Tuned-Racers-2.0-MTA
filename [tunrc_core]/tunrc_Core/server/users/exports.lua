@@ -39,6 +39,22 @@ function givePlayerMoney(player, money)
 	return true
 end
 
+function givePlayerDonatMoney(player, donatmoney)
+	if not isElement(player) then
+		return false
+	end
+	if type(donatmoney) ~= "number" then
+		return false
+	end
+	donatmoney = math.floor(donatmoney)
+	local currentDonatMoney = player:getData("donatmoney")
+	if type(currentDonatMoney) ~= "number" then
+		return false
+	end
+	player:setData("donatmoney", math.max(0, currentDonatMoney + donatmoney))
+	return true
+end
+
 function givePlayerXP(player, xp)
 	if not isElement(player) then
 		return false

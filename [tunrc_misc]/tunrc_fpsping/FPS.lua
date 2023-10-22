@@ -34,8 +34,11 @@ addEventHandler("onClientResourceStart", resourceRoot,
 addEventHandler( "onClientRender", root,
     function()
         if myRenderTarget then
-            -- Draw the render target lots of times in different positions on the screen
-            dxDrawImage(F_SCREEN_X / 1.065, F_SCREEN_Y / 1.047, 100, 100, myRenderTarget)
+			if F_SCREEN_X ~= 1920 then
+				dxDrawImage(F_SCREEN_X * (1835/1920), F_SCREEN_Y / 1.04, 100, 100, myRenderTarget)
+			else
+				dxDrawImage(F_SCREEN_X / 1.033, F_SCREEN_Y / 1.03, 100, 100, myRenderTarget)
+			end
         end
     end
 )

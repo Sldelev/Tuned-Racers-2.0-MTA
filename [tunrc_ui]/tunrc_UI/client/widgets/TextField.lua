@@ -15,6 +15,14 @@ function TextField.create(properties)
 	widget.colorCoded = not not properties.colorCoded
 	
 	function widget:draw()
+	
+	if exports.tunrc_Config:getProperty("ui.dark_mode") and properties.darkToggle == true then	
+		self.color = properties.darkColor
+	else
+		self.color = properties.color
+	end
+	
+	
 		Drawing.text(
 			self.x, 
 			self.y, 

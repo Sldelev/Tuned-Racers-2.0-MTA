@@ -10,18 +10,9 @@ local startupResources = {
 	"Crypt-reload",
 	
 	--Машины
-	
-	"albany_alpha",
-	"annis_elegy",
-	"annis_euros",
 	"annis_zr350",
-	"bf_bravura",
-	"bf_club",
-	"bravado_banshee",
-	"bravado_buffalo",
-	"dinka_jester",
-	"ubermacht_sentinel",
-	"declasse_burrito",
+	"annis_remus",
+	"vulcar_warrener_hkr",
 
 	-- Important
 	"geoip",
@@ -54,10 +45,11 @@ local startupResources = {
 	"tunrc_LoginPanel",
 	"tunrc_TabPanel",
 	"tunrc_MainPanel",
-	"tunrc_HelpPanel",
 	"tunrc_ModeratorPanel",
 	"tunrc_CarInfoPanel",
 	"tunrc_GiftsPanel",
+	"tunrc_overallPanel",
+	"tunrc_HelpPanel",
 
 	-- Gameplay
 	"tunrc_TutorialMessage",
@@ -80,6 +72,7 @@ local startupResources = {
 	"tunrc_SellVehicle",
 	"tunrc_ContextMenu",
 	"tunrc_wheels_rotation",
+	"tunrc_WorldMusic",
 
 	-- World
 	"MAPPING",
@@ -94,14 +87,13 @@ local startupResources = {
 
 	-- Third party
 	"blur_box",
-	"car_reflections",
 	"water_reflections",
 	"dynamic_lighting",
 	"dynamic_lighting_vehicles",
 	"shader_dynamic_sky",
 	"flame",
-	"fara",
 	"svet",
+	"tunrc_alphafix",
 	
 	--maps
 	"Usui_map",
@@ -126,13 +118,14 @@ local startupResources = {
 	"tunrc_nagao",
 	"tunrc_nanohanadai",
 	"tunrc_tsuchi",
-	"tunrc_tsukuba",
-	
-	--jobs
-	
-	"tunrc_candys",
 
 	-- Non-important assets
+	"dl_ssao",
+	"dl_fxaa",
+	"tunrc_swr",
+	"extended_custom_coronas",
+	"custom_vehicle_lights",
+	"improved_vehicle_lights",
 	"tunrc_wheels",
 	"tunrc_carsounds",
 	"tunrc_commands",

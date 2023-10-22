@@ -51,13 +51,13 @@ local function showPlayerRaceFinish(player, race, time, rank, score)
 		score = 1
 	end
 	
-	local prize = racePrizes[rank].money + (score / 200)
+	local prize = racePrizes[rank].money + (score / 400)
     if type(prize) ~= "number" then
         outputDebugString("tunrc_RaceLobby: showPlayerRaceFinish - no prize")
         prize = 0
     end
     prize = math.ceil(prize * rankMul)
-    local exp = racePrizes[rank].xp
+    local exp = racePrizes[rank].xp + (score / 800)
     if not exp then
         exp = 0
     end

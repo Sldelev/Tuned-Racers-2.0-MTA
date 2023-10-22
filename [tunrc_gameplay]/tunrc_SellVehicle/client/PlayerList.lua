@@ -118,13 +118,16 @@ function PlayerList.redrawPlayerList()
 end
 
 addEventHandler("onClientResourceStart", resourceRoot, function ()
-    ui.panel = UI:createDpPanel {
-        x       = (screenSize.x - PLAYER_LIST_SIZE.x) / 2,
+    ui.panel  = UI:createTrcRoundedRectangle {
+		x       = (screenSize.x - PLAYER_LIST_SIZE.x) / 2,
         y       = (screenSize.y - PLAYER_LIST_SIZE.y) / 2,
         width   = PLAYER_LIST_SIZE.x,
         height  = PLAYER_LIST_SIZE.y,
-        type    = "light"
-    }
+		radius = 20,
+		color = tocolor(245, 245, 245),
+		darkToggle = true,
+		darkColor = tocolor(20, 20, 20)
+	}
     UI:addChild(ui.panel)
     UI:setVisible(ui.panel, false)
 
@@ -136,7 +139,9 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
         height   = BUTTON_HEIGHT,
         alignX   = "center",
         alignY   = "center",
-        type     = "primary",
+		color = tocolor (0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
         fontType = "defaultSmall",
         locale   = "sell_vehicle_title",
     })
@@ -146,7 +151,9 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
         x        = 15,
         y        = BUTTON_HEIGHT * 2 + 10,
         width    = PLAYER_LIST_SIZE.x, height = BUTTON_HEIGHT,
-        type     = "dark",
+        color = tocolor (0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
         fontType = "defaultSmall",
         locale   = "sell_vehicle_players_not_found",
     }
@@ -158,7 +165,14 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
         y       = BUTTON_HEIGHT,
         width   = PLAYER_LIST_SIZE.x,
         height  = BUTTON_HEIGHT,
-        type    = "light",
+        color = tocolor(200, 205, 210),
+		textHolderColor = tocolor(0, 0, 0),
+		textDarkHolderColor = tocolor(255,255,255),
+        hover = true,
+		hoverColor = tocolor(130, 130, 200),
+		darkToggle = true,
+		darkColor = tocolor(50, 50, 50),
+		hoverDarkColor = tocolor(30, 30, 30),
         locale  = "sell_vehicle_player_search_hint"
     }
     UI:addChild(ui.panel, ui.playerSearchInput)
@@ -169,6 +183,11 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
         y       = BUTTON_HEIGHT * 2,
         width   = PLAYER_LIST_SIZE.x,
         height  = PLAYER_LIST_SIZE.y - BUTTON_HEIGHT,
+		color = tocolor(245,245,245),
+		hoverColor = tocolor(205,205,205),
+		darkToggle = true,
+		darkColor = tocolor(20, 20, 20),
+		hoverDarkColor = tocolor(40,40,40),
         items   = {},
         columns = {
             {size = 0.15, offset = 0.06, align = "left"},
@@ -177,18 +196,46 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
     }
     UI:addChild(ui.panel, ui.playerList)
     UI:setVisible(ui.playerList, false)
-
-    -- Кнопка отмены
-    ui.cancelButton = UI:createDpButton {
-        x = 0,
-        y = PLAYER_LIST_SIZE.y - BUTTON_HEIGHT,
-        width = PLAYER_LIST_SIZE.x,
+	
+	ui.cancelButtonShadow = UI:createTrcRoundedRectangle {
+		x       = PLAYER_LIST_SIZE.x / 2 - 72,
+        y       = PLAYER_LIST_SIZE.y - BUTTON_HEIGHT - 12,
+        width = 150,
         height = BUTTON_HEIGHT,
-        type = "default_dark",
-        fontType = "defaultSmall",
-        locale = "sell_vehicle_cancel_button"
-    }
+		radius = 15,
+		color = tocolor(0, 0, 0, 20)
+	}
+    UI:addChild(ui.panel, ui.cancelButtonShadow)
+	
+	ui.cancelButton = UI:createTrcRoundedRectangle {
+		x       = PLAYER_LIST_SIZE.x / 2 - 75,
+        y       = PLAYER_LIST_SIZE.y - BUTTON_HEIGHT - 15,
+        width = 150,
+        height = BUTTON_HEIGHT,
+		radius = 15,
+		color = tocolor(200, 205, 210),
+		hover = true,
+		hoverColor = tocolor(130, 130, 200),
+		darkToggle = true,
+		darkColor = tocolor(50, 50, 50),
+		hoverDarkColor = tocolor(30, 30, 30)
+	}
     UI:addChild(ui.panel, ui.cancelButton)
+	
+	ui.cancelButtonText = UI:createDpLabel {
+		x = 75,
+		y = 25,
+		width = 0,
+		height = 0,
+		text = "Admin",
+		color = tocolor (0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
+		alignX = "center",
+		alignY = "center",
+		locale = "sell_vehicle_cancel_button"
+	}
+	UI:addChild(ui.cancelButton, ui.cancelButtonText)
 end)
 
 addEvent("tunrc_UI.click", false)
@@ -232,6 +279,7 @@ addEventHandler("tunrc_UI.click", resourceRoot, function (widget)
     elseif widget == ui.cancelButton then
         PlayerList.hide()
         exports.tunrc_Sounds:playSound("ui_back.wav")
+		exports.tunrc_overallPanel:setVisible(true)
     end
 end)
 
@@ -259,5 +307,6 @@ bindKey("backspace", "down", function ()
     if isVisible then
         PlayerList.hide()
         exports.tunrc_Sounds:playSound("ui_back.wav")
+		exports.tunrc_overallPanel:setVisible(true)
     end
 end)

@@ -3,7 +3,7 @@ local UI = exports.tunrc_UI
 local HIDE_CHAT = false
 local screenWidth, screenHeight = exports.tunrc_UI:getScreenSize()
 
-local BACKGROUND_COLOR = {13, 15, 17}
+local BACKGROUND_COLOR = {210, 210, 210}
 local realSceenWidth, realScreenHeight = guiGetScreenSize()
 local backgroundScale = realScreenHeight / 720
 local backgroundWidth, backgroundHeight = 1280 * backgroundScale, 720 * backgroundScale
@@ -29,7 +29,11 @@ local function draw()
     rx1 = (rx1 - 0.5) % screenWidth
 	rx = (rx + 0.5) % screenWidth
 	animationProgress = math.min(1, animationProgress + ANIMATION_SPEED)
-	dxDrawRectangle(0, 0, realSceenWidth, realScreenHeight, tocolor(BACKGROUND_COLOR[1], BACKGROUND_COLOR[2], BACKGROUND_COLOR[3], 255 * animationProgress))
+	if exports.tunrc_Config:getProperty("ui.dark_mode") == true then
+			dxDrawRectangle(0, 0, realSceenWidth, realScreenHeight, tocolor(40, 40 ,40 , 255 * animationProgress))
+		else
+			dxDrawRectangle(0, 0, realSceenWidth, realScreenHeight, tocolor(210, 210 ,210 , 255 * animationProgress))
+		end
 	dxDrawText("Tuned Racers", 3, screenHeight - 14, 3, screenHeight - 14, tocolor(255, 255, 255, 100 * animationProgress))
 	if not root:getData("dbConnected") then
 		dxDrawText("The server is currently not available.\nСервер на данный момент недоступен.",
@@ -103,11 +107,9 @@ function setVisible(visible)
 			UI:setText(loginPanel.username, fields.username)
 			UI:setText(loginPanel.password, fields.password)
 		end
-		backgroundTexture = DxTexture("assets/background.png")
 		stickTexture = DxTexture("assets/st.png")
 	else
 		if isElement(backgroundTexture) and isElement(stickTexture) then
-			destroyElement(backgroundTexture)
 			destroyElement(stickTexture)
 		end
 		removeEventHandler("onClientRender", root, draw)
@@ -116,54 +118,35 @@ function setVisible(visible)
 end
 
 local function createLoginPanel()
-	local logoTexture = exports.tunrc_Assets:createTexture("logo.png")
-	local textureWidth, textureHeight = dxGetMaterialSize(logoTexture)
-	local logoWidth = LOGO_WIDTH
-	local logoHeight = textureHeight * LOGO_WIDTH / textureWidth
 
-	local panelWidth = 750
-	local panelHeight = 200
-	local panel = UI:createDpPanel({
-		x = (screenWidth - panelWidth) / 2,
-		y = (screenHeight - panelHeight + logoHeight) / 2,
-		width = panelWidth, height = panelHeight,
-		type = "dark"
-	})
+	local panelWidth = 550
+	local panelHeight = 300
+	
+	local panel = UI:createTrcRoundedRectangle {
+		x       = (screenWidth - panelWidth) / 2,
+        y       = (screenHeight - panelHeight) / 2,
+        width   = panelWidth,
+        height  = panelHeight,
+		radius = 20,
+		color = tocolor(245, 245, 245),
+		darkToggle = true,
+		darkColor = tocolor(20, 20, 20)
+	}
 	UI:addChild(panel)
-
-	local logoImage = UI:createImage({
-		x = (panelWidth - logoWidth) / 2,
-		y = -logoHeight - 25,
-		width = logoWidth,
-		height = logoHeight,
-		texture = logoTexture
-	})
-	UI:addChild(panel, logoImage)
-
-	local startGameButton = UI:createDpButton({
-		x = panelWidth / 1.4, y = 40,
-		width = panelWidth / 4,
-		height = 55,
-		type = "default_dark",
-		locale = "login_panel_start_game_button"
-	})
-	UI:addChild(panel, startGameButton)
-
-	local registerButton = UI:createDpButton({
-		x = panelWidth / 1.4, y = 110,
-		width = panelWidth / 4,
-		height = 55,
-		type = "primary",
-		locale = "login_panel_register_button_toggle"
-	})
-	UI:addChild(panel, registerButton)
 
 	local usernameInput = UI:createDpInput({
 		x = 50,
 		y = 40,
 		width = 450,
 		height = 50,
-		type = "dark",
+		color = tocolor(200, 205, 210),
+		textHolderColor = tocolor(0, 0, 0),
+		textDarkHolderColor = tocolor(255,255,255),
+        hover = true,
+		hoverColor = tocolor(130, 130, 200),
+		darkToggle = true,
+		darkColor = tocolor(50, 50, 50),
+		hoverDarkColor = tocolor(30, 30, 30),
 		locale = "login_panel_username_label"
 	})
 	UI:addChild(panel, usernameInput)
@@ -173,12 +156,99 @@ local function createLoginPanel()
 		y = 110,
 		width = 450,
 		height = 50,
-		type = "dark",
+		color = tocolor(200, 205, 210),
+		textHolderColor = tocolor(0, 0, 0),
+		textDarkHolderColor = tocolor(255,255,255),
+        hover = true,
+		hoverColor = tocolor(130, 130, 200),
+		darkToggle = true,
+		darkColor = tocolor(50, 50, 50),
+		hoverDarkColor = tocolor(30, 30, 30),
 		placeholder = "Пароль",
 		masked = true,
 		locale = "login_panel_password_label"
 	})
 	UI:addChild(panel, passwordInput)
+	
+	local startGameButtonShadow = UI:createTrcRoundedRectangle {
+		x       = 2,
+        y       = 102,
+        width   = 155,
+        height  = 50,
+		radius = 15,
+		color = tocolor(0, 0, 0, 20)
+	}
+	UI:addChild(passwordInput, startGameButtonShadow)
+	
+	local startGameButton = UI:createTrcRoundedRectangle {
+		x       = 0,
+        y       = 100,
+        width   = 155,
+        height  = 50,
+		radius = 15,
+		color = tocolor(200, 205, 210),
+		hover = true,
+		hoverColor = tocolor(130, 130, 200),
+		darkToggle = true,
+		darkColor = tocolor(50, 50, 50),
+		hoverDarkColor = tocolor(30, 30, 30)
+	}
+	UI:addChild(passwordInput, startGameButton)
+	
+	local startGameButtonText = UI:createDpLabel {
+		x = 78,
+		y = 22,
+		width = width,
+		height = height,
+		text = "Admin",
+		color = tocolor (0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
+		alignX = "center",
+		alignY = "center",
+		locale = "login_panel_start_game_button"
+	}
+	UI:addChild(startGameButton, startGameButtonText)
+	
+	local registerButtonShadow = UI:createTrcRoundedRectangle {
+		x       = 297,
+        y       = 2,
+        width   = 155,
+        height  = 50,
+		radius = 15,
+		color = tocolor(0, 0, 0, 20)
+	}
+	UI:addChild(startGameButton, registerButtonShadow)
+	
+	local registerButton = UI:createTrcRoundedRectangle {
+		x       = 295,
+        y       = 0,
+        width   = 155,
+        height  = 50,
+		radius = 15,
+		color = tocolor(200, 205, 210),
+		hover = true,
+		hoverColor = tocolor(130, 130, 200),
+		darkToggle = true,
+		darkColor = tocolor(50, 50, 50),
+		hoverDarkColor = tocolor(30, 30, 30)
+	}
+	UI:addChild(startGameButton, registerButton)
+	
+	local registerButtonText = UI:createDpLabel {
+		x = 78,
+		y = 22,
+		width = width,
+		height = height,
+		text = "Admin",
+		color = tocolor (0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
+		alignX = "center",
+		alignY = "center",
+		locale = "login_panel_register_button_toggle"
+	}
+	UI:addChild(registerButton, registerButtonText)
 
 	UI:setVisible(panel, false)
 	loginPanel.registerButton = registerButton
@@ -192,65 +262,54 @@ local function createRegisterPanel()
 	local panelWidth = 550
 	local panelHeight = 385
 
-	local logoTexture = exports.tunrc_Assets:createTexture("logo.png")
-	local textureWidth, textureHeight = dxGetMaterialSize(logoTexture)
-	local logoScale = 1
-	local logoWidth = LOGO_WIDTH * logoScale
-	local logoHeight = textureHeight * LOGO_WIDTH / textureWidth * logoScale
-
-	local totalPanelHeight = panelHeight - logoHeight + 25
-
-	local panel = UI:createDpPanel({
-		x = (screenWidth - panelWidth) / 2,
-		y = screenHeight / 2 - totalPanelHeight / 2,
-		width = panelWidth, height = panelHeight,
-		type = "dark"
-	})
+	local panel = UI:createTrcRoundedRectangle {
+		x       = (screenWidth - panelWidth) / 2,
+        y       = (screenHeight - panelHeight) / 2,
+        width   = panelWidth,
+        height  = panelHeight,
+		radius = 20,
+		color = tocolor(245, 245, 245),
+		darkToggle = true,
+		darkColor = tocolor(20, 20, 20)
+	}
 	UI:addChild(panel)
 
-	local logoImage = UI:createImage({
-		x = (panelWidth - logoWidth) / 2,
-		y = -logoHeight - 25,
-		width = logoWidth,
-		height = logoHeight,
-		texture = logoTexture
-	})
-	UI:addChild(panel, logoImage)
-
-	local languageLabelWidth = 118
-	local languageLabel = UI:createDpLabel({
-		x = 50,
-		y = 40,
-		width = languageLabelWidth,
-		wordBreak = false,
-		clip = true,
-		height = 50,
-		alignX = "left",
-		alignY = "top",
-		locale = "login_panel_language"
-	})
-	UI:addChild(panel, languageLabel)
 
 	-- Кнопки языков
-	local langX = 50 + languageLabelWidth + 7
+	local langX = 50
 	for i, languageButton in ipairs(languageButtonsList) do
+	
+		local shadowButton = UI:createDpImageButton({
+			x = langX, y = 20,
+			width = 27, height = 27,
+			texture = exports.tunrc_Assets:createTexture("buttons/circle.png"), color = tocolor(0,0,0,105)
+		})
+		UI:addChild(panel, shadowButton)
+		
 		local button = UI:createDpImageButton({
-			x = langX, y = 40,
+			x = -2, y = -2,
 			width = 27, height = 27,
 			texture = exports.tunrc_Assets:createTexture("buttons/" .. tostring(languageButton.name) .. ".png")
 		})
-		UI:addChild(panel, button)
+		UI:addChild(shadowButton, button)
 		languageButton.button = button
 		langX = langX + 27 + 5
 	end
 
-	local y = 100
+	local y = 70
 	local usernameInput = UI:createDpInput({
 		x = 50,
 		y = y,
 		width = 450,
 		height = 50,
-		type = "dark",
+		color = tocolor(200, 205, 210),
+		textHolderColor = tocolor(0, 0, 0),
+		textDarkHolderColor = tocolor(255,255,255),
+        hover = true,
+		hoverColor = tocolor(130, 130, 200),
+		darkToggle = true,
+		darkColor = tocolor(50, 50, 50),
+		hoverDarkColor = tocolor(30, 30, 30),
 		locale = "login_panel_username_label"
 	})
 	UI:addChild(panel, usernameInput)
@@ -261,7 +320,14 @@ local function createRegisterPanel()
 		y = y,
 		width = 450,
 		height = 50,
-		type = "dark",
+		color = tocolor(200, 205, 210),
+		textHolderColor = tocolor(0, 0, 0),
+		textDarkHolderColor = tocolor(255,255,255),
+        hover = true,
+		hoverColor = tocolor(130, 130, 200),
+		darkToggle = true,
+		darkColor = tocolor(50, 50, 50),
+		hoverDarkColor = tocolor(30, 30, 30),
 		masked = true,
 		locale = "login_panel_password_label"
 	})
@@ -273,33 +339,78 @@ local function createRegisterPanel()
 		y = y,
 		width = 450,
 		height = 50,
-		type = "dark",
+		color = tocolor(200, 205, 210),
+		textHolderColor = tocolor(0, 0, 0),
+		textDarkHolderColor = tocolor(255,255,255),
+        hover = true,
+		hoverColor = tocolor(130, 130, 200),
+		darkToggle = true,
+		darkColor = tocolor(50, 50, 50),
+		hoverDarkColor = tocolor(30, 30, 30),
 		masked = true,
 		locale = "login_panel_password_confirm_label"
 	})
 	UI:addChild(panel, passwordConfirmInput)
 
-	local backButton = UI:createDpButton({
-		x = 0,
-		y = panelHeight - 55,
-		width = panelWidth / 2,
-		height = 55,
-		type = "default_dark",
+	local backButton = UI:createTrcRoundedRectangle {
+		x       = 0,
+        y       = 100,
+        width   = 155,
+        height  = 50,
+		radius = 15,
+		color = tocolor(200, 205, 210),
+		hover = true,
+		hoverColor = tocolor(130, 130, 200),
+		darkToggle = true,
+		darkColor = tocolor(50, 50, 50),
+		hoverDarkColor = tocolor(30, 30, 30)
+	}
+	UI:addChild(passwordConfirmInput, backButton)
+	
+	local backButtonText = UI:createDpLabel {
+		x = 78,
+		y = 22,
+		width = width,
+		height = height,
 		text = "Назад",
+		color = tocolor (0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
+		alignX = "center",
+		alignY = "center",
 		locale = "login_panel_back"
-	})
-	UI:addChild(panel, backButton)
+	}
+	UI:addChild(backButton, backButtonText)
 
-	local registerButton = UI:createDpButton({
-		x = panelWidth / 2,
-		y = panelHeight - 55,
-		width = panelWidth / 2,
-		height = 55,
-		type = "primary",
+	local registerButton = UI:createTrcRoundedRectangle {
+		x       = 295,
+        y       = 0,
+        width   = 155,
+        height  = 50,
+		radius = 15,
+		color = tocolor(200, 205, 210),
+		hover = true,
+		hoverColor = tocolor(130, 130, 200),
+		darkToggle = true,
+		darkColor = tocolor(50, 50, 50),
+		hoverDarkColor = tocolor(30, 30, 30)
+	}
+	UI:addChild(backButton, registerButton)
+	
+	local registerButtonText = UI:createDpLabel {
+		x = 78,
+		y = 22,
+		width = width,
+		height = height,
 		text = "Зарегистрироваться",
-		locale = "login_panel_register_button"
-	})
-	UI:addChild(panel, registerButton)
+		color = tocolor (0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
+		alignX = "center",
+		alignY = "center",
+		locale = "login_panel_register_button_toggle"
+	}
+	UI:addChild(registerButton, registerButtonText)
 
 	UI:setVisible(panel, false)
 	registerPanel.panel = panel
@@ -317,6 +428,7 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
 	
 	if not localPlayer:getData("username") then
 		fadeCamera(false, 0)
+		setVisible(true)
 	end
 end)
 

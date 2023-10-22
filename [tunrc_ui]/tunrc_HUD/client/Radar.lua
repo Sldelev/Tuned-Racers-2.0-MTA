@@ -1,7 +1,9 @@
 Radar = {}
-Radar.visible = false
+Radar.visible = true
 local DRAW_POST_GUI = false
 local screenWidth, screenHeight = guiGetScreenSize()
+
+local PROPERTY_RADAR_ROTATING = "ui.radar_rotate"
 
 local width, height = Utils.screenScale(250), Utils.screenScale(250)
 local screenOffset = Utils.screenScale(20)
@@ -75,12 +77,21 @@ local function drawBlips()
 	for i,blip in ipairs(getElementsByType("blip")) do
 		local x, y, z = getElementPosition(blip)
 		if allowedIcons[blip.icon] and getDistanceBetweenPoints2D(x, y, px, py) < 100 then
-			Radar.drawImageOnMap(
-				x, y, camera.rotation.z,
-				blipTextures[blip.icon],
-				blipTextureSize,
-				blipTextureSize
-			)
+			if exports.tunrc_Config:getProperty(PROPERTY_RADAR_ROTATING) == true then
+				Radar.drawImageOnMap(
+					x, y, camera.rotation.z,
+					blipTextures[blip.icon],
+					blipTextureSize,
+					blipTextureSize
+				)
+			else
+				Radar.drawImageOnMap(
+					x, y, z,
+					blipTextures[blip.icon],
+					blipTextureSize,
+					blipTextureSize
+				)
+			end
 		end
 	end
 end
@@ -149,7 +160,7 @@ addEventHandler("onClientRender", root, function ()
 	-- Отдаление радара при быстрой езде
 	if localPlayer.vehicle then
 		local speed = localPlayer.vehicle.velocity.length
-		scale = scale - math.min(MAX_SPEED_SCALE, speed * 1)
+		scale = scale -- math.min(MAX_SPEED_SCALE, speed * 1)
 	end
 	chunkRenderSize = CHUNK_SIZE * scale / SCALE_FACTOR
 
@@ -160,7 +171,11 @@ addEventHandler("onClientRender", root, function ()
 		dxSetRenderTarget()
 
 		-- Следование за игроком
-		maskShader:setValue("gUVRotAngle", -math.rad(camera.rotation.z))
+		if exports.tunrc_Config:getProperty(PROPERTY_RADAR_ROTATING) == true then
+			maskShader:setValue("gUVRotAngle", -math.rad(camera.rotation.z))
+		else
+			maskShader:setValue("gUVRotAngle", 0, 0)
+		end
 		maskShader:setValue("gUVPosition", 0, 0)
 		maskShader:setValue("gUVScale", 1, 1)
 		maskShader:setValue("sPicTexture", renderTarget)

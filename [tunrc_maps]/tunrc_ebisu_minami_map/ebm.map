@@ -1,0 +1,12 @@
+<map edf:definitions="editor_main">
+    <object id="object (LOW_COUCH_2) (2)" breakable="true" interior="0" alpha="255" model="1700" doublesided="true" scale="1" dimension="0" posX="255.729" posY="164.897" posZ="8000" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (LOW_COUCH_1) (2)" breakable="true" interior="0" alpha="255" model="1701" doublesided="true" scale="1" dimension="0" posX="250.916" posY="42.128" posZ="7998.45001" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (SWANK_SINGLE_2) (2)" breakable="true" interior="0" alpha="255" model="1702" doublesided="true" scale="1" dimension="0" posX="127.503" posY="129.52699" posZ="7999.43799" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (SWANK_COUCH_2) (3)" breakable="true" interior="0" alpha="255" model="1703" doublesided="true" scale="1" dimension="0" posX="128.159" posY="11.638" posZ="8001.816" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (MED_COUCH_2) (2)" breakable="true" interior="0" alpha="255" model="1704" doublesided="true" scale="1" dimension="0" posX="9.5" posY="126.796" posZ="7998.90601" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (LOW_SINGLE_1) (2)" breakable="true" interior="0" alpha="255" model="1705" doublesided="true" scale="1" dimension="0" posX="9.03" posY="8.616" posZ="8002.946" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (LOW_SINGLE_4) (2)" breakable="true" interior="0" alpha="255" model="1706" doublesided="true" scale="1" dimension="0" posX="-129.84801" posY="70.235" posZ="8011.09198" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (SWANK_SINGLE_1) (2)" breakable="true" interior="0" alpha="255" model="1707" doublesided="true" scale="1" dimension="0" posX="-296.70999" posY="20.707" posZ="4040.3879" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (LOW_COUCH_5) (2)" breakable="true" interior="0" alpha="255" model="1708" doublesided="true" scale="1" dimension="0" posX="433.866" posY="131.722" posZ="7978.85699" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (MED_SINGLE_2) (3)" breakable="true" interior="0" alpha="255" model="1710" doublesided="true" scale="1" dimension="0" posX="-259.772" posY="87.881" posZ="8038.111" rotX="0" rotY="0" rotZ="0"></object>
+</map>

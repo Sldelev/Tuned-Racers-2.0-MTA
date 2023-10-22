@@ -20,6 +20,7 @@
 	"groups_player": "Игрок",
 	"groups_Moderator": "Модератор",
 	"groups_Admin": "Админ",
+	"groups_Ceo": "CEO",
 
 	"race_type_drift": "Дрифт",
 	"race_type_drag": "Драг",
@@ -47,7 +48,7 @@
 	"tutorial_garage_text": "TunedRacers это сервер про дрифт и стрит с некоторой изюминкой. Всё что тебе надо - это взять свою машину и посмотреть на карте на гонки дрифта. Там ты сможешь заработать бабосы на новые машины.",
 	
 	"tutorial_city_title": "Город",
-    "tutorial_city_text": "Теперь, когда ты получил свою первую машину, перед тобой открывается огромный мир дрифта по дорогам Америки(конечно нет), теперь тебе нужно заработать хоть какие-то копейки в доставке насвая или обычным дрифтом, просто чтобы не быть серой массой среди других застоявшихся зевак ЛКУ мира",
+    "tutorial_city_text": "Теперь, когда ты получил свою первую машину, перед тобой открывается огромный мир дрифта по дорогам Америки(конечно нет), теперь тебе нужно заработать хоть какие-то копейки в гонках, просто чтобы не быть серой массой среди других застоявшихся зевак ЛКУ мира",
 	
 	"help_panel_general_title": "Основное",
 	"help_panel_general_text": "ОСНОВНЫЕ КЛАВИШИ\nF1 - основная панель, телепорты, настройки\nF2 - включить/выключить курсор.\nЪ - Выставить время на 8 утра и погоду на Облачно 4\n1 - включить/выключить фары\nO - фоторежим\nI - скрыть/показать интерфейс",
@@ -98,13 +99,24 @@
 	"login_panel_server_not_available": "Сервер в данный момент недоступен",
 	"login_panel_server_error": "Ошибка сервера",
 	
-	// Car Info Panel
+	// Tutorial
 	
-	"car_info_close": "Назад",
+	"tutorial_panel_main_lable": "Туториал",
+	"tutorial_panel_text_one": "И так... Скорее всего вы промотали стандартный туториал при заходе на сервер, по этому обратились сюда т.к ничего не понимаете.\nПереключаясь по вкладкам сверху вы сможете узнать как работает та или иная система на сервере.",
+	"tutorial_panel_text_two": "Начнём пожалуй с самого важного - ДЕНЬГИ.\nЗаработок идёт от гонок и продаже автомобилей игрокам, через эти 2 способа вы можете заработать деньги( не учитываем донат ) на новые машины, тюнинг и прочее.\nГонки можно кататься как в соло, так и с другими людьми (чем больше людей в гонке - тем больше заработает каждый из вас).\nЧтобы попасть в гонку вам нужно нажать Ф1, зайти в меню телепортов, выбрать вкладку гонки и выбрать любую гонку из списка, после нажать 'G' чтобы войти в меню гонки и подождать 10 секунд.\nПродажа авто будет расписана в отдельной вкладке.",
+	"tutorial_panel_text_three": "Автосалон находится по левой стороне от гаража, так же в автосалон можно попасть по команде /carshop предварительно выйдя из автомобиля.\nАвтомобили можно покупать как за игровую, так и за донат валюту, при наличии у вас премиума все автомобили будут иметь скидку 20%",
+	"tutorial_panel_text_four": "/garage - Войти в гараж.\n/carshop - войти в автосалон (вне автомобиля).\ndt id - смена игрового измерения (id - это номер измерения от 0 до 999).\nskin id - сменить скин на сервере (id - это номер скина от 0 до 312).\nТакие комманды как dt и skin нужно вводить в консоль на F8",
+	"tutorial_panel_text_five": "Чтобы продать автомобиль он в первую очередь должен быть ВАШ (как ни странно) и это должен быть не ваш единственный автомобиль.\nТеперь всё что вам нужно - это чтобы игрок которому вы хотите продать был близко к вам ( желательно стоял впритык к вашей машине ), вам нужно нажать Ф1 и нажать на кнопку справа 'Продать машину', далее выбрать нужного вам игрока, выставить цену и выставить оффер на покупку игроку-покупателю.",
+	"tutorial_panel_text_six": "Основные клавиши управления автомобилем:\n'/' - Аварийный сигнал\n'.' - Поворотник направо\n',' - Поворотник налево\n'1' - Включить/Выключить фары\n'-' - Предыдущий трек\n'=' - Следующий трек",
 	
-	"car_info_mileanage": "Пробег",
-	"car_info_stickers_count": "Количество стикеров",
-	"car_info_country": "Штат / Префектура",
+	"tutorial_panel_cancel_button": "Закрыть",
+	"tutorial_panel_main_button": "Главная",
+	"tutorial_panel_money_button": "Заработок",
+	"tutorial_panel_carshop_button": "Автосалон",
+	"tutorial_panel_commands_button": "Команды",
+	"tutorial_panel_carsell_button": "Продажа",
+	"tutorial_panel_carcontrol_button": "Управление",
+	"markers_tutorial_enter_text": "Нажмите 'G' чтобы открыть туториал",
 	
 	// Notifications
 	
@@ -160,7 +172,7 @@
 	"chat_adminsay_Ceo": "CEO",
 	"chat_adminsay_Admin": "Admin",
 	"chat_adminsay_Moderator": "Staff",
-	"chat_premiumsay": "Премиум",
+	"chat_premiumsay": "★",
 	"chat_admin_mute": "Игрок %s получил мут от %s на %s сек.",
 	"chat_admin_mute_min": "Игрок %s получил мут от %s на %s мин.",
 	"chat_admin_unmute": "С игрока %s снят мут от %s.",
@@ -179,10 +191,10 @@
 	"garage_slot_need_level": "Нужен уровень",
 
 	// Интерфейс гаража
-	"garage_menu_go_city": "Выбрать машину",
+	"garage_menu_go_city": "Выход",
 	"garage_menu_customize": "Тюнинг",
 	"garage_menu_settings": "Настройки",
-	"garage_menu_sell": "Продать машину",
+	"garage_menu_sell": "Продажа",
 	"garage_menu_remove": "Удалить машину",
 	"garage_menu_exit": "Выход",
 	"garage_tuning_remove_text": "Снять",
@@ -212,11 +224,7 @@
 	"garage_tuning_component_spoilers": "Спойлер",
 	"garage_tuning_component_rear_fends": "Задние Фендеры",
 	"garage_tuning_component_front_fends": "Передние Фендеры",
-	"garage_tuning_component_front_fendsl": "Передний Фендер слева",
-	"garage_tuning_component_front_fendsr": "Передний Фендер справа",
 	"garage_tuning_component_bonnet": "Капот",
-	"garage_tuning_component_engine": "Двигатели",
-	"garage_tuning_item_engine": "Двигатель",
 	"garage_tuning_component_rear_lights": "Задние фары",
 	"garage_tuning_component_front_lights": "Передние фары",
 	"garage_tuning_component_exhaust": "Выхлоп",
@@ -225,22 +233,24 @@
 	"garage_tuning_component_FaraL": "Передняя фара слева",
 	"garage_tuning_component_Dops": "Дополнительно",
 	"garage_tuning_component_Lips": "Губы",
-	"garage_tuning_component_Extraone": "Экстра 1",
-	"garage_tuning_component_Extratwo": "Экстра 2",
-	"garage_tuning_component_Extrathree": "Экстра 3",
-	"garage_tuning_component_Extrafour": "Экстра 4",
-	"garage_tuning_component_Extrafive": "Экстра 5",
 	"garage_tuning_component_Seats": "Сидения",
 	"garage_tuning_component_Steer": "Рули",
 	"garage_tuning_component_Torpeda": "Торпеды",
-	"garage_tuning_component_Karkas": "Каркасы",
+	"garage_tuning_component_Karkas": "Каркас",
 	"garage_tuning_component_Acces": "Аксессуары",
+	
+	"garage_tuning_component_engine": "Двигатели",
+	"garage_tuning_item_engine": "Двигатель",
+	
 	"garage_tuning_component_intercooler": "Интеркулеры",
 	"garage_tuning_item_intercooler": "Интеркулер",
+	
 	"garage_tuning_component_Canards": "Канарды Спереди",
-	"garage_tuning_component_diffusors": "Диффузоры",
 	"garage_tuning_item_canards": "Канард передний",
+	
+	"garage_tuning_component_diffusors": "Диффузоры",
 	"garage_tuning_item_diffusors": "Диффузор",
+	
 	"garage_tuning_item_canardsr": "Канард задний",
 	"garage_tuning_item_boot": "Багажник",
 	"garage_tuning_item_roofs": "Спойлер на крышу",
@@ -255,6 +265,9 @@
 	"garage_tuning_item_frontnumber": "Передний номер",
 	"garage_tuning_component_grills": "Решётки",
 	"garage_tuning_item_grills": "Решётка",
+	
+	"garage_tuning_component_filters": "Впускной коллектор",
+	"garage_tuning_component_doors": "Двери",
 	
 	"garage_tuning_component_turbos": "Турбина",
 	"garage_tuning_item_turbos": "Турбина",
@@ -286,6 +299,20 @@
 	"garage_tuning_component_sidelights": "Поворотники",
 	"garage_tuning_item_sidelights": "Поворотник",
 	
+	"garage_tuning_component_interior": "Салон",
+	"garage_tuning_item_interior": "Салон",
+	
+	"garage_tuning_component_doorcards": "Дверные карты",
+	"garage_tuning_item_doorcards": "Дверные карты",
+	
+	"garage_tuning_component_dials": "Датчики",
+	"garage_tuning_item_dial": "Датчики",
+	
+	"garage_tuning_component_front_hcatcha": "Замки на капот",
+	"garage_tuning_item_hcatcha": "Замки на капот",
+	
+	"garage_tuning_component_body_rollcage": "Каркас кузовной",
+	
 	"garage_tuning_item_rbadge": "Шильдик сзади",
 	"garage_tuning_item_fbadge": "Шильдик спереди",
 	"garage_tuning_component_rbadge": "Шильдики сзади",
@@ -298,9 +325,16 @@
 
 	"garage_tuning_paint_body": "Цвет кузова",
 	"garage_tuning_smoke_color": "Цвет дыма",
+	"garage_tuning_paint_rollcage": "Цвет каркаса",
+	"garage_tuning_rollcage_color": "Цвет каркаса",
+	"garage_tuning_paint_engblock": "Цвет крышки ГБЦ",
+	"garage_tuning_engblock_color": "Цвет крышки ГБЦ",
 	"garage_tuning_paint_wheels_front": "Цвет передних дисков",
 	"garage_tuning_paint_wheels_rear": "Цвет задних дисков",
+	"garage_tuning_paint_bolts_front": "Цвет передних болтов",
+	"garage_tuning_paint_bolts_rear": "Цвет задних болтов",
 	"garage_tuning_paint_wheels": "Цвет дисков",
+	"garage_tuning_paint_bolts": "Цвет болтов",
 	"garage_tuning_paint_spoiler": "Цвет спойлера",
 
 	"garage_tuning_paint_hue": "Оттенок",
@@ -308,6 +342,8 @@
 	"garage_tuning_paint_brightness": "Яркость",
 	"garage_tuning_paint_shine": "Блик",
 	"garage_tuning_paint_opacity": "Прозрачность",
+	
+	"garage_tuning_paint_copy_color": "Скопировать цвет на все колёса",
 
 	"garage_tuning_item_bumper": "Бампер",
 	"garage_tuning_item_spoiler": "Спойлер",
@@ -331,7 +367,93 @@
 	"garage_tuning_item_extrafour": "Экстра",
 	"garage_tuning_item_extrafive": "Экстра",
 	"garage_tuning_item_lips": "Губа",
+	
+	// Колёса
+	
+	"garage_tuning_item_wheel_1": "Zerino Racing GT",
+	"garage_tuning_item_wheel_2": "Zerino Racing RC III",
+	"garage_tuning_item_wheel_3": "Zerino Racing RG II",
+	
+	// Тюнинг на Annis ZR350
+	
+	"477_garage_tuning_item_bumper_1": "Сток альтернативный",
+	"477_garage_tuning_item_bumper_2": "Hachi Aero",
+	"477_garage_tuning_item_bumper_3": "Nagasa Edge",
+	"477_garage_tuning_item_bumper_4": "Tebino GT (black)",
+	"477_garage_tuning_item_bumper_5": "Tebino GT (primary)",
+	"477_garage_tuning_item_bumper_6": "Kaoki Sport",
+	
+	"477_garage_tuning_item_intercooler_1": "Hachi G4",
+	"477_garage_tuning_item_intercooler_2": "Hachi G4 (fan ver.)",
+	"477_garage_tuning_item_intercooler_3": "Hachi G4 (irrigation ver.)",
+	
+	"477_garage_tuning_item_lips_1": "Hachi Aero",
+	"477_garage_tuning_item_lips_2": "Kaoki Sport",
+	"477_garage_tuning_item_lips_3": "Tebino GT",
+	
+	"477_garage_tuning_item_fara_1": "Sleppy Eyes",
+	"477_garage_tuning_item_fara_2": "Full Open",
+	
+	"477_garage_tuning_item_fender_dop_1": "Nagasa Edge",
+	
+	"477_garage_tuning_item_bonnet_1": "Hachi Aero",
+	"477_garage_tuning_item_bonnet_2": "Kaoki Sport",
+	"477_garage_tuning_item_bonnet_3": "Nagasa Edge",
+	"477_garage_tuning_item_bonnet_4": "Nagasa Ring",
+	"477_garage_tuning_item_bonnet_5": "Nagasa Sport",
+	"477_garage_tuning_item_bonnet_6": "Tebino GT",
+	"477_garage_tuning_item_bonnet_7": "Hachi Limit (transp.)",
+	
+	"477_garage_tuning_item_hcatcha_1": "Hachi Street",
+	"477_garage_tuning_item_hcatcha_2": "Kaoki Quick ver.1",
+	"477_garage_tuning_item_hcatcha_3": "Kaoki Quick ver.2",
+	
+	"477_garage_tuning_item_mirrors_1": "Hachi Street",
+	"477_garage_tuning_item_mirrors_2": "Nagasa Hood Edge",
+	
+	"477_garage_tuning_item_turbos_1": "Nagasa V-Mount ver.1",
+	"477_garage_tuning_item_turbos_2": "Nagasa V-Mount ver.2",
+	"477_garage_tuning_item_turbos_3": "Hachi V-Mount",
+	
+	"477_garage_tuning_item_frontnumber_1": "Номер в салоне",
+	
+	"477_garage_tuning_item_skirt_1": "Hachi Aero",
+	"477_garage_tuning_item_skirt_2": "Kaoki Sport",
+	"477_garage_tuning_item_skirt_3": "Kaoki Ring",
+	"477_garage_tuning_item_skirt_4": "Tebino GT",
+	"477_garage_tuning_item_skirt_5": "Nagasa Sport",
+	"477_garage_tuning_item_skirt_6": "Nagasa Edge",
+	"477_garage_tuning_item_skirt_7": "Nagasa Edge ver.2",
+	
+	"477_garage_tuning_item_rfender_1": "Nagasa Edge",
+	
+	"477_garage_tuning_item_reargls_1": "Hachi Aero",
+	"477_garage_tuning_item_reargls_2": "Hachi Aero (carbon)",
 
+	"477_garage_tuning_item_spoiler_1": "Hachi Aero",
+	"477_garage_tuning_item_spoiler_2": "Kaoki Sport",
+	"477_garage_tuning_item_spoiler_3": "Kaoki Ring",
+	"477_garage_tuning_item_spoiler_4": "Nagasa Rounded",
+	"477_garage_tuning_item_spoiler_5": "Nagasa Sport",
+	"477_garage_tuning_item_spoiler_6": "Tebino GT",
+	"477_garage_tuning_item_spoiler_7": "Nagasa Edge",
+	"477_garage_tuning_item_spoiler_8": "Nagasa Drift",
+	
+	"477_garage_tuning_item_diffusors_1": "Tebino GT",
+	
+	"477_garage_tuning_item_exhaust_1": "Hachi ZRX",
+	"477_garage_tuning_item_exhaust_2": "Kaoki Sport",
+	"477_garage_tuning_item_exhaust_3": "Kaoki Ring",
+	"477_garage_tuning_item_exhaust_4": "Nagasa Rounded",
+	"477_garage_tuning_item_exhaust_5": "Tebino Boso",
+	"477_garage_tuning_item_exhaust_6": "Tebino Boso BSR",
+	
+	"477_garage_tuning_item_seats_1": "Nagasa Drift",
+	"477_garage_tuning_item_seats_2": "Kaoki Sport",
+	"477_garage_tuning_item_seats_3": "Kaoki Ring",
+	
+	// Тюнинг в гараже
+	
 	"garage_tuning_side_top": "Крыша",
 	"garage_tuning_side_right": "Правая сторона",
 	"garage_tuning_side_left": "Левая сторона",
@@ -467,13 +589,19 @@
 	"main_panel_account_help": "Помощь",
 	"main_panel_account_carinfo": "Инфо о машине",
 	"main_panel_account_money": "Деньги",
+	"main_panel_account_donatmoney": "Донат",
 	"main_panel_account_admin": "Администратор",
 	"main_panel_account_player": "Игрок",
-	"main_panel_account_level": "Прогресс уровня",
+	"main_panel_account_level": "Уровень",
 	"main_panel_account_regtime": "Дата регистрации",
 	"main_panel_account_playtime": "Часов в игре",
 	"main_panel_account_cars_count": "Количество машин",
 	"main_panel_account_premium": "Премиум истекает",
+	
+	"main_panel_settings_inteface_button": "Интерфейс",
+	"main_panel_settings_gameplay_button": "Геймплей",
+	"main_panel_settings_graphics_button": "Графика",
+	"main_panel_settings_sound_button": "Звуки",
 
 	"main_panel_settings_section_game": "Настройки игры",
 	"main_panel_settings_section_chat": "Настройки чата",
@@ -481,21 +609,30 @@
 	"main_panel_settings_language": "Язык",
 	"main_panel_settings_color": "Цвет интерфейса",
 	"main_panel_settings_collision": "Откл.Коллизии(Бета)",
+	"main_panel_settings_alt_garage": "Альтернативный гараж",
 	"main_panel_settings_joinquit_messages": "Сообщения о подключениях",
 	"main_panel_settings_chat_timestamp": "Время отправки",
+	"main_panel_settings_screen_blur": "Размытие экрана",
+	"main_panel_settings_screen_draw_speedo": "Показывать спидометр",
+	"main_panel_settings_screen_draw_drift_points": "Показывать дрифт-очки",
+	"main_panel_settings_enable_glass_vynils": "Винилы на стёклах",
+	"main_panel_settings_nametags": "Отображение ников",
+	"main_panel_settings_selfnametags": "Отображение своего ника",
+	"main_panel_settings_background_music": "Музыка в гараже",
+	"main_panel_settings_background_world_music": "Музыка",
+	"main_panel_settings_smooth_steering": "Подруливание",
+	"main_panel_settings_radar_rotate": "Поворот Радара",
+	
 	"main_panel_settings_reflections_cars": "Отражения на автомобилях",
-	"main_panel_settings_tyres_smoke": "Улучшенный дым от шин",
 	"main_panel_settings_reflections_water": "Отражения на воде",
 	"main_panel_settings_improved_car_lights": "Улучшенный эффект фар",
 	"main_panel_settings_improved_sky": "Улучшенное небо",
-	"main_panel_settings_screen_blur": "Размытие экрана",
-	"main_panel_settings_screen_draw_speedo": "Показывать спидометр",
-	"main_panel_settings_enable_glass_vynils": "Винилы на стёклах",
+	"main_panel_settings_wetroad": "Улучшенный дождь",
 	"main_panel_settings_snow": "Улучшенные отстрелы",
-	"main_panel_settings_nametags": "Отображение ников",
-	"main_panel_settings_selfnametags": "Отображение своего ника",
-	"main_panel_settings_background_music": "Фоновая музыка",
-	"main_panel_settings_smooth_steering": "Подруливание",
+	"main_panel_settings_tyres_smoke": "Улучшенный дым от шин",
+	"main_panel_settings_ssao": "SSAO",
+	"main_panel_settings_fxaa": "FXAA",
+	
 	"main_panel_setting_change_password": "Изменить пароль",
 	"main_panel_setting_change_fps": "Изменить фпс",
 
@@ -514,6 +651,29 @@
 	"main_panel_fps_label": "Новый лимит",
 	"main_panel_fps_placeholder": "Введите лимит фпс",
 	"main_panel_new_fps_accept": "Установить",
+	
+	// OVERALPANEL
+	
+	"overallpanel_hello": "Привет, ",
+	"overallpanel_welcome_back": "Добро пожаловать!",
+	"overallpanel_dashboard_label": "Ваша панель готова к работе",
+	
+	"overallpanel_teleports_text": "Телепорты",
+	"overallpanel_settings_label": "Настройки",
+	"overallpanel_help_label": "Помощь",
+	"overallpanel_garage_label": "Гараж",
+	"overallpanel_music_text": "Музыка",
+	"overallpanel_music_count_text": "Доступно композиций:",
+	"overallpanel_money_label": "Валюта",
+	"overallpanel_all_earned_label": "Всего заработано дрифтом:",
+	"overallpanel_gift_panel_label": "Гифт-ключи",
+	"overallpanel_sell_vehicle_label": "Продать авто",
+	
+	// OVERALPANEL TELEPORTS BUTTONS	// OVERALPANEL TELEPORTS BUTTONS
+	"overallpanel_citys_text": "Города",
+	"overallpanel_tracks_text": "Трассы",
+	"overallpanel_mountains_text": "Горы",
+	"overallpanel_races_text": "Гонки",
 
 	// Markers
 	"markers_garage_text": "Нажмите %q чтобы войти в гараж",
@@ -608,9 +768,11 @@
 	"carshop_label_acceleration": "Ускорение",
 	"carshop_label_control": "Управление",
 
-	"carshop_buy_button": "Добавить в гараж",
+	"carshop_buy_button": "Купить за $",
+	"carshop_buy_button_donat": "Купить за ¤",
 	"carshop_required_level": "Требуется уровень %s",
 	"carshop_no_money": "Недостаточно денег",
+	"carshop_no_donat_money": "Нет донат-валюты",
 	"carshop_no_slots": "Нет места в гараже",
 	"carshop_need_premium": "Требуется премиум",
 	"carshop_buy_error_title": "Не удалось купить машину",
@@ -719,6 +881,7 @@
 	"gift_key_input_placeholder": "Ключ",
 	"gift_key_message_title": "Подарочный ключ",
 	"gift_key_message_fail": "Не удалось активировать данный ключ",
+	"gift_key_message_use_wait": "Подождите 24 часа перед повторной активацией ключа!",
 	"gift_key_message_success": "Вы успешно активировали свой подарочный ключ!",
 
 	// Lobby screen

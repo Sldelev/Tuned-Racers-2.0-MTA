@@ -1,0 +1,13 @@
+<meta>
+    <info name="Galdori" type="map"/>
+
+    <file src="galdori.txd" type="client" />
+
+    <file src="galdori.col" type="client" />
+    <file src="galdori1.col" type="client" />
+    <file src="galdori.dff" type="client" />
+    <file src="galdori1.dff" type="client" />
+    
+	<script type="client" src="client.lua"/>
+	<map src="galdori.map" dimension="-1"></map>
+</meta>

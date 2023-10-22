@@ -226,8 +226,9 @@ function FinishScreen.show(gridType)
         gridType = "default"
     end
     columns = {
-        {source = "name", size = 0.5, icon = "rank"},
-        {source = "prize", size = 0.25, icon = "dollar", space = 0}
+        {source = "name", size = 0.4, icon = "rank"},
+        {source = "prize", size = 0.2, icon = "dollar", space = 0},
+		{source = "exp", size = 0.15, icon = "rank", space = 0},
     }
 
     if gridType == "drift" then
@@ -256,6 +257,7 @@ addEventHandler("RaceLobby.playerFinished", resourceRoot, function (player, priz
     FinishScreen.addPlayer({
         name = exports.tunrc_Utils:removeHexFromString(player.name),
         prize = prize,
+		exp = exp,
         time = getTimeString(time),
         score = score,
         rank = rank

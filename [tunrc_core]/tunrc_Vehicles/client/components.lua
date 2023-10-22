@@ -11,15 +11,10 @@ local componentsFromData = {
 	["FrontLights"] = true, 	-- Передние фары
 	["FrontFends"]	= true, 	-- Передние фендеры
 	["RearFends"]	= true, 	-- Задние фендеры
-	["Acces"]		= true, 	-- Аксессуары
 	["Lips"]		= true, 	-- Губы
 	["Dops"]		= true, 	-- доп детали
 	["FaraL"]		= true, 	-- фара слева
 	["FaraR"]		= true, 	-- фара справа
-    ["Seats"]	= true, 	-- сидения
-	["Steering"]	= true, 	-- срули
-	["Torpeda"]	= true, 	-- торпеда
-	["Karkas"]	= true, 	-- защитная балка чтобы по голове не дало
     ["Acces"]	= true, 	-- акссесуары
 	["Canards"]	= true, 	-- канарды
 	["Diffusors"]	= true, 	-- диффузоры
@@ -30,13 +25,12 @@ local componentsFromData = {
 	["Fbadge"]	= true,  	-- передние шильдики
 	["Canardsr"]	= true,  	-- канарды сзади
 	["Boots"]	= true,  	-- багажники
+	["Splrs"]	= true,		-- спойлера
 	["RoofS"]	= true,  	-- спойлера на крыше
 	["Rearnumber"]	= true,  	-- номер сзади
-	["Frontnumber"]	= true,  	-- номер сзади
+	["Frontnumber"]	= true,  	-- номер спереди
 	["Bodykits"]	= true,  	-- бодикиты
-	["FrontFendsR"]	= true,  	-- бодикиты
-	["FrontFendsL"]	= true,  	-- бодикиты
-	["Roof"]	= true,  	-- бодикиты
+	["Roof"]	= true,  	-- крыши
 	["Grills"]	= true,  	-- решётки
 	["Mirrors"]	= true,  	-- зеркала
 	["SideLights"]	= true,  	-- поворотники
@@ -48,11 +42,24 @@ local componentsFromData = {
 	["AddLights"]	= true,  	-- доп фары
 	["AddSkirts"]	= true,  	-- накладки на юбки
 	["Rollingshells"]	= true,  	-- подкапотки
+	["Hcatcha"]	= true,  	-- замки на капот NEW
+	["BodyRollcage"]	= true, -- каркас кузова( на пикапы)
+	["Doors"]	= true, -- двери
+	["Filters"]	= true, -- система впуска
+	
+	--компоненты салона
+	
+	["Seats"]	= true, 	-- сидения
+	["Karkas"]	= true, 	-- защитная балка чтобы по голове не дало
+	["Stwheel"]	= true, 	-- срули NEW
+	["Dials"]	= true,		-- хуйни на дашборде с инфой NEW
+	["DoorCards"]	= true,	-- дверные карты NEW
+	["Interior"]	= true,	-- салон фул NEW
 }
 
 -- Апгрейды, которые нужно обновлять из даты
 local upgradesFromData = {
-	["Spoilers"] = {1000, 1001, 1002, 1003, 1014, 1015, 1016, 1023, 1049, 1050, 1058, 1060, 1138, 1139, 1146, 1147, 1158, 1162, 1163, 1164}
+	["Spoilers"] = {}
 }
 
 local function updateVehicleTuningComponent(vehicle, componentName, forceId)
@@ -69,6 +76,8 @@ local function updateVehicleTuningComponent(vehicle, componentName, forceId)
 		vehicle:setComponentVisible(componentName .. "Glass" .. tostring(i), false)
 		vehicle:setComponentVisible(componentName .. "Misc" .. tostring(i), false)
 		vehicle:setComponentVisible(componentName .. "Second" .. tostring(i), false)
+		vehicle:setComponentVisible(componentName .. "Third" .. tostring(i), false)
+		vehicle:setComponentVisible(componentName .. "Fourth" .. tostring(i), false)
 		if i > 0 and not vehicle:getComponentPosition(name) then
 			break
 		end
@@ -88,6 +97,8 @@ local function updateVehicleTuningComponent(vehicle, componentName, forceId)
 	vehicle:setComponentVisible(componentName .. "Glass" .. tostring(id), true)
 	vehicle:setComponentVisible(componentName .. "Misc" .. tostring(id), true)
 	vehicle:setComponentVisible(componentName .. "Second" .. tostring(id), true)
+	vehicle:setComponentVisible(componentName .. "Third" .. tostring(id), true)
+	vehicle:setComponentVisible(componentName .. "Fourth" .. tostring(id), true)
 
 	if not isElement(vehicle) then return false end
 	if type(componentName) ~= "string" or not componentsFromData[componentName] then

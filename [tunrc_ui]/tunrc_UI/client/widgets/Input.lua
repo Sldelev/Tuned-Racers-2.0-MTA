@@ -17,32 +17,38 @@ function Input.create(properties)
 	widget.masked = exports.tunrc_Utils:defaultValue(properties.masked, false)
 	widget.font = Fonts.lightSmall
 	widget.regexp = exports.tunrc_Utils:defaultValue(properties.regexp, false)
-	widget.textColor = Colors.color("white", 150)
-	widget.placeholderColor = Colors.color("white", 80)
+	widget.textHolderColor = properties.textHolderColor
+	widget.textDarkHolderColor = properties.textDarkHolderColor
+	widget.hover = properties.hover
+	widget.hoverColor = properties.hoverColor
+	widget.hoverDarkColor = properties.hoverDarkColor
+	widget.darkToggle = properties.darkToggle
+	widget.darkColor = properties.darkColor
 	local textOffsetX = 10
 	function widget:draw()
-		if activeInput == self then
-			self.color = self.colors.active
+		if exports.tunrc_Config:getProperty("ui.dark_mode") and properties.darkToggle == true then
+			if isPointInRect(self.mouseX, self.mouseY, 0, 0, self.width, self.height) and properties.hover == true then
+				self.color = properties.hoverDarkColor or tocolor(10,10,10)
+			else
+				self.textHolderColor = properties.textDarkHolderColor
+				self.color = properties.darkColor
+			end
 		else
-			if isPointInRect(self.mouseX, self.mouseY, 0, 0, self.width, self.height) then
-				if getKeyState("mouse1") then
-					self.color = self.colors.active
-				else
-					self.color = self.colors.hover
-				end
-			else		
-				self.color = self.colors.normal
+			if isPointInRect(self.mouseX, self.mouseY, 0, 0, self.width, self.height) and properties.hover == true then
+				self.color = properties.hoverColor or tocolor(105,105,105)
+			else
+				self.textHolderColor = properties.textHolderColor
+				self.color = properties.color
 			end
 		end
 		-- Background
-		Drawing.rectangle(self.x, self.y, self.width, self.height)
+		Drawing.rectangle(self.x, self.y, self.width, self.height, self.color)
 
 		-- Placeholder
 		local text = self.placeholder
-		Drawing.setColor(self.placeholderColor)
+		Drawing.setColor(self.textHolderColor)
 		if utf8.len(self.text) > 0 then
 			text = self.text
-			Drawing.setColor(self.textColor)
 			if self.masked then
 				text = ""
 				for i = 1, utf8.len(self.text) do

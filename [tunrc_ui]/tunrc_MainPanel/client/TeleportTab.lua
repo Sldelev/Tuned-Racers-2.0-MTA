@@ -46,7 +46,7 @@ local teleports2 = {
 	{ "Tsubaki Line",  "tsu" },
 	{ "Tsuchisaka",  "tsuchi" },
 	{ "Happogahara",  "happo" },
-	{ "Irohasaka",  "iro" },
+	{ "Irohazaka",  "iro" },
 	{ "Myogi",  "myogi" },
 	{ "Nagao",  "nagao" },
 	{ "Nanohanadai",  "nano" },

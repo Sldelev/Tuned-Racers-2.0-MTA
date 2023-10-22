@@ -19,7 +19,7 @@ cameraPresets.startingCamera = {
 }
 
 cameraPresets.freeLookCamera = {
-	targetPosition = Vector3(0, 0.1, 0),
+	targetPosition = Vector3(0, 0.1, -0.1),
 	rotationHorizontal = 30,
 	rotationVertical = 5,
 	distance = 8,
@@ -31,23 +31,44 @@ cameraPresets.freeLookCamera = {
 
 -- Дым	
 cameraPresets.smokeColor = {
-	targetPosition = Vector3(0, 1, 0),
-	rotationHorizontal = -20,
+	targetPosition = Vector3(0, 0, 0),
+	rotationHorizontal = -50,
 	rotationVertical = 10,
-	distance = 6,
+	distance = 8,
 	FOV = 50,
 	roll = 0
 }
 
 cameraPresets.selectingSmokeColor = {
-	targetPosition = Vector3(1, 1, 0.4),
-	rotationHorizontal = -20,
-	rotationVertical = 5,
-	distance = 6,
+	targetPosition = Vector3(0, 0, 0),
+	rotationHorizontal = -50,
+	rotationVertical = 10,
+	distance = 8,
 	FOV = 50,
 	roll = 0
 }
 
+-- Цвет Каркаса
+
+cameraPresets.selectingRollcageColor = {
+	targetPosition = Vector3(0, 0, 0),
+	rotationHorizontal = -50,
+	rotationVertical = 10,
+	distance = 8,
+	FOV = 50,
+	roll = 0
+}
+
+-- Цвет ГБЦ
+
+cameraPresets.selectingEngBlockColor = {
+	targetPosition = Vector3(0, 0, 0),
+	rotationHorizontal = -50,
+	rotationVertical = 10,
+	distance = 8,
+	FOV = 50,
+	roll = 0
+}
 --------------------------Детали спереди--------------------------------
 
 
@@ -72,7 +93,37 @@ cameraPresets.previewFrontBump = {
 }
 
 -- Передний бампер при покупке
+cameraPresets.previewHcatcha = {
+	targetPosition = Vector3(0, 0, 0),
+	rotationHorizontal = -50,
+	rotationVertical = 10,
+	distance = 8,
+	FOV = 50,
+	roll = 0
+}
+
+-- Передний бампер при покупке
 cameraPresets.previewRollingshells = {
+	targetPosition = Vector3(0, 0, 0),
+	rotationHorizontal = -50,
+	rotationVertical = 10,
+	distance = 8,
+	FOV = 50,
+	roll = 0
+}
+
+-- Передний бампер при покупке
+cameraPresets.previewDoors = {
+	targetPosition = Vector3(0, 0, 0),
+	rotationHorizontal = -50,
+	rotationVertical = 10,
+	distance = 8,
+	FOV = 50,
+	roll = 0
+}
+
+-- Передний бампер при покупке
+cameraPresets.previewFilters = {
 	targetPosition = Vector3(0, 0, 0),
 	rotationHorizontal = -50,
 	rotationVertical = 10,
@@ -172,6 +223,15 @@ cameraPresets.previewBodykits = {
 	roll = 0
 }
 
+cameraPresets.previewBodyRollcage = {
+	targetPosition = Vector3(0, 0, 0),
+	rotationHorizontal = -50,
+	rotationVertical = 10,
+	distance = 8,
+	FOV = 50,
+	roll = 0
+}
+
 -- интеркулер при покупке
 cameraPresets.previewIntercooler = {
 	targetPosition = Vector3(0, 0, 0),
@@ -217,6 +277,16 @@ cameraPresets.rearBump = {
 
 -- Задний бампер при покупке
 cameraPresets.previewRearBump = {
+	targetPosition = Vector3(0, 0, 0),
+	rotationHorizontal = -180,
+	rotationVertical = 10,
+	distance = 8,
+	FOV = 50,
+	roll = 0
+}
+
+-- Задний бампер при покупке
+cameraPresets.previewSplrs = {
 	targetPosition = Vector3(0, 0, 0),
 	rotationHorizontal = -180,
 	rotationVertical = 10,
@@ -343,7 +413,7 @@ cameraPresets.skirts = {
 	targetPosition = Vector3(0, 0, 0),
 	rotationHorizontal = 200,
 	rotationVertical = 10,
-	distance = 6.5,
+	distance = 7,
 	FOV = 50,
 	roll = 0
 }
@@ -353,7 +423,7 @@ cameraPresets.previewSkirts = {
 	targetPosition = Vector3(0, 0, 0),
 	rotationHorizontal = 200,
 	rotationVertical = 10,
-	distance = 6.5,
+	distance = 7,
 	FOV = 50,
 	roll = 0
 }
@@ -551,24 +621,54 @@ cameraPresets.previewstwhtex = {
 	roll = 0
 }
 
-----------------------------------------------------------
+---------------------ДЕТАЛИ САЛОНА-------------------------------------
 
--- Терпеды
-cameraPresets.torpeda = {
-	targetPosition = Vector3(0, 1, 0),
-	rotationHorizontal = -10,
-	rotationVertical = 20,
-	distance = 6,
+-- Передний бампер при покупке
+cameraPresets.stwheel = {
+	targetPosition = Vector3(0, 0, 0),
+	rotationHorizontal = -50,
+	rotationVertical = 10,
+	distance = 8,
 	FOV = 50,
 	roll = 0
 }
 
--- терпеды при покупке
-cameraPresets.previewTorpeda = {
-	targetPosition = Vector3(1, 1, 0),
-	rotationHorizontal = -10,
+-- Передний бампер при покупке
+cameraPresets.previewStwheel = {
+	targetPosition = "Steering_dummy",
+	rotationHorizontal = -175,
 	rotationVertical = 10,
-	distance = 6,
+	distance = 1,
+	FOV = 75,
+	roll = 0
+}
+
+-- Передний бампер при покупке
+cameraPresets.previewDials = {
+	targetPosition = Vector3(0, 0, 0),
+	rotationHorizontal = -50,
+	rotationVertical = 10,
+	distance = 8,
+	FOV = 50,
+	roll = 0
+}
+
+-- Передний бампер при покупке
+cameraPresets.previewDoorCards = {
+	targetPosition = Vector3(0, 0, 0),
+	rotationHorizontal = -50,
+	rotationVertical = 10,
+	distance = 8,
+	FOV = 50,
+	roll = 0
+}
+
+-- Передний бампер при покупке
+cameraPresets.previewInterior = {
+	targetPosition = Vector3(0, 0, 0),
+	rotationHorizontal = -50,
+	rotationVertical = 10,
+	distance = 8,
 	FOV = 50,
 	roll = 0
 }
@@ -596,67 +696,6 @@ cameraPresets.previewAcces = {
 	FOV = 50,
 	roll = 0
 }
-
--- Экстра 1 при покупке
-cameraPresets.previewExtraone = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
--- Экстра 2 при покупке
-cameraPresets.previewExtratwo = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
--- Экстра 3 при покупке
-cameraPresets.previewExtrathree = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
--- Экстра 4 при покупке
-cameraPresets.previewExtrafour = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
--- Экстра 5 при покупке
-cameraPresets.previewExtrafive = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -50,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
--- Выхлоп при покупке
-cameraPresets.previewExhaust = {
-	targetPosition = Vector3(0, 0, 0),
-	rotationHorizontal = -180,
-	rotationVertical = 10,
-	distance = 8,
-	FOV = 50,
-	roll = 0
-}
-
 
 -- Задние фары при покупке
 cameraPresets.previewRearLights = {
@@ -898,6 +937,26 @@ cameraPresets.selectingWheelsColorR = {
 	distance = 8,
 	FOV = 50,
 	roll = 0	
+}
+
+-- Покраска передних болтов при покупке
+cameraPresets.selectingBoltsColorF = {
+	targetPosition = Vector3(0, 0, 0),
+	rotationHorizontal = -50,
+	rotationVertical = 10,
+	distance = 8,
+	FOV = 50,
+	roll = 0
+}
+
+-- Покраска задних болтов при покупке
+cameraPresets.selectingBoltsColorR = {
+	targetPosition = Vector3(0, 0, 0),
+	rotationHorizontal = -50,
+	rotationVertical = 10,
+	distance = 8,
+	FOV = 50,
+	roll = 0
 }
 ----------------------------------------------------------
 cameraPresets.selectingSpoilerColor = {

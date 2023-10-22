@@ -1,5 +1,4 @@
 <map edf:definitions="editor_main">
-    <object id="object (GRILL) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="914" doublesided="false" scale="1" dimension="0" posX="1585" posY="2252.5" posZ="3701" rotX="0" rotY="0" rotZ="90"></object>
 	<removeWorldObject id="removeWorldObject (drivingschlgrg_SFS) (2)" radius="31.869303" interior="0" model="11014" lodModel="11372" posX="-2076.4375" posY="-107.92969" posZ="36.96875" rotX="0" rotY="0" rotZ="0"></removeWorldObject>
     <removeWorldObject id="removeWorldObject (crackfact_SFS) (1)" radius="58.588833" interior="0" model="11012" lodModel="11270" posX="-2166.8672" posY="-236.50781" posZ="40.86719" rotX="0" rotY="0" rotZ="0"></removeWorldObject>
     <object id="object (fishwarf04) (1)" breakable="true" interior="0" alpha="255" dimension="0" model="9913" scale="1" doublesided="false" collisions="true" frozen="false" posX="-1831.3125" posY="1331.7578" posZ="11.67188" rotX="0" rotY="0" rotZ="0"></object>

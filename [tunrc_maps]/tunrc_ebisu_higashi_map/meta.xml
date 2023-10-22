@@ -1,0 +1,53 @@
+<meta>
+    <oop>true</oop>
+	<info type="map" name="higashi" author="sdlevin" debhcription="remap" version="3" />
+ 
+	<script src="client.lua" type="client" />
+ 
+	<file src="ebh01.txd" type="client" />
+ 
+ 
+	<file src="ebh01.dff" type="client" />
+	<file src="ebh02.dff" type="client" />
+	<file src="ebh03.dff" type="client" />
+	<file src="ebh04.dff" type="client" />
+	<file src="ebh05.dff" type="client" />
+	<file src="ebh06.dff" type="client" />
+	<file src="ebh07.dff" type="client" />
+	<file src="ebh08.dff" type="client" />
+	<file src="ebh09.dff" type="client" />
+	<file src="ebh10.dff" type="client" />
+	<file src="ebh11.dff" type="client" />
+	<file src="ebh12.dff" type="client" />
+	<file src="ebh13.dff" type="client" />
+	<file src="ebh14.dff" type="client" />
+	<file src="ebh15.dff" type="client" />
+	<file src="ebh16.dff" type="client" />
+	<file src="ebh17.dff" type="client" />
+	<file src="ebh18.dff" type="client" />
+	<file src="ebh19.dff" type="client" />
+	<file src="ebh20.dff" type="client" />
+
+	<file src="ebh01.col" type="client" />
+	<file src="ebh02.col" type="client" />
+	<file src="ebh03.col" type="client" />
+	<file src="ebh04.col" type="client" />
+	<file src="ebh05.col" type="client" />
+	<file src="ebh06.col" type="client" />
+	<file src="ebh07.col" type="client" />
+	<file src="ebh08.col" type="client" />
+	<file src="ebh09.col" type="client" />
+	<file src="ebh10.col" type="client" />
+	<file src="ebh11.col" type="client" />
+	<file src="ebh12.col" type="client" />
+	<file src="ebh13.col" type="client" />
+	<file src="ebh14.col" type="client" />
+	<file src="ebh15.col" type="client" />
+	<file src="ebh16.col" type="client" />
+	<file src="ebh17.col" type="client" />
+	<file src="ebh18.col" type="client" />
+	<file src="ebh19.col" type="client" />
+	<file src="ebh20.col" type="client" />
+
+<map src="ebh.map" dimension="-1"></map>
+</meta>

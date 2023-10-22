@@ -92,7 +92,7 @@ end
 
 function TuningPanel:draw(fadeProgress)
 	-- Основной фон
-	dxDrawRectangle(
+	--[[dxDrawRectangle(
 		self.x, 
 		self.y, 
 		self.width, 
@@ -100,15 +100,15 @@ function TuningPanel:draw(fadeProgress)
 		tocolor(BACKGROUND_COLOR[1], BACKGROUND_COLOR[2], BACKGROUND_COLOR[3], self.backgroundAlpha * fadeProgress),
 		false,
 		true -- Sub pixel positioning
-	)
+	)]]
 	-- Отрисовка иконок
 	local x, y = self.x + PADDING_X, self.y + PADDING_Y
 	for i, item in ipairs(self.items) do
-		local color = tocolor(255, 255, 255, 255 * fadeProgress)
+		local color = tocolor(50, 50, 50, 255 * fadeProgress)
 		if i == self.activeItem then
 			color = tocolor(self.activeItemColor[1], self.activeItemColor[2], self.activeItemColor[3], 255 * fadeProgress)
 			if self.highlightSelection then
-				dxDrawRectangle(x, y, ICON_SIZE, ICON_SIZE, tocolor(50, 50, 50, 255 * fadeProgress))
+				dxDrawRectangle(x, y, ICON_SIZE, ICON_SIZE, tocolor(50, 50, 50, 125 * fadeProgress))
 			end			
 		end
 
@@ -148,7 +148,7 @@ function TuningPanel:draw(fadeProgress)
 
 	if self.text then
 		-- Фон прямоугольника с текстом
-		dxDrawRectangle(
+		--[[dxDrawRectangle(
 			self.x + self.width, 
 			self.y, 
 			self.textBoxWidth, 
@@ -156,7 +156,7 @@ function TuningPanel:draw(fadeProgress)
 			tocolor(TEXT_BACKGROUND_COLOR[1], TEXT_BACKGROUND_COLOR[2], TEXT_BACKGROUND_COLOR[3], self.textBackgroundAlpha * fadeProgress),
 			false,
 			true -- Sub pixel positioning			
-		)
+		)]]
 		-- Отрисовка текста
 		dxDrawText(
 			self.text, 

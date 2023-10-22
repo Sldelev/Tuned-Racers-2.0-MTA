@@ -2,34 +2,20 @@ VehicleTuning = {}
 
 VehicleTuning.defaultTuningTable = {
 -- Цвета
-	BodyColor 		= {220, 220, 220},	-- Цвет кузова
+	BodyColor 		= {150, 150, 150},	-- Цвет кузова
 	WheelsColorR 	= {155, 155, 155},	-- Цвет задних дисков
 	WheelsColorF 	= {155, 155, 155},	-- Цвет передних дисков
+	BoltsColorR 	= {205, 205, 205},	-- Цвет задних дисков
+	BoltsColorF 	= {205, 205, 205},	-- Цвет передних дисков
 	BodyTexture 	= false,			-- Текстура кузова
-	SpoilerColor	= {220, 220, 220},			-- Цвет спойлера
-	FrontFendColor = {220, 220, 220},            -- Передний фендер
-	FrontBumpColor = {220, 220, 220},            -- Передний фендер
-	BonnetColor = {220, 220, 220},            -- Передний фендер
-	SideSkirtsColor = {220, 220, 220},            -- Передний фендер
-	RearFendColor = {220, 220, 220},            -- Передний фендер
-	RearBumpColor = {220, 220, 220},            -- Передний фендер
-	ExtraOneColor = {220, 220, 220},            -- Передний фендер
-	ExtraTwoColor = {220, 220, 220},            -- Передний фендер
-	ExtraThreeColor = {220, 220, 220},            -- Передний фендер
-	ExtraFourColor = {220, 220, 220},            -- Передний фендер
-	KarkasColor = {220, 220, 220},            -- Передний фендер
-	FenderRightColor = {220, 220, 220},            -- Передний фендер
-	FenderLeftColor = {220, 220, 220},            -- Передний фендер
-	DopsColor = {220, 220, 220},            -- Передний фендер
-	LipsColor = {220, 220, 220},            -- Передний фендер
-	WheelsColorR 	= {220, 220, 220, 128},	-- Цвет задних дисков
-	WheelsColorF 	= {220, 220, 220, 128},	-- Цвет передних дисков
-	SmokeColor 	= {220, 220, 220},	-- Цвет передних дисков
+	SmokeColor 	= {220, 220, 220},	-- Цвет дыма
+	RollcageColor 	= {220, 220, 220},	-- Цвет каркаса
+	EngBlockColor 	= {200, 120, 120},	-- Цвет ГБЦ
 	NeonColor 		= false,			-- Цвет неона
 	SpoilerColor	= false,			-- Цвет спойлера
 
 	-- Дополнительно
-	Numberplate 	= "SFSC", 	-- Текст номерного знака
+	Numberplate 	= "TRC2023", 	-- Текст номерного знака
 	Nitro 			= 0, -- Уровень нитро
 
 	-- Колёса

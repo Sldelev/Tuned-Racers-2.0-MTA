@@ -5,7 +5,7 @@ local height = 380
 local panel
 -- Табы
 TABS_HEIGHT = 50
-local tabsNames = {"account","achievements", "teleport", "settings", "garage"}
+local tabsNames = {"teleport", "achievements", "settings", "garage"}
 local tabsButtons = {}
 local tabs = {}
 local tabsHandlers = {}
@@ -69,7 +69,7 @@ function Panel.create()
 	 return "$" .. tostring(value)
 	 end)
 	 
-	 -- Подпись
+	 -- Подпись валюты
 	local moneyLabelText = UI:createDpLabel {
 	 	x = width - width / 3 ,
 		y = -25,
@@ -81,6 +81,121 @@ function Panel.create()
 	 	locale = "main_panel_account_money"
 	 }
 	 UI:addChild(panel, moneyLabelText)
+	 
+	 -- донат-валюта
+	local moneyLabel = UI:createDpLabel {
+	x = width - width / 3 ,
+	y = -120,
+	width = width / 3, height = 50,
+	text = "$0",
+	type = "primary",
+	fontType = "defaultLarger",
+	alignX = "right"
+	}
+	UI:addChild(panel, moneyLabel)
+	UIDataBinder.bind(moneyLabel, "donatmoney", function (value)
+	 return "¤" .. tostring(value)
+	 end)
+	 
+	 -- Подпись донат-валюты
+	local donatMoneyLabelText = UI:createDpLabel {
+	 	x = width - width / 3 ,
+		y = -85,
+	 	width = width / 3, height = 50,
+		text = "DonatMoney",
+	 	color = tocolor(205, 205, 205, 255),
+	 	fontType = "defaultSmall",
+	 	alignX = "right",
+	 	locale = "main_panel_account_donatmoney"
+	 }
+	 UI:addChild(panel, donatMoneyLabelText)
+	 
+	 -- текст "уровень"
+	local levelLabel = UI:createDpLabel {
+		x = 0, y = -85,
+		width = width / 3, height = 50,
+		text = "Уровень",
+		color = tocolor(205, 205, 205, 255),
+		fontType = "defaultSmall",
+		alignX = "left",
+		locale = "main_panel_account_level"
+	}
+	UI:addChild(panel, levelLabel)
+	 -- фон прогресса
+	local levelProgressBg = UI:createRectangle {
+		x = (-UI:getWidth(levelLabel) - 10), y = -75,
+		width = (UI:getWidth(levelLabel)),
+		height = 10,
+		color = tocolor(205, 205, 205),
+	}
+	UI:addChild(panel, levelProgressBg)
+	-- полоска прогресса уровня
+	local levelProgress = UI:createRectangle {
+		x = 0, y = 0,
+		width = (width/2) * 0.65,
+		height = 10,
+		color = tocolor(40, 40, 40),
+	}
+	UI:addChild(levelProgressBg, levelProgress)	
+	-- нынешний уровень игрока
+	local levelLabelCurrent = UI:createDpLabel {
+		x = 0, y = -120,
+		width = width / 3, height = 50,
+		text = "1",
+		type = "primary",
+		fontType = "defaultLarger",
+		alignX = "left",
+		alignY = "center"
+	}
+	UI:addChild(panel, levelLabelCurrent)
+	UIDataBinder.bind(levelLabelCurrent, "level", function (value)
+	 return "☆" .. tostring(value)
+	end)
+	-- значения опыта игрока
+	local xpLabel = UI:createDpLabel {
+		x = (UI:getWidth(levelProgressBg) - 50) / 2, y = -15,
+		width = 50, height = 10,
+		text = "0/0",
+		type = "primary",
+		fontType = "defaultSmall",
+		alignX = "center",
+		alignY = "center"
+	}
+	UI:addChild(levelProgressBg, xpLabel)
+	
+	-----------------Кнопки сбоку------------------------
+	-- Sell car button
+	local x = -width * 0.6
+	local sellVehicleButton = UI:createDpButton {
+		x      = x + 150,
+        y      = height - 325,
+        width  = width / 3,
+		height = 50,
+		type = "primary",
+		locale = "main_panel_account_sell_vehicle"
+	}
+	UI:addChild(panel, sellVehicleButton)
+	-- Кнопка донат
+	local donateButton = UI:createDpButton {
+		x      = x + 150,
+        y      = height - 275,
+        width  = width / 3,
+		height = 50,
+		locale = "main_panel_account_donat",
+		type = "primary"
+	}
+	UI:addChild(panel, donateButton)
+	-- Кнопка помощь
+	local helpButton = UI:createDpButton {
+		x      = x + 150,
+        y      = height - 225,
+        width  = width / 3,
+		height = 50,
+		locale = "main_panel_account_help",
+		type = "primary"
+	}
+	UI:addChild(panel, helpButton)
+
 
     -- Табы
     local tabWidth = width / #tabsNames
@@ -96,6 +211,51 @@ function Panel.create()
         }
         UI:addChild(panel, tabsButtons[name])
     end
+	
+	ui = {
+		levelProgressBg = levelProgressBg,
+		levelProgress = levelProgress,
+
+		levelLabelCurrent = levelLabelCurrent,
+		levelLabel = levelLabel,
+		xpLabel = xpLabel,
+		
+		donateButton = donateButton,
+		helpButton = helpButton,
+		sellVehicleButton = sellVehicleButton
+	}
+end
+
+function Panel.refresh()
+	local level = localPlayer:getData("level")
+	if not level then
+		return
+	end
+	local xp = localPlayer:getData("xp")
+	if not xp then
+		return
+	end
+
+	local maxLevel = exports.tunrc_Core:getMaxLevel()
+	local xp1 = exports.tunrc_Core:getXPFromLevel(level)
+	local xp2 = exports.tunrc_Core:getXPFromLevel(level + 1)
+	local nextLevelXp = xp2 - xp1
+	local currentXp = xp - xp1
+
+	local progress = currentXp / nextLevelXp
+	if level >= maxLevel then
+		progress = 1
+	end
+	local width = UI:getWidth(ui.levelProgressBg)
+	UI:setWidth(ui.levelProgress, width * progress)
+
+	if level >= maxLevel then
+		UI:setVisible(ui.xpLabel, false)
+	else
+		UI:setText(ui.xpLabel, ("%s/%s XP"):format(exports.tunrc_Utils:format_num(currentXp, 0), exports.tunrc_Utils:format_num(nextLevelXp, 0)))
+		UI:setVisible(ui.xpLabel, true)
+	end
+
 end
 
 function Panel.addTab(name)
@@ -162,6 +322,7 @@ function Panel.setVisible(visible)
     showCursor(visible)
     exports.tunrc_UI:fadeScreen(visible)
     Panel.showTab("account")
+	Panel.refresh()
 end
 
 function Panel.isVisible()
@@ -177,6 +338,20 @@ addEventHandler("tunrc_UI.click", resourceRoot, function (widget)
             return
         end
     end
+	
+	if widget == ui.sellVehicleButton then
+        Panel.setVisible(false)
+        if localPlayer.vehicle and localPlayer.vehicle:getData("owner_id") == localPlayer:getData("_id")
+            and localPlayer:getData("garage_cars_count") > 1 then
+            exports.tunrc_SellVehicle:start()
+        end
+	elseif widget == ui.donateButton then
+		Panel.setVisible(false)
+		exports.tunrc_GiftsPanel:setVisible(true)
+	elseif widget == ui.helpButton then
+		Panel.setVisible(false)
+		exports.tunrc_HelpPanel:setVisible(not isVisible())	
+	end
 end)
 
 tabsHandlers.garage = function ()
@@ -192,9 +367,4 @@ end
 tabsHandlers.achievements = function ()
     UIDataBinder.refresh()
     AchievementsTab.refresh()
-end
-
-tabsHandlers.account = function ()
-    UIDataBinder.refresh()
-    AccountTab.refresh()
 end

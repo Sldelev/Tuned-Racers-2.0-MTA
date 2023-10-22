@@ -1,131 +1,233 @@
 CarshopMenu = {}
-local renderTarget
-local screenSize = {guiGetScreenSize()}
-local MENU_OFFSET = Vector3(0, 0, 1.6)
-local position = Vector3()
-local size = Vector2(1.5, 0.55)
-local rotation = 240
-local resolution = size * 250
+-- Новые переменные для перехода на UI
+local UI = exports.tunrc_UI
+local width = 400
+local height = 100
+local screenWidth, screenHeight = UI:getScreenSize()
 
-local headerHeight = 70
-local barOffset = 20
-local barHeight = 20
-local labelHeight = 50
-
-local barsList = {
-	{locale = "carshop_label_speed", value = 0.7, param = "speed"},
-	{locale = "carshop_label_acceleration", value = 0.4, param = "acceleration"},
-	{locale = "carshop_label_control", value = 0.85, param = "control"}
-}
-
-local headerFont
-local labelFont
-local hasDriftHandling = false
-
-local themeColor = {0, 0, 0}
-local themeColorHex = "#FFFFFF"
-
-local function draw()
-	dxDrawRectangle(1920 - screenSize[1], 25, resolution.x, resolution.y, tocolor(0, 0, 0, 25))
-
--- Цена
-	local priceText = ""
-	if Carshop.currentVehicleInfo.price > 0 then
-			priceTextPremium = "$" .. tostring(Carshop.currentVehicleInfo.price / 1.25)
-			priceText = "$" .. tostring(Carshop.currentVehicleInfo.price)
-	else
-		priceText = exports.tunrc_Lang:getString("price_free")
-	end
-	if localPlayer:getData("isPremium") then
-		dxDrawText(priceTextPremium, 1920 - screenSize[1], 50, 1920 - screenSize[1] + resolution.x - 20, headerHeight + 30, tocolor(themeColor[1], themeColor[2], themeColor[3]), 1, labelFont, "right", "center")
-		dxDrawRectangle(1920 - screenSize[1] + 300, 40, 60, 10, tocolor(200, 0, 0, 200), true)
-		dxDrawText(priceText, 1920 - screenSize[1], 50, 1920 - screenSize[1] + resolution.x - 20, headerHeight - 30, tocolor(themeColor[1], themeColor[2], themeColor[3]), 1, labelFont, "right", "center")
-	else
-		dxDrawText(priceText, 1920 - screenSize[1], 50, 1920 - screenSize[1] + resolution.x - 20, headerHeight, tocolor(themeColor[1], themeColor[2], themeColor[3]), 1, labelFont, "right", "center")
-	end
+function CarshopMenu.create()
+	panel = UI:createTrcRoundedRectangle {
+		x       = 50,
+        y       = screenHeight - (screenHeight - 50),
+        width   = width,
+        height  = height,
+		radius = 20,
+		color = tocolor(0, 0, 0, 100)
+		}
+    UI:addChild(panel)
+	UI:setVisible(panel, false)
 	
-	local priceWidth = dxGetTextWidth(priceText, 1, labelFont)
-
-	local headerText = Carshop.currentVehicleInfo.name
-	local hearderWidth = dxGetTextWidth(headerText, 1, headerFont)
-	local hearderScale = math.min(1, (resolution.x - 60 - priceWidth) / hearderWidth)
-	dxDrawText(headerText, (1920 - screenSize[1]) + 20, 50, (1920 - screenSize[1]) + resolution.x - 20 - priceWidth, headerHeight, tocolor(255, 255, 255), hearderScale, headerFont, "left", "center", true)
-
-	local buyButtonActive = true
-	local buyButtonText = exports.tunrc_Lang:getString("carshop_buy_button")
-	if Carshop.currentVehicleInfo.level > localPlayer:getData("level") then
-		buyButtonActive = false
-		--"Требуется уровень " .. 
-		buyButtonText = string.format(exports.tunrc_Lang:getString("carshop_required_level"), tostring(Carshop.currentVehicleInfo.level))
-	elseif Carshop.currentVehicleInfo.price > localPlayer:getData("money") then
-		buyButtonActive = false
-		buyButtonText = exports.tunrc_Lang:getString("carshop_no_money")
-	end
-	if not hasMoreGarageSlots() then
-		buyButtonActive = false
-		buyButtonText = exports.tunrc_Lang:getString("carshop_no_slots")
-	end
-	if Carshop.currentVehicleInfo.premium and not localPlayer:getData("isPremium") then
-		buyButtonActive = false
-		buyButtonText = exports.tunrc_Lang:getString("carshop_need_premium")
-	end
-	if not buyButtonActive then
-		dxDrawRectangle(1920 - screenSize[1], resolution.y - headerHeight + 25, resolution.x, headerHeight, tocolor(32, 30, 31))	
-		dxDrawText(buyButtonText, 1920 - screenSize[1], resolution.y - headerHeight + 50, 1920 - screenSize[1] + resolution.x, resolution.y, tocolor(255, 255, 255, 150), 1, headerFont, "center", "center")		
-	else
-		dxDrawRectangle(1920 - screenSize[1], resolution.y - headerHeight + 25, resolution.x, headerHeight, tocolor(themeColor[1], themeColor[2], themeColor[3]))	
-		dxDrawText(buyButtonText, 1920 - screenSize[1], resolution.y - headerHeight + 50, 1920 - screenSize[1] + resolution.x, resolution.y, tocolor(255, 255, 255), 1, headerFont, "center", "center")	
-	end
-
-	--[[local y = headerHeight
-	local barWidth = resolution.x - barOffset * 2
-	for i, bar in ipairs(barsList) do
-		-- Подпись
-		dxDrawText(bar.text, 0, y, resolution.x, y + labelHeight, tocolor(255, 255, 255), 1, labelFont, "center", "center")
-		y = y + labelHeight
-		dxDrawRectangle(barOffset, y, barWidth, barHeight, tocolor(65, 65, 65))
-		dxDrawRectangle(barOffset, y, barWidth * bar.value, barHeight, tocolor(themeColor[1], themeColor[2], themeColor[3]))
-
-		bar.value = bar.value + (Carshop.currentVehicleInfo.specs[bar.param] - bar.value) * 0.2
-		y = y + barHeight * 2
-	end
-	local labelText = exports.tunrc_Lang:getString("carshop_drift_label")
-	local valueText = ""
-	if Carshop.hasDriftHandling then
-		valueText = exports.tunrc_Lang:getString("carshop_drift_label_yes")
-	else
-		valueText = exports.tunrc_Lang:getString("carshop_drift_label_no")
-	end
-	dxDrawText(labelText .. ": " .. themeColorHex .. valueText, 0, y, resolution.x, y + labelHeight, tocolor(255, 255, 255), 1, labelFont, "center", "center", false, false, false, true)
-	]]
+	panelColor = UI:createTrcRoundedRectangle {
+		x       = -2,
+        y       = -4,
+        width   = width,
+        height  = height,
+		radius = 20,
+		color = tocolor(245, 245, 245),
+		darkToggle = true,
+		darkColor = tocolor(20, 20, 20)
+		}
+    UI:addChild(panel, panelColor)
+	-- название автомобиля
+	carNameLabel = UI:createDpLabel {
+		x = 10,
+		y = 5,
+		width = 0,
+		height = 0,
+		text = "CarName",
+		color = tocolor (50, 50, 50),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
+		fontType = "defaultLarger"
+	}
+	UI:addChild(panel, carNameLabel)
+	UIDataBinder.bind(carNameLabel, "carNameLabe", function ()
+		return tostring(Carshop.currentVehicleInfo.name)
+	end)
+	-- цена
+	priceLabel = UI:createDpLabel {
+		x = UI:getWidth(carNameLabel) + (width - 100) ,
+		y = 5,
+		width = 0,
+		height = 0,
+		text = "CarPrice",
+		color = tocolor (50, 50, 50, 150),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255, 150),
+		fontType = "defaultLarge"
+	}
+	UI:addChild(carNameLabel, priceLabel)
+	UIDataBinder.bind(priceLabel, "priceLabe", function ()
+		if not Carshop.currentVehicleInfo.price then
+			return " "
+		end
+		if localPlayer:getData("isPremium") then
+			return "$" .. tostring(Carshop.currentVehicleInfo.price / 1.25)
+		else
+			return "$" .. tostring(Carshop.currentVehicleInfo.price)
+		end
+	end)
+	
+	-- цена донат
+	donatpriceLabel = UI:createDpLabel {
+		x = 0,
+		y = 30,
+		width = 0,
+		height = 0,
+		text = "CarDonatPrice",
+		color = tocolor (50, 50, 50, 150),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255, 150),
+		fontType = "default"
+	}
+	UI:addChild(priceLabel, donatpriceLabel)
+	UIDataBinder.bind(donatpriceLabel, "donatpriceLabe", function ()
+		if not Carshop.currentVehicleInfo.donatprice then
+			return " "
+		end
+		return "¤" .. tostring(Carshop.currentVehicleInfo.donatprice)
+	end)
+	
+	buyButtonShadow = UI:createTrcRoundedRectangle {
+		x       = 12,
+        y       = height - 43,
+        width   = width / 3,
+        height  = height / 3,
+		radius = 15,
+		color = tocolor(50, 50, 132, 20),
+		darkToggle = true,
+		darkColor = tocolor(0, 0, 0, 20)
+	}
+	UI:addChild(panel, buyButtonShadow)
+	
+	-- кнопка покупки
+	buyButton = UI:createTrcRoundedRectangle {
+		x       = 10,
+        y       = height - 45,
+        width   = width / 3,
+        height  = height / 3,
+		radius = 15,
+		color = tocolor(200, 205, 210),
+		hover = true,
+		hoverColor = tocolor(130, 130, 200),
+		darkToggle = true,
+		darkColor = tocolor(50, 50, 50),
+		hoverDarkColor = tocolor(30, 30, 30)
+	}
+	UI:addChild(panel, buyButton)
+	
+	-- Текст панели гаража
+	buyButtonText = UI:createDpLabel {
+		x = UI:getWidth(buyButton) / 2,
+		y = UI:getHeight(buyButton) / 2,
+		width = 0,
+		height = 0,
+		text = "Buy button",
+		locale = "carshop_buy_button",
+		color = tocolor (0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
+		alignX = "center",
+		alignY = "center",
+		fontType = "light"
+	}
+	UI:addChild(buyButton, buyButtonText)	
+	UIDataBinder.bind(buyButtonText, "carshop_buy_button", function ()
+		if not Carshop.currentVehicleInfo.price then
+			return " "
+		end
+		if Carshop.currentVehicleInfo.premium and not localPlayer:getData("isPremium") then
+			return exports.tunrc_Lang:getString("carshop_need_premium")
+		end
+		if Carshop.currentVehicleInfo.price > localPlayer:getData("money") then
+			return exports.tunrc_Lang:getString("carshop_no_money")
+		end
+		if Carshop.currentVehicleInfo.level > localPlayer:getData("level") then
+			return string.format(exports.tunrc_Lang:getString("carshop_required_level"), tostring(Carshop.currentVehicleInfo.level))
+		end
+		return exports.tunrc_Lang:getString("carshop_buy_button")
+	end)
+	
+	buyDonatButtonShadow = UI:createTrcRoundedRectangle {
+		x       = UI:getWidth(buyButtonShadow) + 25,
+        y       = height - 43,
+        width   = width / 3,
+        height  = height / 3,
+		radius = 15,
+		color = tocolor(50, 50, 132, 20),
+		darkToggle = true,
+		darkColor = tocolor(0, 0, 0, 20)
+	}
+	UI:addChild(panel, buyDonatButtonShadow)
+	
+	-- кнопка покупки
+	buyDonatButton = UI:createTrcRoundedRectangle {
+		x       = UI:getWidth(buyButton) + 25,
+        y       = height - 45,
+        width   = width / 3,
+        height  = height / 3,
+		radius = 15,
+		color = tocolor(200, 205, 210),
+		hover = true,
+		hoverColor = tocolor(130, 130, 200),
+		darkToggle = true,
+		darkColor = tocolor(50, 50, 50),
+		hoverDarkColor = tocolor(30, 30, 30)
+	}
+	UI:addChild(panel, buyDonatButton)
+	
+	-- Текст панели гаража
+	buyDonatButtonText = UI:createDpLabel {
+		x = UI:getWidth(buyDonatButton) / 2,
+		y = UI:getHeight(buyDonatButton) / 2,
+		width = 0,
+		height = 0,
+		text = "Buy Donat button",
+		locale = "carshop_buy_donat_button",
+		color = tocolor (0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
+		alignX = "center",
+		alignY = "center",
+		fontType = "light"
+	}
+	UI:addChild(buyDonatButton, buyDonatButtonText)	
+	UIDataBinder.bind(buyDonatButtonText, "carshopdonat", function ()
+		if not Carshop.currentVehicleInfo.donatprice then
+			return " "
+		end
+		if Carshop.currentVehicleInfo.premium and not localPlayer:getData("isPremium") then
+			return exports.tunrc_Lang:getString("carshop_need_premium")
+		end
+		if Carshop.currentVehicleInfo.donatprice > localPlayer:getData("donatmoney") then
+			return exports.tunrc_Lang:getString("carshop_no_donat_money")
+		end
+		if Carshop.currentVehicleInfo.level > localPlayer:getData("level") then
+			return string.format(exports.tunrc_Lang:getString("carshop_required_level"), tostring(Carshop.currentVehicleInfo.level))
+		end
+		return exports.tunrc_Lang:getString("carshop_buy_button_donat")
+	end)
+	
 end
+addEventHandler( "onClientResourceStart", getRootElement( ), CarshopMenu.create)
 
-function CarshopMenu.start(basePosition)
-	position = MENU_OFFSET + basePosition
-
-	renderTarget = dxCreateRenderTarget(resolution.x, resolution.y, false)
-	headerFont = exports.tunrc_Assets:createFont("Roboto-Regular.ttf", 20)
-	labelFont = exports.tunrc_Assets:createFont("Roboto-Regular.ttf", 18)
-
-	themeColor = {exports.tunrc_UI:getThemeColor()}
-	themeColorHex = tostring(exports.tunrc_Utils:RGBToHex(unpack(themeColor)))
-
-	for i, bar in ipairs(barsList) do
-		bar.text = exports.tunrc_Lang:getString(bar.locale)
-	end
-
-	addEventHandler("onClientRender", root, draw)
+function CarshopMenu.start(basePosition)	
+	UI:setVisible(panel, true)
+	showCursor ( true )
+	UIDataBinder.refresh()
 end
 
 function CarshopMenu.stop()
-	if isElement(renderTarget) then
-		destroyElement(renderTarget)
-	end
-	if isElement(headerFont) then
-		destroyElement(headerFont)
-	end
-	if isElement(labelFont) then
-		destroyElement(labelFont)
-	end	
-	removeEventHandler("onClientRender", root, draw)
+	showCursor ( false )
+	UI:setVisible(panel, false)
 end
+
+addEvent("tunrc_UI.click", false)
+addEventHandler("tunrc_UI.click", resourceRoot, function (widget)
+    if widget == buyButton then
+		Carshop.buy()
+	end
+	if widget == buyDonatButton then
+		Carshop.donatbuy()
+	end
+end)

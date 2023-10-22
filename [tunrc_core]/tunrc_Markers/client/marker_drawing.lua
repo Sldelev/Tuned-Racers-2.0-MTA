@@ -63,6 +63,13 @@ markerTypes.drift = {
 	string = "markers_drift_enter_text"
 }
 
+markerTypes.tutorial = {
+	color = {220, 0, 0},
+	text = "assets/tutorial_text.png",
+	textSize = 2,
+	string = "markers_tutorial_enter_text"
+}
+
 markerTypes.exit = {
 	color = {50, 50, 50},
 	text = "assets/exit_icon.png",
@@ -195,6 +202,9 @@ local function drawMarker(marker)
 		return
 	end
 	local textSize = MARKER_TEXT_SIZE
+	if markerProperties.textSize then
+			textSize = markerProperties.textSize
+	end
 	-- Вертикальная картинка
 	local textAnimationOffset = math.sin(t * MARKER_ANIMATION_SPEED) * MARKER_TEXT_ANIMATION_SIZE
 	dxDrawMaterialLine3D(

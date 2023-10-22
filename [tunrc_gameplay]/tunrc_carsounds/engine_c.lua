@@ -379,6 +379,10 @@ function updateEngines(dt)
 						local ex, ey, ez = getVehicleComponentPosition(vehicle, "Exh" .. tostring(exhid) )
 						local rotex, rotey, rotez = getVehicleComponentRotation(vehicle, "Exh" .. tostring(exhid))
 						
+						local ext, eyt, ezt = getVehicleComponentPosition(vehicle, "ExhThird" .. tostring(exhid) )
+						local rotext, roteyt, rotezt = getVehicleComponentRotation(vehicle, "ExhThird" .. tostring(exhid))
+							
+							
 						local exhef = createEffect("gunsmoke", ex, ey, ez, 0, 0, 0)
 						setEffectSpeed(exhef, 1)
 							if velocity > 20 then
@@ -405,6 +409,34 @@ function updateEngines(dt)
 								end, 100, 1)
 						end
 						
+						if getVehicleComponentVisible(vehicle, "ExhThird" .. tostring(exhid)) == true then
+						local exhef2 = createEffect("gunsmoke", ext, eyt, ezt, 0, 0, 0)
+						setEffectSpeed(exhef2, 1)
+							if velocity > 20 then
+								setEffectDensity(exhef2, 0.09)
+							elseif velocity < 20 then
+								setEffectDensity(exhef2, 0.2)
+							end
+						data.effects[exhef2] = {ext, eyt, ezt, -180, roteyt, rotezt}
+						setTimer(function()
+									data.effects[exhef2] = nil
+								end, 100, 1)
+						end
+						
+						if getVehicleComponentVisible(vehicle, "ExhFourth" .. tostring(exhid)) == true then
+						local exhef3 = createEffect("gunsmoke", -ext, eyt, ezt, 0, 0, 0)
+						setEffectSpeed(exhef3, 1)
+							if velocity > 20 then
+								setEffectDensity(exhef3, 0.09)
+							elseif velocity < 20 then
+								setEffectDensity(exhef3, 0.2)
+							end
+						data.effects[exhef3] = {-ext, eyt, ezt, -180, roteyt, rotezt}
+						setTimer(function()
+									data.effects[exhef3] = nil
+								end, 100, 1)
+						end
+						
 						if data.activeALS and not isElement(data.sounds[6]) then
 							
 							data.sounds[6] = playSound3D("sounds/"..soundPack.."/als.wav", ex, ey, ez, false)
@@ -423,6 +455,18 @@ function updateEngines(dt)
 									setEffectSpeed(ef1, 0.8)
 									setEffectDensity(ef1, 2)
 									data.effects[ef1] = {-ex, ey, ez, -90, rotey, rotez} 
+								end
+								if getVehicleComponentVisible(vehicle, "ExhThird" .. tostring(exhid)) == true then
+									local ef2 = createEffect("gunflash", ext, eyt, ezt, 0, 0, 0)
+									setEffectSpeed(ef2, 0.8)
+									setEffectDensity(ef2, 2)
+									data.effects[ef2] = {ext, eyt, ezt, -90, roteyt, rotezt} 
+								end
+								if getVehicleComponentVisible(vehicle, "ExhFourth" .. tostring(exhid)) == true then
+									local ef2 = createEffect("gunflash", -ext, eyt, ezt, 0, 0, 0)
+									setEffectSpeed(ef2, 0.8)
+									setEffectDensity(ef2, 2)
+									data.effects[ef2] = {-ext, eyt, ezt, -90, roteyt, rotezt} 
 								end
 								setTimer(function()
 									data.effects[ef] = nil
@@ -552,6 +596,9 @@ function getGTARPM(vehicle)
             end
         else   
             if (getVehicleEngineState(vehicle) == true) then
+				if vehicleRPM == nil then
+					vehicleRPM = 0
+				end
                 vehicleRPM = vehicleRPM - 150
                 if (vehicleRPM < 650) then
                     vehicleRPM = math.random(650, 750)

@@ -9,7 +9,6 @@
 
     <script src="cryptMethod_shared.lua" type="shared" cache="false" />
     <script src="cryptMethodTEA_shared.lua" type="shared" cache="false" />
-    <!-- <script src="cryptMethodAES_shared.lua" type="shared" cache="false" /> -->
 
     <script src="admin_client.lua" type="client" cache="false" />
     <script src="admin_server.lua" type="server" />

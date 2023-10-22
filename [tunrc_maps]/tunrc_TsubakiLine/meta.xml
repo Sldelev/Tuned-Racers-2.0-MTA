@@ -1,0 +1,177 @@
+<meta>
+    <oop>true</oop>
+	<info type="map" name="daikoku" author="sdlevin" description="remap" version="3" />
+ 
+	<script src="client.lua" type="client" />
+ 
+	<file src="tl01.txd" type="client" />
+ 
+ 
+	<file src="tl01.dff" type="client" />
+	<file src="tl02.dff" type="client" />
+	<file src="tl03.dff" type="client" />
+	<file src="tl04.dff" type="client" />
+	<file src="tl05.dff" type="client" />
+	<file src="tl06.dff" type="client" />
+	<file src="tl07.dff" type="client" />
+	<file src="tl08.dff" type="client" />
+	<file src="tl09.dff" type="client" />
+	<file src="tl10.dff" type="client" />
+	<file src="tl11.dff" type="client" />
+	<file src="tl12.dff" type="client" />
+	<file src="tl13.dff" type="client" />
+	<file src="tl14.dff" type="client" />
+	<file src="tl15.dff" type="client" />
+	<file src="tl16.dff" type="client" />
+	<file src="tl17.dff" type="client" />
+	<file src="tl18.dff" type="client" />
+	<file src="tl19.dff" type="client" />
+	<file src="tl20.dff" type="client" />
+	<file src="tl21.dff" type="client" />
+	<file src="tl22.dff" type="client" />
+	<file src="tl23.dff" type="client" />
+	<file src="tl24.dff" type="client" />
+	<file src="tl25.dff" type="client" />
+	<file src="tl26.dff" type="client" />
+	<file src="tl27.dff" type="client" />
+	<file src="tl28.dff" type="client" />
+	<file src="tl29.dff" type="client" />
+<file src="tl30.dff" type="client" />
+<file src="tl31.dff" type="client" />
+<file src="tl32.dff" type="client" />
+<file src="tl33.dff" type="client" />
+<file src="tl34.dff" type="client" />
+<file src="tl35.dff" type="client" />
+<file src="tl36.dff" type="client" />
+<file src="tl37.dff" type="client" />
+<file src="tl38.dff" type="client" />
+<file src="tl39.dff" type="client" />
+<file src="tl40.dff" type="client" />
+<file src="tl41.dff" type="client" />
+<file src="tl42.dff" type="client" />
+<file src="tl43.dff" type="client" />
+<file src="tl44.dff" type="client" />
+<file src="tl45.dff" type="client" />
+<file src="tl46.dff" type="client" />
+<file src="tl47.dff" type="client" />
+<file src="tl48.dff" type="client" />
+<file src="tl49.dff" type="client" />
+<file src="tl50.dff" type="client" />
+<file src="tl51.dff" type="client" />
+<file src="tl52.dff" type="client" />
+<file src="tl53.dff" type="client" />
+<file src="tl54.dff" type="client" />
+<file src="tl55.dff" type="client" />
+<file src="tl56.dff" type="client" />
+<file src="tl57.dff" type="client" />
+<file src="tl58.dff" type="client" />
+<file src="tl59.dff" type="client" />
+<file src="tl60.dff" type="client" />
+<file src="tl61.dff" type="client" />
+<file src="tl62.dff" type="client" />
+<file src="tl63.dff" type="client" />
+<file src="tl64.dff" type="client" />
+<file src="tl65.dff" type="client" />
+<file src="tl66.dff" type="client" />
+<file src="tl67.dff" type="client" />
+<file src="tl68.dff" type="client" />
+<file src="tl69.dff" type="client" />
+<file src="tl70.dff" type="client" />
+<file src="tl71.dff" type="client" />
+<file src="tl72.dff" type="client" />
+<file src="tl73.dff" type="client" />
+<file src="tl74.dff" type="client" />
+<file src="tl75.dff" type="client" />
+<file src="tl76.dff" type="client" />
+<file src="tl77.dff" type="client" />
+<file src="tl78.dff" type="client" />
+<file src="tl79.dff" type="client" />
+<file src="tl80.dff" type="client" />
+<file src="tl81.dff" type="client" />
+<file src="tl82.dff" type="client" />
+
+	<file src="tl01.col" type="client" />
+	<file src="tl02.col" type="client" />
+	<file src="tl03.col" type="client" />
+	<file src="tl04.col" type="client" />
+	<file src="tl05.col" type="client" />
+	<file src="tl06.col" type="client" />
+	<file src="tl07.col" type="client" />
+	<file src="tl08.col" type="client" />
+	<file src="tl09.col" type="client" />
+	<file src="tl10.col" type="client" />
+	<file src="tl11.col" type="client" />
+	<file src="tl12.col" type="client" />
+	<file src="tl13.col" type="client" />
+	<file src="tl14.col" type="client" />
+	<file src="tl15.col" type="client" />
+	<file src="tl16.col" type="client" />
+	<file src="tl17.col" type="client" />
+	<file src="tl18.col" type="client" />
+	<file src="tl19.col" type="client" />
+	<file src="tl20.col" type="client" />
+	<file src="tl21.col" type="client" />
+	<file src="tl22.col" type="client" />
+	<file src="tl23.col" type="client" />
+	<file src="tl24.col" type="client" />
+	<file src="tl25.col" type="client" />
+	<file src="tl26.col" type="client" />
+	<file src="tl27.col" type="client" />
+	<file src="tl28.col" type="client" />
+	<file src="tl29.col" type="client" />
+<file src="tl30.col" type="client" />
+<file src="tl31.col" type="client" />
+<file src="tl32.col" type="client" />
+<file src="tl33.col" type="client" />
+<file src="tl34.col" type="client" />
+<file src="tl35.col" type="client" />
+<file src="tl36.col" type="client" />
+<file src="tl37.col" type="client" />
+<file src="tl38.col" type="client" />
+<file src="tl39.col" type="client" />
+<file src="tl40.col" type="client" />
+<file src="tl41.col" type="client" />
+<file src="tl42.col" type="client" />
+<file src="tl43.col" type="client" />
+<file src="tl44.col" type="client" />
+<file src="tl45.col" type="client" />
+<file src="tl46.col" type="client" />
+<file src="tl47.col" type="client" />
+<file src="tl48.col" type="client" />
+<file src="tl49.col" type="client" />
+<file src="tl50.col" type="client" />
+<file src="tl51.col" type="client" />
+<file src="tl52.col" type="client" />
+<file src="tl53.col" type="client" />
+<file src="tl54.col" type="client" />
+<file src="tl55.col" type="client" />
+<file src="tl56.col" type="client" />
+<file src="tl57.col" type="client" />
+<file src="tl58.col" type="client" />
+<file src="tl59.col" type="client" />
+<file src="tl60.col" type="client" />
+<file src="tl61.col" type="client" />
+<file src="tl62.col" type="client" />
+<file src="tl63.col" type="client" />
+<file src="tl64.col" type="client" />
+<file src="tl65.col" type="client" />
+<file src="tl66.col" type="client" />
+<file src="tl67.col" type="client" />
+<file src="tl68.col" type="client" />
+<file src="tl69.col" type="client" />
+<file src="tl70.col" type="client" />
+<file src="tl71.col" type="client" />
+<file src="tl72.col" type="client" />
+<file src="tl73.col" type="client" />
+<file src="tl74.col" type="client" />
+<file src="tl75.col" type="client" />
+<file src="tl76.col" type="client" />
+<file src="tl77.col" type="client" />
+<file src="tl78.col" type="client" />
+<file src="tl79.col" type="client" />
+<file src="tl80.col" type="client" />
+<file src="tl81.col" type="client" />
+<file src="tl82.col" type="client" />
+
+<map src="tsu.map" dimension="-1"></map>
+</meta>

@@ -1,7 +1,7 @@
 local hotels = {
 	{
 		garage = {
-			position = Vector3(2401.93, -1541, 23.49),
+			position = Vector3(595, -1240, 18),
 			rotation = Vector3(0, 0, 0),
 		},
 		position = Vector3 {x = 1787.025, y = -1384.408, z = 15.393},

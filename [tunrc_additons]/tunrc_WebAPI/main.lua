@@ -65,6 +65,15 @@ function giveMoney(username, amount)
     return exports.tunrc_core:giveUserMoney(username, tonumber(amount))
 end
 
+function giveDonatMoney(username, amount)
+    if not hostname or hostname ~= TRADEMC_IP then
+        outputDebugString("WebAPI: Bad request from '" .. tostring(hostname) .. "'")
+        return "Bad request"
+    end
+
+    return exports.tunrc_core:giveUserDonatMoney(username, tonumber(amount))
+end
+
 function giveVehicle(username, modelId)
     if not hostname or hostname ~= TRADEMC_IP then
         outputDebugString("WebAPI: Bad request from '" .. tostring(hostname) .. "'")

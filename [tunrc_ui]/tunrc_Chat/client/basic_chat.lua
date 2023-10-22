@@ -25,7 +25,7 @@ local function setupLangTabTitle()
 end
 
 local function setupGlobalTabTitle()
-	Chat.setTabTitle("global", exports.tunrc_Lang:getString("chat_tab_all"))
+	Chat.setTabTitle("global", exports.tunrc_Lang:getString("chat_tab_global"))
 end
 
 local function setupLocalTabTitle()
@@ -37,7 +37,7 @@ local function setupGlobalTabTitle()
 end
 
 addEventHandler("onClientResourceStart", resourceRoot, function ()
-	Chat.createTab("global", "Общий", true)
+	Chat.createTab("global", "Global", true)
 	setupGlobalTabTitle()
 
 	Chat.createTab("local", "Local", true)
@@ -101,9 +101,9 @@ addEventHandler("tunrc_Chat.broadcastMessage", root, function (tabName, message,
 		message = ("%s: #FFFFFF%s"):format(tostring(sender.name), tostring(message))
 		if playerGroup then
 			-- add tag to message
-			message = ("#75FF00[%s]#FFFFFF %s"):format(exports.tunrc_Lang:getString("chat_adminsay_" .. tostring(playerGroup)), tostring(message))
+			message = ("#75FF00%s#FFFFFF %s"):format(exports.tunrc_Lang:getString("chat_adminsay_" .. tostring(playerGroup)), tostring(message))
 		elseif sender:getData("isPremium") then
-			message = ("#FFAA00[%s]#FFFFFF %s"):format(exports.tunrc_Lang:getString("chat_premiumsay"), tostring(message))
+			message = ("#FFAA00%s#FFFFFF %s"):format(exports.tunrc_Lang:getString("chat_premiumsay"), tostring(message))
 		end
 	else
 		message = ("%s: #FFFFFF%s"):format(tostring(sender.name), tostring(message))

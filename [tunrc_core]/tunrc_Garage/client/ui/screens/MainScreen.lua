@@ -15,17 +15,7 @@ function MainScreen:init(item)
 
 	local position = GarageCar.getVehicle().matrix:transformPosition(-0.2, 3.5, 0)
 	position.z = 2534.8
-	self.carNamePanel = CarNamePanel(
-		position,
-		0
-	)
-	self.carNamePanel.text = ""
-
-	local this = self
-	setTimer(function()
-		this:updateCarName()
-	end, 500, 4)
-
+	
 	CameraManager.setState("startingCamera", false, 2)
 
 	if type(item) == "number" then
@@ -33,29 +23,19 @@ function MainScreen:init(item)
 	end
 end
 
-function MainScreen:updateCarName()
-	if not isElement(GarageCar.getVehicle()) then
-		return
-	end
-	self.carNamePanel.text = exports.tunrc_Shared:getVehicleReadableName(GarageCar.getVehicleModel())
-end
-
 function MainScreen:hide()
 	self.super:hide()
 	self.mainMenu:destroy()
-	self.carNamePanel:destroy()
 end
 
 function MainScreen:draw()
 	self.super:draw()
 	self.mainMenu:draw(self.fadeProgress)
-	self.carNamePanel:draw(self.fadeProgress)
 end
 
 function MainScreen:update(deltaTime)
 	self.super:update(deltaTime)
 	self.mainMenu:update(deltaTime)
-	self.carNamePanel:update(deltaTime)
 end
 
 function MainScreen:onKey(key)
@@ -77,5 +57,4 @@ function MainScreen:onKey(key)
 	elseif key == "arrow_r" then
 		GarageCar.showNextCar()
 	end
-	self:updateCarName()
 end

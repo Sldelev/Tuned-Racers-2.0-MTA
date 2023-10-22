@@ -9,17 +9,12 @@ local function updateVehicleBodyColor(vehicle)
 	vehicle:setColor(255, 255, 255)
 end
 
-local function updateVehicleSpoilerColor(vehicle)
-	-- TODO
-end
-
 -- Обновить все цвета автомобиля
 local function updateAllVehicleColors(vehicle)
 	if not isElement(vehicle) then
 		return
 	end
 	updateVehicleBodyColor(vehicle)
-	updateVehicleSpoilerColor(vehicle)
 end
 
 addEventHandler("onClientElementDataChange", root, function (name, oldVaue)
@@ -28,8 +23,6 @@ addEventHandler("onClientElementDataChange", root, function (name, oldVaue)
 	end
 	if name == "BodyColor" then
 		updateVehicleBodyColor(source)
-	elseif name == "SpoilerColor" then
-		updateVehicleSpoilerColor(source)
 	end
 end)
 

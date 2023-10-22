@@ -57,6 +57,17 @@ local function draw()
 		"top",
 		false, false, false, true
 	)
+	dxDrawText(
+		"¤#FFFFFF" .. tostring(localPlayer:getData("donatmoney")),
+		0, 55,
+		screenSize.x - 20, screenSize.y,
+		primaryColor,
+		1,
+		fonts.money,
+		"right",
+		"top",
+		false, false, false, true
+	)
 end
 
 local function onCursorMove(x, y)
@@ -91,6 +102,7 @@ local function onKey(key, down)
 		Carshop.showVehicle(currentVehicleId)
 		exports.tunrc_UI:hideMessageBox()
 		exports.tunrc_Sounds:playSound("ui_change.wav")
+		UIDataBinder.refresh()
 	elseif key == "d" or key == "arrow_r" then
 		currentVehicleId = currentVehicleId + 1
 		if currentVehicleId > #vehiclesList then
@@ -99,6 +111,7 @@ local function onKey(key, down)
 		Carshop.showVehicle(currentVehicleId)
 		exports.tunrc_UI:hideMessageBox()
 		exports.tunrc_Sounds:playSound("ui_change.wav")
+		UIDataBinder.refresh()
 	elseif key == "backspace" then
 		if localPlayer:getData("tutorialActive") then
 			return
@@ -128,9 +141,11 @@ function Carshop.start()
 			local vehicleInfo = {
 				model = model,
 				name = exports.tunrc_Shared:getVehicleReadableName(name),
+				description = exports.tunrc_Shared:getVehicleDescription(name),
 				price = priceInfo[1],
 				level = priceInfo[2],
-				premium = priceInfo[3]
+				premium = priceInfo[3],
+				donatprice = priceInfo[4]
 			}
 			table.insert(vehiclesList, vehicleInfo)
 		end
@@ -210,7 +225,7 @@ function Carshop.stop()
 	end
 
 	removeEventHandler("onClientCursorMove", root, onCursorMove)
-	removeEventHandler("onClientPreRender", root, update)
+	--removeEventHandler("onClientPreRender", root, update)
 	removeEventHandler("onClientRender", root, draw)
 	removeEventHandler("onClientKey", root, onKey)
 
@@ -277,6 +292,38 @@ function Carshop.buy()
 			exports.tunrc_Lang:getString("carshop_no_money"))
 	else
 		triggerServerEvent("tunrc_Carshop.buyVehicle", resourceRoot, Carshop.currentVehicleInfo.model)
+		isBuying = true
+		exports.tunrc_Sounds:playSound("sell.wav")
+	end
+	exports.tunrc_Sounds:playSound("ui_select.wav")
+end
+
+function Carshop.donatbuy()
+	if exports.tunrc_TutorialMessage:isMessageVisible() then
+		return
+	end
+	if Carshop.currentVehicleInfo.premium and not localPlayer:getData("isPremium") then
+		exports.tunrc_Sounds:playSound("error.wav")
+		return
+	end
+	if not hasMoreGarageSlots() then
+		exports.tunrc_Sounds:playSound("error.wav")
+		return
+	end
+	if Carshop.currentVehicleInfo.level > localPlayer:getData("level") then
+		exports.tunrc_Sounds:playSound("error.wav")
+		exports.tunrc_UI:showMessageBox(
+			exports.tunrc_Lang:getString("carshop_buy_error_title"),
+			string.format(
+				exports.tunrc_Lang:getString("carshop_required_level"),
+				tostring(Carshop.currentVehicleInfo.level)))
+	elseif Carshop.currentVehicleInfo.donatprice > localPlayer:getData("donatmoney") then
+		exports.tunrc_Sounds:playSound("error.wav")
+		exports.tunrc_UI:showMessageBox(
+			exports.tunrc_Lang:getString("carshop_buy_error_title"),
+			exports.tunrc_Lang:getString("carshop_no_money"))
+	else
+		triggerServerEvent("tunrc_Carshop.buyDonatVehicle", resourceRoot, Carshop.currentVehicleInfo.model)
 		isBuying = true
 		exports.tunrc_Sounds:playSound("sell.wav")
 	end

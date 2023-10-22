@@ -1,6 +1,7 @@
 <meta>
-    <oop>true</oop>
-
-    <script type="client" src="client.lua"/>
-    <export type="client" function="setVisible"/>
+	<oop>true</oop>
+	<script type="client" src="client/client.lua"/>
+	<script type="client" src="client/UIDataBinder.lua"/>
+	
+	<export type="client" function="setVisible"/>
 </meta>

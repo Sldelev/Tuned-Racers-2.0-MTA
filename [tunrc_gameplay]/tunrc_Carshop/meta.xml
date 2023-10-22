@@ -4,6 +4,7 @@
 	<script type="client" src="client/Carshop.lua"/>
 	<script type="client" src="client/CameraManager.lua"/>
 	<script type="client" src="client/enter_exit.lua"/>
+	<script type="client" src="client/UIDataBinder.lua"/>
 
 	<script type="server" src="server/enter_exit.lua"/>
 	<script type="server" src="server/buying.lua"/>

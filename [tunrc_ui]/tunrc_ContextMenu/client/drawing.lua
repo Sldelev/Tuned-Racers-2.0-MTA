@@ -10,11 +10,11 @@ local menuHeaderHeight = 35
 local itemTextOffset = 15
 
 local headerBackgroundColor = {20, 20, 20}
-local menuBackgroundColor = {228, 228, 228}
+local menuBackgroundColor = {42, 40, 41, 150}
 local menuSelectionColor = {212, 0, 40}
 
 local headerTextColor = {255, 255, 255}
-local menuTextColor = {0, 0, 0}
+local menuTextColor = {225, 225, 225}
 local menuSelectedTextColor = {255, 255, 255}
 local menuDisabledTextColor = {70, 70, 70}
 

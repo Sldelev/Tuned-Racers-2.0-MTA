@@ -1,0 +1,31 @@
+<meta>
+    <oop>true</oop>
+	<info type="map" name="higashi" author="sdlevin" debwcription="remap" version="3" />
+ 
+	<script src="client.lua" type="client" />
+ 
+	<file src="ebw01.txd" type="client" />
+ 
+ 
+	<file src="ebw01.dff" type="client" />
+	<file src="ebw02.dff" type="client" />
+	<file src="ebw03.dff" type="client" />
+	<file src="ebw04.dff" type="client" />
+	<file src="ebw05.dff" type="client" />
+	<file src="ebw06.dff" type="client" />
+	<file src="ebw07.dff" type="client" />
+	<file src="ebw08.dff" type="client" />
+	<file src="ebw09.dff" type="client" />
+
+	<file src="ebw01.col" type="client" />
+	<file src="ebw02.col" type="client" />
+	<file src="ebw03.col" type="client" />
+	<file src="ebw04.col" type="client" />
+	<file src="ebw05.col" type="client" />
+	<file src="ebw06.col" type="client" />
+	<file src="ebw07.col" type="client" />
+	<file src="ebw08.col" type="client" />
+	<file src="ebw09.col" type="client" />
+
+<map src="ebw.map" dimension="-1"></map>
+</meta>

@@ -4,6 +4,8 @@ BODY_TEXTURE_NAME = "body"
 
 local DEFAULT_TEXTURE_SIZE = 1024
 
+local currentMultiplier = 2
+
 local TEXTURE_SIZE = DEFAULT_TEXTURE_SIZE * currentMultiplier
 
 
@@ -65,7 +67,7 @@ local function drawSticker(sticker, selected)
 	end
 	local texture = stickersTextures[stickerId]
 	if not isElement(texture) then
-		stickersTextures[stickerId] = exports.tunrc_Stickers:createTexture("stickers/" .. tostring(stickerId) .. ".png")
+		stickersTextures[stickerId] = exports.tunrc_Stickers:createTexture("stickers/" .. tostring(stickerId) .. ".png", "dxt5")
 		texture = stickersTextures[stickerId]
 	end
 	x = x * _TEX_MULT
@@ -119,7 +121,7 @@ function createVehicleBodyRenderTarget(vehicle)
 		destroyElement(vehicleBodyRenderTarget)
 	end
 	vehicleBodyRenderTarget = dxCreateRenderTarget(TEXTURE_SIZE, TEXTURE_SIZE)
-	VehicleShaders.replaceTexture(vehicle, BODY_TEXTURE_NAME, vehicleBodyRenderTarget)
+	VehicleShaders.replaceBody(vehicle, BODY_TEXTURE_NAME, vehicleBodyRenderTarget)
 	return vehicleBodyRenderTarget
 end
 
@@ -142,10 +144,10 @@ local function setupVehicleTexture(vehicle)
 		local pixels = dxGetTexturePixels(mainRenderTarget)
 		local texture = dxCreateTexture(TEXTURE_SIZE, TEXTURE_SIZE)
 		dxSetTexturePixels(texture, pixels)
-		VehicleShaders.replaceTexture(vehicle, BODY_TEXTURE_NAME, texture)
+		VehicleShaders.replaceBody(vehicle, BODY_TEXTURE_NAME, texture, bodyColor)
 		destroyElement(texture)
 	else
-		VehicleShaders.replaceTexture(vehicle, BODY_TEXTURE_NAME, bodyRenderTarget)
+		VehicleShaders.replaceBody(vehicle, BODY_TEXTURE_NAME, bodyRenderTarget, bodyColor)
 	end
 end
 

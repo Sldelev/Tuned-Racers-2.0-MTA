@@ -1,6 +1,6 @@
 local TAB_NAME_PREFIX = "pmtab_"
 
-function startPM(player, message)
+--[[function startPM(player, message)
 	if not isElement(player) then
 		return false
 	end
@@ -34,9 +34,9 @@ function startPM(player, message)
 		Chat.message(tabName, localPlayer.name .. "#FFFFFF: " .. tostring(message))
 		triggerServerEvent("tunrc_Chat.pm", root, player, message)
 	end
-end
+end]]
 
-addCommandHandler("pm", function (cmd, name, ...)
+--[[addCommandHandler("pm", function (cmd, name, ...)
 	local players = exports.tunrc_Utils:getPlayersByPartOfName(name)
 	local player
 	if players then
@@ -56,7 +56,7 @@ addCommandHandler("pm", function (cmd, name, ...)
 		message = table.concat(args, " ")
 	end
 	startPM(player, message)
-end)
+end)]]
 
 local function getPlayerByAccountId(id)
 	for i, p in ipairs(getElementsByType("player")) do

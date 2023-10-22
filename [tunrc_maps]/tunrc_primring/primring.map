@@ -1,0 +1,6 @@
+<map edf:definitions="editor_main">
+    <object id="object (CJ_Wheel_03) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="1700" doublesided="false" scale="1" dimension="0" posX="2558.636" posY="-199.78999" posZ="7342.88901" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (CJ_Wheel_02) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="1701" doublesided="false" scale="1" dimension="0" posX="2636.5283" posY="-199.53418" posZ="7343.379" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (CJ_Wheel_1) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="1702" doublesided="false" scale="1" dimension="0" posX="2758.9609" posY="-199.55566" posZ="7340.26901" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (reel1) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="1703" doublesided="false" scale="1" dimension="0" posX="2897.582" posY="-201.121" posZ="7340.98499" rotX="0" rotY="0" rotZ="0"></object>
+</map>

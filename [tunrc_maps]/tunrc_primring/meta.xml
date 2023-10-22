@@ -1,0 +1,18 @@
+<meta>
+    <info name="Primring" type="map"/>
+
+    <file src="primring.txd" type="client" />
+
+    <file src="prim1.dff" type="client" />
+    <file src="prim2.dff" type="client" />
+    <file src="prim3.dff" type="client" />
+    <file src="prim4.dff" type="client" />
+
+    <file src="prim1.col" type="client" />
+    <file src="prim2.col" type="client" />
+    <file src="prim3.col" type="client" />
+    <file src="prim4.col" type="client" />
+	
+	<script type="client" src="client.lua"/>
+	<map src="primring.map" dimension="-1"></map>
+</meta>

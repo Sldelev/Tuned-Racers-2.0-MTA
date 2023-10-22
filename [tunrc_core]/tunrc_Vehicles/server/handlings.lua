@@ -45,8 +45,6 @@ local function setupVehicleHandling(vehicle)
 	updateVehicleMaxVelocity(vehicle) -- Максимальная скорость
 	updateVehicleSteer(vehicle) -- Выворот
 	updateVehicleMass(vehicle) -- Масса
-	updateVehicleTurnMass(vehicle) -- Ходовая Масса
-	updateVehicleWheelAcceleration(vehicle) -- Ускорение зависимое от развала задней оси
 	-- Имеет меньшее воздействие
 	updateVehicleBias(vehicle)
 	updateVehicleSuspension(vehicle)

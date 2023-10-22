@@ -142,8 +142,6 @@ function hide()
   --exports.tunrc_Garage:setVisible(not visible)
 
 	setTransferBoxVisible(true)
-	
-	exports.tunrc_LoginPanel:setVisible(true)
 end
 
 --[[function playMusic()

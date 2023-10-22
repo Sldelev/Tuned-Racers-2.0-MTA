@@ -1,0 +1,79 @@
+<meta>
+    <oop>true</oop>
+	<info type="map" name="daikoku" author="sdlevin" description="remap" version="3" />
+ 
+	<script src="client.lua" type="client" />
+ 
+	<file src="irohasaka.txd" type="client" />
+ 
+ 
+	<file src="irohasaka1.dff" type="client" />
+	<file src="irohasaka2.dff" type="client" />
+	<file src="irohasaka3.dff" type="client" />
+	<file src="irohasaka4.dff" type="client" />
+	<file src="irohasaka5.dff" type="client" />
+	<file src="irohasaka6.dff" type="client" />
+	<file src="irohasaka7.dff" type="client" />
+	<file src="irohasaka8.dff" type="client" />
+	<file src="irohasaka9.dff" type="client" />
+	<file src="irohasaka10.dff" type="client" />
+	<file src="irohasaka11.dff" type="client" />
+	<file src="irohasaka12.dff" type="client" />
+	<file src="irohasaka13.dff" type="client" />
+	<file src="irohasaka14.dff" type="client" />
+	<file src="irohasaka15.dff" type="client" />
+	<file src="irohasaka16.dff" type="client" />
+	<file src="irohasaka17.dff" type="client" />
+	<file src="irohasaka18.dff" type="client" />
+	<file src="irohasaka19.dff" type="client" />
+	<file src="irohasaka20.dff" type="client" />
+	<file src="irohasaka21.dff" type="client" />
+	<file src="irohasaka22.dff" type="client" />
+	<file src="irohasaka23.dff" type="client" />
+	<file src="irohasaka24.dff" type="client" />
+	<file src="irohasaka25.dff" type="client" />
+	<file src="irohasaka26.dff" type="client" />
+	<file src="irohasaka27.dff" type="client" />
+	<file src="irohasaka28.dff" type="client" />
+	<file src="irohasaka29.dff" type="client" />
+<file src="irohasaka30.dff" type="client" />
+<file src="irohasaka31.dff" type="client" />
+<file src="irohasaka32.dff" type="client" />
+<file src="irohasaka33.dff" type="client" />
+
+	<file src="irohasaka1.col" type="client" />
+	<file src="irohasaka2.col" type="client" />
+	<file src="irohasaka3.col" type="client" />
+	<file src="irohasaka4.col" type="client" />
+	<file src="irohasaka5.col" type="client" />
+	<file src="irohasaka6.col" type="client" />
+	<file src="irohasaka7.col" type="client" />
+	<file src="irohasaka8.col" type="client" />
+	<file src="irohasaka9.col" type="client" />
+	<file src="irohasaka10.col" type="client" />
+	<file src="irohasaka11.col" type="client" />
+	<file src="irohasaka12.col" type="client" />
+	<file src="irohasaka13.col" type="client" />
+	<file src="irohasaka14.col" type="client" />
+	<file src="irohasaka15.col" type="client" />
+	<file src="irohasaka16.col" type="client" />
+	<file src="irohasaka17.col" type="client" />
+	<file src="irohasaka18.col" type="client" />
+	<file src="irohasaka19.col" type="client" />
+	<file src="irohasaka20.col" type="client" />
+	<file src="irohasaka21.col" type="client" />
+	<file src="irohasaka22.col" type="client" />
+	<file src="irohasaka23.col" type="client" />
+	<file src="irohasaka24.col" type="client" />
+	<file src="irohasaka25.col" type="client" />
+	<file src="irohasaka26.col" type="client" />
+	<file src="irohasaka27.col" type="client" />
+	<file src="irohasaka28.col" type="client" />
+	<file src="irohasaka29.col" type="client" />
+<file src="irohasaka30.col" type="client" />
+<file src="irohasaka31.col" type="client" />
+<file src="irohasaka32.col" type="client" />
+<file src="irohasaka33.col" type="client" />
+
+<map src="irohasaka.map" dimension="-1"></map>
+</meta>

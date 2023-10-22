@@ -1,0 +1,16 @@
+<meta>
+    <info name="YZ Circuit" type="map"/>
+
+    <file src="yz_circuit.txd" type="client" />
+
+    <file src="yz1.col" type="client" />
+    <file src="yz2.col" type="client" />
+    <file src="yz3.col" type="client" />
+
+    <file src="yz1.dff" type="client" />
+    <file src="yz2.dff" type="client" />
+    <file src="yz3.dff" type="client" />
+
+	<script type="client" src="client.lua"/>
+	<map src="yz_circuit.map" dimension="-1"></map>
+</meta>

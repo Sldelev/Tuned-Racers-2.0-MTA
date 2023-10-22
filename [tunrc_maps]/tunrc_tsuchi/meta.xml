@@ -1,0 +1,40 @@
+<meta>
+    <info name="Tsuchisaka" type="map"/>
+
+    <file src="tsuchi.txd" type="client" />
+
+    <file src="1.col" type="client" />
+    <file src="2.col" type="client" />
+    <file src="3.col" type="client" />
+    <file src="4.col" type="client" />
+    <file src="5.col" type="client" />
+    <file src="6.col" type="client" />
+    <file src="7.col" type="client" />
+    <file src="8.col" type="client" />
+    <file src="9.col" type="client" />
+    <file src="10.col" type="client" />
+    <file src="11.col" type="client" />
+    <file src="12.col" type="client" />
+    <file src="13.col" type="client" />
+    <file src="14.col" type="client" />
+    <file src="15.col" type="client" />
+
+    <file src="1.dff" type="client" />
+    <file src="2.dff" type="client" />
+    <file src="3.dff" type="client" />
+    <file src="4.dff" type="client" />
+    <file src="5.dff" type="client" />
+    <file src="6.dff" type="client" />
+    <file src="7.dff" type="client" />
+    <file src="8.dff" type="client" />
+    <file src="9.dff" type="client" />
+    <file src="10.dff" type="client" />
+    <file src="11.dff" type="client" />
+    <file src="12.dff" type="client" />
+    <file src="13.dff" type="client" />
+    <file src="14.dff" type="client" />
+    <file src="15.dff" type="client" />
+
+	<script src="client.lua" type="client" />
+	<map src="tsuchi.map" dimension="-1"></map>
+</meta>

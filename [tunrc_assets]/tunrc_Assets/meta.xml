@@ -22,6 +22,8 @@
 <file src="assets/fonts/Roboto-Light.ttf"/>
 <file src="assets/fonts/Roboto-Italic.ttf"/>
 <file src="assets/fonts/Cuprum-Bold.ttf"/>
+<file src="assets/fonts/Trc_font_UI.ttf"/>
+<file src="assets/fonts/Trc_font_UI_Bold.ttf"/>
 
 <file src="assets/textures/logo.png"/>
 <file src="assets/textures/logo_square.png"/>
@@ -37,5 +39,11 @@
 <file src="assets/textures/buttons/ru.png"/>
 <file src="assets/textures/buttons/ua.png"/>
 <file src="assets/textures/buttons/pt.png"/>
+
+<file src="assets/textures/garage_icons/garage_menu_go_city.png"/>
+<file src="assets/textures/garage_icons/garage_menu_customize.png"/>
+<file src="assets/textures/garage_icons/garage_menu_sell.png"/>
+
+<file src="assets/textures/login_panel_icons/login_icon.png"/>
 
 </meta>

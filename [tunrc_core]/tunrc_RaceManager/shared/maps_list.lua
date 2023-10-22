@@ -29,5 +29,11 @@ MapsList = {
         gamemode = "drift",        
         src = "drift-4.map",
         name = "ATRON - Long CONFIG 1",
+    },
+	["sprint-3"] = {
+        duration = 360,
+        gamemode = "sprint",        
+        src = "sprint-3.map",
+        name = "LV - Drag 1",
     }
 }

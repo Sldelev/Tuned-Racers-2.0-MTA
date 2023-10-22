@@ -61,6 +61,18 @@ local function draw()
 				"top",
 				false, false, false, true
 			)
+			dxDrawText(
+				exports.tunrc_Lang:getString("main_panel_account_cars_count") .. ": " .. "#FFFFFF" .. tostring(localPlayer:getData("garage_cars_count")),
+				0, 65,
+				screenSize.x - 20, screenSize.y,
+				primaryColor,
+				0.5,
+				Assets.fonts.moneyText,
+				"right",
+				"top",
+				false, false, false, true
+			)
+			
 		end
 	end
 end
@@ -161,7 +173,7 @@ function GarageUI.resetHelpText()
 		{control = exports.tunrc_Lang:getString("controls_arrows"), action = exports.tunrc_Lang:getString("garage_help_move_selection")},
 		{control = exports.tunrc_Lang:getString("controls_enter"), action = exports.tunrc_Lang:getString("garage_help_select")},
 		{control = exports.tunrc_Lang:getString("controls_backspace"), action = exports.tunrc_Lang:getString("garage_help_back")},
-		{control = exports.tunrc_Lang:getString("M"), action = exports.tunrc_Lang:getString("garage_help_move_camera")},
+		{control = exports.tunrc_Lang:getString("controls_mouse"), action = exports.tunrc_Lang:getString("garage_help_move_camera")},
 		{control = exports.tunrc_Lang:getString("N"), action = exports.tunrc_Lang:getString("garage_help_next_music")},
 	})
 end

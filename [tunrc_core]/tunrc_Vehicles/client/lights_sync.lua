@@ -4,7 +4,6 @@ local LIGHTS_STATE_DATA = "LightsState"
 local ANGLE_OPENED = 60
 local ANGLE_CLOSED = 0
 local overrideAngleOpened = {
-    nissan_180sx   = 40,
 }
 -- Скорость открывания/закрывания фар
 local LIGHTS_ROTATION_SPEED = 60

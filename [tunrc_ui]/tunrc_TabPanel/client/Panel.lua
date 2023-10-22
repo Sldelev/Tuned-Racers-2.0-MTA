@@ -34,6 +34,7 @@ local function draw()
 	local w, h = 500, 50
 	local y = screenHeight / 2 - panelHeight / 2
 	local panelX = screenWidth / 2 - panelWidth / 2
+	local themeColor = {exports.tunrc_UI:getThemeColor()}
 	y = y + 200
 	dxDrawRectangle(panelX, y, panelWidth, headerHeight * 2 + itemsCount * itemHeight, headerColor)
 	local x = panelX
@@ -58,7 +59,8 @@ local function draw()
 		--dxDrawRectangle(x, y, panelWidth, itemHeight, color)
 		dxDrawRectangle(x, y, panelWidth, 2, lineColor)
 		if item.isGroup then
-			dxDrawText(item.text, x, y, x + panelWidth, y + headerHeight * 0.8, tocolor(255, 255, 255), 1, itemFont, "center", "center", true)
+			dxDrawRectangle(panelX, y, panelWidth, itemHeight, tocolor(100, 100, 100, 175))
+			dxDrawText(item.text, x, y, x + panelWidth, y + headerHeight * 0.8, tocolor(themeColor[1], themeColor[2], themeColor[3]), 1, itemFont, "center", "center", true)
 		else
 			for j, column in ipairs(columns) do
 				local text = item[column.data]

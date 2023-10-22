@@ -15,14 +15,13 @@ function AchievementsTab.create()
     panel = Panel.addTab("achievements")
     local width = UI:getWidth(panel)
     local height = UI:getHeight(panel)
-	
     local AchievementsList = UI:createDpList {
         x      = 0, 
         y      = height / 2 - 45 * 3.5,
         width  = width, 
         height = 45 * 7,
         items  = {},
-		hovertext = " ",
+		hovertext = exports.tunrc_Lang:getString("main_panel_achiev_help_"),
         columns = {
             { size = 0.40, offset = 0.04, align = "left"  },
             { size = 0.24, offset = 0.15, alpha = 0.3, align = "right" },

@@ -1,0 +1,132 @@
+<meta>
+
+<script src="client.lua" type="client" />
+
+<map src="rr.map" dimension="-1"></map>
+
+<file src="rr01.txd" type="client" />
+
+<file src="rr01.dff" type="client" />
+<file src="rr02.dff" type="client" />
+<file src="rr03.dff" type="client" />
+<file src="rr04.dff" type="client" />
+<file src="rr05.dff" type="client" />
+<file src="rr06.dff" type="client" />
+<file src="rr07.dff" type="client" />
+<file src="rr08.dff" type="client" />
+<file src="rr09.dff" type="client" />
+<file src="rr10.dff" type="client" />
+<file src="rr11.dff" type="client" />
+<file src="rr12.dff" type="client" />
+<file src="rr13.dff" type="client" />
+<file src="rr14.dff" type="client" />
+<file src="rr15.dff" type="client" />
+<file src="rr16.dff" type="client" />
+
+<file src="tire1.dff" type="client" />
+<file src="tire2.dff" type="client" />
+<file src="tire3.dff" type="client" />
+<file src="tire4.dff" type="client" />
+<file src="tire5.dff" type="client" />
+<file src="tire6.dff" type="client" />
+<file src="tire7.dff" type="client" />
+<file src="tire8.dff" type="client" />
+<file src="tire9.dff" type="client" />
+<file src="tire10.dff" type="client" />
+<file src="tire11.dff" type="client" />
+<file src="tire12.dff" type="client" />
+<file src="tire13.dff" type="client" />
+
+<file src="t1.dff" type="client" />
+<file src="t2.dff" type="client" />
+<file src="t3.dff" type="client" />
+<file src="t4.dff" type="client" />
+<file src="t5.dff" type="client" />
+<file src="t6.dff" type="client" />
+<file src="t7.dff" type="client" />
+<file src="t8.dff" type="client" />
+
+<file src="tr1.dff" type="client" />
+<file src="tr2.dff" type="client" />
+<file src="tr3.dff" type="client" />
+<file src="tr4.dff" type="client" />
+<file src="tr5.dff" type="client" />
+<file src="tr6.dff" type="client" />
+<file src="tr7.dff" type="client" />
+<file src="tr8.dff" type="client" />
+<file src="tr9.dff" type="client" />
+<file src="tr10.dff" type="client" />
+<file src="tr11.dff" type="client" />
+<file src="tr12.dff" type="client" />
+<file src="tr13.dff" type="client" />
+<file src="tr14.dff" type="client" />
+<file src="tr15.dff" type="client" />
+<file src="tr16.dff" type="client" />
+<file src="tr17.dff" type="client" />
+<file src="tr18.dff" type="client" />
+<file src="tr19.dff" type="client" />
+<file src="tr20.dff" type="client" />
+<file src="tr21.dff" type="client" />
+
+<file src="rr01.col" type="client" />
+<file src="rr02.col" type="client" />
+<file src="rr03.col" type="client" />
+<file src="rr04.col" type="client" />
+<file src="rr05.col" type="client" />
+<file src="rr06.col" type="client" />
+<file src="rr07.col" type="client" />
+<file src="rr08.col" type="client" />
+<file src="rr09.col" type="client" />
+<file src="rr10.col" type="client" />
+<file src="rr11.col" type="client" />
+<file src="rr12.col" type="client" />
+<file src="rr13.col" type="client" />
+<file src="rr14.col" type="client" />
+<file src="rr15.col" type="client" />
+<file src="rr16.col" type="client" />
+
+<file src="tire1.col" type="client" />
+<file src="tire2.col" type="client" />
+<file src="tire3.col" type="client" />
+<file src="tire4.col" type="client" />
+<file src="tire5.col" type="client" />
+<file src="tire6.col" type="client" />
+<file src="tire7.col" type="client" />
+<file src="tire8.col" type="client" />
+<file src="tire9.col" type="client" />
+<file src="tire10.col" type="client" />
+<file src="tire11.col" type="client" />
+<file src="tire12.col" type="client" />
+<file src="tire13.col" type="client" />
+
+<file src="t1.col" type="client" />
+<file src="t2.col" type="client" />
+<file src="t3.col" type="client" />
+<file src="t4.col" type="client" />
+<file src="t5.col" type="client" />
+<file src="t6.col" type="client" />
+<file src="t7.col" type="client" />
+<file src="t8.col" type="client" />
+
+<file src="tr1.col" type="client" />
+<file src="tr2.col" type="client" />
+<file src="tr3.col" type="client" />
+<file src="tr4.col" type="client" />
+<file src="tr5.col" type="client" />
+<file src="tr6.col" type="client" />
+<file src="tr7.col" type="client" />
+<file src="tr8.col" type="client" />
+<file src="tr9.col" type="client" />
+<file src="tr10.col" type="client" />
+<file src="tr11.col" type="client" />
+<file src="tr12.col" type="client" />
+<file src="tr13.col" type="client" />
+<file src="tr14.col" type="client" />
+<file src="tr15.col" type="client" />
+<file src="tr16.col" type="client" />
+<file src="tr17.col" type="client" />
+<file src="tr18.col" type="client" />
+<file src="tr19.col" type="client" />
+<file src="tr20.col" type="client" />
+<file src="tr21.col" type="client" />
+</meta>

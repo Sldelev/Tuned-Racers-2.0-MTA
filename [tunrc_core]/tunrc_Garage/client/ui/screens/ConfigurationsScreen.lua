@@ -15,7 +15,6 @@ function ConfigurationsScreen:init(componentName)
 		{name="Steer", camera="bias", locale="garage_tuning_config_steer", price = suspensionPrice, level = suspensionLevel},
 		{name="veh_velocity", camera="bias", locale="garage_tuning_config_veh_velocity", price = suspensionPrice, level = suspensionLevel},
 		{name="veh_mass", camera="bias", locale="garage_tuning_config_veh_mass", price = suspensionPrice, level = suspensionLevel},
-		{name="veh_turnmass", camera="bias", locale="garage_tuning_config_veh_turnmass", price = suspensionPrice, level = suspensionLevel},
 	})
 
 	local vehicle = GarageCar.getVehicle()

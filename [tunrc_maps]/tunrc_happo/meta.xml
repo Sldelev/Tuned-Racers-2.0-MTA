@@ -1,0 +1,91 @@
+<meta>
+    <oop>true</oop>
+	<info type="map" name="daikoku" author="sdlevin" description="remap" version="3" />
+ 
+	<script src="client.lua" type="client" />
+ 
+	<file src="happogahara.txd" type="client" />
+ 
+ 
+	<file src="happogahara1.dff" type="client" />
+	<file src="happogahara2.dff" type="client" />
+	<file src="happogahara3.dff" type="client" />
+	<file src="happogahara4.dff" type="client" />
+	<file src="happogahara5.dff" type="client" />
+	<file src="happogahara6.dff" type="client" />
+	<file src="happogahara7.dff" type="client" />
+	<file src="happogahara8.dff" type="client" />
+	<file src="happogahara9.dff" type="client" />
+	<file src="happogahara10.dff" type="client" />
+	<file src="happogahara11.dff" type="client" />
+	<file src="happogahara12.dff" type="client" />
+	<file src="happogahara13.dff" type="client" />
+	<file src="happogahara14.dff" type="client" />
+	<file src="happogahara15.dff" type="client" />
+	<file src="happogahara16.dff" type="client" />
+	<file src="happogahara17.dff" type="client" />
+	<file src="happogahara18.dff" type="client" />
+	<file src="happogahara19.dff" type="client" />
+	<file src="happogahara20.dff" type="client" />
+	<file src="happogahara21.dff" type="client" />
+	<file src="happogahara22.dff" type="client" />
+	<file src="happogahara23.dff" type="client" />
+	<file src="happogahara24.dff" type="client" />
+	<file src="happogahara25.dff" type="client" />
+	<file src="happogahara26.dff" type="client" />
+	<file src="happogahara27.dff" type="client" />
+	<file src="happogahara28.dff" type="client" />
+	<file src="happogahara29.dff" type="client" />
+<file src="happogahara30.dff" type="client" />
+<file src="happogahara31.dff" type="client" />
+<file src="happogahara32.dff" type="client" />
+<file src="happogahara33.dff" type="client" />
+<file src="happogahara34.dff" type="client" />
+<file src="happogahara35.dff" type="client" />
+<file src="happogahara36.dff" type="client" />
+<file src="happogahara37.dff" type="client" />
+<file src="happogahara38.dff" type="client" />
+<file src="happogahara39.dff" type="client" />
+
+	<file src="happogahara1.col" type="client" />
+	<file src="happogahara2.col" type="client" />
+	<file src="happogahara3.col" type="client" />
+	<file src="happogahara4.col" type="client" />
+	<file src="happogahara5.col" type="client" />
+	<file src="happogahara6.col" type="client" />
+	<file src="happogahara7.col" type="client" />
+	<file src="happogahara8.col" type="client" />
+	<file src="happogahara9.col" type="client" />
+	<file src="happogahara10.col" type="client" />
+	<file src="happogahara11.col" type="client" />
+	<file src="happogahara12.col" type="client" />
+	<file src="happogahara13.col" type="client" />
+	<file src="happogahara14.col" type="client" />
+	<file src="happogahara15.col" type="client" />
+	<file src="happogahara16.col" type="client" />
+	<file src="happogahara17.col" type="client" />
+	<file src="happogahara18.col" type="client" />
+	<file src="happogahara19.col" type="client" />
+	<file src="happogahara20.col" type="client" />
+	<file src="happogahara21.col" type="client" />
+	<file src="happogahara22.col" type="client" />
+	<file src="happogahara23.col" type="client" />
+	<file src="happogahara24.col" type="client" />
+	<file src="happogahara25.col" type="client" />
+	<file src="happogahara26.col" type="client" />
+	<file src="happogahara27.col" type="client" />
+	<file src="happogahara28.col" type="client" />
+	<file src="happogahara29.col" type="client" />
+<file src="happogahara30.col" type="client" />
+<file src="happogahara31.col" type="client" />
+<file src="happogahara32.col" type="client" />
+<file src="happogahara33.col" type="client" />
+<file src="happogahara34.col" type="client" />
+<file src="happogahara35.col" type="client" />
+<file src="happogahara36.col" type="client" />
+<file src="happogahara37.col" type="client" />
+<file src="happogahara38.col" type="client" />
+<file src="happogahara39.col" type="client" />
+
+<map src="happogahara.map" dimension="-1"></map>
+</meta>

@@ -1159,3 +1159,428 @@
 [2023-06-05 23:32:44] Added vehicle 401 to user 3. Success: table: 0xfc1a19a0
 [2023-06-05 23:57:02] Removed vehicle 1002. Success: table: 0xfb8e6ec0
 [2023-06-06 04:06:55] Added vehicle 562 to user 320. Success: true
+[2023-06-06 05:51:25] Added vehicle 560 to user 1. Success: table: 0xf8e147e0
+[2023-06-06 06:02:18] Added vehicle 562 to user 321. Success: true
+[2023-06-06 06:53:13] Added vehicle 496 to user 1. Success: table: 0xfc42eae8
+[2023-06-06 07:40:06] Removed vehicle 1006. Success: table: 0xfdcc4338
+[2023-06-06 07:40:11] Removed vehicle 1004. Success: table: 0xfa2c7c58
+[2023-06-06 07:40:24] Removed vehicle 925. Success: table: 0xfb1a73f0
+[2023-06-06 08:57:41] Added vehicle 562 to user 322. Success: true
+[2023-06-06 10:27:40] Removed vehicle 999. Success: table: 0xf9c56e78
+[2023-06-06 11:03:43] Added vehicle 589 to user 320. Success: table: 0xfdc46318
+[2023-06-06 13:16:54] Added vehicle 589 to user 317. Success: table: 0xf99b68c8
+[2023-06-06 13:21:40] Added vehicle 482 to user 56. Success: table: 0xf97e5870
+[2023-06-06 16:16:45] Added vehicle 496 to user 15. Success: table: 0xf8e91170
+[2023-06-06 16:51:28] Added vehicle 405 to user 15. Success: table: 0xf92805d0
+[2023-06-06 17:30:38] Removed vehicle 1012. Success: table: 0xf817ebc0
+[2023-06-06 17:52:33] Added vehicle 402 to user 320. Success: table: 0xf9ed3ef8
+[2023-06-06 17:53:45] Removed vehicle 1013. Success: table: 0xf9e2eaf0
+[2023-06-06 19:16:41] Added vehicle 589 to user 15. Success: table: 0xfdc50c68
+[2023-06-06 19:19:06] Removed vehicle 1014. Success: table: 0xf8aa0bc8
+[2023-06-06 19:25:10] Added vehicle 482 to user 320. Success: table: 0xf877f428
+[2023-06-07 01:09:06] Added vehicle 477 to user 320. Success: table: 0xfb6bbfa8
+[2023-06-07 01:11:31] Removed vehicle 1016. Success: table: 0xf86602e8
+[2023-06-07 01:11:36] Removed vehicle 1015. Success: table: 0xff07f6d8
+[2023-06-07 02:46:28] Added vehicle 587 to user 320. Success: table: 0xfb1b2498
+[2023-06-07 04:18:12] Added vehicle 401 to user 320. Success: table: 0xfe08a408
+[2023-06-07 08:02:42] Added vehicle 402 to user 232. Success: table: 0xf9902b48
+[2023-06-07 08:56:39] Removed vehicle 935. Success: table: 0xfdf2d0e8
+[2023-06-07 08:56:45] Removed vehicle 945. Success: table: 0xf893bbe0
+[2023-06-07 08:56:47] Removed vehicle 946. Success: table: 0xfb6088a0
+[2023-06-07 08:56:54] Removed vehicle 952. Success: table: 0xfb327590
+[2023-06-07 08:59:43] Added vehicle 429 to user 288. Success: table: 0xfc484840
+[2023-06-07 09:40:43] Added vehicle 477 to user 288. Success: table: 0xfdcf72c0
+[2023-06-07 09:42:11] Removed vehicle 1021. Success: table: 0xf7a75c80
+[2023-06-07 11:15:11] Added vehicle 405 to user 149. Success: table: 0xfc110788
+[2023-06-07 11:25:07] Added vehicle 405 to user 44. Success: table: 0xfb9642e8
+[2023-06-07 13:00:26] Added vehicle 405 to user 288. Success: table: 0xfedea140
+[2023-06-07 13:01:18] Removed vehicle 1024. Success: table: 0xf9fb8ae8
+[2023-06-07 13:01:23] Removed vehicle 1020. Success: table: 0xfe84dd40
+[2023-06-07 13:02:05] Added vehicle 401 to user 288. Success: table: 0xfe79b7e0
+[2023-06-07 13:05:40] Removed vehicle 1025. Success: table: 0xfaec0fc8
+[2023-06-07 13:06:28] Added vehicle 602 to user 288. Success: table: 0xfb8dc320
+[2023-06-07 13:09:53] Removed vehicle 1026. Success: table: 0xf9908490
+[2023-06-07 13:19:49] Added vehicle 562 to user 323. Success: true
+[2023-06-07 14:06:07] Added vehicle 405 to user 1. Success: table: 0xfeea42d0
+[2023-06-07 14:06:35] Added vehicle 602 to user 15. Success: table: 0xfeff6ed8
+[2023-06-07 14:07:08] Removed vehicle 1029. Success: table: 0xfca47430
+[2023-06-07 14:07:31] Added vehicle 587 to user 15. Success: table: 0xf99d29c0
+[2023-06-07 14:09:11] Removed vehicle 1030. Success: table: 0xfa0e80d0
+[2023-06-07 14:27:02] Added vehicle 562 to user 324. Success: true
+[2023-06-07 14:50:16] Removed vehicle 1003. Success: table: 0xfdd2ce70
+[2023-06-07 14:50:17] Removed vehicle 1008. Success: table: 0xfa446608
+[2023-06-07 14:50:19] Removed vehicle 1017. Success: table: 0xfad27a68
+[2023-06-07 15:30:08] Added vehicle 477 to user 174. Success: table: 0xf99ccb18
+[2023-06-07 15:30:08] Added vehicle 405 to user 174. Success: table: 0xfba1bab0
+[2023-06-07 15:55:46] Added vehicle 562 to user 325. Success: true
+[2023-06-07 16:09:02] Added vehicle 405 to user 325. Success: table: 0xfc334198
+[2023-06-07 16:09:32] Removed vehicle 1035. Success: table: 0xfb0cbc28
+[2023-06-07 16:09:45] Added vehicle 602 to user 325. Success: table: 0xfb91ba50
+[2023-06-07 16:10:23] Removed vehicle 1036. Success: table: 0xf9b4e180
+[2023-06-07 16:10:43] Added vehicle 589 to user 325. Success: table: 0xf99da918
+[2023-06-07 16:11:53] Removed vehicle 1037. Success: table: 0xf9b2eaf8
+[2023-06-07 16:12:19] Added vehicle 477 to user 325. Success: table: 0xf9d119a8
+[2023-06-07 16:21:42] Added vehicle 562 to user 326. Success: true
+[2023-06-07 16:47:45] Added vehicle 562 to user 327. Success: true
+[2023-06-07 17:43:59] Added vehicle 401 to user 95. Success: table: 0xfbde7d68
+[2023-06-07 18:45:57] Added vehicle 589 to user 15. Success: table: 0xfb074188
+[2023-06-07 18:55:33] Removed vehicle 1042. Success: table: 0xfb551eb8
+[2023-06-07 18:56:14] Added vehicle 402 to user 15. Success: table: 0xfbe056e8
+[2023-06-07 19:00:13] Added vehicle 471 to user 15. Success: table: 0xfaa834d8
+[2023-06-07 19:03:47] Removed vehicle 1043. Success: table: 0xff0018a0
+[2023-06-07 19:35:53] Added vehicle 477 to user 317. Success: table: 0xfd2a6d50
+[2023-06-07 20:04:39] Added vehicle 402 to user 290. Success: table: 0xfb475d98
+[2023-06-07 20:11:31] Added vehicle 562 to user 288. Success: table: 0xfaf49360
+[2023-06-07 20:56:33] Removed vehicle 789. Success: table: 0xf9b55e90
+[2023-06-07 20:56:55] Added vehicle 482 to user 312. Success: table: 0xfeca6a98
+[2023-06-07 20:57:17] Added vehicle 562 to user 328. Success: true
+[2023-06-07 20:57:41] Added vehicle 429 to user 112. Success: table: 0xf7afa930
+[2023-06-07 21:42:34] Player trc.suthe#ff99ccbgtwta (suthebgtwta) sold Annis Elegy (ID: 269) to #696969~Dunya (Dunya) for $0
+[2023-06-07 21:42:37] Player 7.62|kao|SmokingDevilz (Sidelev) sold Albany Alpha (ID: 747) to vladelec#FF9966klasiki (vladelecklassiki) for $0
+[2023-06-07 21:51:02] Player #696969~Dunya (Dunya) sold Dinka Jester (ID: 623) to trc.suthe#ff99ccbgtwta (suthebgtwta) for $18000
+[2023-06-07 21:56:28] Added vehicle 587 to user 104. Success: table: 0xfec46128
+[2023-06-08 00:32:41] Added vehicle 477 to user 104. Success: table: 0xfbe5c498
+[2023-06-08 00:33:08] Added vehicle 402 to user 104. Success: table: 0xfbddfef0
+[2023-06-08 00:46:26] Added vehicle 405 to user 104. Success: table: 0xfc76d390
+[2023-06-08 01:14:45] Added vehicle 562 to user 329. Success: true
+[2023-06-08 01:41:45] Added vehicle 562 to user 330. Success: true
+[2023-06-08 02:15:26] Added vehicle 562 to user 331. Success: true
+[2023-06-08 11:56:44] Added vehicle 405 to user 95. Success: table: 0xfc61ae50
+[2023-06-08 16:24:03] Removed vehicle 1047. Success: table: 0xfba91af0
+[2023-06-08 16:25:13] Added vehicle 405 to user 288. Success: table: 0xfedc38c0
+[2023-06-08 17:24:25] Added vehicle 559 to user 23. Success: table: 0xf82b5040
+[2023-06-08 17:24:34] Removed vehicle 1060. Success: table: 0xfe8e9100
+[2023-06-08 17:40:52] Added vehicle 405 to user 23. Success: table: 0xf952f768
+[2023-06-08 18:44:42] Added vehicle 482 to user 31. Success: table: 0xff0e8030
+[2023-06-08 18:44:43] Added vehicle 482 to user 31. Success: table: 0xfae752f8
+[2023-06-08 19:18:14] Added vehicle 562 to user 332. Success: true
+[2023-06-08 19:34:51] Added vehicle 405 to user 166. Success: table: 0xf94c40d8
+[2023-06-08 19:45:20] Added vehicle 471 to user 166. Success: table: 0xfe1d7dd8
+[2023-06-08 20:09:49] Added vehicle 482 to user 317. Success: table: 0xfefe39d8
+[2023-06-08 21:52:23] Added vehicle 562 to user 333. Success: true
+[2023-06-08 21:56:13] Added vehicle 401 to user 141. Success: table: 0xf9da9300
+[2023-06-08 21:57:12] Removed vehicle 1069. Success: table: 0xfaa19e38
+[2023-06-08 21:57:49] Added vehicle 402 to user 141. Success: table: 0xf82b1f50
+[2023-06-08 22:01:05] Added vehicle 602 to user 333. Success: table: 0xfbd10a78
+[2023-06-08 22:07:26] Removed vehicle 1071. Success: table: 0xfa284b30
+[2023-06-09 11:55:32] Added vehicle 405 to user 15. Success: table: 0xf9e13ff8
+[2023-06-09 13:21:16] Added vehicle 562 to user 288. Success: table: 0xfbdb96a8
+[2023-06-09 13:40:38] Added vehicle 587 to user 296. Success: table: 0xf9edd200
+[2023-06-09 13:41:07] Removed vehicle 947. Success: table: 0xfe73a320
+[2023-06-09 13:44:06] Added vehicle 562 to user 334. Success: true
+[2023-06-09 13:58:21] Added vehicle 405 to user 334. Success: table: 0xfe7ef6e0
+[2023-06-09 13:58:32] Removed vehicle 1075. Success: table: 0xf7aa3e78
+[2023-06-09 14:16:48] Added vehicle 602 to user 334. Success: table: 0xf8e11628
+[2023-06-09 14:38:48] Player Silva (Selevesto) sold Dinka Jester (ID: 938) to #696969~Dunya (Dunya) for $1
+[2023-06-09 14:41:47] Added vehicle 559 to user 10. Success: table: 0xfdf114e0
+[2023-06-09 16:32:56] Added vehicle 562 to user 335. Success: true
+[2023-06-09 17:31:09] Added vehicle 562 to user 336. Success: true
+[2023-06-09 18:03:16] Added vehicle 477 to user 336. Success: table: 0xfb38bd38
+[2023-06-09 18:48:36] Added vehicle 562 to user 337. Success: true
+[2023-06-09 19:08:13] Added vehicle 562 to user 338. Success: true
+[2023-06-09 19:12:01] Removed vehicle 790. Success: table: 0xfc22c170
+[2023-06-09 19:13:18] Added vehicle 602 to user 104. Success: table: 0xfaf812d8
+[2023-06-09 19:16:14] Added vehicle 562 to user 339. Success: true
+[2023-06-09 20:57:00] Added vehicle 562 to user 340. Success: true
+[2023-06-09 22:30:23] Player #696969~Dunya (Dunya) sold Annis Euros (ID: 1051) to trc.suthe#ff99ccbgtwta (suthebgtwta) for $100000
+[2023-06-09 22:36:10] Player trc.suthe#ff99ccbgtwta (suthebgtwta) sold Annis Euros (ID: 782) to #696969~Dunya (Dunya) for $0
+[2023-06-10 00:33:23] Added vehicle 562 to user 341. Success: true
+[2023-06-10 03:04:55] Added vehicle 405 to user 218. Success: table: 0xfad71ff8
+[2023-06-10 03:09:53] Removed vehicle 1088. Success: table: 0xf9c12460
+[2023-06-10 10:35:43] Added vehicle 559 to user 338. Success: table: 0xf992c130
+[2023-06-10 11:21:08] Added vehicle 562 to user 104. Success: table: 0xf9c81818
+[2023-06-10 12:17:10] Added vehicle 429 to user 317. Success: table: 0xff1ca010
+[2023-06-10 13:35:17] Added vehicle 562 to user 342. Success: true
+[2023-06-10 13:49:04] Added vehicle 402 to user 342. Success: table: 0xfdc9b7d0
+[2023-06-10 13:49:10] Removed vehicle 1092. Success: table: 0xfb387598
+[2023-06-10 14:34:21] Added vehicle 562 to user 343. Success: true
+[2023-06-10 14:39:35] Added vehicle 562 to user 344. Success: true
+[2023-06-10 15:32:55] Added vehicle 562 to user 15. Success: table: 0xf99745e0
+[2023-06-10 16:02:31] Added vehicle 401 to user 95. Success: table: 0xf90f6498
+[2023-06-10 16:10:52] Removed vehicle 1097. Success: table: 0xfb755ae0
+[2023-06-10 16:16:49] Removed vehicle 1096. Success: table: 0xfdb938e0
+[2023-06-10 16:17:12] Added vehicle 587 to user 15. Success: table: 0xfbdae4c0
+[2023-06-10 16:21:33] Removed vehicle 1098. Success: table: 0xfdbd5380
+[2023-06-10 21:45:20] Added vehicle 602 to user 336. Success: table: 0xf9b2d1c8
+[2023-06-10 21:45:38] Added vehicle 559 to user 336. Success: table: 0xf91ea650
+[2023-06-10 21:45:49] Added vehicle 587 to user 336. Success: table: 0xfa0b81c8
+[2023-06-10 21:46:04] Added vehicle 482 to user 336. Success: table: 0xf9be18d8
+[2023-06-10 21:46:18] Added vehicle 401 to user 336. Success: table: 0xfb4ec270
+[2023-06-10 21:46:30] Added vehicle 589 to user 336. Success: table: 0xfc74a4f8
+[2023-06-10 21:46:46] Added vehicle 402 to user 336. Success: table: 0xfde6b008
+[2023-06-10 21:46:57] Added vehicle 429 to user 336. Success: table: 0xf9c304b8
+[2023-06-10 21:47:09] Added vehicle 405 to user 336. Success: table: 0xfb5212d0
+[2023-06-10 21:56:47] Added vehicle 562 to user 345. Success: true
+[2023-06-10 22:39:45] Removed vehicle 431. Success: table: 0xf8f397c0
+[2023-06-10 22:40:51] Added vehicle 562 to user 129. Success: table: 0xfabb9bd8
+[2023-06-10 22:40:57] Removed vehicle 494. Success: table: 0xf7adb980
+[2023-06-10 22:41:09] Added vehicle 471 to user 129. Success: table: 0xfab517c0
+[2023-06-11 01:13:46] Added vehicle 562 to user 346. Success: true
+[2023-06-11 01:15:30] Added vehicle 562 to user 347. Success: true
+[2023-06-11 12:23:41] Added vehicle 562 to user 348. Success: true
+[2023-06-11 13:32:57] Added vehicle 562 to user 349. Success: true
+[2023-06-11 14:44:53] Player #696969~Dunya (Dunya) sold Annis Elegy (ID: 1090) to trc.suthe#ff99ccbgtwta (suthebgtwta) for $100000
+[2023-06-11 17:56:04] Added vehicle 560 to user 104. Success: table: 0xf8627a30
+[2023-06-11 17:56:26] Added vehicle 482 to user 112. Success: table: 0xfb847e28
+[2023-06-11 17:57:01] Removed vehicle 1116. Success: table: 0xfa189098
+[2023-06-11 18:00:42] Player #696969~Dunya (Dunya) sold Dinka Jester (ID: 938) to salt.com//nasway! (123wqw) for $15000
+[2023-06-11 20:14:14] Removed vehicle 782. Success: table: 0xf9e7b880
+[2023-06-11 20:14:43] Added vehicle 587 to user 104. Success: table: 0xfe711c60
+[2023-06-12 07:29:13] Added vehicle 559 to user 1. Success: table: 0xfdc62cc0
+[2023-06-12 07:31:39] Removed vehicle 1118. Success: table: 0xf837cbf0
+[2023-06-12 09:05:22] Added vehicle 562 to user 104. Success: table: 0xfc4e7e68
+[2023-06-12 11:07:11] Added vehicle 562 to user 350. Success: true
+[2023-06-12 13:14:53] Added vehicle 560 to user 174. Success: table: 0xf803c570
+[2023-06-12 13:17:06] Removed vehicle 1121. Success: table: 0xf9d0adf0
+[2023-06-12 18:03:32] Added vehicle 562 to user 351. Success: true
+[2023-06-13 03:00:18] Added vehicle 562 to user 352. Success: true
+[2023-06-13 06:46:52] Added vehicle 602 to user 233. Success: table: 0xf8f13448
+[2023-06-13 16:55:31] Added vehicle 405 to user 104. Success: table: 0xfc83ecd0
+[2023-06-13 19:31:01] Removed vehicle 804. Success: table: 0xf9ebbb18
+[2023-06-13 19:33:26] Added vehicle 589 to user 233. Success: table: 0xfc4a2e80
+[2023-06-13 20:15:34] Player DisturbedPeasoup0 (ph1zik) sold Albany Alpha (ID: 1124) to #696969~Dunya (Dunya) for $1
+[2023-06-13 20:40:24] Added vehicle 587 to user 15. Success: table: 0xfec250f0
+[2023-06-13 20:46:47] Removed vehicle 1127. Success: table: 0xfaf529a0
+[2023-06-13 20:48:00] Added vehicle 401 to user 15. Success: table: 0xfb97fd10
+[2023-06-14 03:12:13] Added vehicle 562 to user 353. Success: true
+[2023-06-14 03:24:06] Added vehicle 562 to user 354. Success: true
+[2023-06-14 04:14:39] Added vehicle 562 to user 355. Success: true
+[2023-06-14 05:40:30] Added vehicle 587 to user 355. Success: table: 0xf9c1be88
+[2023-06-14 06:47:16] Added vehicle 429 to user 353. Success: table: 0xfb6d8328
+[2023-06-14 11:21:00] Removed vehicle 1128. Success: table: 0xfb690378
+[2023-06-14 11:23:55] Added vehicle 602 to user 15. Success: table: 0xfe1d28b0
+[2023-06-14 11:44:10] Removed vehicle 1134. Success: table: 0xfef8ce20
+[2023-06-14 12:08:35] Added vehicle 405 to user 15. Success: table: 0xfa421720
+[2023-06-14 12:08:52] Player sfsc.#ffba00pipa (pipa) sold Übermacht Sentinel (ID: 1135) to GoodCombatant50 (Karichh) for $1
+[2023-06-14 12:11:39] Removed vehicle 1133. Success: table: 0xf88d8790
+[2023-06-14 12:11:56] Added vehicle 562 to user 353. Success: table: 0xf8360f88
+[2023-06-14 12:12:35] Added vehicle 562 to user 356. Success: true
+[2023-06-14 12:15:21] Player GoodCombatant50 (Karichh) sold Annis Elegy (ID: 1136) to sfsc.#ffba00pipa (pipa) for $10000
+[2023-06-14 14:24:29] Added vehicle 562 to user 357. Success: true
+[2023-06-14 15:59:07] Added vehicle 477 to user 233. Success: table: 0xfa83df40
+[2023-06-14 15:59:14] Removed vehicle 1126. Success: table: 0xfdb915b0
+[2023-06-14 16:31:07] Added vehicle 559 to user 174. Success: table: 0xfe0dbfb0
+[2023-06-14 16:31:07] Added vehicle 587 to user 174. Success: table: 0xfdd9f148
+[2023-06-14 16:31:07] Added vehicle 429 to user 174. Success: table: 0xfec88350
+[2023-06-14 16:31:07] Added vehicle 477 to user 174. Success: table: 0xf9f4ed78
+[2023-06-14 16:31:07] Added vehicle 401 to user 174. Success: table: 0xfc3a27f0
+[2023-06-14 16:31:07] Added vehicle 402 to user 174. Success: table: 0xf8f8a458
+[2023-06-14 16:31:55] Removed vehicle 1143. Success: table: 0xfa26beb8
+[2023-06-14 17:03:17] Player lovesomeplugg3 (dnlshpvlv) sold Annis Elegy (ID: 572) to sfsc.#ffba00pipa (pipa) for $1
+[2023-06-14 17:03:37] Added vehicle 405 to user 15. Success: table: 0xfa5e7be0
+[2023-06-14 17:09:53] Player sfsc.#ffba00pipa (pipa) sold Übermacht Sentinel (ID: 1146) to lovesomeplugg3 (dnlshpvlv) for $1
+[2023-06-14 17:20:24] Added vehicle 589 to user 355. Success: table: 0xfddc96b8
+[2023-06-14 17:28:01] Removed vehicle 1147. Success: table: 0xf9ae7f20
+[2023-06-14 17:32:45] Added vehicle 401 to user 355. Success: table: 0xf9f37470
+[2023-06-14 18:13:14] Added vehicle 471 to user 104. Success: table: 0xff1b6da0
+[2023-06-14 18:20:24] Added vehicle 559 to user 104. Success: table: 0xfa19c8b0
+[2023-06-14 20:25:07] Added vehicle 401 to user 15. Success: table: 0xfe856888
+[2023-06-14 20:40:21] Removed vehicle 1151. Success: table: 0xfad59d98
+[2023-06-14 20:41:48] Added vehicle 482 to user 15. Success: table: 0xfb215628
+[2023-06-14 20:53:11] Removed vehicle 1152. Success: table: 0xf88cc850
+[2023-06-14 22:20:50] Added vehicle 562 to user 358. Success: true
+[2023-06-15 00:20:45] Added vehicle 562 to user 3. Success: table: 0xf9278b50
+[2023-06-15 10:40:13] Added vehicle 562 to user 359. Success: true
+[2023-06-15 12:23:49] Added vehicle 602 to user 1. Success: table: 0xfdfc1238
+[2023-06-15 12:23:54] Removed vehicle 1156. Success: table: 0xfb899bf8
+[2023-06-15 15:20:22] Added vehicle 560 to user 357. Success: table: 0xfacbd648
+[2023-06-15 15:24:15] Added vehicle 602 to user 1. Success: table: 0xfec2bda8
+[2023-06-15 15:24:21] Removed vehicle 1158. Success: table: 0xff0d0d88
+[2023-06-15 15:31:00] Added vehicle 560 to user 3. Success: table: 0xf83ca560
+[2023-06-15 16:00:50] Player Loony (Loony) sold BF Club (ID: 197) to trc.suthe#ff99ccbgtwta (suthebgtwta) for $50000
+[2023-06-15 16:11:53] Added vehicle 477 to user 1. Success: table: 0xf95a2950
+[2023-06-15 16:22:27] Added vehicle 562 to user 360. Success: true
+[2023-06-15 16:44:57] Added vehicle 429 to user 1. Success: table: 0xfed85140
+[2023-06-15 16:45:02] Removed vehicle 1163. Success: table: 0xfeabffe8
+[2023-06-15 16:45:05] Removed vehicle 1162. Success: table: 0xfa997088
+[2023-06-15 16:45:08] Removed vehicle 1160. Success: table: 0xf87ece00
+[2023-06-15 17:21:46] Added vehicle 602 to user 1. Success: table: 0xf8182150
+[2023-06-15 17:21:51] Removed vehicle 1164. Success: table: 0xf86b97c0
+[2023-06-15 17:23:51] Added vehicle 602 to user 1. Success: table: 0xfe161de0
+[2023-06-15 17:23:56] Removed vehicle 1165. Success: table: 0xfb315f90
+[2023-06-15 17:25:38] Added vehicle 602 to user 1. Success: table: 0xf8909f60
+[2023-06-15 17:30:30] Added vehicle 559 to user 23. Success: table: 0xfa12f928
+[2023-06-15 17:30:48] Removed vehicle 1167. Success: table: 0xfa80b8e0
+[2023-06-15 17:31:16] Added vehicle 429 to user 23. Success: table: 0xf912b240
+[2023-06-15 17:32:37] Added vehicle 602 to user 23. Success: table: 0xfb503ea0
+[2023-06-15 17:33:07] Removed vehicle 1169. Success: table: 0xfca5d3f0
+[2023-06-15 17:34:59] Removed vehicle 1168. Success: table: 0xfad94410
+[2023-06-15 18:04:51] Added vehicle 602 to user 1. Success: table: 0xfb220ab8
+[2023-06-15 18:04:56] Removed vehicle 1170. Success: table: 0xf91a3228
+[2023-06-15 18:05:29] Removed vehicle 1166. Success: table: 0xf791cbd0
+[2023-06-15 18:09:49] Removed vehicle 750. Success: table: 0xf8856ad8
+[2023-06-15 18:11:56] Added vehicle 401 to user 359. Success: table: 0xf96c8b28
+[2023-06-15 18:17:25] Added vehicle 429 to user 357. Success: table: 0xfad88838
+[2023-06-15 19:26:56] Removed vehicle 197. Success: table: 0xfc86f488
+[2023-06-15 20:25:01] Added vehicle 602 to user 1. Success: table: 0xf8a7ea28
+[2023-06-15 20:25:08] Removed vehicle 1173. Success: table: 0xfc4d6fc8
+[2023-06-15 21:28:22] Added vehicle 562 to user 361. Success: true
+[2023-06-15 21:33:50] Added vehicle 405 to user 359. Success: table: 0xfe0c3fb8
+[2023-06-15 21:48:11] Added vehicle 562 to user 362. Success: true
+[2023-06-15 21:50:28] Added vehicle 562 to user 363. Success: true
+[2023-06-16 00:31:06] Added vehicle 562 to user 364. Success: true
+[2023-06-16 08:12:48] Added vehicle 496 to user 359. Success: table: 0xfc6f9b68
+[2023-06-16 13:04:38] Removed vehicle 1048. Success: table: 0xf89a0010
+[2023-06-16 13:08:07] Added vehicle 405 to user 312. Success: table: 0xf8a7e488
+[2023-06-16 13:09:03] Added vehicle 562 to user 312. Success: table: 0xfdd82ef0
+[2023-06-16 13:41:45] Removed vehicle 1001. Success: table: 0xfc44e050
+[2023-06-16 14:04:55] Added vehicle 401 to user 312. Success: table: 0xf79138a0
+[2023-06-16 14:40:35] Added vehicle 559 to user 359. Success: table: 0xf8bdd3c0
+[2023-06-16 15:19:26] Removed vehicle 1180. Success: table: 0xfb550588
+[2023-06-16 16:41:41] Added vehicle 562 to user 365. Success: true
+[2023-06-16 18:37:48] Added vehicle 562 to user 104. Success: table: 0xfbce2c50
+[2023-06-16 19:29:32] Added vehicle 562 to user 366. Success: true
+[2023-06-16 20:46:20] Added vehicle 589 to user 359. Success: table: 0xf88d44c8
+[2023-06-16 22:45:05] Added vehicle 562 to user 367. Success: true
+[2023-06-16 22:56:49] Added vehicle 562 to user 368. Success: true
+[2023-06-16 23:21:59] Added vehicle 589 to user 367. Success: table: 0xff1f74d8
+[2023-06-16 23:27:43] Removed vehicle 1190. Success: table: 0xfaff4230
+[2023-06-17 00:18:55] Added vehicle 562 to user 369. Success: true
+[2023-06-17 08:25:51] Added vehicle 562 to user 370. Success: true
+[2023-06-17 16:41:23] Removed vehicle 1182. Success: table: 0xfe13eba8
+[2023-06-17 16:42:54] Added vehicle 477 to user 312. Success: table: 0xfdd74000
+[2023-06-17 18:31:26] Added vehicle 562 to user 371. Success: true
+[2023-06-17 20:20:56] Player sfsc.#ffba00pipa (pipa) sold Annis Elegy (ID: 1136) to 7.62|kao|SmokingDevilz (Sidelev) for $1000
+[2023-06-17 21:13:56] Removed vehicle 548. Success: table: 0xfb377740
+[2023-06-17 21:14:33] Added vehicle 401 to user 161. Success: table: 0xfb14b888
+[2023-06-17 21:52:09] Added vehicle 562 to user 103. Success: table: 0xfecec9e8
+[2023-06-18 03:53:03] Added vehicle 562 to user 372. Success: true
+[2023-06-18 06:17:13] Added vehicle 429 to user 31. Success: table: 0xfaba5fb8
+[2023-06-18 06:17:14] Added vehicle 405 to user 31. Success: table: 0xfef8e548
+[2023-06-18 06:17:15] Added vehicle 402 to user 31. Success: table: 0xfe6e1ca0
+[2023-06-18 06:20:11] Removed vehicle 1199. Success: table: 0xf838e3f0
+[2023-06-18 06:20:13] Removed vehicle 1201. Success: table: 0xfae6c3e0
+[2023-06-18 06:20:17] Removed vehicle 200. Success: table: 0xf842f0c8
+[2023-06-18 06:20:20] Removed vehicle 218. Success: table: 0xf8b9ceb8
+[2023-06-18 10:16:23] Added vehicle 559 to user 355. Success: table: 0xfa166958
+[2023-06-18 13:08:11] Added vehicle 562 to user 15. Success: table: 0xf9d0abc8
+[2023-06-18 13:58:39] Added vehicle 562 to user 373. Success: true
+[2023-06-18 14:02:04] Player sfsc.#ffba00pipa (pipa) sold Annis Elegy (ID: 1203) to Brautside (Brautside) for $1
+[2023-06-18 14:16:35] Removed vehicle 1204. Success: table: 0xfdff3c50
+[2023-06-18 14:17:20] Added vehicle 589 to user 373. Success: table: 0xfee520b0
+[2023-06-18 14:44:36] Removed vehicle 1205. Success: table: 0xfee4d5c8
+[2023-06-18 14:45:11] Added vehicle 477 to user 373. Success: table: 0xf83b8780
+[2023-06-18 14:46:47] Removed vehicle 1206. Success: table: 0xfe140088
+[2023-06-18 15:10:40] Added vehicle 562 to user 374. Success: true
+[2023-06-18 15:19:42] Removed vehicle 572. Success: table: 0xfe7fa920
+[2023-06-18 16:33:35] Added vehicle 562 to user 15. Success: table: 0xfc436b20
+[2023-06-18 17:37:50] Added vehicle 496 to user 104. Success: table: 0xfc617358
+[2023-06-18 17:57:34] Added vehicle 477 to user 15. Success: table: 0xfe77a128
+[2023-06-19 01:40:32] Removed vehicle 1181. Success: table: 0xfe0b26d8
+[2023-06-19 16:43:53] Added vehicle 562 to user 104. Success: table: 0xf9b44068
+[2023-06-19 17:46:12] Added vehicle 405 to user 292. Success: table: 0xf7b51d18
+[2023-06-19 23:59:39] Added vehicle 589 to user 312. Success: table: 0xfb89f1e0
+[2023-06-20 07:54:03] Added vehicle 562 to user 375. Success: true
+[2023-06-20 10:57:15] Added vehicle 589 to user 292. Success: table: 0xfdda0218
+[2023-06-20 18:24:44] Added vehicle 562 to user 95. Success: table: 0xf8bc6d40
+[2023-06-20 20:17:09] Added vehicle 562 to user 376. Success: true
+[2023-06-20 20:35:02] Removed vehicle 1073. Success: table: 0xfe849dd0
+[2023-06-20 20:36:12] Added vehicle 589 to user 288. Success: table: 0xfb24d368
+[2023-06-20 20:42:42] Removed vehicle 1219. Success: table: 0xfb96aa58
+[2023-06-20 20:54:19] Added vehicle 559 to user 288. Success: table: 0xfae27140
+[2023-06-20 21:12:18] Added vehicle 405 to user 101. Success: table: 0xfb51f7d8
+[2023-06-20 21:46:58] Added vehicle 402 to user 104. Success: table: 0xfa2ae770
+[2023-06-20 22:08:51] Added vehicle 562 to user 377. Success: true
+[2023-06-21 14:22:28] Removed vehicle 1216. Success: table: 0xf91e52e0
+[2023-06-21 14:26:15] Added vehicle 602 to user 292. Success: table: 0xfd24b8e0
+[2023-06-21 18:06:02] Added vehicle 562 to user 378. Success: true
+[2023-06-21 18:43:37] Added vehicle 589 to user 15. Success: table: 0xf86fbd48
+[2023-06-21 18:46:22] Removed vehicle 1226. Success: table: 0xf94bd8c0
+[2023-06-21 19:08:17] Added vehicle 602 to user 359. Success: table: 0xfaa04ce8
+[2023-06-21 19:12:47] Added vehicle 401 to user 376. Success: table: 0xfb932638
+[2023-06-21 19:27:55] Player #ffba00Dick_Sucker2003 (pipa) sold Annis Elegy (ID: 1210) to BlueGargamel (BlueGargamel) for $15089
+[2023-06-22 11:48:47] Added vehicle 429 to user 15. Success: table: 0xfdba6488
+[2023-06-22 11:51:35] Removed vehicle 1229. Success: table: 0xf9c84430
+[2023-06-22 11:52:48] Added vehicle 559 to user 15. Success: table: 0xfb29e678
+[2023-06-22 14:26:20] Added vehicle 562 to user 104. Success: table: 0xf871cca0
+[2023-06-22 14:27:03] Player #696969~Dunya (Dunya) sold Annis Elegy (ID: 1231) to #ffba00 (pipa) for $0
+[2023-06-22 14:32:23] Added vehicle 429 to user 104. Success: table: 0xfb1d0128
+[2023-06-22 14:33:15] Added vehicle 589 to user 104. Success: table: 0xf7ed6938
+[2023-06-22 14:33:36] Removed vehicle 1231. Success: table: 0xfbb2bd98
+[2023-06-22 14:33:38] Removed vehicle 1230. Success: table: 0xfe98abf8
+[2023-06-22 14:33:47] Removed vehicle 1044. Success: table: 0xfaf48928
+[2023-06-22 16:09:39] Added vehicle 560 to user 359. Success: table: 0xfeba2010
+[2023-06-22 20:49:15] Added vehicle 562 to user 3. Success: table: 0xfb8276a8
+[2023-06-22 21:02:47] Added vehicle 562 to user 3. Success: table: 0xf94b5830
+[2023-06-22 21:45:20] Removed vehicle 11. Success: table: 0x55c2196d0740
+[2023-06-23 18:19:50] Added vehicle 562 to user 379. Success: true
+[2023-06-24 06:36:39] Added vehicle 562 to user 1. Success: true
+[2023-06-24 06:38:33] Added vehicle 477 to user 1. Success: table: 0x55c2191784f0
+[2023-06-24 06:38:39] Removed vehicle 1238. Success: table: 0x55c219062cf0
+[2023-06-24 09:23:23] Added vehicle 477 to user 1. Success: table: 0x55c215760050
+[2023-06-24 09:24:33] Added vehicle 477 to user 380. Success: true
+[2023-06-24 09:30:48] Added vehicle 477 to user 381. Success: true
+[2023-06-24 09:51:14] Added vehicle 477 to user 382. Success: true
+[2023-06-25 14:39:11] Added vehicle 477 to user 384. Success: true
+[2023-06-25 16:19:09] Added vehicle 477 to user 385. Success: true
+[2023-06-26 16:25:48] Added vehicle 477 to user 3. Success: true
+[2023-06-26 16:59:20] Added vehicle 477 to user 3. Success: table: 0x55c219ee9b40
+[2023-06-26 19:04:01] Added vehicle 477 to user 386. Success: true
+[2023-06-26 21:45:54] Added vehicle 477 to user 387. Success: true
+[2023-06-27 18:12:19] Added vehicle 477 to user 388. Success: true
+[2023-06-29 12:16:55] Added vehicle 477 to user 384. Success: table: 0x55c2189ee0a0
+[2023-06-29 14:10:33] Added vehicle 477 to user 389. Success: true
+[2023-06-31 04:22:48] Added vehicle 477 to user 390. Success: true
+[2023-07-01 16:24:02] Removed vehicle 1247. Success: table: 0x55c2148f69f0
+[2023-07-02 08:06:39] Added vehicle 477 to user 391. Success: true
+[2023-07-02 16:08:01] Added vehicle 477 to user 3. Success: table: 0x55c218e677b0
+[2023-07-02 16:17:18] Added vehicle 477 to user 384. Success: table: 0x55c21c5aa970
+[2023-07-02 16:37:00] Removed vehicle 1256. Success: table: 0x55c21c5ee000
+[2023-07-02 16:37:58] Added vehicle 477 to user 384. Success: table: 0x55c218228780
+[2023-07-02 16:38:30] Added vehicle 477 to user 3. Success: table: 0x55c2189d7680
+[2023-07-02 16:44:30] Added vehicle 477 to user 385. Success: table: 0x55c21be34c20
+[2023-07-03 14:23:44] Added vehicle 477 to user 392. Success: true
+[2023-07-03 19:47:53] Added vehicle 477 to user 393. Success: true
+[2023-07-03 20:15:08] Added vehicle 477 to user 394. Success: true
+[2023-07-07 04:20:19] Added vehicle 562 to user 1. Success: table: 0x55c21893dcc0
+[2023-07-07 11:08:52] Added vehicle 477 to user 384. Success: table: 0x55c21b88f7c0
+[2023-07-07 11:26:05] Removed vehicle 1264. Success: table: 0x55c217a66c70
+[2023-07-23 17:32:56] Added vehicle 477 to user 395. Success: true
+[2023-07-24 13:41:06] Added vehicle 477 to user 396. Success: true
+[2023-07-29 22:46:20] Added vehicle 477 to user 397. Success: true
+[2023-08-10 10:00:24] Added vehicle 477 to user 398. Success: true
+[2023-08-12 13:52:20] Added vehicle 477 to user 399. Success: true
+[2023-08-13 15:03:37] Added vehicle 477 to user 400. Success: true
+[2023-08-17 09:47:57] Added vehicle 477 to user 401. Success: true
+[2023-08-18 17:49:13] Added vehicle 477 to user 3. Success: table: 0x55c218197090
+[2023-08-18 17:49:13] Added vehicle 477 to user 3. Success: table: 0x55c218984e80
+[2023-08-28 10:57:23] Added vehicle 477 to user 402. Success: true
+[2023-08-28 13:17:38] Added vehicle 477 to user 402. Success: table: 0x5637a02c9e20
+[2023-08-29 05:54:53] Added vehicle 477 to user 1. Success: table: 0x5637a7850510
+[2023-08-30 15:35:54] Added vehicle 477 to user 403. Success: true
+[2023-08-30 20:21:22] Added vehicle 477 to user 404. Success: true
+[2023-09-04 01:02:31] Added vehicle 549 to user 1. Success: table: 0x5637a4b1c070
+[2023-09-04 02:52:26] Removed vehicle 1276. Success: table: 0x5637a69d9c30
+[2023-09-04 07:24:39] Added vehicle 549 to user 385. Success: table: 0x5637a72930d0
+[2023-09-05 16:17:18] Added vehicle 477 to user 405. Success: true
+[2023-09-10 00:48:39] Added vehicle 477 to user 406. Success: true
+[2023-09-10 03:02:26] Added vehicle 477 to user 407. Success: true
+[2023-09-10 09:09:01] Added vehicle 477 to user 408. Success: true
+[2023-09-10 14:39:34] Added vehicle 549 to user 3. Success: table: 0x5637a3b929b0
+[2023-09-10 14:39:44] Removed vehicle 1272. Success: table: 0x5637a586ee40
+[2023-09-10 14:45:07] Removed vehicle 1273. Success: table: 0x5637a74e1ce0
+[2023-09-13 05:59:09] Added vehicle 477 to user 409. Success: true
+[2023-09-14 09:02:10] Added vehicle 549 to user 1. Success: table: 0x5637a5425790
+[2023-09-14 09:02:16] Removed vehicle 1287. Success: table: 0x5637a249e410
+[2023-09-14 09:02:24] Removed vehicle 1240. Success: table: 0x5637a0fb57c0
+[2023-09-14 09:03:10] Removed vehicle 1263. Success: table: 0x5637a88960c0
+[2023-09-14 09:27:39] Added vehicle 477 to user 1. Success: table: 0x5637a700c8f0
+[2023-09-14 09:27:44] Removed vehicle 1288. Success: table: 0x5637a1a3ce50
+[2023-09-14 09:44:05] Added vehicle 549 to user 1. Success: table: 0x5637a73d7ac0
+[2023-09-15 04:55:02] Removed vehicle 1289. Success: table: 0x5637a7894ef0
+[2023-09-15 04:55:11] Added vehicle 549 to user 1. Success: table: 0x5637a5503220
+[2023-09-15 04:57:08] Removed vehicle 1290. Success: table: 0x5637a0ec9990
+[2023-09-15 04:57:17] Added vehicle 549 to user 1. Success: table: 0x5637a6c7fe30
+[2023-09-15 04:59:16] Removed vehicle 1291. Success: table: 0x5637a66b2d40
+[2023-09-15 04:59:23] Added vehicle 549 to user 1. Success: table: 0x5637a2164920
+[2023-09-15 05:01:07] Removed vehicle 1292. Success: table: 0x5637a84a5230
+[2023-09-15 05:01:38] Added vehicle 549 to user 1. Success: table: 0x5637a3807c10
+[2023-09-15 05:19:23] Added vehicle 477 to user 410. Success: true
+[2023-09-16 03:57:50] Added vehicle 477 to user 411. Success: true
+[2023-09-16 06:13:03] Removed vehicle 1293. Success: table: 0x5637a3499d20
+[2023-09-17 14:01:57] Added vehicle 477 to user 412. Success: true
+[2023-09-20 18:04:40] Added vehicle 477 to user 413. Success: true
+[2023-09-21 19:03:48] Added vehicle 562 to user 1. Success: table: 0x5637a8541660
+[2023-09-21 21:05:06] Added vehicle 562 to user 1. Success: table: 0x5637a8983520
+[2023-09-22 17:45:45] Added vehicle 562 to user 3. Success: table: 0x557fb77def80
+[2023-09-22 18:21:18] Added vehicle 562 to user 3. Success: table: 0x557fb5446db0

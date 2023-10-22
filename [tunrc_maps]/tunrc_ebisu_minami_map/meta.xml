@@ -1,0 +1,35 @@
+<meta>
+    <oop>true</oop>
+	<info type="map" name="higashi" author="sdlevin" debmcription="remap" version="3" />
+ 
+	<script src="client.lua" type="client" />
+ 
+	<file src="1.txd" type="client" />
+ 
+ 
+	<file src="1.dff" type="client" />
+	<file src="2.dff" type="client" />
+	<file src="3.dff" type="client" />
+	<file src="4.dff" type="client" />
+	<file src="5.dff" type="client" />
+	<file src="6.dff" type="client" />
+	<file src="7.dff" type="client" />
+	<file src="8.dff" type="client" />
+	<file src="9.dff" type="client" />
+	<file src="10.dff" type="client" />
+	<file src="11.dff" type="client" />
+
+	<file src="1.col" type="client" />
+	<file src="2.col" type="client" />
+	<file src="3.col" type="client" />
+	<file src="4.col" type="client" />
+	<file src="5.col" type="client" />
+	<file src="6.col" type="client" />
+	<file src="7.col" type="client" />
+	<file src="8.col" type="client" />
+	<file src="9.col" type="client" />
+	<file src="10.col" type="client" />
+	<file src="11.col" type="client" />
+
+<map src="ebm.map" dimension="-1"></map>
+</meta>

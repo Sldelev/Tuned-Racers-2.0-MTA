@@ -1,0 +1,59 @@
+<meta>
+    <oop>true</oop>
+	<info type="map" name="daikoku" author="sdlevin" description="remap" version="3" />
+ 
+	<script src="client.lua" type="client" />
+ 
+	<file src="myogi.txd" type="client" />
+ 
+ 
+	<file src="myogi1.dff" type="client" />
+	<file src="myogi2.dff" type="client" />
+	<file src="myogi3.dff" type="client" />
+	<file src="myogi4.dff" type="client" />
+	<file src="myogi5.dff" type="client" />
+	<file src="myogi6.dff" type="client" />
+	<file src="myogi7.dff" type="client" />
+	<file src="myogi8.dff" type="client" />
+	<file src="myogi9.dff" type="client" />
+	<file src="myogi10.dff" type="client" />
+	<file src="myogi11.dff" type="client" />
+	<file src="myogi12.dff" type="client" />
+	<file src="myogi13.dff" type="client" />
+	<file src="myogi14.dff" type="client" />
+	<file src="myogi15.dff" type="client" />
+	<file src="myogi16.dff" type="client" />
+	<file src="myogi17.dff" type="client" />
+	<file src="myogi18.dff" type="client" />
+	<file src="myogi19.dff" type="client" />
+	<file src="myogi20.dff" type="client" />
+	<file src="myogi21.dff" type="client" />
+	<file src="myogi22.dff" type="client" />
+	<file src="myogi23.dff" type="client" />
+
+	<file src="myogi1.col" type="client" />
+	<file src="myogi2.col" type="client" />
+	<file src="myogi3.col" type="client" />
+	<file src="myogi4.col" type="client" />
+	<file src="myogi5.col" type="client" />
+	<file src="myogi6.col" type="client" />
+	<file src="myogi7.col" type="client" />
+	<file src="myogi8.col" type="client" />
+	<file src="myogi9.col" type="client" />
+	<file src="myogi10.col" type="client" />
+	<file src="myogi11.col" type="client" />
+	<file src="myogi12.col" type="client" />
+	<file src="myogi13.col" type="client" />
+	<file src="myogi14.col" type="client" />
+	<file src="myogi15.col" type="client" />
+	<file src="myogi16.col" type="client" />
+	<file src="myogi17.col" type="client" />
+	<file src="myogi18.col" type="client" />
+	<file src="myogi19.col" type="client" />
+	<file src="myogi20.col" type="client" />
+	<file src="myogi21.col" type="client" />
+	<file src="myogi22.col" type="client" />
+	<file src="myogi23.col" type="client" />
+
+<map src="myogi.map" dimension="-1"></map>
+</meta>

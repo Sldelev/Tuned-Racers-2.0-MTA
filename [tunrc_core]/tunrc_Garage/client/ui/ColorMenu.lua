@@ -21,7 +21,7 @@ function ColorMenu:init(headerText, position, rotation)
 	self.bars = {
 		{text = self.labels.hue,        value = 0, texture = Assets.textures.colorsHue},
 		{text = self.labels.saturation, value = 1, texture = Assets.textures.colorsSaturation},
-		{text = self.labels.brightness, value = 1, texture = Assets.textures.colorsBrightness}
+		{text = self.labels.brightness, value = 1, texture = Assets.textures.colorsBrightness},
 	}
 	self.activeBar = 1
 	self.price = 0
@@ -42,10 +42,8 @@ end
 function ColorMenu:draw(fadeProgress)
 	self.super:draw(fadeProgress)
 
-	dxSetRenderTarget(self.renderTarget, true)
-	dxDrawRectangle(0, 0, self.resolution.x, self.resolution.y, tocolor(42, 40, 41))
-	dxDrawRectangle(0, 0, self.resolution.x, self.headerHeight, tocolor(32, 30, 31))
-	dxDrawText(self.headerText, 20, 0, self.resolution.x, self.headerHeight, tocolor(255, 255, 255), 1, Assets.fonts.colorMenuHeader, "left", "center")
+	dxDrawText(self.headerText, self.resolution.x / 2 + 2, screenHeight / 2 + 2, self.resolution.x / 2, self.headerHeight, tocolor(0, 0, 0), 1, Assets.fonts.colorMenuHeader, "center", "center") --shadow
+	dxDrawText(self.headerText, self.resolution.x / 2, screenHeight / 2, self.resolution.x / 2, self.headerHeight, tocolor(255, 255, 255), 1, Assets.fonts.colorMenuHeader, "center", "center")
 
 	local priceText = ""
 	if self.price > 0 then
@@ -53,7 +51,8 @@ function ColorMenu:draw(fadeProgress)
 	else
 		priceText = exports.tunrc_Lang:getString("price_free")
 	end
-	dxDrawText(priceText, 0, 0, self.resolution.x - 20, self.headerHeight, tocolor(Garage.themePrimaryColor[1], Garage.themePrimaryColor[2], Garage.themePrimaryColor[3]), 1, Assets.fonts.colorMenuPrice, "right", "center")
+	dxDrawText(priceText, self.resolution.x / 2 + 2, screenHeight / 2 + 62, self.resolution.x / 2, self.headerHeight, tocolor(0, 0, 0), 1, Assets.fonts.colorMenuPrice, "center", "center") --shadow
+	dxDrawText(priceText, self.resolution.x / 2, screenHeight / 2 + 60, self.resolution.x / 2, self.headerHeight, tocolor(Garage.themePrimaryColor[1], Garage.themePrimaryColor[2], Garage.themePrimaryColor[3]), 1, Assets.fonts.colorMenuPrice, "center", "center")
 
 	local y = self.headerHeight
 	local barWidth = self.resolution.x - self.barOffset * 2
@@ -69,28 +68,29 @@ function ColorMenu:draw(fadeProgress)
 		local r, g, b = hsvToRgb(self.bars[1].value, 1, 1, 255)
 
 		-- Подпись
-		dxDrawText(bar.text, self.barOffset, y, self.resolution.x - self.barOffset, y + self.labelHeight, tocolor(255, 255, 255, a), 1, Assets.fonts.menuLabel, "left", "center")
+		dxDrawText(bar.text, self.barOffset + 1, y + screenHeight / 2 + 1, self.resolution.x - self.barOffset, y + self.labelHeight, tocolor(0, 0, 0, a), 1, Assets.fonts.menuLabel, "left", "center") --shadow
+		dxDrawText(bar.text, self.barOffset,  y + screenHeight / 2, self.resolution.x - self.barOffset, y + self.labelHeight, tocolor(255, 255, 255, a), 1, Assets.fonts.menuLabel, "left", "center")
 
 		-- Значение
-		dxDrawText(("%d"):format(bar.value * 255), self.barOffset, y, self.resolution.x - self.barOffset, y + self.labelHeight, tocolor(255, 255, 255, a), 1, Assets.fonts.menuLabel, "right", "center")
+		dxDrawText(("%d"):format(bar.value * 255), self.barOffset + 2, y + screenHeight / 2 + 2, self.resolution.x - self.barOffset, y + self.labelHeight, tocolor(0, 0, 0, a), 1, Assets.fonts.menuLabel, "right", "center") --shadow
+		dxDrawText(("%d"):format(bar.value * 255), self.barOffset, y + screenHeight / 2, self.resolution.x - self.barOffset, y + self.labelHeight, tocolor(255, 255, 255, a), 1, Assets.fonts.menuLabel, "right", "center")
 		y = y + self.labelHeight
 
 		-- Полоса
 		if i == self.activeBar then
-			dxDrawRectangle(self.barOffset - 1, y - 1, barWidth + 2, self.barHeight + 2, tocolor(255, 255, 255, 255))
+			dxDrawRectangle(self.barOffset - 1, y + screenHeight / 4 - 1, barWidth + 2, self.barHeight + 2, tocolor(255, 255, 255, 255))
 		end
-		dxDrawRectangle(self.barOffset, y, barWidth, self.barHeight, tocolor(r, g, b, a))
-		dxDrawImage(self.barOffset, y, barWidth, self.barHeight, bar.texture, 0, 0, 0, tocolor(255, 255, 255))
+		dxDrawRectangle(self.barOffset, y + screenHeight / 4, barWidth, self.barHeight, tocolor(r, g, b, a))
+		dxDrawImage(self.barOffset, y + screenHeight / 4, barWidth, self.barHeight, bar.texture, 0, 0, 0, tocolor(255, 255, 255))
 
 		-- Ползунок
 		local x = (barWidth + 2) * bar.value
 		x = self.barOffset + math.max(0, math.min(x, barWidth - cursorSize + 2)) - 1
-		dxDrawRectangle(x, y - cursorSize, cursorSize, self.barHeight + cursorSize * 2, tocolor(255, 255, 255))
+		dxDrawRectangle(x, y + screenHeight / 4 - cursorSize, cursorSize, self.barHeight + cursorSize * 2, tocolor(255, 255, 255))
 
 		y = y + self.barHeight * 2
 	end
 
-	dxSetRenderTarget()
 end
 
 

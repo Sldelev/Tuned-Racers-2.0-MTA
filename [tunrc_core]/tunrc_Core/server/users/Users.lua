@@ -13,6 +13,8 @@ function Users.setup()
         { name="online", type="bool", options="DEFAULT 0" },
         -- Деньги
         { name="money", type="bigint", options="UNSIGNED NOT NULL DEFAULT 0" },
+		-- Донат-валюта
+        { name="donatmoney", type="bigint", options="UNSIGNED NOT NULL DEFAULT 0" },
         -- Количество минут, проведённых в игре
         { name="playtime", type="int", options="UNSIGNED NOT NULL DEFAULT 0" },
 		 -- дрифт очки за 1 сессию
@@ -32,7 +34,9 @@ function Users.setup()
         -- Группа
         { name="group", type="varchar", size=25 },
         -- Время последней продажи машины
-        { name="last_sell_time", type="int", options="DEFAULT 0" }
+        { name="last_sell_time", type="int", options="DEFAULT 0" },
+		-- Время последней активации пинкода
+		{ name="last_code_use_time", type="int", options="DEFAULT 0" }
     })
     -- Очистка даты
     for i, player in ipairs(getElementsByType("player")) do
