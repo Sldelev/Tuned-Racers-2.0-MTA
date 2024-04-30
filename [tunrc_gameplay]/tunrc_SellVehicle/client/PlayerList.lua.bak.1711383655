@@ -1,0 +1,306 @@
+PlayerList = {}
+
+local UI = exports.tunrc_UI
+
+local PLAYER_LIST_SIZE = Vector2(300, 375)
+local BUTTON_HEIGHT = 50
+
+local PLAYER_SHOW_COUNT = 5
+local REFRESH_RATE = 1000
+local MAX_DISTNACE = 5
+local MAX_Z_DISTANCE = 2
+
+local screenSize = Vector2(UI:getScreenSize())
+local isVisible = false
+local ui = {}
+
+local playerList = {}
+local playerListOffset = 0
+
+local refreshTimer
+
+local function hideOnVehicleExit()
+    PlayerList.hide()
+end
+
+function PlayerList.show()
+    if isVisible or localPlayer:getData("activeUI") then
+        return false
+    end
+    if not localPlayer.vehicle then
+        return false
+    end
+    isVisible = true
+
+    UI:setText(ui.playerSearchInput, "")
+      PlayerList.filterPlayerList()
+
+    UI:setVisible(ui.panel, true)
+    showCursor(true)
+
+    addEventHandler("onClientPlayerVehicleExit", localPlayer, hideOnVehicleExit)
+
+    localPlayer:setData("activeUI", "sellVehicleSelectPlayer")
+    UI:fadeScreen(true)
+end
+
+function PlayerList.hide()
+    if not isVisible then
+        return false
+    end
+    isVisible = false
+
+    playerList = {}
+    playerListOffset = 0
+
+    removeEventHandler("onClientPlayerVehicleExit", localPlayer, hideOnVehicleExit)
+
+    refreshTimer:destroy()
+    refreshTimer = nil
+
+    UI:setVisible(ui.panel, false)
+      showCursor(false)
+
+      localPlayer:setData("activeUI", false)
+      UI:fadeScreen(false)
+end
+
+function PlayerList.filterPlayerList()
+    local searchText = utf8.lower(UI:getText(ui.playerSearchInput))
+      playerList = {}
+      for i, player in ipairs(Element.getAllByType("player")) do
+      local playerName = exports.tunrc_Utils:removeHexFromString(player:getData("username"))
+      local posDiffVector = (localPlayer.position - player.position)
+          if player ~= localPlayer and player:getData("username") and string.find(utf8.lower(playerName), searchText, 1, true)
+        and player.dimension == localPlayer.dimension and player:getData("activeMap") == localPlayer:getData("activeMap")
+        and posDiffVector:getLength() <= MAX_DISTNACE and math.abs(posDiffVector.z) <= MAX_Z_DISTANCE then
+              table.insert(playerList, player)
+          end
+      end
+
+    table.sort(playerList, function (firstPlayer, secondPlayer)
+      return (localPlayer.position - firstPlayer.position):getLength() < (localPlayer.position - secondPlayer.position):getLength()
+    end)
+
+    if #playerList == 0 then
+        UI:setVisible(ui.playerList, false)
+        UI:setVisible(ui.playersNotFound, true)
+    else
+        UI:setVisible(ui.playerList, true)
+        UI:setVisible(ui.playersNotFound, false)
+    end
+    PlayerList.redrawPlayerList()
+
+    if isTimer(refreshTimer) then
+      refreshTimer:destroy()
+    end
+
+    refreshTimer = Timer(function ()
+        PlayerList.filterPlayerList()
+    end, REFRESH_RATE, 0)
+end
+
+function PlayerList.redrawPlayerList()
+    local showPlayers = {}
+    local indexStart = math.max(1, playerListOffset + 1)
+    local indexEnd = math.min(#playerList, playerListOffset + PLAYER_SHOW_COUNT)
+    for i = indexStart, indexEnd do
+        local player = playerList[i]
+        local distance = (localPlayer.position - player.position):getLength()
+        local item = {
+            [1] = exports.tunrc_Lang:getString("global_distance"):format(distance),
+            [2] = exports.tunrc_Utils:removeHexFromString(player:getData("username")),
+            player = player
+        }
+        table.insert(showPlayers, item)
+    end
+    UI:setItems(ui.playerList, showPlayers)
+end
+
+addEventHandler("onClientResourceStart", resourceRoot, function ()
+    ui.panel  = UI:createTrcRoundedRectangle {
+		x       = (screenSize.x - PLAYER_LIST_SIZE.x) / 2,
+        y       = (screenSize.y - PLAYER_LIST_SIZE.y) / 2,
+        width   = PLAYER_LIST_SIZE.x,
+        height  = PLAYER_LIST_SIZE.y,
+		radius = 20,
+		color = tocolor(245, 245, 245),
+		darkToggle = true,
+		darkColor = tocolor(20, 20, 20)
+	}
+    UI:addChild(ui.panel)
+    UI:setVisible(ui.panel, false)
+
+    -- Заголовок
+    UI:addChild(ui.panel, UI:createDpLabel {
+        x        = 0,
+        y        = 0,
+        width    = PLAYER_LIST_SIZE.x,
+        height   = BUTTON_HEIGHT,
+        alignX   = "center",
+        alignY   = "center",
+		color = tocolor (0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
+        fontType = "defaultSmall",
+        locale   = "sell_vehicle_title",
+    })
+
+    -- Текст, который отображается, когда не было найдено ни одного игрока
+    ui.playersNotFound = UI:createDpLabel {
+        x        = 15,
+        y        = BUTTON_HEIGHT * 2 + 10,
+        width    = PLAYER_LIST_SIZE.x, height = BUTTON_HEIGHT,
+        color = tocolor (0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
+        fontType = "defaultSmall",
+        locale   = "sell_vehicle_players_not_found",
+    }
+    UI:addChild(ui.panel, ui.playersNotFound)
+
+    -- Поле ввода для поиска по игрокам
+    ui.playerSearchInput = UI:createDpInput {
+        x       = 0,
+        y       = BUTTON_HEIGHT,
+        width   = PLAYER_LIST_SIZE.x,
+        height  = BUTTON_HEIGHT,
+        color = tocolor(200, 205, 210),
+		textHolderColor = tocolor(0, 0, 0),
+		textDarkHolderColor = tocolor(255,255,255),
+        hover = true,
+		hoverColor = tocolor(130, 130, 200),
+		darkToggle = true,
+		darkColor = tocolor(50, 50, 50),
+		hoverDarkColor = tocolor(30, 30, 30),
+        locale  = "sell_vehicle_player_search_hint"
+    }
+    UI:addChild(ui.panel, ui.playerSearchInput)
+
+    -- Список найденных игроков
+    ui.playerList = UI:createDpList {
+        x       = 0,
+        y       = BUTTON_HEIGHT * 2,
+        width   = PLAYER_LIST_SIZE.x,
+        height  = PLAYER_LIST_SIZE.y - BUTTON_HEIGHT,
+		color = tocolor(245,245,245),
+		hoverColor = tocolor(205,205,205),
+		darkToggle = true,
+		darkColor = tocolor(20, 20, 20),
+		hoverDarkColor = tocolor(40,40,40),
+        items   = {},
+        columns = {
+            {size = 0.15, offset = 0.06, align = "left"},
+            {size = 0.85, offset = 0.06, align = "left"}
+        }
+    }
+    UI:addChild(ui.panel, ui.playerList)
+    UI:setVisible(ui.playerList, false)
+	
+	ui.cancelButton = UI:createTrcRoundedRectangle {
+		x       = PLAYER_LIST_SIZE.x / 2 - 75,
+        y       = PLAYER_LIST_SIZE.y - BUTTON_HEIGHT - 15,
+        width = 150,
+        height = BUTTON_HEIGHT,
+		radius = 15,
+		color = tocolor(200, 205, 210),
+		hover = true,
+		hoverColor = tocolor(130, 130, 200),
+		darkToggle = true,
+		darkColor = tocolor(50, 50, 50),
+		hoverDarkColor = tocolor(30, 30, 30),
+		shadow = true
+	}
+    UI:addChild(ui.panel, ui.cancelButton)
+	
+	ui.cancelButtonText = UI:createDpLabel {
+		x = 75,
+		y = 25,
+		width = 0,
+		height = 0,
+		text = "Admin",
+		color = tocolor (0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
+		alignX = "center",
+		alignY = "center",
+		locale = "sell_vehicle_cancel_button"
+	}
+	UI:addChild(ui.cancelButton, ui.cancelButtonText)
+end)
+
+addEvent("tunrc_UI.click", false)
+addEventHandler("tunrc_UI.click", resourceRoot, function (widget)
+    if widget == ui.playerList then
+        if not localPlayer.vehicle or localPlayer.vehicle.controller ~= localPlayer
+            or localPlayer.vehicle:getData("owner_id") ~= localPlayer:getData("_id") then
+            PlayerList.hide()
+            exports.tunrc_Sounds:playSound("error.wav")
+            return
+        end
+		
+        local items = exports.tunrc_UI:getItems(ui.playerList)
+        local selectedItem = exports.tunrc_UI:getActiveItem(ui.playerList)
+		
+        if selectedItem > 0 then
+            local player = items[selectedItem].player
+            if isElement(player) and not player:getData("tunrc_Core.state") and player.dimension == localPlayer.dimension
+              and player:getData("activeMap") == localPlayer:getData("activeMap")
+              and (localPlayer.position - player.position):getLength() <= MAX_DISTNACE
+              and math.abs((localPlayer.position - player.position).z) <= MAX_Z_DISTANCE then
+                local vehiclePrices = exports.tunrc_Shared:getVehiclePrices(
+                    exports.tunrc_Shared:getVehicleNameFromModel(localPlayer.vehicle.model))
+                -- Проверка необходимого уровня у игрока
+                if exports.tunrc_Core:getLevelFromXP(player:getData("xp")) < vehiclePrices[2] then
+                    PlayerList.hide()
+                    local playerName = exports.tunrc_Utils:removeHexFromString(player.name)
+                    exports.tunrc_UI:showMessageBox(
+                        exports.tunrc_Lang:getString("sell_vehicle_sell_title"):format(playerName),
+                        exports.tunrc_Lang:getString("sell_vehicle_not_enough_xp"):format(playerName)
+                    )
+                    exports.tunrc_Sounds:playSound("error.wav")
+                else
+                    PlayerList.hide()
+                    PriceDialog.show(player)
+                    exports.tunrc_Sounds:playSound("ui_select.wav")
+                end
+            else
+                PlayerList.filterPlayerList()
+                exports.tunrc_Sounds:playSound("error.wav")
+            end
+        end
+    elseif widget == ui.cancelButton then
+        PlayerList.hide()
+        exports.tunrc_Sounds:playSound("ui_back.wav")
+		exports.tunrc_overallPanel:setVisible(true)
+    end
+end)
+
+addEventHandler("tunrc_UI.inputChange", resourceRoot, function (widget)
+    if widget == ui.playerSearchInput then
+        PlayerList.filterPlayerList()
+		exports.tunrc_Sounds:playSound("ui_select.wav")
+    end
+end)
+
+addEventHandler("onClientKey", root, function (button, down)
+    if not down or not isVisible then
+        return
+    end
+    if button == "mouse_wheel_up" then
+        playerListOffset = math.max(0, playerListOffset - 1)
+        PlayerList.redrawPlayerList()
+    elseif button == "mouse_wheel_down" then
+        local count = math.min(#playerList, PLAYER_SHOW_COUNT)
+        playerListOffset = math.min(#playerList - count, playerListOffset + 1)
+        PlayerList.redrawPlayerList()
+    end
+end)
+
+bindKey("backspace", "down", function ()
+    if isVisible then
+        PlayerList.hide()
+        exports.tunrc_Sounds:playSound("ui_back.wav")
+		exports.tunrc_overallPanel:setVisible(true)
+    end
+end)

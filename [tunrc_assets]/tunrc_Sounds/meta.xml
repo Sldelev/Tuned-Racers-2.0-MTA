@@ -7,6 +7,9 @@
 	<file src="sounds/ui_back.wav"/>
 	<file src="sounds/ui_select.wav"/>
 	<file src="sounds/ui_change.wav"/>
+	<file src="sounds/ui_success.wav"/>
+	<file src="sounds/ui_hover.wav"/>
+	<file src="sounds/ui_swipe.wav"/>
 	<file src="sounds/error.wav"/>
 	<file src="sounds/sell.wav"/>
     <file src="sounds/crowd.wav"/>

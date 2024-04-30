@@ -1,53 +1,24 @@
---[[
-	##########################################################
-	# @project: bengines
-	# @author: brzys <brzysiekdev@gmail.com>
-	# @filename: engine_c.lua
-	# @description: new engine sounds & RPM simulation
-	# All rights reserved.
-	##########################################################
---]]
-local FONT_SIZE = 32
-local MULTIPLIER_FONT_SIZE = 16
-
 ENGINE_ENABLED = true
-ENGINE_VOLUME_MASTER = 0.5 -- volume multiplier
+local ENGINE_VOLUME_MASTER
 ENGINE_VOLUME_THROTTLE_BOOST = 2.5	 -- boosting engine volume if we use throttle
 ENGINE_SOUND_FADE_DIMENSION = 500 -- dimension for unloading sounds
 ENGINE_SOUND_DISTANCE = 90 -- max distance
 local Veh = getPedOccupiedVehicle(localPlayer)
 
-DEBUG = false
+local PARTICLE_SIZE = 1.3
+local NOISE_POWER = 80 / 100
+local ANIMATION_DURATION_MIN = 100
+local ANIMATION_DURATION_MAX = 300
+local EFFECT_DENSITY = 0.15
+local EFFECT_DENSITY_LOW = 0.09
+local EFFECT_DRAW_DISTANCE = 50
+
+local backfireTexture, backfireShader
+local glowTexture, glowShader
+local GLOW_COLOR = tocolor(255, 109, 0, 128)
 
 -- offsets of exhaust flames
-local als = { 
-	[562] = { 
-		{-0.49, -2.4, -0.42},
-		{0.49, -2.4, -0.42},
-	},
-	[587] = { 
-		{-0.7, -2.66, -0.47},
-		{0.7, -2.66, -0.47},
-	},
-	[602] = { 
-		{-0.56, -2.54, -0.57},
-		{0.56, -2.54, -0.57},
-	},
-	[405] = {
-		{0.48, -2.64, -0.58},
-	},
-	[429] = { 
-		{-0.5, -2.54, -0.35},
-		{0.5, -2.54, -0.35},
-	},
-	[402] = { 
-		{-0.5, -2.58, -0.52},
-		{0.5, -2.58, -0.52},
-	},
-	[589] = { 
-		{-0.56, -2.35, -0.35},
-		{0.56, -2.35, -0.35},
-	},
+local als = {
 }
 
 local streamedVehicles = {}
@@ -97,21 +68,89 @@ function calculateGearRatios(vehicle, maxRPM, startRatio)
 	return ratios
 end 
 
-local screenWidth, screenHeight = guiGetScreenSize ( ) 
-local fontspeedo = dxCreateFont('font.ttf', 20, false, 'proof') -- fallback to default
+-- Получение анимаций отстрелов
+local animationFunctions = {
+	[1] = function(n)
+		n = n * 4
+		if n > 3 then
+			return getEasingValue(1 - (n - 3), "InOutBounce")
+		elseif n > 2 then
+			return getEasingValue((n - 2), "OutInBounce")
+		elseif n > 1 then
+			return getEasingValue(1 - (n - 1), "InBounce")
+		else
+			return getEasingValue(n, "OutBounce")
+		end
+	end;
+	[2] = function(n)
+		n = n * 2
+		if n > 1 then
+			return getEasingValue(1 - (n - 1), "InOutBounce")
+		else
+			return getEasingValue((n), "OutInBounce")
+		end
+	end;
+	[3] = function(n)
+		n = n * 2
+		if n > 1 then
+			return getEasingValue(1 - (n - 1), "InBounce")
+		else
+			return getEasingValue((n), "OutBounce")
+		end
+	end;
+}
+
+Animations = {}
+Animations.count = #animationFunctions
+
+---@param index integer
+---@param progress number
+---@return number
+Animations.get = function(index, progress)
+	if index > Animations.count or 1 > index then
+		return 0
+	end
+	local anim = animationFunctions[index](progress)
+	if anim then
+		return math.min(1, math.max(0, anim))
+	end
+	return 0
+end
+
+local function drawBackfire(x, y, z, r, s)
+	do
+		local camera = getCamera().rotation.z
+		local rotation = math.rad(r + (camera - r))
+		local ox, oy = math.cos(rotation) * s, math.sin(rotation) * s
+		dxDrawMaterialLine3D(
+			x + ox, y + oy, z,
+			x - ox, y - oy, z,
+			glowShader, s * 1.75, GLOW_COLOR
+		)
+	end
+
+	do
+		local rotation = math.rad(r - 90)
+		local ox, oy = math.cos(rotation) * s / 2, math.sin(rotation) * s / 2
+		dxDrawMaterialLine3D(
+			x + ox, y + oy, z,
+			x - ox, y - oy, z,
+			backfireShader, s / 1.75, 0xFFFFFFFF
+		)
+	end
+end
+
+---@return number
+local function getNoise()
+	return math.random() * NOISE_POWER + (1 - NOISE_POWER)
+end
 
 function updateEngines(dt)
 	if not ENGINE_ENABLED then return end 
 	
-	local myVehicle = getPedOccupiedVehicle(localPlayer)
-	if myVehicle and getVehicleController(myVehicle) ~= localPlayer then 
-		myVehicle = false
-	end
-	if not myVehicle then
-		return 
-	end
+	ENGINE_VOLUME_MASTER = exports.tunrc_Config:getProperty("sounds.car_sounds_volume") / 100
 	
-	local turboVisible = getVehicleComponentVisible (myVehicle, "Turbos1")
+	local myVehicle = getPedOccupiedVehicle(localPlayer)
 	
 	local cx, cy, cz = getCameraMatrix()
 	local now = getTickCount()
@@ -132,10 +171,12 @@ function updateEngines(dt)
 					local controller = getVehicleController(vehicle)
 					
 					local upgrades = getElementData(vehicle, "vehicle:upgrades") or {}
+					local turboid = vehicle:getData("Turbos")
+					local turboVisible = getVehicleComponentVisible(vehicle, "Turbos" .. tostring(turboid))
 					
 					engine.gear = engine.gear or 1
 					
-					if turboVisible and vehicle == myVehicle then
+					if turboVisible == true then
 						engine.turbo = true
 						engine.turbo_shifts = true
 					else
@@ -173,7 +214,7 @@ function updateEngines(dt)
 					data.turboValue = data.turboValue or 0
 					data.prevTurboValue = data.turboValue					
 					data.als = true
-					data.effects = data.effects or {} 
+					data.effects = data.effects or {}
 					
 					local changedGear = false 
 					
@@ -241,13 +282,13 @@ function updateEngines(dt)
 					data.previousGear = data.currentGear 
 					
 					-- change gears
-					if not data.changingGear and data.throttlingRPM == 0 and wheel_rpm > 200 then
-						if rpm > engine.shiftUpRPM and data.throttle then 
-							data.currentGear = math.min(data.currentGear+1, math.max(4, getVehicleHandling(vehicle).numberOfGears))
-						elseif rpm < engine.shiftDownRPM then
-							data.currentGear = math.max(1, data.currentGear-1)
-						end 
-					end 
+						if not data.changingGear and data.throttlingRPM == 0 and wheel_rpm > 200 then
+							if rpm > engine.shiftUpRPM and data.throttle then 
+								data.currentGear = math.min(data.currentGear+1, math.max(4, getVehicleHandling(vehicle).numberOfGears))
+							elseif rpm < engine.shiftDownRPM then
+								data.currentGear = math.max(1, data.currentGear-1)
+							end 
+						end
 					
 					-- rev limiter
 					if rpm < engine.idleRPM then 
@@ -306,13 +347,13 @@ function updateEngines(dt)
 						-- engine
 						local minMidProgress = math.min(1, (rpm+500)/(engine.maxRPM/2))
 						local maxMidProgress = minMidProgress - ((engine.maxRPM/2)/rpm)
-						
 						local highProgress = (rpm-(engine.maxRPM/2.2))/(engine.maxRPM/2.2)
+						local maxHighProgress = highProgress - (rpm-(engine.maxRPM/2.2))/(engine.maxRPM/2.2)
 						
 						svol[1] = 1 - 2^(rpm/(engine.idleRPM*1.5) - 2)
 						svol[2] =  minMidProgress < 1 and interpolateBetween(0, 0, 0, 0.8, 0, 0, minMidProgress, "InQuad") or interpolateBetween(0.8, 0, 0, 0, 0, 0, maxMidProgress, "OutQuad")
-						svol[3] =  interpolateBetween(0, 0, 0, 0.8, 0, 0, highProgress, "OutQuad")
-						svol[4] =  interpolateBetween(0, 0, 0, 0.4, 0, 0, highProgress, "OutQuad")
+						svol[3] =  interpolateBetween(0, 0, 0, 0.8, 0, 0, highProgress, "OutQuad") or interpolateBetween(0.8, 0, 0, 0, 0, 0, maxHighProgress, "OutQuad")
+						svol[4] =  interpolateBetween(0, 0, 0, 0.8, 0, 0, highProgress, "OutQuad")
 						
 						
 						local vol = svol[1]
@@ -342,6 +383,9 @@ function updateEngines(dt)
 						if data.throttle then 
 							vol = vol*ENGINE_VOLUME_THROTTLE_BOOST
 						end 
+						if rpm >= engine.maxRPM - 100 then
+							vol = 0
+						end
 						
 						if data.changingGearDirection == "up" and vol > 0.1 then 
 							vol = vol/2
@@ -375,6 +419,7 @@ function updateEngines(dt)
 							end
 						end
 						
+						-- Тут бля получение данных выхлопов
 						local exhid = vehicle:getData("Exh")
 						local ex, ey, ez = getVehicleComponentPosition(vehicle, "Exh" .. tostring(exhid) )
 						local rotex, rotey, rotez = getVehicleComponentRotation(vehicle, "Exh" .. tostring(exhid))
@@ -382,98 +427,101 @@ function updateEngines(dt)
 						local ext, eyt, ezt = getVehicleComponentPosition(vehicle, "ExhThird" .. tostring(exhid) )
 						local rotext, roteyt, rotezt = getVehicleComponentRotation(vehicle, "ExhThird" .. tostring(exhid))
 							
+						if vehicle:getEngineState() == true then
+							-- Опа а здесь мы шуры муры делаем чтобы дым был крутой
+							local exhef = createEffect("gunsmoke", ex, ey, ez, 0, 0, 0, EFFECT_DRAW_DISTANCE)
+							setEffectSpeed(exhef, 1)
+							if velocity > 20 then
+								setEffectDensity(exhef, EFFECT_DENSITY_LOW )
+							else
+								setEffectDensity(exhef, EFFECT_DENSITY )
+							end
+							data.effects[exhef] = {ex, ey, ez, -180, rotey, rotez}
+							setTimer(function()
+										data.effects[exhef] = nil
+									end, 100, 1)
+									
+							if getVehicleComponentVisible(vehicle, "ExhSecond" .. tostring(exhid)) == true then
+							local exhef1 = createEffect("gunsmoke", -ex, ey, ez, 0, 0, 0, EFFECT_DRAW_DISTANCE)
+							setEffectSpeed(exhef1, 1)
+							if velocity > 20 then
+								setEffectDensity(exhef1, EFFECT_DENSITY_LOW )
+							else
+								setEffectDensity(exhef1, EFFECT_DENSITY )
+							end
+							data.effects[exhef1] = {-ex, ey, ez, -180, rotey, rotez}
+							setTimer(function()
+										data.effects[exhef1] = nil
+									end, 100, 1)
+							end
 							
-						local exhef = createEffect("gunsmoke", ex, ey, ez, 0, 0, 0)
-						setEffectSpeed(exhef, 1)
+							if getVehicleComponentVisible(vehicle, "ExhThird" .. tostring(exhid)) == true then
+							local exhef2 = createEffect("gunsmoke", ext, eyt, ezt, 0, 0, 0, EFFECT_DRAW_DISTANCE)
+							setEffectSpeed(exhef2, 1)
 							if velocity > 20 then
-								setEffectDensity(exhef, 0.09)
-							elseif velocity < 20 then
-								setEffectDensity(exhef, 0.2)
+								setEffectDensity(exhef2, EFFECT_DENSITY_LOW )
+							else
+								setEffectDensity(exhef2, EFFECT_DENSITY )
 							end
-						data.effects[exhef] = {ex, ey, ez, -180, rotey, rotez}
-						setTimer(function()
-									data.effects[exhef] = nil
-								end, 100, 1)
-								
-						if getVehicleComponentVisible(vehicle, "ExhSecond" .. tostring(exhid)) == true then
-						local exhef1 = createEffect("gunsmoke", -ex, ey, ez, 0, 0, 0)
-						setEffectSpeed(exhef1, 1)
+							data.effects[exhef2] = {ext, eyt, ezt, -180, roteyt, rotezt}
+							setTimer(function()
+										data.effects[exhef2] = nil
+									end, 100, 1)
+							end
+							
+							if getVehicleComponentVisible(vehicle, "ExhFourth" .. tostring(exhid)) == true then
+							local exhef3 = createEffect("gunsmoke", -ext, eyt, ezt, 0, 0, 0, EFFECT_DRAW_DISTANCE)
+							setEffectSpeed(exhef3, 1)
 							if velocity > 20 then
-								setEffectDensity(exhef1, 0.09)
-							elseif velocity < 20 then
-								setEffectDensity(exhef1, 0.2)
+								setEffectDensity(exhef3, EFFECT_DENSITY_LOW )
+							else
+								setEffectDensity(exhef3, EFFECT_DENSITY )
 							end
-						data.effects[exhef1] = {-ex, ey, ez, -180, rotey, rotez}
-						setTimer(function()
-									data.effects[exhef1] = nil
-								end, 100, 1)
-						end
-						
-						if getVehicleComponentVisible(vehicle, "ExhThird" .. tostring(exhid)) == true then
-						local exhef2 = createEffect("gunsmoke", ext, eyt, ezt, 0, 0, 0)
-						setEffectSpeed(exhef2, 1)
-							if velocity > 20 then
-								setEffectDensity(exhef2, 0.09)
-							elseif velocity < 20 then
-								setEffectDensity(exhef2, 0.2)
+							data.effects[exhef3] = {-ext, eyt, ezt, -180, roteyt, rotezt}
+							setTimer(function()
+										data.effects[exhef3] = nil
+									end, 100, 1)
 							end
-						data.effects[exhef2] = {ext, eyt, ezt, -180, roteyt, rotezt}
-						setTimer(function()
-									data.effects[exhef2] = nil
-								end, 100, 1)
-						end
-						
-						if getVehicleComponentVisible(vehicle, "ExhFourth" .. tostring(exhid)) == true then
-						local exhef3 = createEffect("gunsmoke", -ext, eyt, ezt, 0, 0, 0)
-						setEffectSpeed(exhef3, 1)
-							if velocity > 20 then
-								setEffectDensity(exhef3, 0.09)
-							elseif velocity < 20 then
-								setEffectDensity(exhef3, 0.2)
-							end
-						data.effects[exhef3] = {-ext, eyt, ezt, -180, roteyt, rotezt}
-						setTimer(function()
-									data.effects[exhef3] = nil
-								end, 100, 1)
 						end
 						
 						if data.activeALS and not isElement(data.sounds[6]) then
-							
+						
 							data.sounds[6] = playSound3D("sounds/"..soundPack.."/als.wav", ex, ey, ez, false)
-							setSoundVolume(data.sounds[6], 0.8)
+							setSoundVolume(data.sounds[6], 0.8*ENGINE_VOLUME_MASTER)
 							setSoundSpeed(data.sounds[6], 1.1)
 							--setSoundEffectEnabled(data.sounds[6], "reverb", true)
 							setSoundEffectEnabled(data.sounds[6], "echo", true)
 							setSoundEffectEnabled(data.sounds[6], "compressor", true)
 								
-								local ef = createEffect("gunflash", ex, ey, ez, 0, 0, 0)
-								setEffectSpeed(ef, 0.8)
-								setEffectDensity(ef, 2)
-								data.effects[ef] = {ex, ey, ez, -90, rotey, rotez} 
-								if getVehicleComponentVisible(vehicle, "ExhSecond" .. tostring(exhid)) == true then
-									local ef1 = createEffect("gunflash", -ex, ey, ez, 0, 0, 0)
-									setEffectSpeed(ef1, 0.8)
-									setEffectDensity(ef1, 2)
-									data.effects[ef1] = {-ex, ey, ez, -90, rotey, rotez} 
-								end
-								if getVehicleComponentVisible(vehicle, "ExhThird" .. tostring(exhid)) == true then
-									local ef2 = createEffect("gunflash", ext, eyt, ezt, 0, 0, 0)
-									setEffectSpeed(ef2, 0.8)
-									setEffectDensity(ef2, 2)
-									data.effects[ef2] = {ext, eyt, ezt, -90, roteyt, rotezt} 
-								end
-								if getVehicleComponentVisible(vehicle, "ExhFourth" .. tostring(exhid)) == true then
-									local ef2 = createEffect("gunflash", -ext, eyt, ezt, 0, 0, 0)
-									setEffectSpeed(ef2, 0.8)
-									setEffectDensity(ef2, 2)
-									data.effects[ef2] = {-ext, eyt, ezt, -90, roteyt, rotezt} 
-								end
-								setTimer(function()
-									data.effects[ef] = nil
-									destroyElement(ef)
-								end, 1000, 1)
+							local tick = getTickCount()
+							local duration = math.random(ANIMATION_DURATION_MIN, ANIMATION_DURATION_MAX)
+							local animation = math.random(Animations.count)
+							local _, _, rotation = getElementRotation(vehicle)
+							local progress = (now - (tick + 1000)) / duration
+							local animationDraw = Animations.get(animation, progress)
+
+							particleSize = PARTICLE_SIZE * animationDraw * getNoise()
 							
-							data.activeALS = false
+							if getVehicleComponentVisible(vehicle, "Exh" .. tostring(exhid)) == true then
+								local position = vehicle.matrix:transformPosition(ex, ey - particleSize / 8, ez)
+								drawBackfire(position.x, position.y, position.z, rotation, particleSize)
+							end
+							if getVehicleComponentVisible(vehicle, "ExhSecond" .. tostring(exhid)) == true then
+								local position = vehicle.matrix:transformPosition(-ex, ey - particleSize / 8, ez)	
+								drawBackfire(position.x, position.y, position.z, rotation, particleSize)
+							end
+							if getVehicleComponentVisible(vehicle, "ExhThird" .. tostring(exhid)) == true then
+								local position = vehicle.matrix:transformPosition(ext, eyt - particleSize / 8, ezt)	
+								drawBackfire(position.x, position.y, position.z, rotation, particleSize)
+							end
+							if getVehicleComponentVisible(vehicle, "ExhFourth" .. tostring(exhid)) == true then
+								local position = vehicle.matrix:transformPosition(-ext, eyt - particleSize / 8, ezt)	
+								drawBackfire(position.x, position.y, position.z, rotation, particleSize)
+							end
+								
+							setTimer ( function()	
+								data.activeALS = false
+							end, math.random(500, 1000), 1 )
 						end
 						
 						for i=1, #data.sounds do
@@ -498,16 +546,6 @@ function updateEngines(dt)
 								setElementRotation(ef, offset[4]-rx, offset[5]-ry, offset[6]-rz)
 							end
 						end 
-					end
-	
-					if DEBUG and vehicle == myVehicle then
-					local rmpdata = tostring(rpm)
-					local rpmexport = string.format ("%.f", rmpdata)
-						dxDrawText ( rpmexport, screenWidth - 200, screenHeight - 180, screenWidth, screenHeight, tocolor ( 255, 255, 255, 255 ), 2, fontspeedo, "center", "center", false, false, false, false, false, 0 )
-						
-						local t = "Gear: "..tostring(data.gear)
-						dxDrawText(t, screenWidth - 200, screenHeight - 110, screenWidth, screenHeight, tocolor ( 255, 255, 255, 255 ), 2, fontspeedo, "center", "center", false, false, false, false, false, 0 )
-						
 					end
 				else 
 					if data.sounds then 
@@ -681,6 +719,15 @@ addEventHandler("onClientVehicleEnter", root, function(player, seat)
 end)
 
 addEventHandler("onClientResourceStart", resourceRoot, function()
+
+	backfireTexture = dxCreateTexture("assets/pfx_flame_01.dds")
+	backfireShader = dxCreateShader("assets/shader.fx")
+	dxSetShaderValue(backfireShader, "gTexture", backfireTexture)
+
+	glowTexture = dxCreateTexture("assets/coronastar.dds")
+	glowShader = dxCreateShader("assets/shader.fx")
+	dxSetShaderValue(glowShader, "gTexture", glowTexture)
+	
 	toggleEngines(true)
 end)
 

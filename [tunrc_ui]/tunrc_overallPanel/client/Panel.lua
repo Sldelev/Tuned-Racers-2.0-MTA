@@ -15,6 +15,11 @@ function Panel.create()
 	local gift_panel_icon = DxTexture("assets/textures/icons/gift_panel.png")
 	local settings_icon = DxTexture("assets/textures/icons/settings_icon.png")
 	local help_icon = DxTexture("assets/textures/icons/help_icon.png")
+	local user_icon = DxTexture("assets/textures/icons/user_icon.png")
+	local crownTexture = exports.tunrc_Assets:createTexture("crown.png")
+	
+	local garage_button_img = DxTexture("assets/textures/garage_button_img.png")
+	local teleports_button_img = DxTexture("assets/textures/teleports_button_img.png")
 	
 	-- ОСНОВНАЯ ПАНЕЛЬ
 	
@@ -33,40 +38,33 @@ function Panel.create()
 	
 	-- ПАНЕЛЬ СБОКУ
 	
-	local shadowMenuPanel = UI:createTrcRoundedRectangle {
-		x       = 25,
-        y       = 40,
-        width   = width * 0.19,
-        height  = (height / 1.10) - 50,
-		radius = 15,
-		color = tocolor(50, 50, 132, 20),
-		darkToggle = true,
-		darkColor = tocolor(0, 0, 0, 20)
-	}
-	UI:addChild(panel, shadowMenuPanel)
-	
-	local menuPanel = UI:createTrcRoundedRectangle {
+	menuPanel = UI:createTrcRoundedRectangle {
 		x       = 20,
         y       = 35,
         width   = width * 0.19,
         height  = (height / 1.10) - 50,
 		radius = 15,
-		color = tocolor(50, 50, 132),
+		color = tocolor(235, 235, 235),
 		darkToggle = true,
-		darkColor = tocolor(40, 40, 40)
+		darkColor = tocolor(40, 40, 40),
+		shadow = true
 	}
 	UI:addChild(panel, menuPanel)
 	
 	-- ЭЛЕМЕНТЫ ПАНЕЛИ СБОКУ
 	
 	local serverNameLabel = UI:createDpLabel {
-		x = 65,
+		x = UI:getWidth(menuPanel) / 2,
 		y = 40,
-		width = width,
-		height = height,
+		width = 0,
+		height = 0,
 		text = "TunedRacers",
-		type = "light",
-		fontType = "default"
+		color = tocolor(0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
+		fontType = "default",
+		alignX = "center",
+		alignY = "top"
 	}
 	UI:addChild(menuPanel, serverNameLabel)
 	
@@ -76,7 +74,9 @@ function Panel.create()
 		width = width,
 		height = height,
 		text = "---",
-		type = "light",
+		color = tocolor(0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
 		fontType = "light"
 	}
 	UI:addChild(panel, usernameLabel)
@@ -90,11 +90,11 @@ function Panel.create()
 		width = width,
 		height = height,
 		text = "Admin",
-		color = tocolor(255, 255, 255, 150),
+		color = tocolor(148, 150, 255),
 		darkToggle = true,
 		darkColor = tocolor(130, 130, 200),
 		fontType = "lightSmall",
-		locale = "main_panel_account_player"
+		locale = "overallpanel_account_player"
 	}
 	UI:addChild(panel, usernameLabelText)
 	UIDataBinder.bind(usernameLabelText, "group", function (value)
@@ -105,6 +105,29 @@ function Panel.create()
 		end
 	end)
 	
+	local UserImage = UI:createImage {
+	x = -50,
+	y = 8,
+	width = 32,
+	height = 32,
+	color = tocolor(0, 0, 0),
+	darkToggle = true,
+	darkColor = tocolor(255, 255, 255),
+	texture = user_icon,	
+	}
+	UI:addChild(usernameLabel, UserImage)
+	
+	local Usercrown = UI:createImage {
+	x = 8,
+	y = -10,
+	width = 16,
+	height = 16,
+	color = tocolor(255, 216, 0),
+	texture = crownTexture,
+	premium = true
+	}
+	UI:addChild(UserImage, Usercrown)
+	
 	-- Кнопка панели игрока
 	UserPanel = UI:createTrcRoundedRectangle {
 		x       = 215,
@@ -112,21 +135,15 @@ function Panel.create()
         width   = 30,
         height  = 30,
 		radius = 5,
-		color = tocolor(148, 150, 255),
+		color = tocolor(215, 215, 215),
 		hover = true,
-		hoverColor = tocolor(128, 130, 235),
+		hoverColor = tocolor(225, 225, 225),
 		darkToggle = true,
 		darkColor = tocolor(50, 50, 50),
-		hoverDarkColor = tocolor(30, 30, 30)
+		hoverDarkColor = tocolor(30, 30, 30),
+		circle = true
 	}
 	UI:addChild(panel, UserPanel)
-	
-	Circle = UI:createCircle {
-		x       = 15,
-        y       = 15,
-		radius = 2
-	}
-	UI:addChild(UserPanel, Circle)
 	
 	-- Элементы кнопки гифт-панели
 	local UserPanelButtonsY = 250
@@ -136,7 +153,9 @@ function Panel.create()
 		width = width,
 		height = height,
 		text = "Gifts",
-		color = tocolor(255,255,255),
+		color = tocolor(0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
 		fontType = "lightSmall",
 		locale = "overallpanel_gift_panel_label"
 	}
@@ -147,6 +166,9 @@ function Panel.create()
 	y = 5,
 	width = 16,
 	height = 16,
+	color = tocolor(0, 0, 0),
+	darkToggle = true,
+	darkColor = tocolor(255, 255, 255),
 	texture = gift_panel_icon,	
 	}
 	UI:addChild(giftPanelLabel, giftPanelImage)
@@ -157,21 +179,15 @@ function Panel.create()
         width   = 20,
         height  = 20,
 		radius = 2,
-		color = tocolor(148, 150, 255),
+		color = tocolor(215, 215, 215),
 		hover = true,
-		hoverColor = tocolor(128, 130, 235),
+		hoverColor = tocolor(225, 225, 225),
 		darkToggle = true,
 		darkColor = tocolor(50, 50, 50),
-		hoverDarkColor = tocolor(30, 30, 30)
+		hoverDarkColor = tocolor(30, 30, 30),
+		circle = true
 	}
 	UI:addChild(panel, giftPanelButton)
-	
-	Circle = UI:createCircle {
-		x       = 10,
-        y       = 10,
-		radius = 2
-	}
-	UI:addChild(giftPanelButton, Circle)
 	
 	-- Элементы кнопки продажи авто
 	local sellVehicleLabel = UI:createDpLabel {
@@ -180,7 +196,9 @@ function Panel.create()
 		width = width,
 		height = height,
 		text = "Sell Vehicle",
-		color = tocolor(255,255,255),
+		color = tocolor(0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
 		fontType = "lightSmall",
 		locale = "overallpanel_sell_vehicle_label"
 	}
@@ -191,6 +209,9 @@ function Panel.create()
 	y = 5,
 	width = 16,
 	height = 16,
+	color = tocolor(0, 0, 0),
+	darkToggle = true,
+	darkColor = tocolor(255, 255, 255),
 	texture = car_sell_icon,	
 	}
 	UI:addChild(sellVehicleLabel, sellVehicleImage)
@@ -201,21 +222,15 @@ function Panel.create()
         width   = 20,
         height  = 20,
 		radius = 2,
-		color = tocolor(148, 150, 255),
+		color = tocolor(215, 215, 215),
 		hover = true,
-		hoverColor = tocolor(128, 130, 235),
+		hoverColor = tocolor(225, 225, 225),
 		darkToggle = true,
 		darkColor = tocolor(50, 50, 50),
-		hoverDarkColor = tocolor(30, 30, 30)
+		hoverDarkColor = tocolor(30, 30, 30),
+		circle = true
 	}
 	UI:addChild(panel, sellVehicleButton)
-	
-	Circle = UI:createCircle {
-		x       = 10,
-        y       = 10,
-		radius = 2
-	}
-	UI:addChild(sellVehicleButton, Circle)
 	
 	-- ЭЛЕМЕНТЫ ОСНОВНОЙ ПАНЕЛИ
 	
@@ -246,7 +261,7 @@ function Panel.create()
 	}
 	UI:addChild(panel, helloLabel)
 	UIDataBinder.bind(helloLabel, "username_mta", function (value)
-		return exports.tunrc_Lang:getString("overallpanel_hello") .. exports.tunrc_Utils:removeHexFromString(getPlayerName(getLocalPlayer())) .. ". " .. exports.tunrc_Lang:getString("overallpanel_welcome_back")
+		return exports.tunrc_Lang:getString("overallpanel_welcome_back")
 	end)
 	
 	-- Надпись ниже приветствия
@@ -279,6 +294,7 @@ function Panel.create()
 	}
 	UI:addChild(panel, ChangeThemebutton)
 	
+	-- Кнопка смены языка
 	ChangeLanguageLabel = UI:createDpLabel {
 		x = -75,
 		y = -2.5,
@@ -301,72 +317,35 @@ function Panel.create()
 	
 	-- Панель телепортов
 	
-	local featuresTeleportsPanel = UI:createTrcRoundedRectangle {
-		x       = UI:getWidth(menuPanel) + 55,
-        y       = 160,
+	featuresTeleportsPanel = UI:createTrcRoundedRectangle {
+		x       = UI:getWidth(menuPanel) + 75,
+        y       = 195,
         width   = width * 0.19,
         height  = height * 0.3,
 		radius = 15,
 		color = tocolor(235, 235, 235),
 		darkToggle = true,
-		darkColor = tocolor(22, 22, 22)
-	}
-	UI:addChild(menuPanel, featuresTeleportsPanel)
-	
-	-- Тень кнопки панели телепортов
-	TeleportsButtonShadow = UI:createTrcRoundedRectangle {
-		x       = UI:getWidth(featuresTeleportsPanel) + UI:getX(featuresTeleportsPanel) - 38,
-        y       = UI:getHeight(featuresTeleportsPanel) + UI:getY(featuresTeleportsPanel) - 18,
-        width   = 40,
-        height  = 40,
-		radius = 15,
-		color = tocolor(50, 50, 132, 20),
-		darkToggle = true,
-		darkColor = tocolor(0, 0, 0, 20 )
-	}
-	UI:addChild(panel, TeleportsButtonShadow)
-	
-	-- Кнопка телепортов
-	TeleportsButton = UI:createTrcRoundedRectangle {
-		x       = UI:getWidth(featuresTeleportsPanel) + UI:getX(featuresTeleportsPanel) - 40,
-        y       = UI:getHeight(featuresTeleportsPanel) + UI:getY(featuresTeleportsPanel) - 20,
-        width   = 40,
-        height  = 40,
-		radius = 15,
-		color = tocolor(50, 50, 132),
+		darkColor = tocolor(22, 22, 22),
 		hover = true,
-		hoverColor = tocolor(60, 60, 142),
-		darkToggle = true,
-		darkColor = tocolor(50, 50, 50),
+		hoverColor = tocolor(225, 225, 225),
 		hoverDarkColor = tocolor(30, 30, 30)
 	}
-	UI:addChild(panel, TeleportsButton)
+	UI:addChild(panel, featuresTeleportsPanel)
 	
-	-- Кружок на кнопке телепортов
-	TeleportCircle = UI:createCircle {
-		x       = 20,
-        y       = 20,
-		radius = 2
+	-- "Картинка" на панели телепортов	
+	TeleportsImage = UI:createImage {
+		x = 27,
+		y = 20,
+		width = width * 0.15,
+		height = height * 0.18,
+		texture = teleports_button_img,	
 	}
-	UI:addChild(TeleportsButton, TeleportCircle)
-	
-	-- "Картинка" на панели телепортов
-	TeleportsImage= UI:createTrcRoundedRectangle {
-		x       = UI:getWidth(menuPanel) + 82.5,
-        y       = 180,
-        width   = width * 0.15,
-        height  = height * 0.18,
-		radius = 15,
-		color = tocolor(220, 220, 220),
-		darkToggle = true,
-		darkColor = tocolor(40, 40, 40)
-	}
-	UI:addChild(menuPanel, TeleportsImage)
+	UI:addChild(featuresTeleportsPanel, TeleportsImage)
 	
 	-- Текст панели телепортов
 	TeleportsButtonText = UI:createDpLabel {
-		x = UI:getWidth(featuresTeleportsPanel) + 100,
-		y = UI:getHeight(featuresTeleportsPanel) + UI:getY(featuresTeleportsPanel) - 15,
+		x = UI:getWidth(featuresTeleportsPanel) / 2,
+		y = UI:getHeight(featuresTeleportsPanel) * 0.8 - 15,
 		width = 0,
 		height = 0,
 		text = "Teleports",
@@ -374,10 +353,25 @@ function Panel.create()
 		color = tocolor (0, 0, 0),
 		darkToggle = true,
 		darkColor = tocolor(255, 255, 255),
-		alignX = "left",
-		fontType = "light"
+		alignX = "center",
+		fontType = "lightLarge"
 	}
-	UI:addChild(panel, TeleportsButtonText)
+	UI:addChild(featuresTeleportsPanel, TeleportsButtonText)
+	
+	-- Текст панели телепортов
+	TeleportsButtonPlayersText = UI:createDpLabel {
+		x = 0,
+		y = 25,
+		width = 0,
+		height = 0,
+		text = "Players on maps:0",
+		color = tocolor (0, 0, 0, 150),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255, 150),
+		alignX = "center",
+		fontType = "lightSmall"
+	}
+	UI:addChild(TeleportsButtonText, TeleportsButtonPlayersText)
 	
 	-- Панель музыки
 	MusicPlayerPanel = UI:createTrcRoundedRectangle {
@@ -425,19 +419,6 @@ function Panel.create()
 	}
 	UI:addChild(MusicPlayerPanel, MusicPlayerCountText)
 	
-	-- Тень кнопки музыки
-	MusicButtonShadow = UI:createTrcRoundedRectangle {
-		x       = UI:getWidth(MusicPlayerPanel) - 58,
-        y       = UI:getHeight(MusicPlayerPanel) / 3.6,
-        width   = 40,
-        height  = 40,
-		radius = 15,
-		color = tocolor(50, 50, 132, 20),
-		darkToggle = true,
-		darkColor = tocolor(0, 0, 0, 20 )
-	}
-	UI:addChild(MusicPlayerPanel, MusicButtonShadow)
-	
 	-- Кнопка музыки
 	MusicButton = UI:createTrcRoundedRectangle {
 		x       = UI:getWidth(MusicPlayerPanel) - 60,
@@ -445,22 +426,16 @@ function Panel.create()
         width   = 40,
         height  = 40,
 		radius = 15,
-		color = tocolor(50, 50, 132),
+		color = tocolor(215, 215, 215),
 		hover = true,
-		hoverColor = tocolor(60, 60, 142),
+		hoverColor = tocolor(225, 225, 225),
 		darkToggle = true,
 		darkColor = tocolor(50, 50, 50),
-		hoverDarkColor = tocolor(30, 30, 30)
+		hoverDarkColor = tocolor(30, 30, 30),
+		circle = true,
+		shadow = true
 	}
 	UI:addChild(MusicPlayerPanel, MusicButton)
-	
-	-- Кружок на кнопке телепортов
-	MusicCircle = UI:createCircle {
-		x       = 20,
-        y       = 20,
-		radius = 2
-	}
-	UI:addChild(MusicButton, MusicCircle)
 	
 	-- Кнопка настроек
 	SettingsButton = UI:createTrcRoundedRectangle {
@@ -551,7 +526,7 @@ function Panel.create()
 	UI:addChild(HelpButton, HelpButtonText)
 	
 	-- Панель Гаража
-	local GaragePanel = UI:createTrcRoundedRectangle {
+	GaragePanel = UI:createTrcRoundedRectangle {
 		x       = UI:getWidth(MusicPlayerPanel) + 100,
         y       = 0,
         width   = width * 0.19,
@@ -559,63 +534,27 @@ function Panel.create()
 		radius = 15,
 		color = tocolor(235, 235, 235),
 		darkToggle = true,
-		darkColor = tocolor(22, 22, 22)
+		darkColor = tocolor(22, 22, 22),
+		hover = true,
+		hoverColor = tocolor(225, 225, 225),
+		hoverDarkColor = tocolor(30, 30, 30)
 	}
 	UI:addChild(MusicPlayerPanel, GaragePanel)
 	
-	local GarageButtonShadow = UI:createTrcRoundedRectangle {
-		x       = UI:getWidth(panel) - 96,
-        y       = 380,
-        width   = 40,
-        height  = 40,
-		radius = 15,
-		color = tocolor(50, 50, 132, 20),
-		darkToggle = true,
-		darkColor = tocolor(0, 0, 0, 20)
-	}
-	UI:addChild(panel, GarageButtonShadow)
-	
-	-- Кнопка гаража
-	GarageButton = UI:createTrcRoundedRectangle {
-		x       = UI:getWidth(panel) - 98,
-        y       = 378,
-        width   = 40,
-        height  = 40,
-		radius = 15,
-		color = tocolor(50, 50, 132),
-		hover = true,
-		hoverColor = tocolor(60, 60, 142),
-		darkToggle = true,
-		darkColor = tocolor(50, 50, 50),
-		hoverDarkColor = tocolor(30, 30, 30)
-	}
-	UI:addChild(panel, GarageButton)
-	
-	-- Кружок на кнопке гаража
-	GarageCircle = UI:createCircle {
-		x       = 20,
-        y       = 20,
-		radius = 2
-	}
-	UI:addChild(GarageButton, GarageCircle)
-	
 	-- "Картинка" на панели гаража
-	GarageImage= UI:createTrcRoundedRectangle {
-		x       = 27,
-        y       = 20,
-        width   = width * 0.15,
-        height  = height * 0.18,
-		radius = 15,
-		color = tocolor(220, 220, 220),
-		darkToggle = true,
-		darkColor = tocolor(40, 40, 40)
+	GarageImage = UI:createImage {
+	x = 27,
+	y = 20,
+	width   = width * 0.15,
+    height  = height * 0.18,
+	texture = garage_button_img,	
 	}
 	UI:addChild(GaragePanel, GarageImage)
 	
 	-- Текст панели гаража
 	GarageButtonText = UI:createDpLabel {
-		x = 25,
-		y = UI:getHeight(GaragePanel) - 50,
+		x = UI:getWidth(GaragePanel) / 2,
+		y = UI:getHeight(GaragePanel) * 0.8 - 15,
 		width = 0,
 		height = 0,
 		text = "Teleports",
@@ -623,10 +562,31 @@ function Panel.create()
 		color = tocolor (0, 0, 0),
 		darkToggle = true,
 		darkColor = tocolor(255, 255, 255),
-		alignX = "left",
-		fontType = "light"
+		alignX = "center",
+		fontType = "lightLarge"
 	}
 	UI:addChild(GaragePanel, GarageButtonText)
+	
+	-- Текст панели гаража
+	GarageButtonCarsText = UI:createDpLabel {
+		x = 0,
+		y = 25,
+		width = 0,
+		height = 0,
+		text = "Cars in garage:0",
+		color = tocolor (0, 0, 0, 150),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255, 150),
+		alignX = "center",
+		fontType = "lightSmall"
+	}
+	UI:addChild(GarageButtonText, GarageButtonCarsText)
+	UIDataBinder.bind(GarageButtonCarsText, "garage_cars_count", function (value)
+		if not value then
+			value = 0
+		end
+		return exports.tunrc_Lang:getString("garage_cars_count") .. ": " .. tostring(value)
+	end)
 	
 	-- Панель достижений игрока
 	local AchievmentsFeaturesPanel = UI:createTrcRoundedRectangle {
@@ -637,9 +597,43 @@ function Panel.create()
 		radius = 15,
 		color = tocolor(235, 235, 235),
 		darkToggle = true,
-		darkColor = tocolor(22, 22, 22)
+		darkColor = tocolor(22, 22, 22),
+		hover = true,
+		hoverColor = tocolor(225, 225, 225),
+		hoverDarkColor = tocolor(30, 30, 30)
 	}
 	UI:addChild(featuresTeleportsPanel, AchievmentsFeaturesPanel)
+	
+	-- Текст панели достижений
+	AchievmentsFeaturesText = UI:createDpLabel {
+		x = UI:getWidth(AchievmentsFeaturesPanel) / 2,
+		y = UI:getHeight(AchievmentsFeaturesPanel) * 0.8 - 15,
+		width = 0,
+		height = 0,
+		text = "Achiv",
+		locale = "overallpanel_achievments_label",
+		color = tocolor (0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
+		alignX = "center",
+		fontType = "lightLarge"
+	}
+	UI:addChild(AchievmentsFeaturesPanel, AchievmentsFeaturesText)
+	
+	-- Текст панели достижений нижний
+	AchievmentsFeaturesButtomText = UI:createDpLabel {
+		x = 0,
+		y = 25,
+		width = 0,
+		height = 0,
+		text = "Coming soon...",
+		color = tocolor (0, 0, 0, 150),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255, 150),
+		alignX = "center",
+		fontType = "lightSmall"
+	}
+	UI:addChild(AchievmentsFeaturesText, AchievmentsFeaturesButtomText)
 	
 	-- фон кружка с опытом
 	xpInfoCircleBack = UI:createNonCircle {
@@ -721,7 +715,7 @@ function Panel.create()
 		fontType = "light",
 		alignX = "center",
 		alignY = "center",
-		locale = "main_panel_account_level"
+		locale = "overallpanel_account_level"
 	}
 	UI:addChild(xpInfoCircleTop, xpInfoCurrentNext)
 	
@@ -737,7 +731,7 @@ function Panel.create()
 		darkToggle = true,
 		darkColor = tocolor(255, 255, 255, 150),
 		fontType = "light",
-		locale = "main_panel_account_level"
+		locale = "overallpanel_account_level"
 	}
 	UI:addChild(xpInfoCircleTop, xpInfoLabel)
 	
@@ -870,6 +864,17 @@ function Panel.refresh()
 	local endAngle = UI:getEndangle(xpInfoCircleBack)
 	UI:setEndangle(xpInfoCircle, endAngle * progress)
 	
+	local mapPlayers = 0
+	
+	for i,v in ipairs(getElementsByType("player")) do
+	    if getElementData(v, "activeMap") then
+            mapPlayers = i
+	    end
+	end
+	
+	UI:setText(TeleportsButtonPlayersText, ("%s: %s"):format(exports.tunrc_lang:getString("overallpanel_teleports_map_players"), mapPlayers))	
+	
+	
 	if level >= maxLevel then
 		UI:setVisible(xpInfoCurrentNext, false)
 	else
@@ -903,14 +908,16 @@ function Panel.setVisible(visible)
         end
         localPlayer:setData("activeUI", "overallPanel")
 		localPlayer:setData("activeUIAddition", false)
+		exports.tunrc_Sounds:playSound("ui_swipe.wav")
     else
         localPlayer:setData("activeUI", false)
     end
 
 	exports.tunrc_UI:fadeScreen(visible)
 	exports.tunrc_HUD:setRadarVisible(not visible)
-	exports.tunrc_Chat:setVisible(not visible)
+	exports.tunrc_Chat:setVisible((exports.tunrc_Config:getProperty("ui.draw_chat")))
 	exports.tunrc_HUD:setSpeedometerVisible(exports.tunrc_Config:getProperty("ui.draw_speedo"))
+	
 	
     UI:setVisible(panel, visible)
 	showCursor(visible)
@@ -924,25 +931,37 @@ end
 
 addEvent("tunrc_UI.click", false)
 addEventHandler("tunrc_UI.click", resourceRoot, function (widget)
+	local playChange = false
+	local playBack = false
+	local playSelect = false
+	local playError = false
+
     if widget == UserPanel then
 		if localPlayer:getData("activeUIAddition") ~= "AccountPanel" then
 			playClickSound = true
 			AccountPanel.show()
+			playSelect = true
 		else
 			playClickSound = true
 			AccountPanel.hide()
+			playBack = true
 		end
 	elseif widget == giftPanelButton then
 		Panel.setVisible(false)
 		exports.tunrc_GiftsPanel:setVisible(true)
+		playSelect = true
 	elseif widget == sellVehicleButton then
-		Panel.setVisible(false)
-        if localPlayer.vehicle and localPlayer.vehicle:getData("owner_id") == localPlayer:getData("_id")
-            and localPlayer:getData("garage_cars_count") > 1 then
+        if localPlayer.vehicle and localPlayer.vehicle:getData("owner_id") == localPlayer:getData("_id") and localPlayer:getData("garage_cars_count") > 1 then
+			Panel.setVisible(false)
             exports.tunrc_SellVehicle:start()
-        end
-	elseif widget == TeleportsButton then
+			playSelect = true
+        else
+			playError = true
+		end
+	elseif widget == featuresTeleportsPanel or widget == TeleportsImage then
+		Panel.setVisible(false)
 		TeleportsPanel.show()
+		playSelect = true
 	elseif widget == ChangeThemebutton then
 		if exports.tunrc_Config:getProperty("ui.dark_mode") == true then
 			exports.tunrc_Config:setProperty("ui.dark_mode", false)
@@ -950,6 +969,7 @@ addEventHandler("tunrc_UI.click", resourceRoot, function (widget)
 			exports.tunrc_Config:setProperty("ui.dark_mode", true)
 		end
 		Panel.refresh()
+		playChange = true
 	elseif widget == ChangeLanguageLabel then
 		if exports.tunrc_Lang:getLanguage() == "english" then
 			exports.tunrc_Lang:setLanguage("russian")
@@ -957,17 +977,45 @@ addEventHandler("tunrc_UI.click", resourceRoot, function (widget)
 			exports.tunrc_Lang:setLanguage("english")
 		end
 		Panel.refresh()
-	elseif widget == GarageButton then
+		playChange = true
+	elseif widget == GaragePanel or widget == GarageImage then
 		exports.tunrc_Garage:enterGarage()
 		localPlayer:setData("tunrc_Core.state", "loading_garage", false)
 		Panel.setVisible(false)
+		playSelect = true
 	elseif widget == HelpButton or widget == HelpButtonImage then
 		Panel.setVisible(false)
 		exports.tunrc_HelpPanel:setVisible(true)
+		playSelect = true
+	elseif widget == SettingsButton or widget == SettingsButtonImage then
+		Panel.setVisible(false)
+		SettingsPanel.show()
+		playSelect = true
+	elseif widget == MusicButton then
+		Panel.setVisible(false)
+		exports.tunrc_WorldMusic:setVisible(true)
+		playSelect = true
 	end
 	
 	
 	if widget == Closebutton then
 		Panel.setVisible(false)
+		playBack = true
 	end
+	
+	if playChange then
+        exports.tunrc_Sounds:playSound("ui_change.wav")
+    end
+	
+	if playBack then
+        exports.tunrc_Sounds:playSound("ui_back.wav")
+    end
+	
+	if playSelect then
+        exports.tunrc_Sounds:playSound("ui_select.wav")
+    end
+	
+	if playError then
+        exports.tunrc_Sounds:playSound("error.wav")
+    end
 end)

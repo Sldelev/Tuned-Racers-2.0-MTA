@@ -30,22 +30,22 @@ function Drawing.setFont(font)
 	drawFont = font or DEFAULT_FONT
 end
 
-function Drawing.rectangle(x, y, width, height)
+function Drawing.rectangle(x, y, width, height, color)
 	x = x + drawX
 	y = y + drawY
-	dxDrawRectangle(x, y, width, height, drawColor, Drawing.POST_GUI, false)
+	dxDrawRectangle(x, y, width, height, color, Drawing.POST_GUI, false)
 end
 
-function Drawing.circle(x, y, radius)
+function Drawing.circle(x, y, radius, color)
 	x = x + drawX
 	y = y + drawY
-	dxDrawCircle(x, y, radius, 0, 360, drawColor, drawColor, 32, 1, Drawing.POST_GUI)
+	dxDrawCircle(x, y, radius, 0, 360, color, color, 64, 1, Drawing.POST_GUI)
 end
 
-function Drawing.nonCircle(x, y, radius, startangle, endangle)
+function Drawing.nonCircle(x, y, radius, startangle, endangle, color)
 	x = x + drawX
 	y = y + drawY
-	dxDrawCircle(x, y, radius, startangle, endangle, drawColor, drawColor, 32, 1, Drawing.POST_GUI)
+	dxDrawCircle(x, y, radius, startangle, endangle, color, color, 64, 1, Drawing.POST_GUI)
 end
 
 function Drawing.line(x1, y1, x2, y2, width)
@@ -56,10 +56,10 @@ function Drawing.line(x1, y1, x2, y2, width)
 	dxDrawLine(x1, y1, x2, y2, drawColor, width, Drawing.POST_GUI)
 end
 
-function Drawing.text(x, y, width, height, text, alignX, alignY, clip, wordBreak, colorCoded)
+function Drawing.text(x, y, width, height, text, alignX, alignY, color, clip, wordBreak, colorCoded)
 	x = x + drawX
 	y = y + drawY
-	dxDrawText(text, x, y, x + width, y + height, drawColor, 1, drawFont, alignX, alignY, clip, wordBreak, Drawing.POST_GUI, false, colorCoded)
+	dxDrawText(text, x, y, x + width, y + height, color, scale, drawFont, alignX, alignY, clip, wordBreak, Drawing.POST_GUI, false, colorCoded)
 end
 
 function Drawing.image(x, y, width, height, image, rotation)

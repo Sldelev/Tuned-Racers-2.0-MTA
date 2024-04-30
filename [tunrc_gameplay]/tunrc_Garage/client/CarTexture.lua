@@ -1,0 +1,578 @@
+CarTexture = {}
+
+local renderTarget
+local bodyRenderTarget
+local bodyStickersRenderTarget
+local vehicle
+
+local currentSurface = "body"
+local currentStickers
+local editorStickers = {}
+
+local bodyColor = {0, 0, 0}
+
+local DEFAULT_STICKER_SIZE = 512
+
+local selectedSticker = false
+local previousSticker = false
+local stickerMirroringEnabled = false
+
+local MAX_STICKER_COUNT = 3000
+
+function CarTexture.start()
+	vehicle = GarageCar.getVehicle()
+	if not isElement(vehicle) then
+		return false
+	end
+	renderTarget = exports.tunrc_Vehicles:createVehicleRenderTarget(vehicle)
+	bodyRenderTarget = exports.tunrc_Vehicles:createVehicleBodyRenderTarget(vehicle)
+	bodyStickersRenderTarget = exports.tunrc_Vehicles:createVehicleBodyStickersRenderTarget(vehicle)
+	
+	if not isElement(renderTarget) then
+		return
+	end
+	if not isElement(bodyRenderTarget) then
+		return
+	end
+	if not isElement(bodyStickersRenderTarget) then
+		return
+	end
+	
+	if localPlayer:getData("isPremium") then
+		MAX_STICKER_COUNT = 5000
+	else
+		MAX_STICKER_COUNT = 3000
+	end
+	
+	editorStickers = {}
+	CarTexture.reset()
+	
+	addEventHandler("onClientRestore", root, CarTexture.handleRestore)
+	stickerMirroringEnabled = false
+end
+
+function CarTexture.stop()
+	if isElement(renderTarget) then
+		destroyElement(renderTarget)
+	end
+	if isElement(bodyRenderTarget) then
+		destroyElement(bodyRenderTarget)
+	end
+	if isElement(bodyStickersRenderTarget) then
+		destroyElement(bodyStickersRenderTarget)
+	end
+	
+	currentStickers = nil
+	editorStickers = {}
+
+	removeEventHandler("onClientRender", root, CarTexture.handleRestore)
+end
+
+function CarTexture.previewBodyColor(r, g, b)
+	bodyColor = {r, g, b}
+	CarTexture.redraw()
+end
+
+function CarTexture.previewSpecularColor(r, g, b)
+	specularColor = {r, g, b}
+	CarTexture.redraw()
+end
+
+function CarTexture.previewChromePower(value)
+	chrome = value
+	CarTexture.redraw()
+end
+
+function CarTexture.getMaxStickerCount()
+	return MAX_STICKER_COUNT
+end
+
+function CarTexture.getStickerCount()
+	local stickerCount = 0
+	for _, surface in pairs(editorStickers) do
+		stickerCount = stickerCount + #surface
+	end
+	return stickerCount
+end
+
+function getStickerCount()
+	local stickerCount = 0
+	for _, surface in pairs(editorStickers) do
+		stickerCount = stickerCount + #surface
+	end
+	return stickerCount
+end
+
+function CarTexture.save()
+	if editorStickers then
+		vehicle:setData("stickers", editorStickers.body, false)
+		vehicle:setData("windows_stickers", editorStickers.windows, false)
+	end
+end
+
+function CarTexture.reset()
+	if not isElement(vehicle) then
+		return
+	end
+	bodyColor = vehicle:getData("BodyColor")
+	specularColor = vehicle:getData("SpecularColor")
+	chrome = vehicle:getData("ChromePower")
+	editorStickers.body = vehicle:getData("stickers")
+	editorStickers.windows = vehicle:getData("windows_stickers")
+	CarTexture.setSurface("windows")
+	CarTexture.redraw()
+	CarTexture.setSurface("body")
+	CarTexture.redraw()
+end
+
+function CarTexture.setSurface(surface)
+	if currentSurface ~= surface then
+		selectedSticker = false
+		previousSticker = nil
+		
+		currentSurface = surface
+		currentStickers = editorStickers[surface]
+	end
+end
+
+function CarTexture.moveSticker(x, y)
+	if not selectedSticker then
+		return
+	end
+	if not x then return end
+	if not y then return end
+	local sticker = currentStickers[selectedSticker]
+	if not sticker then
+		return false
+	end
+
+	sticker[1] = sticker[1] + x
+	sticker[2] = sticker[2] + y
+	CarTexture.redraw()
+end
+
+function CarTexture.getStickerPosition()
+	if not selectedSticker then
+		return
+	end
+	local sticker = currentStickers[selectedSticker]
+	if not sticker then
+		return false
+	end
+
+	return sticker[1], sticker[2]
+end
+
+function CarTexture.getStickerPositionX()
+	if not selectedSticker then
+		return
+	end
+	local sticker = currentStickers[selectedSticker]
+	if not sticker then
+		return false
+	end
+
+	return sticker[1]
+end
+
+function CarTexture.getStickerPositionY()
+	if not selectedSticker then
+		return
+	end
+	local sticker = currentStickers[selectedSticker]
+	if not sticker then
+		return false
+	end
+
+	return sticker[2]
+end
+
+function CarTexture.resizeSticker(x, y)
+	if not selectedSticker then
+		return
+	end
+	if not x then return end
+	if not y then return end
+	local sticker = currentStickers[selectedSticker]
+	if not sticker then
+		return false
+	end
+
+	sticker[3] = sticker[3] + x
+	sticker[4] = sticker[4] + y
+	CarTexture.redraw()
+end
+
+function CarTexture.getStickerScale()
+	if not selectedSticker then
+		return
+	end
+	local sticker = currentStickers[selectedSticker]
+	if not sticker then
+		return false
+	end
+
+	return sticker[3], sticker[4]
+end
+
+function CarTexture.getStickerScaleX()
+	if not selectedSticker then
+		return
+	end
+	local sticker = currentStickers[selectedSticker]
+	if not sticker then
+		return false
+	end
+
+	return sticker[3]
+end
+
+function CarTexture.getStickerScaleY()
+	if not selectedSticker then
+		return
+	end
+	local sticker = currentStickers[selectedSticker]
+	if not sticker then
+		return false
+	end
+
+	return sticker[4]
+end
+
+function CarTexture.getSelectedSticker()
+	if not selectedSticker then
+		return false
+	end
+	return currentStickers[selectedSticker]
+end
+
+function CarTexture.getSelectedStickerIndex()
+	if not selectedSticker then
+		return false
+	end
+	return selectedSticker
+end
+
+function CarTexture.copyPreviousStickerStyle()
+	if not selectedSticker then
+		return false
+	end
+	if not previousSticker then
+		return false
+	end
+	local prevSticker = currentStickers[previousSticker]
+	local currentSticker = currentStickers[selectedSticker]
+	if not prevSticker or not currentSticker then
+		return false
+	end
+	--currentSticker[1] = prevSticker[1]
+	--currentSticker[2] = prevSticker[2]
+	currentSticker[3] = prevSticker[3]
+	currentSticker[4] = prevSticker[4]
+	currentSticker[6] = prevSticker[6]
+	currentSticker[7] = prevSticker[7]
+	return true
+end
+
+function CarTexture.setStickerColor(color)
+	if not selectedSticker then
+		return
+	end
+	if type(color) ~= "number" then color = tocolor(255, 255, 255) end
+	local sticker = currentStickers[selectedSticker]
+	if not sticker then
+		return false
+	end
+
+	sticker[7] = color
+	CarTexture.redraw()
+end
+
+function CarTexture.getStickerColor()
+	if not selectedSticker then
+		return
+	end
+	local sticker = currentStickers[selectedSticker]
+	if not sticker then
+		return false
+	end
+
+	return sticker[7]
+end
+
+function CarTexture.copyPreviousStickerColor()
+	if not selectedSticker then
+		return false
+	end
+	if not previousSticker then
+		return false
+	end
+	local prevSticker = currentStickers[previousSticker]
+	local currentSticker = currentStickers[selectedSticker]
+	if not prevSticker or not currentSticker then
+		return false
+	end
+	currentSticker[7] = prevSticker[7]
+	return true
+end
+
+
+function CarTexture.rotateSticker(r)
+	if not selectedSticker then
+		return
+	end
+	if not r then return end
+	local sticker = currentStickers[selectedSticker]
+	if not sticker then
+		return false
+	end
+
+	sticker[6] = (sticker[6] + r) % 360
+	CarTexture.redraw()
+end
+
+function CarTexture.forceRotateSticker()
+	if not selectedSticker then
+		return
+	end
+	local sticker = currentStickers[selectedSticker]
+	if not sticker then
+		return false
+	end
+
+	sticker[6] = (sticker[6] + 90)
+	CarTexture.redraw()
+end
+
+function CarTexture.getStickerRotation()
+	if not selectedSticker then
+		return
+	end
+	local sticker = currentStickers[selectedSticker]
+	if not sticker then
+		return false
+	end
+
+	return sticker[6]
+end
+
+function CarTexture.canAddSticker()
+	return #currentStickers < MAX_STICKER_COUNT
+end
+
+function CarTexture.addSticker(id, x, y, rotation)
+	if not CarTexture.canAddSticker() then
+		return false
+	end
+	if type(id) ~= "number" then
+		return false
+	end
+	if not x then x = 0 end
+	if not y then y = 0 end
+	if not rotation then rotation = 0 end
+	local width, height = DEFAULT_STICKER_SIZE, DEFAULT_STICKER_SIZE
+	local color = tocolor(255, 255, 255)
+	-- Скопировать параметры с предыдущего стикера
+	local sticker = {x, y, width, height, id, rotation, color, stickerMirroringEnabled, false, false}
+	table.insert(currentStickers, sticker)
+	selectedSticker = #currentStickers
+	CarTexture.redraw()
+end
+
+function CarTexture.cloneSticker()
+	if not selectedSticker then
+		return
+	end
+	if not CarTexture.canAddSticker() then
+		return
+	end
+	local sticker = currentStickers[selectedSticker]
+	if not sticker then
+		return false
+	end
+	local clonedSticker = {unpack(sticker)}
+	table.insert(currentStickers, clonedSticker)
+	selectedSticker = #currentStickers
+
+	CarTexture.redraw()
+end
+
+function CarTexture.removeSticker()
+	if not selectedSticker then
+		return
+	end
+	local sticker = currentStickers[selectedSticker]
+	if not sticker then
+		return false
+	end
+	table.remove(currentStickers, selectedSticker)
+	selectedSticker = math.max(1, math.min(#currentStickers, selectedSticker))
+	CarTexture.redraw()
+end
+
+local function changeStickerSlot(direction)
+	--editorStickers[selectedSticker]
+
+	if not selectedSticker then
+		return
+	end
+
+	if not currentStickers[selectedSticker] then
+		return false
+	end
+	
+	local stickersCount = #currentStickers
+	local slot = selectedSticker + direction
+
+	if slot > stickersCount then
+		slot = 1
+	elseif 1 > slot then
+		slot = stickersCount
+	end
+
+	local item = table.remove(currentStickers, selectedSticker)
+	table.insert(currentStickers, slot, item)
+
+	selectedSticker = slot
+
+	CarTexture.redraw()
+end
+
+function CarTexture.moveStickerSlotUp()
+	changeStickerSlot(1)
+end
+
+function CarTexture.moveStickerSlotDown()
+	changeStickerSlot(-1)
+end
+
+function CarTexture.redraw()
+		bodyRenderTarget = exports.tunrc_Vehicles:createVehicleBodyRenderTarget(vehicle, specularColor, chrome)
+		bodyStickersRenderTarget = exports.tunrc_Vehicles:createVehicleBodyStickersRenderTarget(vehicle)
+		exports.tunrc_Vehicles:redrawBodyRenderTarget(bodyRenderTarget, bodyColor)
+		exports.tunrc_Vehicles:redrawBodyStickersRenderTarget(bodyStickersRenderTarget, editorStickers.body, selectedSticker)
+		exports.tunrc_Vehicles:redrawGlassRenderTarget(renderTarget, editorStickers.windows, selectedSticker)
+end
+
+function CarTexture.moveStickerLayer(offset)
+	if not selectedSticker then
+		return
+	end
+	local sticker = currentStickers[selectedSticker]
+	if not sticker then
+		return false
+	end
+	if not offset then
+		offset = 0
+	end
+
+	local newStickerIndex = selectedSticker + offset
+	if newStickerIndex > #currentStickers or newStickerIndex < 1 then
+		return false
+	end
+
+	table.insert(currentStickers, newStickerIndex, table.remove(currentStickers, selectedSticker))
+	selectedSticker = newStickerIndex
+
+	CarTexture.redraw()
+
+	return true
+end
+
+function CarTexture.selectPreviousSticker()
+	if not selectedSticker then
+		selectedSticker = 1
+	end
+	if not selectedSticker or not currentStickers or #currentStickers == 0 then
+		return false
+	end
+	selectedSticker = selectedSticker - 1
+	if selectedSticker < 1 then
+		selectedSticker = #currentStickers
+	end
+	CarTexture.redraw()
+	return true
+end
+
+function CarTexture.toggleStickerMirroring()
+	if not selectedSticker then
+		return
+	end
+	local sticker = currentStickers[selectedSticker]
+	if not sticker then
+		return false
+	end
+
+	-- Disable mirroring
+	if sticker[10] then
+		sticker[8] = false -- mirror
+		sticker[9] = false -- mirror text
+		sticker[10] = false -- mirror fix
+	-- Enable mirroring
+	elseif not sticker[8] then
+		sticker[8] = true -- mirror
+		sticker[9] = false -- mirror text
+		sticker[10] = false -- mirror fix
+	-- Enable text mirroring
+	elseif sticker[8] and not sticker[9] then
+		sticker[8] = true -- mirror
+		sticker[9] = true -- mirror text
+		sticker[10] = false -- mirror fix
+	-- Enable fixed mirroring
+	elseif sticker[8] and sticker[9] then
+		sticker[8] = false -- mirror
+		sticker[9] = false -- mirror text
+		sticker[10] = true -- mirror fix
+	end
+	CarTexture.redraw()
+end
+
+function CarTexture.getMirroringMode()
+	if not selectedSticker then
+		return
+	end
+	local sticker = currentStickers[selectedSticker]
+	if not sticker then
+		return false
+	end
+
+	local mode = false
+	if sticker[8] then
+		if sticker[9] then
+			mode = "text"
+		else
+			mode = "old"
+		end
+	elseif sticker[10] then
+		mode = "normal"
+	end
+
+	return mode
+end
+
+function CarTexture.selectNextSticker()
+	if not currentStickers  or #currentStickers == 0 then
+		return false
+	end
+	if not selectedSticker then
+		selectedSticker = 1
+	else
+		selectedSticker = (selectedSticker % #currentStickers) + 1
+	end
+	CarTexture.redraw()
+	return true
+end
+
+function CarTexture.unselectSticker()
+	if selectedSticker then
+		previousSticker = selectedSticker
+		selectedSticker = false
+	end
+	CarTexture.redraw()
+end
+
+function CarTexture.handleRestore(didClearRenderTargets)
+	if didClearRenderTargets then
+		CarTexture.redraw()
+	end
+end

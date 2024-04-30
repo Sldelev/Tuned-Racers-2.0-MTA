@@ -12,5 +12,4 @@
     <file src="bihokutree.dff" type="client" />
 	
 	<script type="client" src="client.lua"/>
-	<map src="bihoku.map" dimension="-1"></map>
 </meta>

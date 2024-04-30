@@ -27,4 +27,5 @@
 	<file src="res/textures/puddleMask.png" type="client"/>
 	<file src="res/textures/waterNormal.png" type="client"/>
 	<file src="res/textures/waterDrops.png" type="client"/>
+	<file src="res/textures/reflection.dds" type="client"/>
 </meta>

@@ -7,3 +7,7 @@ function toggleVehicleParam(action, value)
 	end
 	triggerServerEvent("tunrc_Vehicles.vehicleAction", resourceRoot, action, value)
 end
+
+bindKey("1", "down", function ()
+	toggleVehicleParam("lights")
+end)

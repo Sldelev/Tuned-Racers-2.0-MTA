@@ -1,6 +1,6 @@
 local gameplaySettings = {
 	start_vehicle = "tunrc_zr350",
-    default_vehicle_color = {150, 150, 150},
+    default_vehicle_color = {120, 120, 120},
 	
 	start_money = 5000,
 	

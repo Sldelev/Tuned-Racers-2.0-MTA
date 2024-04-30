@@ -12,7 +12,7 @@ function PlayerSpawn.spawn(player)
 	if not isElement(player) then
 		return false
 	end
-	local location, isHotel = exports.tunrc_Houses:getPlayerHouseLocation(player)
+	local location = exports.tunrc_Garage:getGarageLocation(player)
 	if not isHotel then
 		player:setData("activeMap", "house")
 		player:setData("currentHouse", player:getData("house_id"))

@@ -12,13 +12,13 @@
 DatabaseConfig = {
 	dbType = "mysql",
 
-	host = "195.18.27.241",
+	host = "185.189.255.97",
 	port = 3306,
-	dbName = "gs62427",
+	dbName = "gs78500",
 
 	-- Auth
-	username = "gs62427",
-	password = "CEGgAmFunw",
+	username = "gs78500",
+	password = "ejdio99j",
 
 	options = {
 		autoreconnect = 1

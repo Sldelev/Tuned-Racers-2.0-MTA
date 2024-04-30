@@ -7,7 +7,7 @@ local NAMETAG_SCALE = 3.5
 local CONFIG_PROPERTY_NAME = "graphics.nametags"
 local CONFIG_PROPERTY_NAME_SELF = "graphics.self_nametags"
 
-local premiumColor = {255, 165, 0}
+local CROWN_SIZE = 70
 
 local nametagFont = "default"
 local streamedPlayers = {}
@@ -15,11 +15,18 @@ local nametagsVisible = true
 local SelfnametagsVisible = false
 local crownTexture
 
-local function dxDrawNametagText(text, x1, y1, x2, y2, color, scale)
-	dxDrawText(text, x1 - 1, y1, x2 - 1, y2, tocolor(0, 0, 0, 150), scale, nametagFont, "center", "center")
-	dxDrawText(text, x1 + 1, y1, x2 + 1, y2, tocolor(0, 0, 0, 150), scale, nametagFont, "center", "center")
-	dxDrawText(text, x1, y1 - 1, x2, y2 - 1, tocolor(0, 0, 0, 150), scale, nametagFont, "center", "center")
-	dxDrawText(text, x1, y1 + 1, x2, y2 + 1, tocolor(0, 0, 0, 150), scale, nametagFont, "center", "center")
+local function dxDrawNametagText(text, x1, y1, x2, y2, scale)
+	if exports.tunrc_Config:getProperty("ui.dark_mode") == true then
+		color = tocolor(245, 245, 245, 255)
+		shadowColor = tocolor(20, 20, 20, 150)
+	else
+		color = tocolor(20, 20, 20, 255)
+		shadowColor = tocolor(155, 155, 155, 150)
+	end
+	dxDrawText(text, x1 - 1, y1, x2 - 1, y2, shadowColor, scale, nametagFont, "center", "center")
+	dxDrawText(text, x1 + 1, y1, x2 + 1, y2, shadowColor, scale, nametagFont, "center", "center")
+	dxDrawText(text, x1, y1 - 1, x2, y2 - 1, shadowColor, scale, nametagFont, "center", "center")
+	dxDrawText(text, x1, y1 + 1, x2, y2 + 1, shadowColor, scale, nametagFont, "center", "center")
 	dxDrawText(text, x1, y1, x2, y2, color, scale, nametagFont, "center", "center")
 	return dxGetTextWidth(text, scale, nametagFont)
 end
@@ -38,16 +45,23 @@ addEventHandler("onClientRender", root, function ()
 			local distance = getDistanceBetweenPoints3D(cx, cy, cz, px, py, pz)
 			if distance < NAMETAG_MAX_DISTANCE then
 				local a = 255
-				local name = info.name
+				local name = player:getData("username")
+				local id = player:getData("serverId")
 				local scale = 1 / distance * NAMETAG_SCALE
 				local width = NAMETAG_WIDTH * scale
 				local height = NAMETAG_HEIGHT * scale
 				local nx, ny = x - width / 2, y - height / 2
 				local r, g, b = tr, tg, tb
-				if info.premium then
-					r, g, b = unpack(premiumColor)
+				if not name or not id then
+					return
 				end
-				local textWidth = dxDrawNametagText(name, nx, ny, nx + width, ny + height, tocolor(r, g, b, a), scale)
+				
+				local textWidth = dxDrawNametagText(id .. " | " .. name, nx, ny, nx + width, ny + height, scale)
+				if info.premium then
+					local cx = nx + width / 2 - textWidth / 2 - CROWN_SIZE * scale * 1.4
+					local crownSize = CROWN_SIZE * scale
+					dxDrawImage(cx, ny -  CROWN_SIZE / 2 * scale, crownSize, crownSize, crownTexture, 0, 0, 0, tocolor(255, 216, 0, 255))
+				end
 			end
 		end
 	end
@@ -113,6 +127,7 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
 	-- ped.health = 76
 
 	nametagFont = dxCreateFont("assets/font.ttf", 50)
+	crownTexture = exports.tunrc_Assets:createTexture("crown.png")
 end)
 
 function setVisible(visible)

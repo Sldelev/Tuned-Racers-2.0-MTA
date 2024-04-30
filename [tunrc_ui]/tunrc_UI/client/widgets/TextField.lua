@@ -30,7 +30,8 @@ function TextField.create(properties)
 			self.height, 
 			self.text, 
 			self.alignX, 
-			self.alignY, 
+			self.alignY,
+			self.color,
 			self.clip, 
 			self.wordBreak, 
 			self.colorCoded

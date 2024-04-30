@@ -1,5 +1,5 @@
 local playerMenu = {
-	title = "Игрок Wherry",
+	title = "Игрок Sidelev",
 	items = {}
 }
 
@@ -19,7 +19,7 @@ remotePlayerMenu = {
 			exports.tunrc_Chat:startPM(player)
 		end,
 
-		enabled = true
+		enabled = false
 	},
 	{ locale = "context_menu_player_report", enabled = false}	
 }
@@ -40,12 +40,6 @@ local localPlayerMenu = {
 	{ locale = "context_menu_anim_sit", click = playAnim("sit")},
 	{ locale = "context_menu_anim_fucku", click = playAnim("fucku")},
 	{ locale = "context_menu_anim_serious", click = playAnim("serious")},
-	{ locale = "context_menu_anim_smoke_a", click = playAnim("smoke_a")},
-	{ locale = "context_menu_anim_smoke_b", click = playAnim("smoke_b")},
-	{ locale = "context_menu_anim_drink_a", click = playAnim("drink_a")},
-	{ locale = "context_menu_anim_drink_b", click = playAnim("drink_b")},
-	{ locale = "context_menu_anim_dance_a", click = playAnim("dance_a")},
-	{ locale = "context_menu_anim_cower_a", click = playAnim("cower_a")},
 }
 
 function playerMenu:init(player)

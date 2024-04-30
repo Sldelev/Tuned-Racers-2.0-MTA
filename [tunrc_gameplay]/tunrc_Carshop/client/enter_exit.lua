@@ -1,6 +1,6 @@
 local ENABLE_CARSHOP_CMD = true	-- Команда /carshop для входа в автомагазин
 local isEnterExitInProcess = false 	-- Входит (выходит) ли в данный момент игрок в автомагазин
-local openGarageAfterExit = false
+local openGarageAfterExit = true
 
 addEvent("tunrc_Carshop.enter", true)
 addEventHandler("tunrc_Carshop.enter", resourceRoot, function (success)
@@ -15,12 +15,7 @@ addEvent("tunrc_Carshop.exit", true)
 addEventHandler("tunrc_Carshop.exit", resourceRoot, function (success)
 	isEnterExitInProcess = false
 	Carshop.stop()
-	if openGarageAfterExit then
-		openGarageAfterExit = false
-		exports.tunrc_Garage:enterGarage()
-	else
-		fadeCamera(true)
-	end
+	exports.tunrc_Garage:enterGarage()
 end)
 
 local function enterExitCarshop(enter)
@@ -59,15 +54,6 @@ if ENABLE_CARSHOP_CMD then
 		enterExitCarshop(not Carshop.isActive)
 	end)
 end
-
---San Fierro Markers
-
-local sf1 = exports.tunrc_Markers:createMarker("showroom", Vector3 { x = 558, y = -1286, z = 17.25 }, -45)
-addEvent("tunrc_Markers.use", false)
-addEventHandler("tunrc_Markers.use", sf1, enterCarshop)
-local blip = createBlip(0, 0, 0, 55)
-blip:attach(sf1)
-blip:setData("text", "blip_carshop")
 
 addEvent("tunrc_Carshop.forceEnter", true)
 addEventHandler("tunrc_Carshop.forceEnter", root, function ()

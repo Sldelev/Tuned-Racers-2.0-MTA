@@ -3,5 +3,6 @@
 	<script src="snowmod.lua" type="client" cache="false"/>
 	<file src="img/lght.png" />
 	<file src="img/coronastar.png" />
+	<file src="img/null.png" />
 	<file src="snowmod.fx" />
 </meta>

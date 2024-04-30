@@ -57,6 +57,11 @@ function isMessageBoxVisible()
 end
 printMetaExport("isMessageBoxVisible")
 
+function showNotificationBox(...)
+	return NotificationBox.show(...)
+end
+printMetaExport("showNotificationBox")
+
 function getRootWidget()
 	Render.setupResource(sourceResourceRoot)
 	return Render.resources[sourceResourceRoot].rootWidget.id

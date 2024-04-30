@@ -255,7 +255,7 @@ end
 addEvent("RaceLobby.playerFinished", true)
 addEventHandler("RaceLobby.playerFinished", resourceRoot, function (player, prize, exp, rank, time, score)
     FinishScreen.addPlayer({
-        name = exports.tunrc_Utils:removeHexFromString(player.name),
+        name = exports.tunrc_Utils:removeHexFromString(player:getData("username")),
         prize = prize,
 		exp = exp,
         time = getTimeString(time),

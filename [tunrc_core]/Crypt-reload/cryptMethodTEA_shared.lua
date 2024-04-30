@@ -1,4 +1,3 @@
-
 CryptMethod{
 	name = 'TEA';
 

@@ -11,6 +11,8 @@ function GarageModel()
 		engineSetModelLODDistance(ID , 3000)
 
 		local model = createObject(ID, 1586, 2252.5, 3698, 0, 0, 160)
+		local model1 = createObject(ID, 1586, 2252.5, 4098, 0, 0, 160)
 		setElementDimension (model, -1)
+		setElementDimension (model1, -1)
 end
 addEventHandler ( 'onClientResourceStart', resourceRoot, GarageModel)

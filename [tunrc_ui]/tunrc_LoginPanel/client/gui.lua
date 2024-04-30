@@ -107,7 +107,6 @@ function setVisible(visible)
 			UI:setText(loginPanel.username, fields.username)
 			UI:setText(loginPanel.password, fields.password)
 		end
-		stickTexture = DxTexture("assets/st.png")
 	else
 		if isElement(backgroundTexture) and isElement(stickTexture) then
 			destroyElement(stickTexture)
@@ -134,9 +133,10 @@ local function createLoginPanel()
 	}
 	UI:addChild(panel)
 
+
 	local usernameInput = UI:createDpInput({
 		x = 50,
-		y = 40,
+		y = 50,
 		width = 450,
 		height = 50,
 		color = tocolor(200, 205, 210),
@@ -153,7 +153,7 @@ local function createLoginPanel()
 
 	local passwordInput = UI:createDpInput({
 		x = 50,
-		y = 110,
+		y = 120,
 		width = 450,
 		height = 50,
 		color = tocolor(200, 205, 210),
@@ -170,15 +170,42 @@ local function createLoginPanel()
 	})
 	UI:addChild(panel, passwordInput)
 	
-	local startGameButtonShadow = UI:createTrcRoundedRectangle {
-		x       = 2,
-        y       = 102,
-        width   = 155,
-        height  = 50,
-		radius = 15,
-		color = tocolor(0, 0, 0, 20)
+	-- Кнопка смены языка
+	local ChangeLanguage = UI:createDpLabel {
+		x = 50,
+		y = 5,
+		width = 30,
+		height = 30,
+		text = "EN",
+		color = tocolor (0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
+		fontType = "defaultLarge"
 	}
-	UI:addChild(passwordInput, startGameButtonShadow)
+	UI:addChild(panel, ChangeLanguage)
+	UIDataBinder.bind(ChangeLanguage, "language_button_text", function (value)
+		if exports.tunrc_Lang:getLanguage() == "english" then
+			return "EN"
+		else
+			return "RU"
+		end
+	end)
+	
+	-- Кнопка смены темы
+	local ChangeTheme = UI:createTrcRoundedRectangle {
+		x       = UI:getWidth(usernameInput) + 20,
+        y       = 10,
+        width   = 30,
+        height  = 30,
+		radius = 15,
+		color = tocolor(15, 15, 15),
+		hover = true,
+		hoverColor = tocolor(30, 30, 30),
+		darkToggle = true,
+		darkColor = tocolor(235, 235, 235),
+		hoverDarkColor = tocolor(215, 215, 215)
+	}
+	UI:addChild(panel, ChangeTheme)
 	
 	local startGameButton = UI:createTrcRoundedRectangle {
 		x       = 0,
@@ -191,34 +218,11 @@ local function createLoginPanel()
 		hoverColor = tocolor(130, 130, 200),
 		darkToggle = true,
 		darkColor = tocolor(50, 50, 50),
-		hoverDarkColor = tocolor(30, 30, 30)
-	}
-	UI:addChild(passwordInput, startGameButton)
-	
-	local startGameButtonText = UI:createDpLabel {
-		x = 78,
-		y = 22,
-		width = width,
-		height = height,
-		text = "Admin",
-		color = tocolor (0, 0, 0),
-		darkToggle = true,
-		darkColor = tocolor(255, 255, 255),
-		alignX = "center",
-		alignY = "center",
+		hoverDarkColor = tocolor(30, 30, 30),
+		shadow = true,
 		locale = "login_panel_start_game_button"
 	}
-	UI:addChild(startGameButton, startGameButtonText)
-	
-	local registerButtonShadow = UI:createTrcRoundedRectangle {
-		x       = 297,
-        y       = 2,
-        width   = 155,
-        height  = 50,
-		radius = 15,
-		color = tocolor(0, 0, 0, 20)
-	}
-	UI:addChild(startGameButton, registerButtonShadow)
+	UI:addChild(passwordInput, startGameButton)
 	
 	local registerButton = UI:createTrcRoundedRectangle {
 		x       = 295,
@@ -231,28 +235,17 @@ local function createLoginPanel()
 		hoverColor = tocolor(130, 130, 200),
 		darkToggle = true,
 		darkColor = tocolor(50, 50, 50),
-		hoverDarkColor = tocolor(30, 30, 30)
-	}
-	UI:addChild(startGameButton, registerButton)
-	
-	local registerButtonText = UI:createDpLabel {
-		x = 78,
-		y = 22,
-		width = width,
-		height = height,
-		text = "Admin",
-		color = tocolor (0, 0, 0),
-		darkToggle = true,
-		darkColor = tocolor(255, 255, 255),
-		alignX = "center",
-		alignY = "center",
+		hoverDarkColor = tocolor(30, 30, 30),
+		shadow = true,
 		locale = "login_panel_register_button_toggle"
 	}
-	UI:addChild(registerButton, registerButtonText)
+	UI:addChild(startGameButton, registerButton)
 
 	UI:setVisible(panel, false)
 	loginPanel.registerButton = registerButton
 	loginPanel.startGameButton = startGameButton
+	loginPanel.changeLanguage = ChangeLanguage
+	loginPanel.changeTheme = ChangeTheme
 	loginPanel.password = passwordInput
 	loginPanel.username = usernameInput
 	loginPanel.panel = panel
@@ -260,7 +253,7 @@ end
 
 local function createRegisterPanel()
 	local panelWidth = 550
-	local panelHeight = 385
+	local panelHeight = 350
 
 	local panel = UI:createTrcRoundedRectangle {
 		x       = (screenWidth - panelWidth) / 2,
@@ -274,29 +267,7 @@ local function createRegisterPanel()
 	}
 	UI:addChild(panel)
 
-
-	-- Кнопки языков
-	local langX = 50
-	for i, languageButton in ipairs(languageButtonsList) do
-	
-		local shadowButton = UI:createDpImageButton({
-			x = langX, y = 20,
-			width = 27, height = 27,
-			texture = exports.tunrc_Assets:createTexture("buttons/circle.png"), color = tocolor(0,0,0,105)
-		})
-		UI:addChild(panel, shadowButton)
-		
-		local button = UI:createDpImageButton({
-			x = -2, y = -2,
-			width = 27, height = 27,
-			texture = exports.tunrc_Assets:createTexture("buttons/" .. tostring(languageButton.name) .. ".png")
-		})
-		UI:addChild(shadowButton, button)
-		languageButton.button = button
-		langX = langX + 27 + 5
-	end
-
-	local y = 70
+	local y = 35
 	local usernameInput = UI:createDpInput({
 		x = 50,
 		y = y,
@@ -363,24 +334,11 @@ local function createRegisterPanel()
 		hoverColor = tocolor(130, 130, 200),
 		darkToggle = true,
 		darkColor = tocolor(50, 50, 50),
-		hoverDarkColor = tocolor(30, 30, 30)
-	}
-	UI:addChild(passwordConfirmInput, backButton)
-	
-	local backButtonText = UI:createDpLabel {
-		x = 78,
-		y = 22,
-		width = width,
-		height = height,
-		text = "Назад",
-		color = tocolor (0, 0, 0),
-		darkToggle = true,
-		darkColor = tocolor(255, 255, 255),
-		alignX = "center",
-		alignY = "center",
+		hoverDarkColor = tocolor(30, 30, 30),
+		shadow = true,
 		locale = "login_panel_back"
 	}
-	UI:addChild(backButton, backButtonText)
+	UI:addChild(passwordConfirmInput, backButton)
 
 	local registerButton = UI:createTrcRoundedRectangle {
 		x       = 295,
@@ -393,24 +351,11 @@ local function createRegisterPanel()
 		hoverColor = tocolor(130, 130, 200),
 		darkToggle = true,
 		darkColor = tocolor(50, 50, 50),
-		hoverDarkColor = tocolor(30, 30, 30)
-	}
-	UI:addChild(backButton, registerButton)
-	
-	local registerButtonText = UI:createDpLabel {
-		x = 78,
-		y = 22,
-		width = width,
-		height = height,
-		text = "Зарегистрироваться",
-		color = tocolor (0, 0, 0),
-		darkToggle = true,
-		darkColor = tocolor(255, 255, 255),
-		alignX = "center",
-		alignY = "center",
+		hoverDarkColor = tocolor(30, 30, 30),
+		shadow = true,
 		locale = "login_panel_register_button_toggle"
 	}
-	UI:addChild(registerButton, registerButtonText)
+	UI:addChild(backButton, registerButton)
 
 	UI:setVisible(panel, false)
 	registerPanel.panel = panel
@@ -434,13 +379,6 @@ end)
 
 addEvent("tunrc_UI.click", false)
 addEventHandler("tunrc_UI.click", resourceRoot, function(widget)
-	-- Переключение языка
-	for i, languageButton in ipairs(languageButtonsList) do
-		if languageButton.button and languageButton.button == widget then
-			exports.tunrc_Sounds:playSound("ui_change.wav")
-			exports.tunrc_Lang:setLanguage(languageButton.language)
-		end
-	end
 	-- Переключение панелей
 	if widget == loginPanel.registerButton then
 		UI:setVisible(loginPanel.panel, false)
@@ -465,6 +403,21 @@ addEventHandler("tunrc_UI.click", resourceRoot, function(widget)
 			UI:getText(registerPanel.passwordConfirm)
 			--UI:getText(registerPanel.betaKey)
 		)
+	elseif widget == loginPanel.changeTheme then
+		if exports.tunrc_Config:getProperty("ui.dark_mode") == true then
+			exports.tunrc_Config:setProperty("ui.dark_mode", false)
+		else
+			exports.tunrc_Config:setProperty("ui.dark_mode", true)
+		end
+		playChange = true
+	elseif widget == loginPanel.changeLanguage then
+		if exports.tunrc_Lang:getLanguage() == "english" then
+			exports.tunrc_Lang:setLanguage("russian")
+		else
+			exports.tunrc_Lang:setLanguage("english")
+		end
+		playChange = true
+		UIDataBinder.refresh()
 	end
 end)
 

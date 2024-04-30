@@ -1,5 +1,0 @@
-<map>
-    <object id="object (LOW_CABINET_4) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="1701" doublesided="false" scale="1" dimension="-1" posX="-4740.7998" posY="-3299" posZ="2126.3" rotX="0" rotY="0" rotZ="0"></object>
-    <object id="object (MED_CABINET_2) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="1700" doublesided="false" scale="1" dimension="-1" posX="-4739.7998" posY="-3162.2002" posZ="2126.3" rotX="0" rotY="0" rotZ="0"></object>
-    <object id="object (SWANK_CABINET_2) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="1702" doublesided="false" scale="1" dimension="-1" posX="-4761.2002" posY="-3202.8999" posZ="2120" rotX="0" rotY="0" rotZ="0"></object>
-</map>

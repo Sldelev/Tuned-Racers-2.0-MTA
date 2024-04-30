@@ -13,12 +13,12 @@ local offset = 1
 local showCount = 6
 
 local HelpButtons = {
-    { "Main",  "tutorial_panel_text_one" },
-    { "Money",  "tutorial_panel_text_two" },
-    { "Carshop",  "tutorial_panel_text_three" },
-    { "Commands",  "tutorial_panel_text_four" },
-    { "Car sell",  "tutorial_panel_text_five" },
-    { "Car control",  "tutorial_panel_text_six" },	
+    { "help_panel_main",  "tutorial_panel_text_one" },
+    { "help_panel_money",  "tutorial_panel_text_two" },
+    { "help_panel_carshop",  "tutorial_panel_text_three" },
+    { "help_panel_commands",  "tutorial_panel_text_four" },
+    { "help_panel_car_sell",  "tutorial_panel_text_five" },
+    { "help_panel_car_control",  "tutorial_panel_text_six" },	
 }
 
 function HelpPanel.create()
@@ -87,6 +87,7 @@ function HelpPanel.create()
 		darkColor = tocolor(40, 40, 40),
 		hoverDarkColor = tocolor(20,20,20),
         items  = HelpButtons,
+		localeEnable = true,
         columns = {
             { size = 1, offset = 0, align = "center"  },
         }
@@ -132,9 +133,13 @@ end
 
 addEvent("tunrc_UI.click", false)
 addEventHandler("tunrc_UI.click", resourceRoot, function (widget)
+	local playBack = false
+	local playSelect = false
+
     if widget == ui.cancelButton then
 		setVisible(false)
 		exports.tunrc_overallPanel:setVisible(true)
+		playBack = true
 	end
 	if widget == ui.helpButtonsList then
 		local items = exports.tunrc_UI:getItems(ui.helpButtonsList)
@@ -145,6 +150,15 @@ addEventHandler("tunrc_UI.click", resourceRoot, function (widget)
 				UI:setText(ui.mainLabel, exports.tunrc_Lang:getString(button[1]))
 			end
 		end
+		playSelect = true
 	end
 	UIDataBinder.refresh()
+	
+	if playBack then
+        exports.tunrc_Sounds:playSound("ui_back.wav")
+    end
+	
+	if playSelect then
+        exports.tunrc_Sounds:playSound("ui_select.wav")
+    end
 end)

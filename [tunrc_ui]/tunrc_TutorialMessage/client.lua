@@ -19,7 +19,7 @@ local infoFontHeight
 local infoText = ""
 local infoIcon
 local infoIconSize
-local infoOffset = 5
+local infoOffset = 50
 
 local closeText = ""
 
@@ -35,41 +35,14 @@ local isHiding = false
 local function draw()
 	-- Фон
 	dxDrawRectangle(0, 0, screenSize.x, screenSize.y, tocolor(0, 0, 0, 200 * animationProgress))
-	-- Линии
-	dxDrawLine(
-		textBlockX, 
-		textBlockY - BORDER_LINE_OFFSET, 
-		textBlockX + textBlockWidth, 
-		textBlockY - BORDER_LINE_OFFSET, 
-		tocolor(255, 255, 255, 255 * animationProgress), 
-		1, 
-		true)
-	dxDrawLine(
-		textBlockX, 
-		textBlockY + textBlockHeight + BORDER_LINE_OFFSET, 
-		textBlockX + textBlockWidth, 
-		textBlockY + textBlockHeight + BORDER_LINE_OFFSET, 
-		tocolor(255, 255, 255, 255 * animationProgress), 
-		1, 
-		true)
 
 	-- Заголовок
-	local infoY = textBlockY - BORDER_LINE_OFFSET - infoOffset - infoFontHeight
-	dxDrawImage(
-		textBlockX,
-		textBlockY - BORDER_LINE_OFFSET - infoOffset + infoIconSize / 4 - infoFontHeight,
-		infoIconSize,
-		infoIconSize,
-		infoIcon,
-		0, 0, 0,
-		tocolor(255, 255, 255, 255 * animationProgress))
-
 	dxDrawText(
 		infoText,
 		textBlockX + infoIconSize * 1.3, 
-		infoY,
+		screenSize.y - 250,
 		textBlockX + textBlockWidth,
-		infoY + infoFontHeight,
+		screenSize.y - 250,
 		tocolor(255, 255, 255, 255 * animationProgress),
 		1,
 		infoFont,
@@ -77,22 +50,8 @@ local function draw()
 		"center",
 		false, true, true, true, false)
 
-	-- Подсказка	
-	dxDrawText(
-		closeText,
-		textBlockX, 
-		textBlockY + textBlockHeight + BORDER_LINE_OFFSET,
-		textBlockX + textBlockWidth,
-		textBlockY + textBlockHeight,
-		tocolor(255, 255, 255, 255 * animationProgress),
-		1,
-		infoFont,
-		"right",
-		"top",
-		false, true, true, true, false)
-
 	-- Текст
-	local y = textBlockY
+	local y = screenSize.y - 225
 	for i, line in ipairs(textLines) do
 		dxDrawText(
 			line,
@@ -108,6 +67,21 @@ local function draw()
 			false, true, true, true, false)
 		y = y + messageFontHeight + VERTICAL_LINE_OFFSET
 	end
+	
+	-- Подсказка	
+	dxDrawText(
+		closeText,
+		textBlockX, 
+		y,
+		textBlockX + textBlockWidth,
+		y,
+		tocolor(255, 255, 255, 255 * animationProgress),
+		1,
+		infoFont,
+		"right",
+		"top",
+		false, true, true, true, false)
+
 end
 
 local function update(deltaTime)

@@ -56,7 +56,7 @@ local function updateRoom(room)
 	room.time = room.time - 1
 	--outputDebugString("Room time: " .. tostring(room.time))	
 	--outputDebugString("Players count: " .. tostring(#getRoomPlayers(room)))
-	if room.time <= 0 then		
+	if room.time <= 0 then
 		local playersList = getRoomPlayers(room)
 		if #playersList < GlobalConfig.MATCHMAKING_MIN_PLAYERS then
 			room.time = ROOM_TIME_NOPLAYERS

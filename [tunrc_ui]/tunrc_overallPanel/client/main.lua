@@ -16,6 +16,7 @@ bindKey("F1", "down", function ()
 	AccountPanel.hide()
 	TeleportsPanel.hide()
 	PasswordPanel.hide()
+	SettingsPanel.hide()
 end)
 
 bindKey("backspace", "down", function ()

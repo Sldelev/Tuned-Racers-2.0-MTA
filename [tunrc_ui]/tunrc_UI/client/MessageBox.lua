@@ -1,95 +1,78 @@
 MessageBox = {}
-local FADE_SCREEN = true
-local MAX_TRANSORM_ANGLE = 20 
+local UI = exports.tunrc_UI
 local screenWidth, screenHeight = guiGetScreenSize()
 local isActive = false
 local headerText = ""
 local messageText = ""
-local width, height = 300, 150
+local width, height = 300, 200
 local headerHeight = 40
-local maskShader
-local renderTarget
-local font
-local animationProgress = 0
-local ANIMATION_SPEED = 0.03
-
-local function draw()
-	if not isActive then
-		return
-	end	
-	animationProgress = math.min(1, animationProgress + ANIMATION_SPEED)
-	if FADE_SCREEN then
-		dxDrawRectangle(0, 0, screenWidth, screenHeight, tocolor(0, 0, 0, 200 * animationProgress))
-	end
-	if maskShader then
-		local mouseX, mouseY = getMousePosition()
-		local rotationX = -(mouseX - screenWidth / 2) / screenWidth * MAX_TRANSORM_ANGLE
-		local rotationY = (mouseY - screenHeight / 2) / screenHeight * MAX_TRANSORM_ANGLE	
-
-	 	dxSetShaderTransform(maskShader, rotationX, rotationY, 0, 0, 0, 0.1)
-		dxSetShaderValue(maskShader, "sPicTexture", renderTarget)		
-		dxDrawImage(
-			(screenWidth - width) / 2, 
-			(screenHeight - height) / 2, 
-			width, 
-			height,
-			maskShader,
-			0, 0, 0,
-			tocolor(255, 255, 255, 240), 
-			true
-		)
-	elseif renderTarget then
-		dxDrawImage(
-			(screenWidth - width) / 2, 
-			(screenHeight - height) / 2, 
-			width, 
-			height,
-			renderTarget,
-			0, 0, 0,
-			tocolor(255, 255, 255, 240), 
-			true
-		)		
-	else
-		MessageBox.redraw()
-	end
-end
-
-local function drawButton(x, y, w, h, text)
-	dxDrawRectangle(x, y, w, h, Colors.color("primary"), Drawing.POST_GUI)
-	dxDrawText(text, x, y, x+w, y+h, tocolor(255, 255, 255), 1, font, "center", "center", true, false, Drawing.POST_GUI)
-end
-
-function MessageBox.redraw()
-	if not isActive then
-		return
-	end
-	dxSetRenderTarget(renderTarget)
-	dxDrawRectangle(0, 0, width, height, tocolor(40, 40, 40), Drawing.POST_GUI, false)
-	dxDrawRectangle(0, 0, width, headerHeight, tocolor(30, 30, 30), Drawing.POST_GUI)
-	dxDrawText(headerText, 10, 0, width, headerHeight, tocolor(255, 255, 255), 1, font, "left", "center", true, false, Drawing.POST_GUI)
-	dxDrawText(messageText, 0, headerHeight, width, height - headerHeight, tocolor(255, 255, 255), 1, font, "center", "center", true, true, Drawing.POST_GUI)
-
-	drawButton(width / 2, height - headerHeight, width / 2, headerHeight, exports.tunrc_Lang:getString("message_box_close"))
-	dxSetRenderTarget()
-end
+local ui = {}
 
 function MessageBox.start()
-	maskShader = exports.tunrc_Assets:createShader("texture3d.fx")
-	renderTarget = dxCreateRenderTarget(width, height, false)
-	font = exports.tunrc_Assets:createFont("Roboto-Regular.ttf", 12)
-
-	addEventHandler("onClientClick", root, function (button, state)
-		-- govnokod
-		local mouseX, mouseY = getMousePosition()
-		if mouseX > (screenWidth - width) / 2 + width / 2 and mouseX < (screenWidth - width) / 2 + width and
-			mouseY > (screenHeight - height) / 2 + height - headerHeight and mouseY < (screenHeight - height) / 2 + height 
-		then
-			if state == "down" then			
-				MessageBox.hide()
-			end
-		end
-	end)
+	ui.panel = UI:createTrcRoundedRectangle {
+		x = (screenWidth - width) / 2,
+		y = (screenHeight - height) / 2,
+		width = width,
+		height = height,
+		radius = 20,
+		color = tocolor(245, 245, 245),
+		darkToggle = true,
+		darkColor = tocolor(20, 20, 20)
+	}
+	UI:addChild(ui.panel)
+	UI:setVisible(ui.panel, false)
+	
+	ui.headerLabel = UI:createDpLabel {
+		x = 0 , y = 10,
+		width = width,
+		height = 10,
+		text = "",
+		color = tocolor (0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
+		fontType = "defaultSmall",
+		alignX = "center"
+	}
+	UI:addChild(ui.panel, ui.headerLabel)
+	
+	ui.messageLabel = UI:createDpLabel {
+		x = 0,
+		y = 60,
+		width = width,
+		height = 10,
+		text = "",
+		color = tocolor (0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
+		fontType = "defaultSmall",
+		alignX = "center",
+		alignY = "center",
+		clip = false,
+		wordBreak = true
+	}
+	UI:addChild(ui.headerLabel, ui.messageLabel)
+	
+	local buttonsHeight = 50
+	local buttonsWidth = width / 2 - 20
+	-- Кнопка "Отмена"	
+	ui.cancelButton = UI:createTrcRoundedRectangle {
+		x = UI:getWidth(ui.panel) / 2 - buttonsWidth / 2,
+		y = height - buttonsHeight - 10,
+		width = buttonsWidth,
+		height = buttonsHeight,
+		radius = 15,
+		color = tocolor(200, 205, 210),
+		hover = true,
+		hoverColor = tocolor(130, 130, 200),
+		darkToggle = true,
+		darkColor = tocolor(50, 50, 50),
+		hoverDarkColor = tocolor(30, 30, 30),
+		shadow = true,
+		locale = "moderatorpanel_close"
+	}
+	UI:addChild(ui.panel, ui.cancelButton)
 end
+addEventHandler("onClientResourceStart", resourceRoot, MessageBox.start)
 
 function MessageBox.show(header, text, buttons)
 	if type(header) ~= "string" or type(text) ~= "string" then
@@ -100,13 +83,11 @@ function MessageBox.show(header, text, buttons)
 		return false
 	end
 	isActive = true
-	headerText = header
-	messageText = text
-	animationProgress = 0
-	MessageBox.redraw()
-	addEventHandler("onClientRender", root, draw, true, "low-10")
+	UI:setText(ui.headerLabel, header)
+	UI:setText(ui.messageLabel, text)
+	UI:setVisible(ui.panel, true)
 	showCursor(true)
-	return true
+	exports.tunrc_UI:fadeScreen(true)
 end
 
 function MessageBox.hide()
@@ -115,20 +96,18 @@ function MessageBox.hide()
 	end
 	isActive = false
 	-- TODO: Показать следующее окно из очереди
-	removeEventHandler("onClientRender", root, draw)
+	UI:setVisible(ui.panel, false)
 	showCursor(false)
-	return true
+	exports.tunrc_UI:fadeScreen(false)
 end
 
 function MessageBox.isActive()
 	return isActive
 end
 
-addEventHandler("onClientKey", root, function (key, state)
-	if key == "enter" and state then
-		if MessageBox.isActive() then
-			MessageBox.hide()
-			cancelEvent()
-		end
+addEvent("tunrc_UI.click", false)
+addEventHandler("tunrc_UI.click", resourceRoot, function (widget)
+	if widget == ui.cancelButton then
+		MessageBox.hide()
 	end
 end)

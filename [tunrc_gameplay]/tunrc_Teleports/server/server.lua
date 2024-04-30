@@ -45,6 +45,9 @@ local mapsTeleports = {
 	d2 = Vector3 { x = 1935,   y = 2022,   z = 20 },
 	d3 = Vector3 { x = 2049,   y = 997,   z = 30 },
 	d4 = Vector3 { x = 92.7,   y = -24.88,   z = 2210 },
+	
+	-- other
+	trc_shrm = Vector3 { x = 1586,   y = 2252.5,   z = 4100 }
 }
 
 local cityTeleportNames = {

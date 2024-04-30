@@ -1,48 +1,36 @@
 bihoku = createColCuboid ( -4886, -3412, 2100, 300, 400, 200.0 )
 
+MapsFiles = {
+	{ obj1, "bihoku1", 1700, -4739.7998, -3162.2002, 2126.3}, --формат данных в таблице {любое название для создания объекта, название дфф+кол файла, айди на который заменяется дфф+кол, координаты в формате xyz}
+    { obj2, "bihoku2", 1701, -4740.7998, -3299, 2126.3},
+    { obj3, "bihoku3", 1702, -4761.2002, -3202.8999, 2120},
+}
+
 function dimensionChecker (theElement, matchingDimension)
-setTimer(function ()
-    if ( theElement == localPlayer ) then -- Checks whether the entering element is in the same dimension as the collision shape.
-        txd = engineLoadTXD ( "bihoku.txd" )
-
-engineImportTXD ( txd, 1700)
-engineImportTXD ( txd, 1701	)
-engineImportTXD ( txd, 1702	)
-
-dff = engineLoadDFF("bihoku1.dff",0)
-dff1 = engineLoadDFF("bihoku2.dff",0)
-dff2 = engineLoadDFF("bihokutree.dff",0)
-
-engineReplaceModel ( dff, 1700)
-engineReplaceModel ( dff1,1701)
-engineReplaceModel ( dff2,1702)
-
-col = engineLoadCOL("bihoku1.col",0)
-col1 = engineLoadCOL("bihoku2.col",0)
-col2 = engineLoadCOL("bihokutree.col",0)
-
-engineReplaceCOL ( col, 1700)
-engineReplaceCOL ( col1,1701)
-engineReplaceCOL ( col2,1702)
-
-engineSetModelLODDistance(1700,3000)
-engineSetModelLODDistance(1701,3000)
-engineSetModelLODDistance(1702,3000)
+	setTimer(function ()
+		if ( theElement == localPlayer ) then
+			txd = engineLoadTXD ( "bihoku.txd" )
+			
+			for i, mapinfo in pairs(MapsFiles) do
+				engineImportTXD ( txd, mapinfo[3])
+				engineReplaceModel ( engineLoadDFF(mapinfo[2] .. ".dff",0), mapinfo[3])
+				engineReplaceCOL ( engineLoadCOL(mapinfo[2] .. ".col",0), mapinfo[3])
+				engineSetModelLODDistance(mapinfo[3],3000)
+				mapinfo[1] = createObject(mapinfo[3], mapinfo[4], mapinfo[5], mapinfo[6], 0, 0, 0)
+				setElementDimension (mapinfo[1], -1)
+			end
 		end
 	end, 450, 1)
 end
 addEventHandler ("onClientColShapeHit", bihoku, dimensionChecker)
 
 function onClientColShapeLeave( theElement, matchingDimension )
-    if ( theElement == localPlayer ) then  -- Checks whether the leaving element is the local player
-engineRestoreModel (1700)
-engineRestoreModel (1701)
-engineRestoreModel (1702)
-		
-engineRestoreCOL (1700)
-engineRestoreCOL (1701)
-engineRestoreCOL (1702)
-
+    if ( theElement == localPlayer ) then
+		for i, mapinfo in pairs(MapsFiles) do
+			engineRestoreModel (mapinfo[3])			
+			engineRestoreCOL (mapinfo[3])
+			destroyElement(mapinfo[1])
+		end
     end
 end
 addEventHandler("onClientColShapeLeave", bihoku, onClientColShapeLeave)	

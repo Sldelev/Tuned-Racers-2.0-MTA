@@ -9,26 +9,24 @@ local menuHeaderHeight = 35
 
 local itemTextOffset = 15
 
-local headerBackgroundColor = {20, 20, 20}
-local menuBackgroundColor = {42, 40, 41, 150}
-local menuSelectionColor = {212, 0, 40}
-
-local headerTextColor = {255, 255, 255}
-local menuTextColor = {225, 225, 225}
-local menuSelectedTextColor = {255, 255, 255}
-local menuDisabledTextColor = {70, 70, 70}
-
 local MENU_MIN_WIDTH = 150
 local menuWidth = 150
 local itemFont
 local titleFont
 
-local menuAlpha = 200
+local bgcolor
+local menuAlpha = 255
 local highlightedItem
 
 addEventHandler("onClientRender", root, function ()
 	if not currentMenu then
 		return false
+	end
+	
+	if exports.tunrc_Config:getProperty("ui.dark_mode") == true then
+		bgcolor = {40,40,40}
+	else
+		bgcolor = {225,225,225}
 	end
 
 	local x, y = menuScreenPosition.x, menuScreenPosition.y
@@ -39,42 +37,21 @@ addEventHandler("onClientRender", root, function ()
 	mx = mx * screenSize.x
 	my = my * screenSize.y
 
-	dxDrawRectangle(x, y, menuWidth, menuHeaderHeight, tocolor(headerBackgroundColor[1], headerBackgroundColor[2], headerBackgroundColor[3], menuAlpha))
-	dxDrawText(
-		currentMenu.title, 
-		x + itemTextOffset, y, x + menuWidth, y + menuHeaderHeight, 
-		tocolor(headerTextColor[1], headerTextColor[2], headerTextColor[3], menuAlpha),
-		1, 
-		titleFont,
-		"left",
-		"center"
-	)
+	exports.tunrc_Garage:dxDrawRoundedRectangle(x, y, menuWidth, menuItemHeight * #currentMenu.items + (menuHeaderHeight * 1.5), 15, 255, true, false, true, false)
+	exports.tunrc_Garage:TrcDrawText(currentMenu.title, x + itemTextOffset, y, x + menuWidth, y + menuHeaderHeight, 255, titleFont, "left", "center", 1)
 	y = y + menuHeaderHeight
 	highlightedItem = nil
 	for i, item in ipairs(currentMenu.items) do
-		local bgColor = menuBackgroundColor
-		local textColor = menuTextColor
 		if mx > x and mx < x + menuWidth and my > y and my < y + menuItemHeight then
-			bgColor = menuSelectionColor
-			textColor = menuSelectedTextColor
+			menuAlpha = 255
 			if item.state then
 				highlightedItem = item
 			end
+		else
+			menuAlpha = 50
 		end
-		if item.state == false then
-			bgColor = menuBackgroundColor
-			textColor = menuDisabledTextColor
-		end
-		dxDrawRectangle(x, y, menuWidth, menuItemHeight, tocolor(bgColor[1], bgColor[2], bgColor[3], menuAlpha))
-		dxDrawText(
-			item.text, 
-			x + itemTextOffset, y, x + menuWidth, y + menuItemHeight, 
-			tocolor(textColor[1], textColor[2], textColor[3], menuAlpha),
-			1, 
-			itemFont,
-			"left",
-			"center"
-		)
+		dxDrawRectangle(x, y, menuWidth, menuItemHeight, tocolor(bgcolor[1], bgcolor[2], bgcolor[3], menuAlpha), true)
+		exports.tunrc_Garage:TrcDrawText(item.text, x + itemTextOffset, y, x + menuWidth, y + menuItemHeight, menuAlpha, itemFont, "left", "center", 1)
 		y = y + menuItemHeight
 	end
 

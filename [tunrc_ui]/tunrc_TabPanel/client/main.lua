@@ -7,7 +7,7 @@ function setVisible(visible)
 			return false
 		end
 	end
-	if localPlayer:getData("tunrc_Core.state") or exports.tunrc_MainPanel:isVisible() then
+	if localPlayer:getData("tunrc_Core.state") or exports.tunrc_overallPanel:isVisible() then
 		visible = false
 	end
 	if localPlayer:getData("activeUI") then

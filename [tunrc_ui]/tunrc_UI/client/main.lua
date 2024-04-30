@@ -1,4 +1,5 @@
 addEventHandler("onClientResourceStart", resourceRoot, function ()
 	MessageBox.start()
+	NotificationBox.start()
 	Render.start()
 end)

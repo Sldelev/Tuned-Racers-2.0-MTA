@@ -56,17 +56,33 @@ function Input.create(properties)
 				end
 			end
 		end
-		Drawing.text(
-			self.x + textOffsetX, 
-			self.y, 
-			self.width - textOffsetX * 2, 
-			self.height, 
-			text, 
-			"left", 
-			"center", 
-			true, 
-			false
-		)
+		if exports.tunrc_Config:getProperty("ui.dark_mode") and properties.darkToggle == true then
+			Drawing.text(
+				self.x + textOffsetX, 
+				self.y, 
+				self.width - textOffsetX * 2, 
+				self.height, 
+				text, 
+				"left", 
+				"center",
+				properties.color,
+				true, 
+				false
+			)
+		else
+			Drawing.text(
+				self.x + textOffsetX, 
+				self.y, 
+				self.width - textOffsetX * 2, 
+				self.height, 
+				text, 
+				"left", 
+				"center",
+				properties.darkColor,
+				true, 
+				false
+			)
+		end
 	end	
 	return widget
 end

@@ -18,11 +18,9 @@ local searchMapName
 local function onGameFound()
 	foundGame = true
 	acceptedGame = false
-	UI:setType(ui.acceptButton, "primary")
-	UI:setText(ui.acceptButton, exports.tunrc_Lang:getString("race_search_accept"))	
 
 	UI:setText(ui.mainLabel, exports.tunrc_Lang:getString("race_search_race_fount"))
-	UI:setText(ui.infoLabel, exports.tunrc_Lang:getString("race_search_press_accept"))
+	--UI:setText(ui.infoLabel, exports.tunrc_Lang:getString("race_search_press_accept"))
 end
 addEvent("tunrc_RaceLobby.raceFound", true)
 addEventHandler("tunrc_RaceLobby.raceFound", resourceRoot, onGameFound)
@@ -114,43 +112,61 @@ function SearchScreen.setVisible(visible)
 end
 
 addEventHandler("onClientResourceStart", resourceRoot, function ()
-	screenSize = Vector2(exports.tunrc_UI:getScreenSize())
-	ui.panel = UI:createDpPanel {
+	screenSize = Vector2(exports.tunrc_UI:getScreenSize())	
+	ui.panel = UI:createTrcRoundedRectangle {
 		x = (screenSize.x - panelWidth) / 2,
 		y = (screenSize.y - panelHeight) / 1.7,
 		width = panelWidth,
 		height = panelHeight,
-		type = "light"
+		radius = 20,
+		color = tocolor(245, 245, 245),
+		darkToggle = true,
+		darkColor = tocolor(20, 20, 20)
 	}
 	UI:addChild(ui.panel)
 
 	-- Кнопка "Отмена"
-	ui.cancelButton = UI:createDpButton({
-		x = 0,
-		y = panelHeight - BUTTON_HEIGHT,
-		width = panelWidth / 2,
-		height = BUTTON_HEIGHT,
-		locale = "race_search_cancel",
-		type = "default_dark"
-	})
+	
+	ui.cancelButton = UI:createTrcRoundedRectangle {
+		x       = 15,
+        y       = panelHeight - BUTTON_HEIGHT - 15,
+        width   = 150,
+        height  = BUTTON_HEIGHT,
+		radius = 15,
+		color = tocolor(200, 205, 210),
+		hover = true,
+		hoverColor = tocolor(130, 130, 200),
+		darkToggle = true,
+		darkColor = tocolor(50, 50, 50),
+		hoverDarkColor = tocolor(30, 30, 30),
+		locale = "race_search_cancel"
+	}
 	UI:addChild(ui.panel, ui.cancelButton)
 
-	-- Кнопка "Принять"
-	ui.acceptButton = UI:createDpButton({
-		x = panelWidth / 2,
-		y = panelHeight - BUTTON_HEIGHT,
-		width = panelWidth / 2,
-		height = BUTTON_HEIGHT,
-		text = "...",
-		type = "default_dark"
-	})
+	-- Кнопка "Принять"	
+	ui.acceptButton = UI:createTrcRoundedRectangle {
+		x = UI:getWidth(ui.panel) - 150 - 15,
+        y       = panelHeight - BUTTON_HEIGHT - 15,
+        width   = 150,
+        height  = BUTTON_HEIGHT,
+		radius = 15,
+		color = tocolor(200, 205, 210),
+		hover = true,
+		hoverColor = tocolor(130, 130, 200),
+		darkToggle = true,
+		darkColor = tocolor(50, 50, 50),
+		hoverDarkColor = tocolor(30, 30, 30),
+		locale = "race_search_accept"
+	}
 	UI:addChild(ui.panel, ui.acceptButton)
 
 	local labelOffset = 0.45
 	ui.mainLabel = UI:createDpLabel({
 		x = 0 , y = 0,
 		width = panelWidth, height = panelHeight * labelOffset,
-		type = "dark",
+		color = tocolor(0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
 		fontType = "defaultLarge",
 		text = "...",
 		alignX = "center",
@@ -161,7 +177,9 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
 	ui.infoLabel = UI:createDpLabel({
 		x = 0 , y = panelHeight * labelOffset,
 		width = panelWidth, height = panelHeight * labelOffset - BUTTON_HEIGHT,
-		type = "light",
+		color = tocolor(0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
 		fontType = "defaultSmall",
 		text = "...",
 		color = tocolor(0, 0, 0, 100),

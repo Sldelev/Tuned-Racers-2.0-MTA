@@ -39,34 +39,51 @@ function QuitPrompt.hide()
 end
 
 addEventHandler("onClientResourceStart", resourceRoot, function ()
-	ui.panel = UI:createDpPanel {
+	ui.panel = UI:createTrcRoundedRectangle {
 		x = (screenSize.x - panelWidth) / 2,
 		y = (screenSize.y - panelHeight) / 1.7,
 		width = panelWidth,
 		height = panelHeight,
-		type = "dark"
+		radius = 20,
+		color = tocolor(245, 245, 245),
+		darkToggle = true,
+		darkColor = tocolor(20, 20, 20)
 	}
 	UI:addChild(ui.panel)
-
-	ui.cancelButton = UI:createDpButton({
-		x = 0,
-		y = panelHeight - BUTTON_HEIGHT,
-		width = panelWidth / 2,
+	
+	ui.cancelButton = UI:createTrcRoundedRectangle {
+		x = 10,
+		y = panelHeight - BUTTON_HEIGHT - 10,
+		width = panelWidth / 3,
 		height = BUTTON_HEIGHT,
-		locale = "race_ui_quit_prompt_cancel",
-		type = "default_dark"
-	})
+		radius = 15,
+		color = tocolor(200, 205, 210),
+		hover = true,
+		hoverColor = tocolor(130, 130, 200),
+		darkToggle = true,
+		darkColor = tocolor(50, 50, 50),
+		hoverDarkColor = tocolor(30, 30, 30),
+		shadow = true,
+		locale = "race_ui_quit_prompt_cancel"
+	}
 	UI:addChild(ui.panel, ui.cancelButton)
-
-	ui.acceptButton = UI:createDpButton({
-		x = panelWidth / 2,
-		y = panelHeight - BUTTON_HEIGHT,
-		width = panelWidth / 2,
+	
+	ui.acceptButton = UI:createTrcRoundedRectangle {
+		x = UI:getWidth(ui.panel) - (panelWidth / 3) - 20,
+		y = 0,
+		width = panelWidth / 3,
 		height = BUTTON_HEIGHT,
-		locale = "race_ui_quit_prompt_leave",
-		type = "primary"
-	})
-	UI:addChild(ui.panel, ui.acceptButton)	
+		radius = 15,
+		color = tocolor(200, 205, 210),
+		hover = true,
+		hoverColor = tocolor(130, 130, 200),
+		darkToggle = true,
+		darkColor = tocolor(50, 50, 50),
+		hoverDarkColor = tocolor(30, 30, 30),
+		shadow = true,
+		locale = "race_ui_quit_prompt_leave"
+	}
+	UI:addChild(ui.cancelButton, ui.acceptButton)	
 
 	ui.mainLabel = UI:createDpLabel({
 		x = 0 , y = 0,

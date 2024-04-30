@@ -6,7 +6,10 @@ local EXPLODED_VEHICLE_DESTROY_TIMEOUT = 5000
 local userSpawnedVehicles = {}
 -- data, находящаяся в автомобиле
 local dataFields = {
-	"_id", "owner_id", "mileage", "tuning", "stickers"
+	"_id", "owner_id", "mileage", "tuning"
+}
+local serverDataFields = {
+	"stickers", "windows_stickers"
 }
 local autosaveFields = {
 	"mileage"
@@ -127,15 +130,13 @@ local function autosaveVehicle(vehicle, saveTuning, saveStickers)
 			end
 		end
 	end
-	local stickersTable
+	local stickersTable, windowsStickerTable
 	if saveStickers then
-		stickersTable = vehicle:getData("stickers")
-		if not stickersTable then
-			stickersTable = {}
-		end
+		stickersTable = vehicle:getData("stickers") or {}
+		windowsStickersTable = vehicle:getData("windows_stickers") or {}
 	end
 	if saveTuning or saveStickers then
-		VehicleTuning.updateVehicleTuning(vehicleId, tuningTable, stickersTable)
+		VehicleTuning.updateVehicleTuning(vehicleId, tuningTable, stickersTable, windowsStickersTable)
 	end
 
 	-- Сохранение даты
@@ -214,11 +215,14 @@ function VehicleSpawn.spawn(vehicleId, position, rotation)
 	for i, name in ipairs(dataFields) do
 		vehicle:setData(name, vehicleInfo[name])
 	end
+	for i, name in ipairs(serverDataFields) do
+		vehicle:setData(name, vehicleInfo[name], false)
+	end
 	vehicle:setData("owner_username", user.username)
 	vehicle.id = "vehicle_" .. tostring(vehicleInfo._id)
 
 	addUserSpawnedVehicle(vehicleInfo.owner_id, vehicle)
-	VehicleTuning.applyToVehicle(vehicle, vehicleInfo.tuning, vehicleInfo.stickers)
+	VehicleTuning.applyToVehicle(vehicle, vehicleInfo.tuning, vehicleInfo.stickers, vehicleInfo.windows_stickers)
 
 	-- Выключить фары
 	--vehicle:setData("LightsState", false)

@@ -1,15 +1,16 @@
 texture gTexture;
 texture sNormalTexture;
 texture sReflectionTexture;
+texture sRefractionTexture;
 
 float alphaCurrentTexture = 1; // альфа всего вместе (от 0 до 1)
 float normalFactor = 0.6; // насколько сильно давить нормали (от 0 до 1)
-float flakesSize = 1; // размер, допустим я на стёкла ставил 25, на кузов 1, ориентируйся на эти цифры, 1 стандарт
+float flakesSize = 25; // размер, допустим я на стёкла ставил 25, на кузов 1, ориентируйся на эти цифры, 1 стандарт
 float ChromePower = 0.6; // сила отражения хрома
 
-float4 ColorFlakes = float4(0.0,0.0,0.0,1); // это я накинул доп освещение, если тебе не нужно выкинь
+float4 ColorFlakes = float4(0.35,0.35,0.35,1); // это я накинул доп освещение, если тебе не нужно выкинь
 
-float4 ColorTexture = float4(1,1,1,1); // цвет текстуры
+float4 ColorTexture = float4(0.6,0.6,0.6,1); // цвет текстуры
 
 
 float4 ColorNormals = float4(0.8,0.8,0.8,1); // цвет нормалек
@@ -39,6 +40,15 @@ samplerCUBE ReflectionSampler = sampler_state
     MIPMAPLODBIAS = 0.000000;
 };
 
+sampler RefractionSampler = sampler_state
+{
+    Texture = (sRefractionTexture);
+    MAGFILTER = LINEAR;
+	MINFILTER = LINEAR;
+	MIPFILTER = POINT;
+	MIPMAPLODBIAS = 0.000000;
+};
+
 // дополнительные хуйни
 struct VSInput
 {
@@ -61,7 +71,7 @@ struct PSInput
     float3 NormalSurf : TEXCOORD4;
     float3 View : TEXCOORD5;
     float4 BottomColor : TEXCOORD6;
-    float3 SparkleTex : TEXCOORD7;
+    float4 RefractionPos : TEXCOORD7;
     float4 Diffuse2 : COLOR1;
 };
 
@@ -85,10 +95,8 @@ PSInput VertexShaderFunction(VSInput VS)
     PS.Normal = normalize( mul(VS.Normal, (float3x3)gWorld) );
 
     MTAFixUpNormal( VS.Normal );
-
-    PS.SparkleTex.x = fmod( VS.Position.x, 10 ) * 50.0;
-    PS.SparkleTex.y = fmod( VS.Position.y, 10 ) * 50.0;
-    PS.SparkleTex.z = fmod( VS.Position.z, 10 ) * 50.0;
+	
+	PS.RefractionPos = mul(VS.Position, gWorldViewProjection);
 
     float specPower = gMaterialSpecPower;
 
@@ -136,9 +144,22 @@ float4 PixelShaderFunction(PSInput PS) : COLOR0
 	// Combine result of environment map reflection with the paint color:
     float fEnvContribution = 1.0 - 0.5 * fFresnel2;
 	
+	float2 refractTexCoord;
+	float4 projTexC;
+	
+	// Count refraction vector
+    projTexC = PS.RefractionPos;
+	projTexC.xyz /= projTexC.w;
+	projTexC.x = 0.5f*projTexC.x + 1.5f;
+	projTexC.y = -0.5f*projTexC.y + 1.5f;
+	projTexC.z = .10f / projTexC.z; //refract more based on distance from the camera
+
+	
+    float4 refMap = tex2D(RefractionSampler, projTexC.xy + vNp2.xy);
+	
     // наложение стандартной текстуры под нормал мап
 
-    float4 maptex = tex2D(Sampler0,PS.TexCoord.xy*flakesSize);
+    float4 maptex = tex2D(Sampler0,PS.TexCoord.xy);
 
     maptex *= 0.5+PS.Diffuse;
 
@@ -157,7 +178,7 @@ float4 PixelShaderFunction(PSInput PS) : COLOR0
     normals.rgb = normals.rgb*normals.rgb*normals.rgb;
 
     finalColor += normals*0.3;
-
+    // finalColor.a = 0.8;
     return finalColor;
 }
 
@@ -166,8 +187,8 @@ technique TexReplace
 	pass P0
 	{		
 		DepthBias=-0.000000002;
-        VertexShader = compile vs_2_0 VertexShaderFunction();
-        PixelShader  = compile ps_2_0 PixelShaderFunction();
+        VertexShader = compile vs_3_0 VertexShaderFunction();
+        PixelShader  = compile ps_3_0 PixelShaderFunction();
 		
 		CullMode = NONE;
 		AlphaOp[0] = ADD;

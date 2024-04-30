@@ -6,11 +6,21 @@ local screenWidth, screenHeight = guiGetScreenSize()
 local SpeedometerRadius = 115
 local SpeedometerOffset = 20
 
-local function getVehicleSpeed()
-	if not localPlayer.vehicle then
-		return 0
+function getElementSpeed(element, unit)
+	if (unit == nil) then
+		unit = 0
 	end
-	return localPlayer.vehicle.velocity:getLength() * 180
+	if (isElement(element)) then
+		local x, y, z = getElementVelocity(element)
+
+		if (unit == "mph" or unit == 1 or unit == '1') then
+			return math.floor((x^2 + y^2 + z^2) ^ 0.35 * 100)
+		else
+			return math.floor((x^2 + y^2 + z^2) ^ 0.35 * 100 * 1.609344)
+		end
+	else
+		return false
+	end
 end
 
 function Speedometer.start()
@@ -77,9 +87,6 @@ function Speedometer.start()
 		fontType = "defaultBigLarger"
 	}
 	UI:addChild(SpeedometerTop, SpeedometerSpeedLabel)
-	UIDataBinder.bind(SpeedometerSpeedLabel, "vehicle_speed", function ()
-	 return string.format ("%u", tostring(getVehicleSpeed()))
-	end)
 	
 	SpeedometerGearLabel = UI:createDpLabel {
 		x = 0,
@@ -95,15 +102,6 @@ function Speedometer.start()
 		fontType = "defaultLarger"
 	}
 	UI:addChild(SpeedometerTop, SpeedometerGearLabel)
-	UIDataBinder.bind(SpeedometerGearLabel, "vehicle_gear", function ()
-		if getVehicleSpeed() == 0 then
-			return "N"
-		elseif getVehicleCurrentGear(localPlayer.vehicle) == 0 then
-			return "R"
-		else
-			return string.format ("%u", tostring(exports.tunrc_carsounds:getVehicleGear(localPlayer.vehicle)))
-		end
-	end)
 	
 	SpeedometerMileageLabel = UI:createDpLabel {
 		x = 0,
@@ -119,9 +117,7 @@ function Speedometer.start()
 		fontType = "default"
 	}
 	UI:addChild(SpeedometerTop, SpeedometerMileageLabel)
-	UIDataBinder.bind(SpeedometerMileageLabel, "vehicle_mileage", function ()
-		return string.format("%u", localPlayer.vehicle:getData("mileage")) .. " KM"
-	end)
+	
 	
 end
 
@@ -139,6 +135,16 @@ function Speedometer.refresh()
 
 	local endAngle = UI:getEndangle(SpeedometerBack)
 	UI:setEndangle(SpeedometerArrow, endAngle * progress)
+	
+	
+	
+	UI:setText(SpeedometerSpeedLabel, string.format("%u", tostring(getElementSpeed(localPlayer.vehicle, "mph"))))
+	if getVehicleCurrentGear(localPlayer.vehicle) == 0 then
+		UI:setText(SpeedometerGearLabel, "R")
+	else
+		UI:setText(SpeedometerGearLabel, string.format ("%u", tostring(exports.tunrc_carsounds:getVehicleGear(localPlayer.vehicle))))
+	end
+	UI:setText(SpeedometerMileageLabel, string.format("%u", localPlayer.vehicle:getData("mileage") / 1.60) .. " MI")
 
 	UIDataBinder.refresh()
 end

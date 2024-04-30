@@ -1,0 +1,11 @@
+<meta>
+	<script src="client.lua" type="client"/>
+	
+	<file src="shared_tex.txd" type="client"/>
+	<file src="shared_tex_low.txd" type="client"/>
+	<file src="shared_tex_mid.txd" type="client"/>
+	
+	<export type="client" function="CarSharedTexture"/>
+	
+</meta>
+

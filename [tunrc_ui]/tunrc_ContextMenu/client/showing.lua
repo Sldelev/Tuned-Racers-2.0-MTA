@@ -22,7 +22,7 @@ addEventHandler("onClientClick", root, function(button, state, x, y, worldX, wor
 	if not localPlayer:getData("username") or localPlayer:getData("tunrc_Core.state") then
 		return
 	end
-	if localPlayer:getData("tunrc_Core.state") or exports.tunrc_MainPanel:isVisible() then
+	if localPlayer:getData("tunrc_Core.state") or exports.tunrc_overallpanel:isVisible() then
 		return
 	end
 	if localPlayer:getData("activeUI") then

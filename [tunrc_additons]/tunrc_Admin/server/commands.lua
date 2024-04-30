@@ -118,7 +118,7 @@ addCommand("settime", "admin", function (admin, hh, mm)
 	return exports.tunrc_Time:setServerTime(hh, mm)
 end)
 
-addCommand("kick", "moderator", function (admin, player, reason)
+addCommand("kick", { "moderator", "admin" }, function (admin, player, reason)
 	if not isElement(player) then
 		return
 	end
@@ -132,7 +132,7 @@ addCommand("kick", "moderator", function (admin, player, reason)
 	return kickPlayer(player, admin, reason)
 end)
 
-addCommand("ban", "moderator", function (admin, player, duration, reason)
+addCommand("ban", { "moderator", "admin" }, function (admin, player, duration, reason)
 	exports.tunrc_Logger:log("admin", string.format("Admin: %s (%s) | Command: %s | Target Player: %s (%s) | Duration: %s | Reason: %s",
 		tostring(admin.name),
 		tostring(admin:getData("username")),

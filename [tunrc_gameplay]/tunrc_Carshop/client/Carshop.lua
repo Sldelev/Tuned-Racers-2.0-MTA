@@ -3,10 +3,10 @@ Carshop.isActive = false
 Carshop.currentVehicleInfo = {}
 Carshop.hasDriftHandling = false
 
-local CARSHOP_POSITION = Vector3(-1654.23, 1210.75, 20.6)
-local VEHICLE_ROTATION = Vector3(0, 0, 182)
-local LOCAL_DIMENSION = 454
-local CARSHOP_ROTATION = 50
+local CARSHOP_POSITION = Vector3(1585.5, 2252.5, 3698.5)
+local VEHICLE_ROTATION = Vector3(0, 0, -90)
+local LOCAL_DIMENSION = 1000 + localPlayer:getData("_id")
+local CARSHOP_ROTATION = 0
 local VEHICLE_OFFSET = Vector3(0, 0, 0)
 local STAGE_OFFSET = Vector3(0, 0, -3)
 
@@ -45,12 +45,12 @@ local function draw()
 	-- Тень у краёв экрана
 	dxDrawImage(0, 0, screenSize.x, screenSize.y, screenShadowTexture, 0, 0, 0, tocolor(0, 0, 0, 200))
 
-	local primaryColor = tocolor(themeColor[1], themeColor[2], themeColor[3], 255)
+	local color = tocolor (150, 150, 150)
 	dxDrawText(
-		"$#FFFFFF" .. tostring(localPlayer:getData("money")),
+		"$" .. tostring(localPlayer:getData("money")),
 		0, 20,
 		screenSize.x - 20, screenSize.y,
-		primaryColor,
+		color,
 		1,
 		fonts.money,
 		"right",
@@ -58,10 +58,10 @@ local function draw()
 		false, false, false, true
 	)
 	dxDrawText(
-		"¤#FFFFFF" .. tostring(localPlayer:getData("donatmoney")),
+		"¤" .. tostring(localPlayer:getData("donatmoney")),
 		0, 55,
 		screenSize.x - 20, screenSize.y,
-		primaryColor,
+		color,
 		1,
 		fonts.money,
 		"right",
@@ -74,15 +74,6 @@ local function onCursorMove(x, y)
 	if isMTAWindowActive() or isCursorShowing() then
 		return
 	end
-end
-
-local function onMouseWheel(key, state, delta)
-	local targetCamera = CameraManager.getTargetCamera()
-
-	targetCamera.FOV = 70
-	targetCamera.targetPosition = CARSHOP_POSITION
-	targetCamera.distance = 3
-	targetCamera.rotationVertical = 4
 end
 
 local function onKey(key, down)
@@ -131,7 +122,6 @@ function Carshop.start()
 	end
 	Carshop.isActive = true
 	isBuying = false
-
 	-- Список автомобилей
 	vehiclesList = {}
 	local vehicles = exports.tunrc_Shared:getVehiclesTable()
@@ -141,7 +131,6 @@ function Carshop.start()
 			local vehicleInfo = {
 				model = model,
 				name = exports.tunrc_Shared:getVehicleReadableName(name),
-				description = exports.tunrc_Shared:getVehicleDescription(name),
 				price = priceInfo[1],
 				level = priceInfo[2],
 				premium = priceInfo[3],
@@ -166,7 +155,7 @@ function Carshop.start()
 	vehicle.alpha = 0
 	vehicle.dimension = LOCAL_DIMENSION
 	vehicle:setData("Numberplate", "TRC")
-
+	
 	toggleAllControls(false)
 	exports.tunrc_HUD:setVisible(false)
 	exports.tunrc_Chat:setVisible(false)
@@ -252,13 +241,12 @@ function Carshop.showVehicle(id)
 	vehicle.model = vehicleInfo.model
 	vehicle.alpha = 0
 	vehicle.position = CARSHOP_POSITION + VEHICLE_OFFSET
-
 	if isTimer(showTimer) then
 		killTimer(showTimer)
 	end
 	showTimer = setTimer(function ()
 		vehicle.alpha = 255
-		local color = exports.tunrc_Shared:getGameplaySetting("default_vehicle_color") or {100, 100, 100}
+		local color = exports.tunrc_Shared:getGameplaySetting("default_vehicle_color") or {120, 120, 120}
 		vehicle:setColor(unpack(color))
 	end, 250, 1)
 
@@ -329,21 +317,6 @@ function Carshop.donatbuy()
 	end
 	exports.tunrc_Sounds:playSound("ui_select.wav")
 end
-
---[[addEventHandler("onClientResourceStart", resourceRoot, function ()
-	-- Замена моделей
-	local id = 1546
-	local txd = engineLoadTXD("assets/shr.txd")
-	engineImportTXD(txd,id)
-	local dff = engineLoadDFF("assets/shr.dff")
-	engineReplaceModel(dff, id)
-	local col = engineLoadCOL("assets/shr.col")
-	engineReplaceCOL(col, id)
-
-	-- Создание объектов помещения
-	local carshop = createObject(1546, 1230, -1788,  1137.5, 0, 0, 0)
-	setElementDimension (carshop, -1)
-end)]]
 
 function hasMoreGarageSlots()
     local garageSlots = exports.tunrc_Core:getPlayerGarageSlots(localPlayer)

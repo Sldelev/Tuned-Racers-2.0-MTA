@@ -306,6 +306,8 @@ local function onKey(key, isDown)
 		setPlayerAlph()
 	elseif key == "3" then
 		ComposHelpToggle()
+	elseif key == "[" then
+		HelpToggle()
 	else
 		local screenshotBoundKeys = getBoundKeys("screenshot")
 		if screenshotBoundKeys then
@@ -414,8 +416,9 @@ function disablePhotoMode()
 
 	-- Show HUD
 	exports.tunrc_HUD:setVisible(true)
-	exports.tunrc_Nametags:setVisible(true)
-	exports.tunrc_Chat:setVisible(true)
+	exports.tunrc_Nametags:setVisible(exports.tunrc_Config:getProperty("graphics.nametags"))
+	exports.tunrc_Chat:setVisible((exports.tunrc_Config:getProperty("ui.draw_chat")))
+	exports.tunrc_HUD:setSpeedometerVisible(exports.tunrc_Config:getProperty("ui.draw_speedo"))
 
 	for i, name in ipairs(controlList) do
 		setControlState(name, false)

@@ -21,13 +21,13 @@ local isEffectForcedOn = false -- set true to force the effects to stay on despi
 local effectTimeOut = 4 -- how much time does the effect turn off after 0 lights synced (in seconds)
 local shaderSettings = {
 				gIsLayered = {false, true, false}, -- set world, vehicle and ped effect layered
-				gNormalShading = {false, true, true}, -- enables world,vehicle,ped self shadowing ( may be bugged for rotated objects on a custom map)
+				gNormalShading = {false, false, false}, -- enables world,vehicle,ped self shadowing ( may be bugged for rotated objects on a custom map)
 				gGenerateBumpNormals = false, -- generate bump normals from color texture (hogs few fps)
 				gTextureSize = 256.0, -- generated normat texture size (256 or 512 recomended)
-				gNormalStrength = {0,0,0}, -- Bump strength (0-1)
+				gNormalStrength = {1,1,1}, -- Bump strength (0-1)
 				gDistFade = {120, 100}, -- [0]MaxEffectFade,[1]MinEffectFade
-				gMaxLights = 4, -- how many light effects can be streamed in at once (max 15)
-				gVertexLights = 2, -- how many of that lights will be vertex lights
+				gMaxLights = 8, -- how many light effects can be streamed in at once (max 15)
+				gVertexLights = 1, -- how many of that lights will be vertex lights
 				gForceVertexLights = {false, true, true}, -- force world, vehicle and ped to get vertex lighting only
 				gBrightness = 1, -- modify texture brightness 0 - fully obscured 1 - normal brightness
 				gNightMod = false, -- enable nightMod effect - requires proper manipulation of setTextureBrightness and SetShaderDayTime, 
@@ -77,7 +77,7 @@ local reApplyList = {
 					"ws_tunnelwall2smoked", "shadover_law",
 					"greenshade_64", "greenshade2_64", "venshade*", 
 					"blueshade2_64","blueshade4_64","greenshade4_64",
-					"metpat64shadow","bloodpool_*"
+					"metpat64shadow","bloodPool_*"
 					}
 
 ---------------------------------------------------------------------------------------------------

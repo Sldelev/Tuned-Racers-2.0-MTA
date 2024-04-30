@@ -15,7 +15,19 @@ float2 fBlend = float2(1, 3);
 
 float2 sPixelSize = float2(0.00125, 0.00166);
 float sAspectRatio = 800 / 600;
-#include "ssao_dl_settings.txt"
+
+#define iMXAOBayerDitherLevel  5 // Dither Size (int 2 - 8)
+float fMXAOSampleRadius = 1.5; // Sample radius of GI, higher means more large-scale occlusion with less fine-scale details.  (1 - 8)
+int iMXAOSampleCount; // Amount of MXAO samples. Higher means more accurate and less noisy AO at the cost of fps (int 8 - 255)
+#define AO_BLUR_GAMMA 1.5
+float fMXAONormalBias = 0.25; // Normal bias. Normals bias to reduce self-occlusion of surfaces that have a low angle to each other. (0 - 0.8)
+
+#define fMXAOBlurSteps  3  // Blur Steps. Offset count for AO bilateral blur filter. Higher means smoother but also blurrier AO. (int 2 - 5)
+#define fMXAOBlurSharpness 2.0 // Blur Sharpness. AO sharpness, higher means sharper geometry edges but noisier AO, less means smoother AO but blurry in the distance. (0 - 5)
+
+float fMXAOAmbientOcclusionAmount = 0.5; // Ambient Occlusion Amount (0 - 3)
+float fMXAOFadeoutStart = 0.90; // Fadeout start (0 - 1)
+float fMXAOFadeoutEnd = 0.95; // Fadeout end (0 - 1)
 
 //--------------------------------------------------------------------------------------
 // Textures

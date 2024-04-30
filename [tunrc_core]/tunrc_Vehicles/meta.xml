@@ -7,8 +7,7 @@
 	<script type="shared" src="shared/handlings_table.lua"/>
 	<script type="shared" src="shared/config.lua"/>
 	<!-- Client -->
-	<script type="client" src="client/glass_stickers.lua" cache="false"/>
-	<script type="client" src="client/body_texture.lua" cache="false"/>
+	<script type="client" src="client/Wraps.lua" cache="false"/>
 	<script type="client" src="client/colors.lua"/>
 	<script type="client" src="client/components.lua"/>
 	<script type="client" src="client/configuration.lua"/>
@@ -16,15 +15,16 @@
 	<script type="client" src="client/mileage.lua"/>
     <script type="client" src="client/numberplate.lua"/>
 	<script type="client" src="client/tyres_smoke.lua"/>
-	<script type="client" src="client/exhaust.lua"/>
 	<script type="client" src="client/VehicleShaders.lua" cache="false"/>
 	<script type="client" src="client/actions.lua"/>
 	<script type="client" src="client/handling.lua"/>
+	
+	<script type="client" src="client/ComponentsPosRot.lua" cache="false"/>
 	<!-- Additional Colors -->	
-	<script type="client" src="client/colors/engblock_color.lua"/>
-	<script type="client" src="client/colors/rollcage_color.lua"/>
+	<script type="client" src="client/colors/engblock_color.lua" cache="false"/>
+	<script type="client" src="client/colors/rollcage_color.lua" cache="false"/>
 	<!-- Normal Maps Script -->
-	<script type="client" src="client/veh_normals.lua"/>
+	<script type="client" src="client/veh_normals.lua" cache="false"/>
 	<!-- Server -->
 	<script type="server" src="server/utils.lua"/>
 	<script type="server" src="server/actions.lua"/>
@@ -32,7 +32,6 @@
 	
 	<!-- Server HandlingCustomizing -->
 	
-	<script type="server" src="s_hanglings/h_velocity.lua"/>
 	<script type="server" src="s_hanglings/h_mass.lua"/>
 	<script type="server" src="server/suspension.lua"/>
 	<script type="server" src="server/bias.lua"/>
@@ -42,8 +41,10 @@
 	<export type="client" function="getComponentsNames"/>
 	<export type="client" function="redrawGlassRenderTarget"/>
 	<export type="client" function="redrawBodyRenderTarget"/>
+	<export type="client" function="redrawBodyStickersRenderTarget"/>
 	<export type="client" function="createVehicleRenderTarget"/>
 	<export type="client" function="createVehicleBodyRenderTarget"/>
+	<export type="client" function="createVehicleBodyStickersRenderTarget"/>
 	<export type="client" function="toggleVehicleParam"/>
 	<export type="client" function="switchHandling"/>
 	<export type="shared" function="getModelDefaultWheelsSize"/>
@@ -83,5 +84,6 @@
 	<file src="assets/shaders/mta-helper.fx"/>
 	<file src="assets/shaders/glass.fx"/>
 	<file src="assets/shaders/body_shader.fx"/>
+	<file src="assets/shaders/stickers_shader.fx"/>
 	<file src="assets/shaders/shader.fx"/>
 </meta>

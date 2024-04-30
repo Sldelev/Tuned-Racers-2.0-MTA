@@ -4,13 +4,13 @@ texture sReflectionTexture;
 texture sSpecularTexture;
 
 float alphaCurrentTexture = 1.0; // альфа всего вместе (от 0 до 1)
-float normalFactor = 1.5; // насколько сильно давить нормали (от 0 до 1)
-float flakesSize = 12; // размер, допустим я на стёкла ставил 25, на кузов 1, ориентируйся на эти цифры, 1 стандарт
+float normalFactor = 0.7; // насколько сильно давить нормали (от 0 до 1)
+float flakesSize = 16; // размер, допустим я на стёкла ставил 25, на кузов 1, ориентируйся на эти цифры, 1 стандарт
 float ChromePower = 0.25; // сила отражения хрома
 
-float4 ColorFlakes = float4(0.0,0.0,0.0,1); // это я накинул доп освещение, если тебе не нужно выкинь
+float4 ColorFlakes = float4(0.5,0.5,0.5,1); // это я накинул доп освещение, если тебе не нужно выкинь
 
-float4 ColorTexture = float4(1,1,1,1); // цвет текстуры
+float4 ColorTexture = float4(0.6,0.6,0.6,1); // цвет текстуры
 
 
 float4 ColorNormals = float4(0.4,0.4,0.4,1); // цвет нормалек
@@ -102,7 +102,7 @@ PSInput VertexShaderFunction(VSInput VS)
 
     float specPower = gMaterialSpecPower;
 
-    PS.Diffuse2.rgb = ColorFlakes.rgb*MTACalculateSpecular( gCameraDirection, gLight0Direction, PS.Normal, specPower );
+    PS.Diffuse2.rgb = ColorNormals.rgb*ColorFlakes.rgb*MTACalculateSpecular( gCameraDirection, gLightDirection, PS.Normal, specPower );
     PS.Diffuse2.rgb = saturate(PS.Diffuse2.rgb);
     PS.Diffuse = MTACalcGTACompleteDiffuse(PS.Normal, VS.Diffuse);
     return PS;
@@ -182,7 +182,7 @@ technique TexReplace
 {
 	pass P0
 	{
-		DepthBias=-0.000000002;
+		DepthBias=-0.000000003;
         VertexShader = compile vs_2_0 VertexShaderFunction();
         PixelShader  = compile ps_2_0 PixelShaderFunction();
 		

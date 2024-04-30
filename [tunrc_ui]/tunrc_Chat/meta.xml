@@ -1,6 +1,7 @@
 <meta>
 	<min_mta_version client="1.3.0-9.04431" />
 	<oop>true</oop>
+	<include resource="tunrc_UI"/>
 	
 	<script type="client" src="client/UIDataBinder.lua"/>
 	<script type="client" src="client/AntiFlood.lua"/>
@@ -18,6 +19,7 @@
 	<script type="server" src="server/spam.lua"/>
 
 	<export type="client" function="setVisible"/>
+	<export type="client" function="isActive"/>
 	<export type="client" function="message"/>
 	<export type="client" function="startPM"/>
 	<export type="server" function="message"/>

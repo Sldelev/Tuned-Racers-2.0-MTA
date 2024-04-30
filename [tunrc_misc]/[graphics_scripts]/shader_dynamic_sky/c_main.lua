@@ -115,6 +115,7 @@ function startDynamicSky()
 	modelTable.object = createObject ( dynamicSkySettings.modelID, camX, camY, camZ, 0, 0, 0, true )
 	setObjectScale( modelTable.object, 8, 8, 8)
 	setElementAlpha( modelTable.object, 1 )
+	setElementDimension (modelTable.object, -1)
 
 	addEventHandler ( "onClientPreRender", getRootElement (), renderSphere ) -- sphere
 	addEventHandler ( "onClientPreRender", getRootElement (), renderTime ) -- time

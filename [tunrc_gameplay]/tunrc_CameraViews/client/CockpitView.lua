@@ -18,7 +18,7 @@ local currentLookOffset = Vector3()
 
 local startCameraAngle = 0
 local prevTurnVelocity = 0
-local cameraFOV = 75
+local cameraFOV = 70
 
 -- Тряска
 local SHAKE_AMOUNT = 0.012
@@ -27,7 +27,7 @@ local cameraShakeX = 0
 local cameraShakeMul = 0.9
 
 -- Мышь
-local mouseLookSpeed = 50
+local mouseLookSpeed = 100
 local mouseLookX = 0
 local mouseLookY = 0
 local mouseHorizontalLimit = 60
@@ -138,14 +138,14 @@ local function update(deltaTime)
 	end
 
 	-- Поворот камеры
-	local currentCameraAngle = math.rad(startCameraAngle + driftAngle + sideLookAngle)
+	local currentCameraAngle = math.rad(startCameraAngle + sideLookAngle)
 	targetLookOffset = Vector3(math.sin(currentCameraAngle), math.cos(currentCameraAngle), lookOffset.z + mouseLookOffset)
 	currentLookOffset = currentLookOffset + (targetLookOffset - currentLookOffset) * deltaTime * CAMERA_ROTATION_SPEED
 	currentLookOffset = currentLookOffset + cameraShake
 	targetCameraFov = cameraFOV - speedSquared
 
 	-- Положение камеры в машине
-	local cameraPos = localPlayer.vehicle.matrix:transformPosition(positionOffset - Vector3(0,0 + (speedSquared / 6), 0))
+	local cameraPos = localPlayer.vehicle.matrix:transformPosition(positionOffset - Vector3(mouseLookX / 200,0 + (speedSquared / 10), -mouseLookY / 400))
 	local cameraLook = localPlayer.vehicle.matrix:transformPosition(positionOffset + currentLookOffset)
 	local cameraRoll = -localPlayer.vehicle.rotation.y
 	

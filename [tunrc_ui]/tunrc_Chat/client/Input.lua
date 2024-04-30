@@ -20,6 +20,10 @@ function Input.isActive()
 	return inputActive
 end
 
+function isActive()
+	return inputActive
+end
+
 function Input.getText()
 	return (inputActive and inputText or false)
 end

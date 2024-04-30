@@ -1,5 +1,7 @@
 Chat = {}
 
+local PROPERTY_SHOW_CHAT = "ui.draw_chat"
+
 local MAX_CHAT_HISTORY = 500
 local MAX_CHAT_LINES = 10
 local MAX_VISIBLE_TABS = 6
@@ -219,20 +221,9 @@ end
 -- Создание табов чата
 
 addEventHandler("onClientResourceStart", resourceRoot, function ()
-
-		TabPanelShadow = UI:createTrcRoundedRectangle {
-			x       = 30,
-			y       = 15,
-			width   = 60,
-			height  = 30,
-			radius = 15,
-			color = tocolor(0, 0, 0, 100)
-			}
-		UI:addChild(TabPanelShadow)
-
 		TabPanel = UI:createTrcRoundedRectangle {
-			x       = -2,
-			y       = -2,
+			x       = 28,
+			y       = 13,
 			width   = 60,
 			height  = 30,
 			radius = 10,
@@ -241,9 +232,10 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
 			hoverColor = tocolor(130, 130, 200),
 			darkToggle = true,
 			darkColor = tocolor(50, 50, 50),
-			hoverDarkColor = tocolor(30, 30, 30)
+			hoverDarkColor = tocolor(30, 30, 30),
+			shadow = true
 			}
-		UI:addChild(TabPanelShadow, TabPanel)
+		UI:addChild(TabPanel)
 		
 		local TabTitle = UI:createDpLabel {
 		x = 30,
@@ -359,16 +351,6 @@ function drawchat ()
 end
 addEventHandler("onClientRender", root, drawchat)
 
-
-addEventHandler("onClientResourceStart", resourceRoot, function ()
-	showChat(false)
-	chatRenderTarget = DxRenderTarget(MESSAGES_RT_SIZE, true)
-end)
-
-addEventHandler("onClientRestore", root, function (didClearRenderTargets)
-	Chat.redrawMessages()
-end)
-
 function Chat.setVisible(visible)
 	visible = not not visible
 
@@ -382,19 +364,22 @@ function Chat.setVisible(visible)
 
 	isVisible = visible
 	
-	UI:setVisible(TabPanelShadow, visible)
+	UI:setVisible(TabPanel, visible)
 end
 
 function Chat.isVisible()
 	return isVisible
 end
 
-setTimer(showChat, 1000, 0, false)
-bindKey("F7", "down",
-	function ()
-		Chat.setVisible(not Chat.isVisible())
-	end
-)
+addEventHandler("onClientResourceStart", resourceRoot, function ()
+	showChat(false)
+	chatRenderTarget = DxRenderTarget(MESSAGES_RT_SIZE, true)
+	Chat.setVisible(exports.tunrc_Config:getProperty(PROPERTY_SHOW_CHAT))
+end)
+
+addEventHandler("onClientRestore", root, function (didClearRenderTargets)
+	Chat.redrawMessages()
+end)
 
 bindKey("pgup", "down", Chat.historyUp)
 bindKey("pgdn", "down", Chat.historyDown)
@@ -412,5 +397,11 @@ addEventHandler("tunrc_UI.click", resourceRoot, function (widget)
 		end
 		
 	end
+end)
 
+addEvent("tunrc_Config.update", false)
+addEventHandler("tunrc_Config.update", root, function (key, value)
+    if key == PROPERTY_SHOW_CHAT then
+		Chat.setVisible(value)
+	end
 end)

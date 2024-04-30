@@ -11,7 +11,7 @@ local helpLines = {
 	{keys = {CONTROLS.TOGGLE_SMOOTH:upper()}, 									locale = "photo_mode_help_smooth"},
 	{keys = {CONTROLS.NEXT_TIME:upper(), CONTROLS.PREVIOUS_TIME:upper()},		locale = "photo_mode_help_time"},
 	{keys = {CONTROLS.NEXT_WEATHER:upper(), CONTROLS.PREVIOUS_WEATHER:upper()},	locale = "photo_mode_help_weather"},
-	{keys = {"I"},																locale = "photo_mode_help_tips"},
+	{keys = {"["},																locale = "photo_mode_help_tips"},
 	{keys = {"N"},																locale = "photo_mode_help_hide"},
 	{keys = {"3"},																locale = "photo_mode_help_composition"},
 	{keys = {PHOTO_MODE_KEY:upper()},													locale = "photo_mode_help_exit"}
@@ -30,12 +30,13 @@ local themeColor = {}
 local targetAlpha = 0
 local alpha = targetAlpha
 local ComposHelp = 0
+local Active = true
 
 function PhotoModeHelp.start()
 	font = exports.tunrc_Assets:createFont("Roboto-Regular.ttf", 14)
 	ComposHelp1 = DxTexture("assets/1.png")
 	ComposHelp2 = DxTexture("assets/2.png")
-	targetAlpha = 230
+	targetAlpha = 255
 	alpha = 0
 
 	-- Add screenshot keys to help
@@ -76,27 +77,41 @@ function ComposHelpToggle()
 	end
 end
 
+function HelpToggle()
+	if Active == true then
+		Active = false
+	else
+		Active = true
+	end
+end
+
 local function drawHelp()
 	local y = EDGE_OFFSET
 
 	for i, line in ipairs(helpLines) do
 		local x = EDGE_OFFSET
-
+		textWidth = dxGetTextWidth(line.text, 1, font) + 10
 		for j, key in ipairs(line.keys) do
-			local keyWidth = dxGetTextWidth(key, 1, font) + 10
+			local keyWidth = dxGetTextWidth(key, 1, font) + 10		
+			exports.tunrc_Garage:dxDrawRoundedRectangle(
+				x,
+				y,
+				textWidth + keyWidth + 10,
+				LINE_HEIGHT,
+				5,
+				alpha,
+				true, -- postgui
+				false,
+				true, -- shadow
+				false
+			 )
+			exports.tunrc_Garage:TrcDrawText(key, x, y, x + keyWidth, y + LINE_HEIGHT, alpha, font)
 
-			dxDrawRectangle(x, y, keyWidth, LINE_HEIGHT, tocolor(themeColor.r, themeColor.g, themeColor.b, alpha))
-			dxDrawText(key, x, y, x + keyWidth, y + LINE_HEIGHT, tocolor(255, 255, 255, alpha), 1, font, "center", "center")
-
-			x = x + keyWidth + HORIZONTAL_OFFSET
+			x = x + keyWidth + HORIZONTAL_OFFSET + 2
 		end
+		exports.tunrc_Garage:TrcDrawText(" | " .. line.text, x, y, x + textWidth, y + LINE_HEIGHT, alpha, font)
 
-		local textWidth = dxGetTextWidth(line.text, 1, font) + 10
-
-		dxDrawRectangle(x, y, textWidth, LINE_HEIGHT, tocolor(42, 40, 42, alpha))
-		dxDrawText(line.text, x, y, x + textWidth, y + LINE_HEIGHT, tocolor(255, 255, 255, alpha), 1, font, "center", "center")
-
-		y = y + LINE_HEIGHT + LINE_OFFSET
+		y = y + LINE_HEIGHT + LINE_OFFSET + 3
 	end
 end
 
@@ -108,59 +123,52 @@ local function drawParams()
 		{
 			name = "photo_mode_param_weather",
 			lvalue = (currentWeather == 0) and "photo_mode_param_weather_unknown" or weatherList[currentWeather].name
+		},
+		{
+			name = "photo_mode_param_fov",
+			lvalue = getCameraFov()
+		},
+		{
+			name = "photo_mode_param_roll",
+			lvalue = string.format("%u", getCameraRoll())
 		}
 	}
 
-	local y = screenSize.y - 10 - ((LINE_HEIGHT + LINE_OFFSET) * #parameters)
-
+	local y = screenSize.y - 25 - ((LINE_HEIGHT + LINE_OFFSET) * #parameters)
+	local x = EDGE_OFFSET
 	for i, param in pairs(parameters) do
 		local x = EDGE_OFFSET
-
-		local name = exports.tunrc_Lang:getString(param.name)
-		local nameWidth = dxGetTextWidth(name, 1, font) + 10
-
-		dxDrawRectangle(x, y, nameWidth, LINE_HEIGHT, tocolor(themeColor.r, themeColor.g, themeColor.b, alpha))
-		dxDrawText(name, x, y, x + nameWidth, y + LINE_HEIGHT, tocolor(255, 255, 255, alpha), 1, font, "center", "center")
-
-		x = x + nameWidth + HORIZONTAL_OFFSET
-
 		local value
+		
 		if param.lvalue then
 			value = exports.tunrc_Lang:getString(param.lvalue)
 		else
 			value = param.value
 		end
-		local valueWidth = dxGetTextWidth(value, 1, font) + 10
 
-		dxDrawRectangle(x, y, valueWidth, LINE_HEIGHT, tocolor(42, 40, 42, alpha))
-		dxDrawText(value, x, y, x + valueWidth, y + LINE_HEIGHT, tocolor(255, 255, 255, alpha), 1, font, "center", "center")
+		local name = exports.tunrc_Lang:getString(param.name)
+		local nameWidth = dxGetTextWidth(name, 1, font) + 10
+		local valueWidth = dxGetTextWidth(value, 1, font) + 10
+		exports.tunrc_Garage:dxDrawRoundedRectangle(
+				x,
+				y,
+				nameWidth + valueWidth + 10,
+				LINE_HEIGHT,
+				5,
+				alpha,
+				true, -- postgui
+				false,
+				true, -- shadow
+				false
+			 )
+
+		exports.tunrc_Garage:TrcDrawText(name, x, y, x + nameWidth, y + LINE_HEIGHT, alpha, font)
+
+		x = x + nameWidth + HORIZONTAL_OFFSET
+		exports.tunrc_Garage:TrcDrawText(value, x, y, x + valueWidth, y + LINE_HEIGHT, alpha, font)
 
 		y = y + LINE_HEIGHT + LINE_OFFSET
 	end
-	yt = 100
-	dxDrawText(
-		"FOV: " .. getCameraFov(), 
-		0, screenSize.y - 50, 
-		screenSize.x - 15,
-		-screenSize.y + yt, 
-		tocolor(255, 255, 255, 255), 
-		1, 
-		font,
-		"right",
-		"center"
-	)
-	yt = yt + 50
-	dxDrawText(
-		"Roll: " .. getCameraRoll(), 
-		0, screenSize.y - 50, 
-		screenSize.x - 15,
-		-screenSize.y + yt, 
-		tocolor(255, 255, 255, 255), 
-		1, 
-		font,
-		"right",
-		"center"
-	)
 	
 	if ComposHelp == 0 then
 		return
@@ -173,6 +181,9 @@ end
 
 
 function PhotoModeHelp.draw()
+	if not Active then
+		return
+	end
 	alpha = alpha + (targetAlpha - alpha) * 0.1
 	themeColor.r, themeColor.g, themeColor.b = exports.tunrc_UI:getThemeColor()
 

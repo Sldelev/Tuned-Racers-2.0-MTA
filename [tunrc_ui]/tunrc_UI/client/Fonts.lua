@@ -7,6 +7,7 @@ local SIZE_VERYBIGBOY = 34
 local SIZE_LIZE_DICK = 56
 local SIZE_SMALL = 14
 local SIZE_VERYSMALL = 10
+local SIZE_NOTVERYSMALL = 12
 
 addEventHandler("onClientResourceStart", resourceRoot, function ()
 	Fonts.default = exports.tunrc_Assets:createFont("Roboto-Regular.ttf", SIZE_NORMAL)
@@ -32,6 +33,7 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
 	Fonts.lightBigBoy = exports.tunrc_Assets:createFont("Roboto-Light.ttf", SIZE_VERYBIGBOY)
 	Fonts.lightSmall = exports.tunrc_Assets:createFont("Roboto-Light.ttf", SIZE_SMALL)
 	Fonts.lightVerySmall = exports.tunrc_Assets:createFont("Roboto-Light.ttf", SIZE_VERYSMALL)
+	Fonts.lightNotVerySmall = exports.tunrc_Assets:createFont("Roboto-Light.ttf", SIZE_NOTVERYSMALL)
 
 	Fonts.listItemText = exports.tunrc_Assets:createFont("Roboto-Regular.ttf", 13)
 end)

@@ -1,7 +1,7 @@
 
 addEvent( 'Crypt:onGetCryptData', true )
 
-local cryptDataKey = '0b4DYbbwA?N7ai0j|vW6HJ0D'
+local cryptDataKey = 'Nlu?4ckxbEqafxAprRj?{96O'
 
 local loadMods = {
 	txd = function( file, models, filteringEnabled )

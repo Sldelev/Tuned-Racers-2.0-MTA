@@ -1,22 +1,15 @@
 local anims = {
-	wave = {"PED", "IDLE_TAXI", false},
-	lay = {"INT_HOUSE", "wash_up"},
-	sit = {"GANGS", "LEANIDLE"},
+	wave = {"ON_LOOKERS", "wave_loop"},
+	lay = {"BEACH", "SitnWait_loop_W"},
+	sit = {"ped", "SEAT_IDLE"},
 	sit_relax = {"INT_House", "LOU_Loop"},
 	fucku = {"ped", "fucku", false},
-	serious = {"CAR", "FIXN_CAR_LOOP"},
+	serious = {"COP_AMBIENT", "Coplook_loop"},
 
 	hello = {"ped", "endchat_03", false},
-	no = {"SWAT", "JMP_WALL1M_180", false},
-	bye = {"DEALER", "DEALER_IDLE_01"},
-	smoke_a = {"SMOKING", "M_smkstnd_loop"},
-	smoke_b = {"SMOKING", "M_smklean_loop"},
-	drink_a = {"BD_FIRE", "BD_PANIC_LOOP"},
-	drink_b = {"BOMBER", "BOM_PLANT_LOOP"},
-	dance_a = {"RAPPING", "RAP_A_LOOP"},
-	cower_a = {"PED", "HANDSUP", false},
-
-	--Ped > IDLE_Chat
+	no = {"ped", "endchat_02", false},
+	bye = {"ped", "endchat_01", false},
+	--wave = {"PED", "IDLE_TAXI", false},
 }
 
 addEvent("tunrc_Anims.playAnim", true)

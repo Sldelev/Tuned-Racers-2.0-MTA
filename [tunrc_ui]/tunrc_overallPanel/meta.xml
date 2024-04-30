@@ -1,6 +1,7 @@
 <meta>
 	<!-- Основная панель -->
 	<oop>true</oop>
+	<include resource="tunrc_UI"/>
 
 	<script type="client" src="client/utils.lua"/>
 	<script type="client" src="client/UIDataBinder.lua"/>
@@ -8,15 +9,19 @@
 	<script type="client" src="client/Panel.lua"/>
 	<!-- Дополнительные панели -->
 	<script type="client" src="client/Panels/PasswordPanel.lua"/>
-	<script type="client" src="client/Panels/FpsPanel.lua"/>
 	<script type="client" src="client/Panels/AccountPanel.lua"/>
 	<script type="client" src="client/Panels/TeleportsPanel.lua"/>
+	<script type="client" src="client/Panels/SettingsPanel.lua"/>
 	<!-- Ассеты -->
 	<file src="assets/textures/icons/car_sell.png"/>
 	<file src="assets/textures/icons/gift_panel.png"/>
 	<file src="assets/textures/icons/settings_icon.png"/>
 	<file src="assets/textures/icons/help_icon.png"/>
+	<file src="assets/textures/icons/user_icon.png"/>
 	
+	<file src="assets/textures/garage_button_img.png"/>
+	<file src="assets/textures/teleports_button_img.png"/>
+	<!-- Экспорты -->
 	<export type="client" function="isVisible"/>
 	<export type="client" function="setVisible"/>
 </meta>

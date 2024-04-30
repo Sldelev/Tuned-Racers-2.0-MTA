@@ -1,0 +1,64 @@
+UI = exports.tunrc_UI
+screenWidth, screenHeight = UI:getScreenSize()
+
+function dxDrawRoundedRectangle(x, y, width, height, radius, alpha, postGUI, subPixelPositioning, shadow, grayscale)
+	if shadow == true then
+		dxDrawRectangle(x+radius + 2, y+radius + 2, width-(radius*2), height-(radius*2), tocolor(0,0,0,20), postGUI, subPixelPositioning)
+		dxDrawCircle(x+radius + 2, y+radius + 2, radius, 180, 270, tocolor(0,0,0,20), tocolor(0,0,0,20), 16, 1, postGUI)
+		dxDrawCircle(x+radius + 2, (y+height)-radius + 2, radius, 90, 180, tocolor(0,0,0,20), tocolor(0,0,0,20), 16, 1, postGUI)
+		dxDrawCircle((x+width)-radius + 2, (y+height)-radius + 2, radius, 0, 90, tocolor(0,0,0,20), tocolor(0,0,0,20), 16, 1, postGUI)
+		dxDrawCircle((x+width)-radius + 2, y+radius + 2, radius, 270, 360, tocolor(0,0,0,20), tocolor(0,0,0,20), 16, 1, postGUI)
+		dxDrawRectangle(x + 2, y+radius + 2, radius, height-(radius*2), tocolor(0,0,0,20), postGUI, subPixelPositioning)
+		dxDrawRectangle(x+radius + 2, y+height-radius + 2, width-(radius*2), radius, tocolor(0,0,0,20), postGUI, subPixelPositioning)
+		dxDrawRectangle(x+width-radius + 2, y+radius + 2, radius, height-(radius*2), tocolor(0,0,0,20), postGUI, subPixelPositioning)
+		dxDrawRectangle(x+radius + 2, y + 2, width-(radius*2), radius, tocolor(0,0,0,20), postGUI, subPixelPositioning)
+	end
+
+	--main
+	if exports.tunrc_Config:getProperty("ui.dark_mode") == true then
+		if grayscale == true then
+			color = tocolor(40, 40, 40, alpha)
+		else
+			color = tocolor(20, 20, 20, alpha)
+		end
+	else
+		if grayscale == true then
+			color = tocolor(225, 225, 225, alpha)
+		else
+			color = tocolor(245, 245, 245, alpha)
+		end
+	end
+    dxDrawRectangle(x+radius, y+radius, width-(radius*2), height-(radius*2), color, postGUI, subPixelPositioning)
+    dxDrawCircle(x+radius, y+radius, radius, 180, 270, color, color, 16, 1, postGUI)
+    dxDrawCircle(x+radius, (y+height)-radius, radius, 90, 180, color, color, 16, 1, postGUI)
+    dxDrawCircle((x+width)-radius, (y+height)-radius, radius, 0, 90, color, color, 16, 1, postGUI)
+    dxDrawCircle((x+width)-radius, y+radius, radius, 270, 360, color, color, 16, 1, postGUI)
+    dxDrawRectangle(x, y+radius, radius, height-(radius*2), color, postGUI, subPixelPositioning)
+    dxDrawRectangle(x+radius, y+height-radius, width-(radius*2), radius, color, postGUI, subPixelPositioning)
+    dxDrawRectangle(x+width-radius, y+radius, radius, height-(radius*2), color, postGUI, subPixelPositioning)
+    dxDrawRectangle(x+radius, y, width-(radius*2), radius, color, postGUI, subPixelPositioning)
+end
+
+function TrcDrawText(text, x, y, width, height, alpha, font, alignX, alignY, scale, clip, wordBreak)
+	if not font then
+		font = Assets.fonts.menu
+	end
+	
+	if not alignX then
+		alignX = "center"
+	end
+	if not alignY then
+		alignY = "center"
+	end
+	if not scale then
+		scale = 1
+	end
+
+	if exports.tunrc_Config:getProperty("ui.dark_mode") == true then
+		color = tocolor(245, 245, 245, alpha)
+	else
+		color = tocolor(20, 20, 20, alpha)
+	end
+
+	dxDrawText(text, x, y, width, height, color, scale, font, alignX, alignY, clip, wordBreak, true)	
+end

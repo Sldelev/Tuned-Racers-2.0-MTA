@@ -4,7 +4,16 @@
 	
 	<file src="wheels.txd" type="client" />
 	
+	<file src="caliper.dff" type="client" />
+	<file src="caliper2.dff" type="client" />
+	
+	<file src="tire1.dff" type="client" />
+	<file src="tire2.dff" type="client" />
+	
 	<file src="advrcngt.dff" type="client" />
 	<file src="advrrciii.dff" type="client" />
 	<file src="advrcrgii.dff" type="client" />
+	<file src="zerinrgiii.dff" type="client" />
+	<file src="zerrgd.dff" type="client" />
+	<file src="bnkm1r.dff" type="client" />
 </meta>

@@ -1,0 +1,22 @@
+<meta>
+	<oop>true</oop>
+	
+	<!--normals-->
+	<file src="assets/normals/flat_n.dds" />
+	<file src="assets/normals/k_tu_road_aout_n.dds" />
+	<file src="assets/normals/k_tu_road_fout_n.dds" />
+	<file src="assets/normals/k_tu_wall_fout_n.dds" />
+	
+	<!--reflections-->
+	<file src="assets/reflections/reflection.dds" />
+	<file src="assets/reflections/reflection_sky.dds" />
+	
+	<!--shaders-->
+	<file src="assets/shaders/mta-helper.fx" />
+	<file src="assets/shaders/shader.fx" />
+	
+	<!--speculars-->
+	<file src="assets/speculars/flat_spec.dds" />
+	
+	<script type="client" src="client/map_nrm.lua"/>
+</meta>

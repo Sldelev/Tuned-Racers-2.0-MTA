@@ -47,7 +47,7 @@ function VehicleShaders.replaceTexture(vehicle, textureName, texture)
 	return true
 end
 
-function VehicleShaders.replaceBody(vehicle, textureName, texture, Bodycolor)
+function VehicleShaders.replaceBody(vehicle, textureName, texture, SpecularColor, Chrome)
 	if not isElement(vehicle) or type(textureName) ~= "string" or not isElement(texture) then
 		return false
 	end
@@ -80,21 +80,64 @@ function VehicleShaders.replaceBody(vehicle, textureName, texture, Bodycolor)
 	if not BodyShader then
 		return false
 	end
+	if not SpecularColor then
+		SpecularColor = vehicle:getData("BodyColor")
+	end
+	if not Chrome then
+		Chrome = 0.25
+	end
 	engineApplyShaderToWorldTexture(BodyShader, textureName, vehicle)
 	BodyShader:setValue("gTexture", texture)
 	BodyShader:setValue("sNormalTexture", NormalTexture)
 	BodyShader:setValue("sSpecularTexture", SpecularTexture)
-	if Bodycolor == nil then
-		BodyShader:setValue("ColorNormals", {0.4,0.4,0.4,1})
-	else
-		BodyShader:setValue("ColorNormals", {Bodycolor[1] / 150,Bodycolor[2] / 159,Bodycolor[3] / 150,1})
-	end
+	BodyShader:setValue("ChromePower", Chrome)
+	BodyShader:setValue("ColorNormals", {SpecularColor[1] /150,SpecularColor[2] /150,SpecularColor[3] /150,1})
 	if localPlayer:getData("tunrc_Core.state") == "garage" then
 		BodyShader:setValue("sReflectionTexture", shaderGarageReflectionTexture)
 	else
 		BodyShader:setValue("sReflectionTexture", shaderReflectionTexture)
 	end
 	shaders[shaderName][vehicle] = BodyShader
+
+	return true
+end
+
+function VehicleShaders.replaceBodyStickers(vehicle, textureName, texture)
+	if not isElement(vehicle) or type(textureName) ~= "string" or not isElement(texture) then
+		return false
+	end
+	local shaderName = "stickers_" .. tostring(textureName)
+	if not shaders[shaderName] then
+		shaders[shaderName] = {}
+	end
+	local StickersShader = shaders[shaderName][vehicle]
+	if isElement(StickersShader) then
+		destroyElement(StickersShader)
+		StickersShader = nil
+	end
+	if not isElement(StickersShader) then
+		-- Создание нового шейдера
+		StickersShader = dxCreateShader("assets/shaders/stickers_shader.fx", 0, 50, true)
+	end
+	if not isElement(shaderReflectionTexture) then
+		shaderReflectionTexture = dxCreateTexture ("assets/reflection.dds", "dxt5")
+	end
+	if not isElement(shaderGarageReflectionTexture) then
+		shaderGarageReflectionTexture = dxCreateTexture ("assets/garage_reflection.dds", "dxt5")
+	end
+	-- Не удалось создать шейдер
+	if not StickersShader then
+		return false
+	end
+	engineApplyShaderToWorldTexture(StickersShader, textureName, vehicle)
+	StickersShader:setValue("gTexture", texture)
+	StickersShader:setValue("ChromePower", 0.05)
+	if localPlayer:getData("tunrc_Core.state") == "garage" then
+		StickersShader:setValue("sReflectionTexture", shaderGarageReflectionTexture)
+	else
+		StickersShader:setValue("sReflectionTexture", shaderReflectionTexture)
+	end
+	shaders[shaderName][vehicle] = StickersShader
 
 	return true
 end
@@ -162,6 +205,9 @@ function VehicleShaders.replaceGlass(vehicle, textureName, texture)
 	if not isElement(NormalTexture) then
 		NormalTexture = dxCreateTexture ("assets/normals/flat_n.dds")
 	end
+	if not isElement(RefractionTexture) then
+		RefractionTexture = dxCreateTexture ("assets/normals/vehicle_generic_mesh3_n.dds")
+	end
 	-- Не удалось создать шейдер
 	if not shader then
 		return false
@@ -169,6 +215,7 @@ function VehicleShaders.replaceGlass(vehicle, textureName, texture)
 	engineApplyShaderToWorldTexture(shader, textureName, vehicle)
 	shader:setValue("gTexture", texture)
 	shader:setValue("sNormalTexture", NormalTexture)
+	shader:setValue("sRefractionTexture", RefractionTexture)
 	if localPlayer:getData("tunrc_Core.state") == "garage" then
 		shader:setValue("sReflectionTexture", shaderGarageReflectionTexture)
 	else

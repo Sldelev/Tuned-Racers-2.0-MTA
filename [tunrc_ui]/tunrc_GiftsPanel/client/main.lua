@@ -20,16 +20,6 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
 	UI:addChild(ui.panel)
 
 	-- Кнопка "Отмена"
-	ui.cancelButtonShadow = UI:createTrcRoundedRectangle {
-		x       = 18,
-        y       = panelHeight - BUTTON_HEIGHT - 12,
-        width   = 155,
-        height  = BUTTON_HEIGHT,
-		radius = 15,
-		color = tocolor(0, 0, 0, 20)
-	}
-	UI:addChild(ui.panel, ui.cancelButtonShadow)
-	
 	ui.cancelButton = UI:createTrcRoundedRectangle {
 		x       = 15,
         y       = panelHeight - BUTTON_HEIGHT - 15,
@@ -41,36 +31,13 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
 		hoverColor = tocolor(130, 130, 200),
 		darkToggle = true,
 		darkColor = tocolor(50, 50, 50),
-		hoverDarkColor = tocolor(30, 30, 30)
+		hoverDarkColor = tocolor(30, 30, 30),
+		shadow = true,
+		locale = "gift_key_panel_back"
 	}
 	UI:addChild(ui.panel, ui.cancelButton)
 	
-	ui.cancelButtonText = UI:createDpLabel {
-		x = 78,
-		y = 25,
-		width = width,
-		height = height,
-		text = "Admin",
-		color = tocolor (0, 0, 0),
-		darkToggle = true,
-		darkColor = tocolor(255, 255, 255),
-		alignX = "center",
-		alignY = "center",
-		locale = "gift_key_panel_back"
-	}
-	UI:addChild(ui.cancelButton, ui.cancelButtonText)
-	
 	-- Кнопка "Активировать"
-	ui.activateButtonShadow = UI:createTrcRoundedRectangle {
-		x       = panelWidth - 167,
-        y       = panelHeight - BUTTON_HEIGHT - 12,
-        width   = 155,
-        height  = BUTTON_HEIGHT,
-		radius = 15,
-		color = tocolor(0, 0, 0, 20)
-	}
-	UI:addChild(ui.panel, ui.activateButtonShadow)
-	
 	ui.activateButton = UI:createTrcRoundedRectangle {
 		x       = panelWidth - 170,
         y       = panelHeight - BUTTON_HEIGHT - 15,
@@ -82,24 +49,11 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
 		hoverColor = tocolor(130, 130, 200),
 		darkToggle = true,
 		darkColor = tocolor(50, 50, 50),
-		hoverDarkColor = tocolor(30, 30, 30)
-	}
-	UI:addChild(ui.panel, ui.activateButton)
-	
-	ui.activateButtonText = UI:createDpLabel {
-		x = 78,
-		y = 25,
-		width = width,
-		height = height,
-		text = "Admin",
-		color = tocolor (0, 0, 0),
-		darkToggle = true,
-		darkColor = tocolor(255, 255, 255),
-		alignX = "center",
-		alignY = "center",
+		hoverDarkColor = tocolor(30, 30, 30),
+		shadow = true,
 		locale = "gift_key_panel_activate"
 	}
-	UI:addChild(ui.activateButton, ui.activateButtonText)
+	UI:addChild(ui.panel, ui.activateButton)
 
 	local labelOffset = 0.45
 	ui.mainLabel = UI:createDpLabel({
@@ -167,18 +121,37 @@ end
 
 addEvent("tunrc_UI.click", false)
 addEventHandler("tunrc_UI.click", resourceRoot, function (widget)
+	local playBack = false
+	local playSelect = false
+	local playError = false
+	
 	if widget == ui.activateButton then
 		if localPlayer:getData("last_code_use_time") > getRealTime(false).timestamp then
-		setVisible(false)
-		UI:showMessageBox(
-			exports.tunrc_Lang:getString("gift_key_message_title"), 
-			exports.tunrc_Lang:getString("gift_key_message_use_wait"))
+			setVisible(false)
+			UI:showMessageBox(
+				exports.tunrc_Lang:getString("gift_key_message_title"), 
+				exports.tunrc_Lang:getString("gift_key_message_use_wait"))
+			playError = true
 		end
 		triggerServerEvent("tunrc_Core.requireKeyActivation", resourceRoot, UI:getText(ui.keyInput))
+		exports.tunrc_Sounds:playSound("ui_success.wav")
 	elseif widget == ui.cancelButton then
 		setVisible(false)
 		exports.tunrc_overallPanel:setVisible(true)
+		playBack = true
 	end
+
+	if playBack then
+        exports.tunrc_Sounds:playSound("ui_back.wav")
+    end
+	
+	if playSelect then
+        exports.tunrc_Sounds:playSound("ui_select.wav")
+    end
+	
+	if playError then
+        exports.tunrc_Sounds:playSound("error.wav")
+    end
 end)
 
 addEvent("tunrc_Core.keyActivation", true)
@@ -188,10 +161,12 @@ addEventHandler("tunrc_Core.keyActivation", root, function (success, info)
 			exports.tunrc_Lang:getString("gift_key_message_title"), 
 			exports.tunrc_Lang:getString("gift_key_message_success"))
 		setVisible(false)
+		exports.tunrc_Sounds:playSound("ui_success.wav")
 	else
 		UI:showMessageBox(
 			exports.tunrc_Lang:getString("gift_key_message_title"), 
 			exports.tunrc_Lang:getString("gift_key_message_fail"))
+		exports.tunrc_Sounds:playSound("error.wav")
 	end
 end)
 
@@ -203,4 +178,5 @@ addEventHandler("tunrc_Core.donation", root, function (amount)
 	UI:showMessageBox(
 		exports.tunrc_Lang:getString("donation_tunrc_message_title"), 
 		string.format(exports.tunrc_Lang:getString("donation_tunrc_message_text"), "$" .. tostring(amount)))
+	exports.tunrc_Sounds:playSound("ui_success.wav")
 end)

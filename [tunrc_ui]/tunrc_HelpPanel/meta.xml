@@ -1,7 +1,9 @@
 <meta>
 	<oop>true</oop>
-	<script type="client" src="client/client.lua"/>
-	<script type="client" src="client/UIDataBinder.lua"/>
+	<include resource="tunrc_UI"/>
+	
+	<script type="client" src="client/client.lua"  cache="false"/>
+	<script type="client" src="client/UIDataBinder.lua"  cache="false"/>
 	
 	<export type="client" function="setVisible"/>
 </meta>

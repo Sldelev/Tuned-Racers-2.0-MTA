@@ -1,7 +1,9 @@
 <meta>
 	<oop>true</oop>
-
+	<include resource="tunrc_UI"/>
+	
 	<!-- Client -->
+	<script type="client" src="client/UIDataBinder.lua"/>
 	<script type="client" src="client/ui/Panel.lua"/>
 	<script type="client" src="client/ui/MutePanel.lua"/>
 	<script type="client" src="client/ui/BanPanel.lua"/>

@@ -42,7 +42,6 @@ local function setupVehicleHandling(vehicle)
 		setVehicleHandling(vehicle, k, v, false)
 	end
 	-- Напрямую влияет на поведение автомобиля
-	updateVehicleMaxVelocity(vehicle) -- Максимальная скорость
 	updateVehicleSteer(vehicle) -- Выворот
 	updateVehicleMass(vehicle) -- Масса
 	-- Имеет меньшее воздействие

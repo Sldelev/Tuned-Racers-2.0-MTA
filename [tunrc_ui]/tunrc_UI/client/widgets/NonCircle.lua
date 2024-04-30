@@ -18,7 +18,7 @@ function NonCircle.create(properties)
 			self.color = properties.color
 		end
 	
-		Drawing.nonCircle(self.x, self.y, self.radius, self.startangle, self.endangle)
+		Drawing.nonCircle(self.x, self.y, self.radius, self.startangle, self.endangle, self.color)
 	end
 	return widget
 end

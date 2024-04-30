@@ -1,0 +1,6 @@
+<meta>
+	<oop>true</oop>
+    <info author="Sidelev" version="1.0" name="FPS" description=" " type="script" />
+	<min_mta_version server="1.5.2-9.07903" client="1.5.2-9.07903" />
+    <script src="client/client.lua" type="client"  cache="false" />
+</meta>

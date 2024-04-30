@@ -3,6 +3,7 @@ local ID = 562
 function CarStart()
 	local cartxd = engineLoadTXD("car.txd")
 	engineImportTXD(cartxd, ID)
+	engineImportTXD(exports.trc_shared_textures:CarSharedTexture(), ID)
 	
 	exports['Crypt-reload']:load({{ 'car.dff', 'dff', ID };})
 end

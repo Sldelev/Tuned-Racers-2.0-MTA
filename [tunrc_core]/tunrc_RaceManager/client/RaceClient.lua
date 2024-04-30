@@ -8,8 +8,6 @@ RaceClient.map = {}
 
 local raceGamemodes = {
 	drift = Drift,
-	duel  = Duel,
-	drag  = Drag,
 	sprint = Sprint
 }
 
@@ -175,7 +173,7 @@ function RaceClient.startRace(raceElement, settings, map)
 	updateTimer = setTimer(update, UPDATE_INTERVAL, 0)
 
 	-- Скрыть интерфейс
-	local guiToHide = { "tunrc_MainPanel", "tunrc_TabPanel", "tunrc_WorldMap" }
+	local guiToHide = { "tunrc_Overallpanel", "tunrc_TabPanel", "tunrc_WorldMap" }
 	for i, name in ipairs(guiToHide) do
 		if exports[name].setVisible then
 			exports[name]:setVisible(false)

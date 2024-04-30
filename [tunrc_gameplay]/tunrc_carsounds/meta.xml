@@ -52,14 +52,15 @@
     <file src="sounds/turbo.wav" type="client" download="true" />
     <file src="sounds/turbo_shift1.wav" type="client" download="true" />
     <file src="sounds/turbo_shift2.wav" type="client" download="true" />
-    <file src="sounds/locked.mp3" type="client" download="true" />
-
-        <file src="font.ttf" />
 	
 	<script src="utils_s.lua" type="server" />
 	
 	<script src="engine_c.lua" type="client" />
 	<script src="engine_s.lua" type="server" />
+	
+	<file src="assets/coronastar.dds" />
+	<file src="assets/pfx_flame_01.dds" />
+	<file src="assets/shader.fx" />
 	
 	<export function="getVehicleRPM" type="client" />
 	<export function="getVehicleGear" type="client" />

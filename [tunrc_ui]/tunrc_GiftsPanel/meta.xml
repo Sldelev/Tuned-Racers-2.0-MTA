@@ -1,7 +1,8 @@
 <meta>
 	<oop>true</oop>
+	<include resource="tunrc_UI"/>
 
-	<script type="client" src="client/main.lua"/>
+	<script type="client" src="client/main.lua" cache="false"/>
 	
 	<export type="client" function="setVisible"/>
 </meta>

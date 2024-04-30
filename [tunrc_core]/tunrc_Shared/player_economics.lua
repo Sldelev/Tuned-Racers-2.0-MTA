@@ -7,7 +7,7 @@ local playerEconomics = {
 	duel_bet_max = 500,
 
 	-- Количество денег за 100000 очков дрифта
-	drift_money = 500,
+	drift_money = 150,
 	-- Количество опыта за 100000 очков дрифта
 	drift_xp = 350,
 

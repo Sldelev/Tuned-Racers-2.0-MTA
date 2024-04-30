@@ -1,0 +1,156 @@
+<meta>
+	<oop>true</oop>
+	<min_mta_version client="1.5.2" server="1.5.2" />
+	<include resource="tunrc_UI"/>
+	<include resource="tunrc_Utils"/>
+	<include resource="tunrc_Lang"/>
+
+	<!-- Общие -->
+	<script type="shared" src="shared/lib/yaci.lua"/>
+	<script type="shared" src="shared/lib/check.lua"/>
+	<script type="shared" src="shared/vehicle_price.lua"/>
+	<script type="shared" src="shared/garagePositions.lua"/>
+
+	<!-- Сервер -->
+	<script type="server" src="server/enter_exit.lua"/>
+	<script type="server" src="server/tuning_server.lua"/>
+	<script type="server" src="server/sell.lua"/>
+
+	<!-- Клиент -->
+	<script type="client" src="client/TuningConfig.lua" cache="true"/>
+	<script type="client" src="client/stickers_list.lua" cache="true"/>
+	<script type="client" src="client/colors_utils.lua" cache="true"/>
+	<script type="client" src="client/Assets.lua" cache="true"/>
+	<script type="client" src="client/utils.lua"/>
+	<script type="client" src="client/lume.lua"/>
+	<script type="client" src="client/UIDataBinder.lua"/>
+	<!-- Интерфейс -->
+	<!-- Менеджер экранов -->
+	<script type="client" src="client/ui/screens/Screen.lua" cache="true"/>
+	<script type="client" src="client/ui/screens/ScreenManager.lua" cache="true"/>
+	<!-- Экраны -->
+	<script type="client" src="client/ui/screens/MainScreen.lua" cache="true"/>
+	<script type="client" src="client/ui/screens/TuningScreen.lua" cache="true"/>
+	<script type="client" src="client/ui/screens/ComponentsScreen.lua" cache="true"/>
+	<script type="client" src="client/ui/screens/ComponentScreen.lua" cache="true"/>
+	<script type="client" src="client/ui/screens/ConfigurationsScreen.lua" cache="true"/>
+	<script type="client" src="client/ui/screens/ConfigurationScreen.lua" cache="true"/>
+	<script type="client" src="client/ui/screens/ColorsScreen.lua" cache="true"/>
+	<script type="client" src="client/ui/screens/ColorScreen.lua" cache="true"/>
+	<script type="client" src="client/ui/screens/StickersSideScreen.lua" cache="true"/>
+	<script type="client" src="client/ui/screens/StickerEditorScreen.lua" cache="true"/>
+	<script type="client" src="client/ui/screens/StickerSelectionScreen.lua" cache="true"/>
+	<script type="client" src="client/ui/screens/WheelsScreen.lua" cache="true"/>
+	<script type="client" src="client/ui/screens/NumberplateScreen.lua" cache="true"/>
+	<script type="client" src="client/ui/screens/UpgradesScreen.lua" cache="true"/>
+	<script type="client" src="client/ui/screens/SellCarScreen.lua" cache="true"/>
+	<script type="client" src="client/ui/screens/PaintAdditons.lua" cache="true"/>
+	<script type="client" src="client/ui/screens/WheelsFColorsSelectorScreen.lua" cache="true"/>
+	<script type="client" src="client/ui/screens/WheelsRColorsSelectorScreen.lua" cache="true"/>
+	<script type="client" src="client/ui/screens/ComponentPosRotScreen.lua" cache="true"/>
+	<!-- Элементы интерфейса -->
+	<script type="client" src="client/ui/ComponentSelection.lua" cache="true"/>
+	<script type="client" src="client/ui/TuningMenu.lua" cache="true"/>
+	<script type="client" src="client/ui/TuningPanel.lua" cache="true"/>
+	<script type="client" src="client/ui/HelpPanel.lua" cache="true"/>
+	<script type="client" src="client/ui/ItemsMenu.lua" cache="true"/>
+	<script type="client" src="client/ui/ComponentsMenu.lua" cache="true"/>
+	<script type="client" src="client/ui/ConfigurationMenu.lua" cache="true"/>
+	<script type="client" src="client/ui/ColorMenu.lua" cache="true"/>
+	<script type="client" src="client/ui/ColorPanel.lua" cache="true"/>
+	<script type="client" src="client/ui/StickersControlsMenu.lua" cache="true"/>
+	<script type="client" src="client/ui/StickersGrid.lua" cache="true"/>
+	<script type="client" src="client/ui/StickerPreview.lua" cache="true"/>
+	<script type="client" src="client/ui/WheelsMenu.lua" cache="true"/>
+	<script type="client" src="client/ui/SliderMenu.lua" cache="true"/>
+	<script type="client" src="client/ui/UpgradesMenu.lua" cache="true"/>
+	<script type="client" src="client/ui/CarNamePanel.lua" cache="true"/>
+	<script type="client" src="client/ui/PaintAddMenu.lua" cache="true"/>
+	<script type="client" src="client/ui/ComponentPosRotMenu.lua" cache="true"/>
+
+	<script type="client" src="client/ui/GarageUI.lua" cache="true"/>
+	<!-- Основное -->
+    <script type="client" src="client/enter_exit.lua" cache="true"/>
+	<script type="client" src="client/Garage.lua" cache="true"/>
+	<script type="client" src="client/GarageMarkers.lua" cache="true"/>
+	<script type="client" src="client/GarageCar.lua"/>
+	<script type="client" src="client/CarTexture.lua" cache="true"/>
+	<script type="client" src="client/camera_presets.lua" cache="true"/>
+	<script type="client" src="client/CameraManager.lua" cache="true"/>
+    <script type="client" src="client/MusicPlayer.lua" cache="true"/>
+
+	<!-- Функции -->
+	<export type="client" function="enterGarage"/>
+	<export type="client" function="enterGarageAnimated"/>
+    <export type="client" function="applyTuning"/>
+    <export type="client" function="getVehicle"/>
+	<export type="client" function="getStickerCount"/>
+    <export type="client" function="getVehiclePos"/>
+    <export type="shared" function="getGarageLocation"/>
+
+	<!-- Экспорт интерфейса -->
+    <export type="client" function="dxDrawRoundedRectangle"/>
+	<export type="client" function="TrcDrawText"/>
+
+	<!-- Текстуры -->
+	<file src="assets/images/circle_button.png"/>
+	<file src="assets/images/slider.png"/>
+	<file src="assets/images/slider_circle.png"/>
+	<file src="assets/images/button_circle.png"/>
+
+	<file src="assets/images/hue.png"/>
+	<file src="assets/images/saturation.png"/>
+	<file src="assets/images/brightness.png"/>
+	<file src="assets/images/opacity.png"/>
+	
+	<file src="assets/images/icons/move.png"/>
+	<file src="assets/images/icons/rotate.png"/>
+	<file src="assets/images/icons/scale.png"/>
+	<file src="assets/images/icons/color.png"/>
+	<file src="assets/images/icons/components.png"/>
+	<file src="assets/images/icons/vinyls.png"/>
+	<file src="assets/images/icons/settings.png"/>
+
+	<file src="assets/images/icons/section1.png"/>
+	<file src="assets/images/icons/section2.png"/>
+	<file src="assets/images/icons/section3.png"/>
+	<file src="assets/images/icons/section4.png"/>
+	<file src="assets/images/icons/section5.png"/>
+	<file src="assets/images/icons/section6.png"/>
+	<file src="assets/images/icons/section7.png"/>
+	<file src="assets/images/icons/section8.png"/>
+	<file src="assets/images/icons/section9.png"/>
+	<file src="assets/images/icons/section10.png"/>
+	<file src="assets/images/icons/section11.png"/>
+	<file src="assets/images/icons/section12.png"/>
+	
+	<file src="assets/images/icons/components_icons/trc_icon.png"/>
+	<file src="assets/images/icons/components_icons/hachi_icon.png"/>
+	<file src="assets/images/icons/components_icons/nagasa_icon.png"/>
+	<file src="assets/images/icons/components_icons/tebino_icon.png"/>
+	<file src="assets/images/icons/components_icons/kaoki_icon.png"/>
+	<file src="assets/images/icons/components_icons/zerino_icon.png"/>
+
+    <file src="assets/music/1.ogg"/>
+    <file src="assets/music/2.ogg"/>
+    <file src="assets/music/3.ogg"/>
+    <file src="assets/music/4.ogg"/>
+    <file src="assets/music/5.ogg"/>
+    <file src="assets/music/6.ogg"/>
+    <file src="assets/music/7.ogg"/>
+    <file src="assets/music/8.ogg"/>
+    <file src="assets/music/9.ogg"/>
+	<file src="assets/music/10.ogg"/>
+	<file src="assets/music/11.ogg"/>
+	<file src="assets/music/12.ogg"/>
+	<file src="assets/music/13.ogg"/>
+	<file src="assets/music/14.ogg"/>
+	<file src="assets/music/15.ogg"/>
+	<file src="assets/music/16.ogg"/>
+	<file src="assets/music/17.ogg"/>
+	<file src="assets/music/18.ogg"/>
+	<file src="assets/music/19.ogg"/>
+	<file src="assets/music/20.ogg"/>
+	<file src="assets/music/21.ogg"/>
+	<file src="assets/music/22.ogg"/>
+</meta>

@@ -1,8 +1,3 @@
---
--- c_main.lua
---
--- shader settings in fx/ssao_dl_settings.txt
-
 local isDebugMode = false
 
 local scx, scy = guiGetScreenSize()
@@ -11,14 +6,7 @@ aoShader = {shader = nil, colorRT = nil, enabled = false}
 
 function enableAO()
 	if aoShader.enabled then return end
-	if renderTarget.isOn then
-		aoShader.shader, tec = dxCreateShader( "fx/primitive3D_ssao_dl.fx" )
-		if aoShader.shader and renderTarget.RTNormal then
-			dxSetShaderValue( aoShader.shader, "sRTNormal", renderTarget.RTNormal )
-		end
-	else
-		aoShader.shader, tec = dxCreateShader( "fx/primitive3D_ssao.fx" )		
-	end
+	aoShader.shader, tec = dxCreateShader( "fx/primitive3D_ssao.fx" )		
 	outputDebugString('dl_ssao: Using technique '..tec)
 	aoShader.colorRT = dxCreateRenderTarget(scx, scy, false)
 	isAllValid = true
@@ -29,6 +17,17 @@ function enableAO()
 			dxSetShaderValue( aoShader.shader, "sPixelSize", 1 / scx, 1 / scy )
 			dxSetShaderValue( aoShader.shader, "sAspectRatio", scx / scy )
 			dxSetShaderValue( aoShader.shader, "sRTColor", aoShader.colorRT )
+			
+			if exports.tunrc_Config:getProperty("graphics.ssao_quality") == 0 then
+				dxSetShaderValue( aoShader.shader, "iMXAOSampleCount", 8 )
+			elseif exports.tunrc_Config:getProperty("graphics.ssao_quality") == 1 then
+				dxSetShaderValue( aoShader.shader, "iMXAOSampleCount", 16 )
+			elseif exports.tunrc_Config:getProperty("graphics.ssao_quality") == 2 then
+				dxSetShaderValue( aoShader.shader, "iMXAOSampleCount", 32 )
+			elseif exports.tunrc_Config:getProperty("graphics.ssao_quality") == 3 then
+				dxSetShaderValue( aoShader.shader, "iMXAOSampleCount", 64 )
+			end
+			
 			if isDebugMode then
 				dxSetShaderValue( aoShader.shader, "fBlend", 5, 6 )
 			else
@@ -58,39 +57,5 @@ addEventHandler("onClientPreRender", root, function()
 	end
 end, true, "high+8" )
 
-----------------------------------------------------------------------------------------------------------------------------
--- onClientResourceStart/Stop
-----------------------------------------------------------------------------------------------------------------------------
-addEventHandler ( "onClientResourceStart", root, function(startedRes)
-	switchDREffect(getResourceName(startedRes), true)
-end
-)
 
-addEventHandler ( "onClientResourceStop", root, function(stoppedRes)
-	switchDREffect(getResourceName(stoppedRes), false)
-end
-)
-
-function switchDREffect(resName, isStarted)
-	if isStarted then
-			
-	else
-		if not renderTarget.isOn then return end
-	end
-end
-
-addEventHandler ( "onClientResourceStart", resourceRoot, function()
-	renderTarget.isOn = getElementData ( localPlayer, "dl_core.on", false )
-	if renderTarget.isOn then 
-		_, renderTarget.RTNormal = exports.dl_core:getRenderTargets()
-		if renderTarget.RTNormal then
-			renderTarget.isOn = true
-		end
-	end
-	triggerEvent( "onClientSwitchDetail", resourceRoot, true )
-end
-)
-
-addEvent( "switchdl_core", true )
-addEventHandler( "switchdl_core", root, function(isOn) switchDREffect("dl_core", isOn) end)
 

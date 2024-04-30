@@ -201,12 +201,6 @@ float4 PixelShaderFunction(PSInput PS) : COLOR0
 
     float4 paintColor = sColor;
     float4 maptex = tex2D(Sampler0, PS.TexCoord.xy);
-    float4 delta = float4(0, 0, 0, 1);
-    if (dot(delta,delta) < 0.2) {
-        float4 Color = maptex * PS.Diffuse * 1;
-        Color.a = PS.Diffuse.a;
-        return Color;
-    }
 
     // Compute paint colors
     float4 base = gMaterialAmbient;
@@ -248,14 +242,10 @@ float4 PixelShaderFunction(PSInput PS) : COLOR0
 
     // Combine result of environment map reflection with the paint color:
     float fEnvContribution = 1.0 - 0.5 * fFresnel2;
-
-    float4 finalColor = envMap * fEnvContribution / 2 + base * 0.1;
 	
-    finalColor.rgb += PS.Diffuse2.rgb * 0.75;
-    finalColor.a = 0.5;
     // Bodge in the car colors
-    float4 Color;
-    Color.rgb = 0.01 + finalColor + paintColor * PS.Diffuse;
+    float4 Color = envMap * fEnvContribution / 2 + paintColor * maptex;
+	Color.rgb += PS.Diffuse2.rgb * 0.75;
 	
 	// те самые заветные нормал мапы
 
@@ -267,8 +257,6 @@ float4 PixelShaderFunction(PSInput PS) : COLOR0
 	
 	Color += normals*0.3;
 
-    Color *= maptex;
-    Color.a = PS.Diffuse.a;
     return Color;
 }
 
@@ -282,6 +270,7 @@ technique tec0
 		DepthBias=-0.000000002;
         VertexShader = compile vs_2_0 VertexShaderFunction();
         PixelShader  = compile ps_2_0 PixelShaderFunction();
+		AlphaBlendEnable = true;
     }
 }
 

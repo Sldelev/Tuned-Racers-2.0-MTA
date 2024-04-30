@@ -1,7 +1,5 @@
 {
-	// Drift Paradise 2.0
 	// English language
-	// Created by Nikita Bredikhin (Wherry)
 
 	// =============================================
 	// ================== General ==================
@@ -39,54 +37,33 @@
 	"quit_reason_bad connection": "bad connection",
 	"quit_reason_timed out": "timed out",
 
-	// =============================================
-	// =================== Intro ===================
-	// =============================================
-	"intro_press_to_start": "Press SPACE to start",
-
-	"tutorial_garage_title": "Hi. You got on the most boring server in MTA. You came here yourself, or it was done for you - I don't know. Then you'll have to read.",
-	"tutorial_garage_test": "TunedRacers is a server about drift and street with some zest.All you have to do is take your car and look at the drift race on the map. There you can earn money for new cars.",
+	"tutorial_garage_title": "Jack",
+	"tutorial_garage_text": "Hey, look who came to us! How is the road? How's Mom? Well… you know, I actually don’t care, it's restless in the state right now, all sorts of 'noname' racers think they're cool. Come on, take your baby and let's go show them who the real racers are.",
     
-	"tutorial_city_title": "City",
-    "tutorial_city_text": "Now that you've got your first car, a huge world of drifting on the roads of America opens up in front of you (of course not), now you need to earn at least some pennies in drift racing (drift mode is by default in your car), just so as not to be a gray mass among other stagnant onlookers of the Tuned Racers",
+	"tutorial_city_title": "Jack",
+    "tutorial_city_text": "Look, you just arrived and in order not to burden you with unnecessary information. I’ll explain this right away, you have a map ('M' Key) there you will find where the onlookers of this world live, have you understood yet? RACING is what we need, everyone gathers to earn some cash in their pocket, understand? Okay, I have unfinished business to do. Stay in touch.",
 	
-	"help_panel_general_title": "General",
-	"help_panel_general_text": "Keys:\nF1 - main panel, teleports, settings\nF2 - cursor\n] - Set time to 8 am and weather to Cloudy 4\n1 - toggle lights\nO - photo mode\nI toggle UI",
-
-	"help_panel_questions_title": "FAQ",
-	"help_panel_questions_text": "So...You got to the server without understanding anything, you have a lot of questions: How to make money? What to do? What is the server about? This tab specifically answers all the most popular questions.\nHow to earn money? There are 2 ways to earn money on the server: Drift racing, street drift. Drift racing are located throughout the state of SA, opening the map on the English button 'M' you will see the points of earnings. Street drift consists of illegal competitions and regular trips around the city.\nHow to buy a car? There is also a car dealership point on the map, or a team /carshop outside the car\n",
-
-	"help_panel_garage_title": "Garage",
-	"help_panel_garage_text": "You can use garage to access all your cars. You can also use it to remove your car and to customize it.",
-	
-	"help_panel_donat_title": "Donat",
-	"help_panel_donat_text": "https://tunedracershop.trademc.org",
-	
-    "help_panel_developers_title": "Developers",
-    "help_panel_developers_text": "CEO: Cryingdevilz",
+	"tutorial_race_title": "Jack",
+    "tutorial_race_text": "Here you are. It's simple, you join the queue for the race and either go alone or wait for the others who want to compete with you. If you drive the best, you will get a good amount of money to your account.",
 	
 	// Tutorial
 	
 	"tutorial_panel_main_lable": "Tutorial",
-	"tutorial_panel_text_one": "And so... Most likely, you squandered the standard tutorial when logging on to the server, so you turned here because you don't understand anything.\n Switching through the tabs on the up, you can find out how this or that system works on the server.",
-	"tutorial_panel_text_two": "Let's start with perhaps the most important thing - MONEY.\n Earnings come from racing and selling cars to players, through these 2 ways you can earn money (we do not take into account donat) for new cars, tuning and so on.\n Races can be ridden both solo and with other people (the more people in the race, the more each of you will earn).To get into the race, you need to press F1, go to the teleports menu, select the races tab and select any race from the list, then press 'G' to enter the race menu and wait 10 seconds.\n The sale of cars will be scheduled in a separate tab.",
+	"tutorial_panel_text_one": "And so... Most likely, you skipped the standard tutorial after logging on to the server, so you came here because you don’t understand anything.\n Switching through the tabs in this window, you can learn to do different tasks with the server system.",
+	"tutorial_panel_text_two": "Let's start with perhaps the most important thing - MONEY.\n Earnings come from racing and selling cars to players, through these 2 ways you can earn money (we do not take into account donations) for new cars, tuning and so on.\n Races can be organised both solo and with other people (the more people in the race, the more each one of you will earn). To organise a race, you need to press the F1 key, go to the teleports menu, select the races tab and select any race from the list, then press 'G' to enter the race menu and wait 10 seconds.\n The sale of cars will be scheduled in a separate tab.",
 	"tutorial_panel_text_three": "The car dealership is located on the left side of the garage, you can also get into the car dealership by command / carshop after exiting the car.\n Cars can be bought for both game and donat currency, if you have a premium, all cars will have a 20% discount",
 	"tutorial_panel_text_four": "/garage - Enter the garage.\n/carshop - enter the car dealership (outside the car).\n dt id - change of the game dimension (id is the dimension number from 0 to 999).\n skin id - change the skin on the server (id is the skin number from 0 to 312).\n Commands such as dt and skin need to be entered into the console on F8",
-	"tutorial_panel_text_five": "To sell a car, it must first of all be YOURS (oddly enough) and it must not be your only car.Now all you need is for the player you want to sell to be close to you (preferably standing right next to your car), you need to press F1 and click on the button on the right 'Sell the car', then select the player you need, set the price and put up an offer to buy the player-buyer.",
+	"tutorial_panel_text_five": "To sell a car, you must OWN the car and it must not be your only car. Now all you need is for the player you want to sell to be close to you (preferably standing right next to your car), you need to press F1 and click on the button on the right 'Sell vehicle', then select the player you need, set the price and put up an offer to sell your car to the other player. Also, you can sell your car for a fixed price in your garage.",
 	"tutorial_panel_text_six": "Base car control buttons:\n'/' - Emergency signal\n'.' - Turn signal right\n',' - Turn signal left\n'1' - Turn on/off lights\n'-' - Previous music\n'=' - Next music",
 	
 	"tutorial_panel_cancel_button": "Close",
-	"tutorial_panel_main_button": "Main",
-	"tutorial_panel_money_button": "Money earn",
-	"tutorial_panel_carshop_button": "Carshop",
-	"tutorial_panel_commands_button": "Commands",
-	"tutorial_panel_carsell_button": "Car sell",
-	"tutorial_panel_carcontrol_button": "Control",
+	"help_panel_main": "Main",
+	"help_panel_money": "Money earn",
+	"help_panel_carshop": "Carshop",
+	"help_panel_commands": "Commands",
+	"help_panel_car_sell": "Car sell",
+	"help_panel_car_control": "Control",
 	"markers_tutorial_enter_text": "Press 'G' to open tutorial",
-
-	
-	//maps
-	"race_maps_futatabi": "Futatabi Mountain",
 	
 	
 	// =============================================
@@ -102,10 +79,12 @@
 	"photo_mode_help_smooth": "Toggle smooth movement",
 	"photo_mode_help_time": "Change time",
 	"photo_mode_help_weather": "Change weather",
-	"photo_mode_help_tips": "Toggle UI and help",
+	"photo_mode_help_tips": "Toggle help",
 	"photo_mode_help_exit": "Exit from photo mode",
 	"photo_mode_param_time": "Time",
 	"photo_mode_param_weather": "Weather",
+	"photo_mode_param_fov": "FOV",
+	"photo_mode_param_roll": "Roll",
 	"photo_mode_param_weather_unknown": "Unknown",
 	"photo_mode_help_hide": "Hide ped",
 	"photo_mode_help_composition": "Composition help",
@@ -185,7 +164,7 @@
 	"chat_adminsay_Moderator": "Staff",
 	"chat_premiumsay": "★",
 	"chat_admin_mute": "Player %s has been muted by %s for %s seconds",
-	"chat_admin_mute_min": "Игрок %s получил мут от %s на %s minutes.",
+	"chat_admin_mute_min": "Player %s has been muted by %s for %s minutes.",
 	"chat_admin_unmute": "Players %s has been unmuted by %s.",
 	"chat_admin_ban": "Player %s has been banned %s",
 
@@ -210,6 +189,10 @@
 	"garage_menu_sell": "Sell car",
 	"garage_menu_remove": "Remove car",
 	"garage_menu_exit": "Exit garage",
+	"garage_menu_carshop": "Carshop",
+	
+	"garage_menu_livery_body": "Body",
+	"garage_menu_livery_glass": "Windows",
 
 	"garage_menu_customize_components": "Components",
 	"garage_menu_customize_paint": "Paint",
@@ -219,11 +202,146 @@
 	"garage_menu_settings_bumper": "Remove rear bumper",
 	"garage_menu_back": "Back",
 
-	"garage_sell_text": "Remove this car?",
-	"garage_sell_confirm": "confirm",
+	"garage_sell_text": "Sell this car?",
+	"garage_sell_confirm": "Confirm",
 	"garage_sell_last_car": "You can't remove your last car!",
+	"garage_sell_price": "Price: ",
 	"garage_slot": "Car slot",
 	"garage_slot_of": "of",
+	
+	
+	
+	"garage_numberplate_accept": "Buy numberplate",
+	"garage_numberplate_back": "Back",
+	"garage_numberplate_delete": "Delete text",
+	
+	"garage_numberplate_panel_info": "Numberplate info",
+	"garage_numberplate_panel_text": "Numberplate text",
+	
+	// Колёса
+	
+	"garage_tuning_item_wheel_1": "Zerino Racing GT",
+	"garage_tuning_item_wheel_2": "Zerino Racing RC III",
+	"garage_tuning_item_wheel_3": "Zerino Racing RG II",
+	"garage_tuning_item_wheel_4": "Zerino Racing RG III",
+	"garage_tuning_item_wheel_5": "Zerino Racing RG-D",
+	"garage_tuning_item_wheel_6": "Bonk Meister M1R",
+	
+	// Суппорта
+	
+	"garage_tuning_item_caliper_1": "Hachi Power",
+	"garage_tuning_item_caliper_2": "Tebino ZCS 640",
+	
+	// Резина
+	
+	"garage_tuning_item_tire_1": "Michen Half-Slick",
+	"garage_tuning_item_tire_2": "Zerino GNS-46",
+	
+	// Тюнинг на Annis ZR350
+	
+	"477_garage_tuning_item_bumper_1": "Default alternative",
+	"477_garage_tuning_item_bumper_2": "Hachi Aero",
+	"477_garage_tuning_item_bumper_3": "Nagasa Edge",
+	"477_garage_tuning_item_bumper_4": "Tebino GT (black)",
+	"477_garage_tuning_item_bumper_5": "Tebino GT (primary)",
+	"477_garage_tuning_item_bumper_6": "Kaoki Sport",
+	
+	"477_garage_tuning_item_intercooler_1": "Hachi G4",
+	"477_garage_tuning_item_intercooler_2": "Hachi G4 (fan ver.)",
+	"477_garage_tuning_item_intercooler_3": "Hachi G4 (irrigation ver.)",
+	
+	"477_garage_tuning_item_lips_1": "Hachi Aero",
+	"477_garage_tuning_item_lips_2": "Kaoki Sport",
+	"477_garage_tuning_item_lips_3": "Tebino GT",
+	
+	"477_garage_tuning_item_fara_0": "Close",
+	
+	"477_garage_tuning_item_fender_dop_1": "Nagasa Edge",
+	
+	"477_garage_tuning_item_bonnet_1": "Hachi Aero",
+	"477_garage_tuning_item_bonnet_2": "Kaoki Sport",
+	"477_garage_tuning_item_bonnet_3": "Nagasa Edge",
+	"477_garage_tuning_item_bonnet_4": "Nagasa Ring",
+	"477_garage_tuning_item_bonnet_5": "Nagasa Sport",
+	"477_garage_tuning_item_bonnet_6": "Tebino GT",
+	"477_garage_tuning_item_bonnet_7": "Hachi Limit (transp.)",
+	
+	"477_garage_tuning_item_hcatcha_1": "Hachi Street",
+	"477_garage_tuning_item_hcatcha_2": "Kaoki Quick ver.1",
+	"477_garage_tuning_item_hcatcha_3": "Kaoki Quick ver.2",
+	
+	"477_garage_tuning_item_mirrors_1": "Hachi Street",
+	"477_garage_tuning_item_mirrors_2": "Nagasa Hood Edge",
+	
+	"477_garage_tuning_item_turbos_1": "Nagasa V-Mount ver.1",
+	"477_garage_tuning_item_turbos_2": "Nagasa V-Mount ver.2",
+	"477_garage_tuning_item_turbos_3": "Hachi V-Mount",
+	
+	"477_garage_tuning_item_frontnumber_1": "Numberplate in interior",
+	
+	"477_garage_tuning_item_skirt_1": "Hachi Aero",
+	"477_garage_tuning_item_skirt_2": "Kaoki Sport",
+	"477_garage_tuning_item_skirt_3": "Kaoki Ring",
+	"477_garage_tuning_item_skirt_4": "Tebino GT",
+	"477_garage_tuning_item_skirt_5": "Nagasa Sport",
+	"477_garage_tuning_item_skirt_6": "Nagasa Edge",
+	"477_garage_tuning_item_skirt_7": "Nagasa Edge ver.2",
+	
+	"477_garage_tuning_item_rfender_1": "Nagasa Edge",
+	
+	"477_garage_tuning_item_rpanel_1": "Stock Carbon",
+	
+	"477_garage_tuning_item_light_r_1": "Kaoki Ring",
+	
+	"477_garage_tuning_item_rearnumber_1": "Сurved",
+	
+	"477_garage_tuning_item_reargls_1": "Hachi Aero",
+	"477_garage_tuning_item_reargls_2": "Hachi Aero (carbon)",
+
+	"477_garage_tuning_item_spoiler_1": "Hachi Aero",
+	"477_garage_tuning_item_spoiler_2": "Kaoki Sport",
+	"477_garage_tuning_item_spoiler_3": "Kaoki Ring",
+	"477_garage_tuning_item_spoiler_4": "Nagasa Rounded",
+	"477_garage_tuning_item_spoiler_5": "Nagasa Sport",
+	"477_garage_tuning_item_spoiler_6": "Tebino GT",
+	"477_garage_tuning_item_spoiler_7": "Nagasa Edge",
+	"477_garage_tuning_item_spoiler_8": "Nagasa Drift",
+	
+	"477_garage_tuning_item_diffusors_1": "Tebino GT",
+	
+	"477_garage_tuning_item_exhaust_1": "Hachi ZRX",
+	"477_garage_tuning_item_exhaust_2": "Kaoki Sport",
+	"477_garage_tuning_item_exhaust_3": "Kaoki Ring",
+	"477_garage_tuning_item_exhaust_4": "Nagasa Rounded",
+	"477_garage_tuning_item_exhaust_5": "Tebino Boso",
+	"477_garage_tuning_item_exhaust_6": "Tebino Boso BSR",
+	
+	"477_garage_tuning_item_seats_1": "Nagasa Drift",
+	"477_garage_tuning_item_seats_2": "Kaoki Sport",
+	"477_garage_tuning_item_seats_3": "Kaoki Ring",
+	
+	"477_garage_tuning_item_steer_1": "Nagasa Drift",
+	"477_garage_tuning_item_steer_2": "Kaoki Sport",
+	"477_garage_tuning_item_steer_3": "Tebino Ring",
+	"477_garage_tuning_item_steer_4": "Tebino Drift",
+	"477_garage_tuning_item_steer_5": "Hachi Drift",
+	"477_garage_tuning_item_steer_6": "Nagasa GT",
+	
+	"477_garage_tuning_item_dial_1": "Hachi Single",
+	"477_garage_tuning_item_dial_2": "Hachi Defi",
+	"477_garage_tuning_item_dial_3": "Nagasa Sport",
+	"477_garage_tuning_item_dial_4": "Nagasa Drift",
+	
+	"477_garage_tuning_item_doorcards_1": "Kaoki Carbon",
+	"477_garage_tuning_item_doorcards_2": "Kaoki Carbon Rollbar",
+	
+	"477_garage_tuning_item_interior_1": "Kaoki Carbon",
+	
+	"477_garage_tuning_item_karkas_1": "Kaoki Rollbar",
+	"477_garage_tuning_item_karkas_2": "Tebino Rollbar",
+	
+	"477_garage_tuning_item_handbrake_1": "Tebino Sport",
+	"477_garage_tuning_item_gearshift_1": "Hachi Ring",
 
 	// ========================================
 	// ================ Tuning ================
@@ -233,6 +351,10 @@
 	"garage_tuning_component_side_skirts": "Side skirts",
 	"garage_tuning_component_wheels_front": "Front wheels",
 	"garage_tuning_component_wheels_rear": "Rear wheels",
+	"garage_tuning_component_calipers_front": "Front calipers",
+	"garage_tuning_component_calipers_rear": "Rear calipers",
+	"garage_tuning_component_tires_front": "Front tires",
+	"garage_tuning_component_tires_rear": "Rear tires",
 	"garage_tuning_component_wheels": "Wheels",
 	"garage_tuning_component_spoilers": "Spoiler",
 	"garage_tuning_component_rear_fends": "Rear Fenders",
@@ -243,6 +365,8 @@
 	"garage_tuning_component_engine": "Engines",
 	"garage_tuning_item_engine": "Engine",
 	"garage_tuning_component_rear_lights": "Rear lights",
+	"garage_tuning_component_rear_light_r": "Rear right light",
+	"garage_tuning_component_rear_light_l": "Rear left light",
 	"garage_tuning_component_front_lights": "Fronts lights",
 	"garage_tuning_component_exhaust": "Exhaust",
 	"garage_tuning_component_numberplate": "Number plate",
@@ -283,9 +407,10 @@
 	
 	"garage_tuning_component_filters": "Intake manifold",
 	"garage_tuning_component_doors": "Doors",
+	"garage_tuning_component_handbrake": "Handbrake",
+	"garage_tuning_component_gearshift": "Gearshift",
 	
 	"garage_tuning_component_turbos": "Turbo",
-	"garage_tuning_item_turbos": "Garret Rev.5",
 	
 	"garage_tuning_component_reargls": "Rear glass",
 	"garage_tuning_item_reargls": "Rear glass",
@@ -305,8 +430,8 @@
 	"garage_tuning_component_side_addskirts": "Skirts Additions",
 	"garage_tuning_item_addskirt": "Skirts Additions",
 	
-	"garage_tuning_component_front_fends_dops": "Front fenders pads",
-	"garage_tuning_item_fender_dop": "Front fender pad",
+	"garage_tuning_component_front_fends_dops": "Front fenders flares",
+	"garage_tuning_item_fender_dop": "Front fender flares",
 	
 	"garage_tuning_component_mirrors": "Mirrors",
 	"garage_tuning_item_mirrors": "Mirror",
@@ -339,34 +464,35 @@
 	"garage_number_editor_emptyslot": "Add empty slot",
 
 	"garage_tuning_paint_body": "Body color",
+	"garage_tuning_paint_body_specular": "Body specular color",
+	"garage_tuning_paint_body_chrome_power": "Body chrome power",	
+	"garage_tuning_paint_chrome_power": "Chrome power",
 	"garage_tuning_paint_shine": "Shine",
+	
 	"garage_tuning_smoke_color": "Smoke color",
+	
 	"garage_tuning_paint_rollcage": "Rollcage color",
 	"garage_tuning_rollcage_color": "Rollcage color",
-	"garage_tuning_paint_engblock": "Cover cylinder head color",
-	"garage_tuning_engblock_color": "Cover cylinder head color",
+	"garage_tuning_paint_engblock": "Cylinder head cover colour",
+	"garage_tuning_engblock_color": "Cylinder head cover colour",
+	
 	"garage_tuning_paint_wheels_front": "Front rims color",
+	"garage_tuning_paint_specular_wheels_front": "Front rims specular color",
+	"garage_tuning_paint_chrome_wheels_front": "Front wheels chrome power",	
 	"garage_tuning_paint_wheels_rear": "Rear rims color",
+	"garage_tuning_paint_specular_wheels_rear": "Rear rims specular color",
+	"garage_tuning_paint_chrome_wheels_rear": "Rear wheels chrome power",	
 	"garage_tuning_paint_bolts_front": "Front bolts color",
 	"garage_tuning_paint_bolts_rear": "Rear bolts color",
 	"garage_tuning_paint_wheels": "Rims color",
+	"garage_tuning_paint_specular_wheels": "Specular color",
 	"garage_tuning_paint_bolts": "Bolts color",
+	"garage_tuning_paint_wheels_chrome_power": "Chrome power",
+	"garage_tuning_paint_calipers_front": "Front calipers color",
+	"garage_tuning_paint_calipers_rear": "Rear calipers color",
+	"garage_tuning_paint_calipers": "Calipers color",
+	
 	"garage_tuning_paint_spoiler": "Spoiler color",
-	"garage_tuning_paint_frontfends": "Front fenders color",
-	"garage_tuning_paint_frontbump": "Front bumper color",
-	"garage_tuning_paint_bonnet": "Bonnet color",
-	"garage_tuning_paint_sideskirts": "Side skirts color",
-	"garage_tuning_paint_rearfends": "Rear fenders color",
-	"garage_tuning_paint_rearbump": "Rear bumper color",
-	"garage_tuning_paint_extraone": "Extra 1 color",
-	"garage_tuning_paint_extratwo": "Extra 2 color",
-	"garage_tuning_paint_extrathree": "Extra 3 color",
-	"garage_tuning_paint_extrafour": "Extra 4 color",
-	"garage_tuning_paint_frontfendleft": "Front fender left color",
-	"garage_tuning_paint_frontfendright": "Front fender right color",
-	"garage_tuning_paint_dops": "Misc color",
-	"garage_tuning_paint_lips": "Lip color",
-	"garage_tuning_paint_karkas": "Rollbar color",
 
 	"garage_tuning_paint_hue": "Hue",
 	"garage_tuning_paint_saturation": "Saturation",
@@ -374,6 +500,8 @@
 	"garage_tuning_paint_opacity": "Opacity",
 	
 	"garage_tuning_paint_copy_color": "Copy color to all wheels",
+	"garage_tuning_paint_copy_color_body": "Copy body color to body specular color",	
+	"garage_tuning_paint_copy_specular_color": "Copy wheel color to wheel specular color",
 
 	"garage_tuning_item_bumper": "Bumper",
 	"garage_tuning_item_spoiler": "Spoiler",
@@ -398,11 +526,15 @@
 	"garage_tuning_item_extrafive": "Extra detail",
 	"garage_tuning_item_lips": "Lip",
 	
-	// Колёса
+	"garage_tuning_component_config_pos_rot_exhausts": "Exhausts Position",
 	
-	"garage_tuning_item_wheel_1": "Advan Racing GT",
-	"garage_tuning_item_wheel_2": "Advan Racing RC III",
-	"garage_tuning_item_wheel_3": "Advan Racing RG II",
+	"garage_tuning_component_config_pos_x": "Position X",
+	"garage_tuning_component_config_pos_y": "Position Y",
+	"garage_tuning_component_config_pos_z": "Position Z",
+	
+	"garage_tuning_component_config_rot_x": "Rotation X",
+	"garage_tuning_component_config_rot_y": "Rotation Y",
+	"garage_tuning_component_config_rot_z": "Rotation Z",
 	
 	
 	// ========================================
@@ -429,15 +561,18 @@
 
 	"garage_tuning_config_front_wheels": "Front wheels",
 	"garage_tuning_config_rear_wheels": "Rear wheels",
+	"garage_tuning_config_front_calipers_rotation": "Front calipers rotation",
+	"garage_tuning_config_rear_calipers_rotation": "Rear calipers rotation",
+	"garage_tuning_config_wheels_calipers_rotation_label": "Calipers rotation",
 	"garage_tuning_config_suspension": "Suspension",
 	
 	"garage_tuning_config_wheels_castor": "Caster",
 	"garage_tuning_config_wheels_castor_label": "Caster Angle",
 	
-	"garage_tuning_config_bias": "Bias Suspension",
+	"garage_tuning_config_bias": "Suspension bias",
 	"garage_tuning_config_steer": "Steering Lock",
 
-	"garage_tuning_config_bias_label": "Bias Suspension",
+	"garage_tuning_config_bias_label": "Suspension bias",
 	"garage_tuning_config_steer_label": "Steering Lock",
 	
 	"garage_tuning_config_veh_velocity": "Max Velocity",
@@ -453,7 +588,6 @@
 	"garage_tuning_config_wheels_size": "Wheels radius",
 
 	"garage_tuning_config_suspension_label": "Suspension height",
-	"garage_tuning_config_wheels_size_label": "Wheels radius",
 
 	"garage_tuning_config_wheels_offset": "Offset",
 	"garage_tuning_config_wheels_angle": "Angle",
@@ -480,6 +614,8 @@
 	"garage_help_back": "Go back",
 	"garage_help_move_camera": "Free camera",
 	"garage_help_next_music": "Next Music",
+	
+	"garage_cars_count": "Cars in garage",
 
 	"garage_sticker_editor_move": "Move",
 	"garage_sticker_editor_rotate": "Rotate",
@@ -515,126 +651,124 @@
 	"garage_tuning_sticker_info_position": "Position",
 	"garage_tuning_sticker_info_scale": "Scale",
 	
-	// Car Info Panel
-	
-	"car_info_close": "Back",
-	
-	"car_info_mileanage": "Mileanage",
-	"car_info_stickers_count": "Stickers count",
-	"car_info_country": "State / Prefecture",
-	
 	// Notifications
 	
 	"notification_error": "Error",
 	"notification_noCar": "You should be in the car!",
-
-	// ====================================
-	// ============ Main panel ============
-	// ====================================
-	"main_panel_tab_account": "Account",
-	"main_panel_tab_achievements": "Achievements",
-	"main_panel_tab_teleport": "Teleports",
-	"main_panel_tab_settings": "Settings",
-	"main_panel_tab_garage": "Garage",
-	"main_panel_tab_races": "Races",
 	
-	"main_panel_garage_text": "Garage",
+	//moderator panel
+	"moderatorpanel_unmute": "Unmute",
+	"moderatorpanel_mute": "Mute",
+	"moderatorpanel_kick": "Kick",
+	"moderatorpanel_ban": "Ban",
+	"moderatorpanel_teleport_player_to_me": "TP to me",
+	"moderatorpanel_teleport_to_player": "TP me to..",
+	"moderatorpanel_close": "Close",
+	"moderatorpanel_accept": "Accept",
 
-	"main_panel_teleport_players": "Players",
-	
-	"main_panel_teleport_city": "Citys",
-	"main_panel_teleport_tracks": "Tracks",
-	"main_panel_teleport_mount": "Mountains",
-	"main_panel_teleport_race": "Races",
-
-	"main_panel_account_sell_vehicle": "Sell vehicle",
-	"main_panel_account_donat": "Gift Panel",
-	"main_panel_account_carinfo": "Car Info",
-	"main_panel_account_help": "Help",
-	"main_panel_account_money": "Money",
-	"main_panel_account_donatmoney": "Donat",
-	"main_panel_account_admin": "Admin",
-	"main_panel_account_player": "Player",
-	"main_panel_account_level": "Level",
-	"main_panel_account_regtime": "Registration date",
-	"main_panel_account_playtime": "Hours in-game",
-	"main_panel_account_cars_count": "Cars in garage",
-	"main_panel_account_premium": "Premium expires",
-	
-	"main_panel_settings_inteface_button": "Interface",
-	"main_panel_settings_gameplay_button": "Gameplay",
-	"main_panel_settings_graphics_button": "Graphics",
-	"main_panel_settings_sound_button": "Sounds",
-
-	"main_panel_settings_section_game": "Game settings",
-	"main_panel_settings_section_chat": "Chat settings",
-	"main_panel_settings_section_graphics": "Graphics settings",
-	"main_panel_settings_language": "Language",
-	"main_panel_settings_color": "UI color",
-	"main_panel_settings_collision": "Off Veh.Collisions(BETA)",
-	"main_panel_settings_alt_garage": "Alt. Garage model",
-	"main_panel_settings_joinquit_messages": "Join/quit messages",
-	"main_panel_settings_chat_timestamp": "Sending time",
-	"main_panel_settings_screen_blur": "Screen blur",
-	"main_panel_settings_screen_draw_speedo": "Draw Speedometer",
-	"main_panel_settings_screen_draw_drift_points": "Draw Drift-Points",
-	"main_panel_settings_enable_glass_vynils": "Windows Vinyls",
-	"main_panel_settings_nametags": "Displaying nicknames",
-	"main_panel_settings_selfnametags": "Displaying self nickname",
-	"main_panel_settings_smooth_steering": "Smooth steering",
-	"main_panel_settings_background_music": "Background music",
-	"main_panel_settings_radar_rotate": "Rotating radar",
-	"main_panel_setting_change_password": "Change password",
-	"main_panel_setting_change_fps": "Change fps limit",
-	
-	"main_panel_settings_reflections_cars": "Cars reflections",
-	"main_panel_settings_reflections_water": "Water reflections",
-	"main_panel_settings_improved_car_lights": "Improved car lights",
-	"main_panel_settings_improved_sky": "Improved sky",
-	"main_panel_settings_wetroad": "improved rain",
-	"main_panel_settings_snow": "Improved flames",
-	"main_panel_settings_tyres_smoke": "Improved tire smoke",
-	"main_panel_settings_ssao": "SSAO",
-	"main_panel_settings_fxaa": "FXAA",
-
-	"main_panel_password_change_title": "Change account password",
-	"main_panel_new_password_label": "New password",
-	"main_panel_new_password_placeholder": "Enter new password",
-	"main_panel_new_password_repeat_label": "Repeat new password",
-	"main_panel_new_password_repeat_placeholder": "Enter new password again",
-	"main_panel_new_password_accept": "Accept",
-	"main_panel_new_password_cancel": "Back",	
-	"main_panel_password_change_message": "Password change",
-	"main_panel_password_change_error": "Failed to change your password",
-	"main_panel_password_change_success": "You have successfully changed your account password",
-	
-	"main_panel_fps_change_title": "Change FPS limit",
-	"main_panel_fps_label": "New limit",
-	"main_panel_fps_placeholder": "Enter FPS limit",
-	"main_panel_new_fps_accept": "Setup",
 	
 	// OVERALPANEL
 	
+	"ui_shared_true": "On",
+	"ui_shared_false": "Off",
+	
+	"ui_shared_0": "Low",
+	"ui_shared_1": "Medium",
+	"ui_shared_2": "High",
+	"ui_shared_3": "Ultra",
+	
 	"overallpanel_hello": "Hi, ",
 	"overallpanel_welcome_back": "Welcome back!",
-	"overallpanel_dashboard_label": "Your Dashboard is ready to work",
+	"overallpanel_dashboard_label": "Your dashboard is ready",
+	"overallpanel_teleport_players": "Players",
 	
 	"overallpanel_teleports_text": "Teleports",
+	"overallpanel_teleports_map_players": "Players on maps",
+	
 	"overallpanel_settings_label": "Settings",
 	"overallpanel_help_label": "Help",
 	"overallpanel_garage_label": "Garage",
 	"overallpanel_music_text": "Music",
 	"overallpanel_music_count_text": "Available tracks:",
 	"overallpanel_money_label": "Money",
-	"overallpanel_all_earned_label": "Total earned by drift:",
+	"overallpanel_account_level": "Level",
+	"overallpanel_all_earned_label": "Total earned by drifting:",
 	"overallpanel_gift_panel_label": "Gift keys",
 	"overallpanel_sell_vehicle_label": "Sell vehicle",
 	
-	// OVERALPANEL TELEPORTS BUTTONS	
-	"overallpanel_citys_text": "Citys",
-	"overallpanel_tracks_text": "Tracks",
-	"overallpanel_mountains_text": "Mountains",
-	"overallpanel_races_text": "Races",
+	//OVERALPANEL PASSCHANGE
+	
+	"overallpanel_password_change_title": "Change password",
+	"overallpanel_new_password_label": "New password",
+	"overallpanel_new_password_placeholder": "Enter new password",
+	"overallpanel_new_password_repeat_label": "Repeat new password",
+	"overallpanel_new_password_repeat_placeholder": "Enter new password again",
+	"overallpanel_new_password_accept": "Accept",
+	"overallpanel_new_password_cancel": "Back",	
+	"overallpanel_password_change_message": "Password change",
+	"overallpanel_password_change_error": "Failed to change your password",
+	"overallpanel_password_change_success": "You have successfully changed your account password",
+	
+	// OVERALPANEL TELEPORTS BUTTONS
+	"teleports_filters": "Filters",
+	"teleports_filter_citys": "Citys",
+	"teleports_filter_tracks": "Tracks",
+	"teleports_filter_mountains": "Mountains",
+	"teleports_filter_races": "Races",
+	"teleports_filter_fun": "Other",
+	
+	// OVERALPANEL SETTINGS
+	
+	"settings_panel_interface": "Interface",
+	"settings_panel_graphics": "Graphics",
+	"settings_panel_gameplay": "Gameplay",
+	"settings_panel_sounds": "Sounds",
+	
+	// OVERALPANEL SETTINGS INTERFACE
+	"settings_panel_interface_all_nicknames": "Show nicknames",
+	"settings_panel_interface_all_nicknames_annotation": "This parameter affects the display of nicknames of other players.",
+	"settings_panel_interface_self_nickname": "Show personal nickname",
+	"settings_panel_interface_driftpoints": "Show drift-points",
+	"settings_panel_interface_speedo": "Show Speedometer",
+	"settings_panel_interface_chat": "Show Chat",
+	"settings_panel_interface_radar_rotate": "Radar rotation",
+	"settings_panel_interface_show_fps": "Show FPS",
+	"settings_panel_interface_join_message": "Join/quit messages",
+	"settings_panel_interface_send_time": "Show message send time",
+	"settings_panel_interface_blur": "Screen Blur",
+	
+	// OVERALPANEL SETTINGS GRAPHICS
+	"settings_panel_graphics_improved_sky": "Improved sky",
+    "settings_panel_graphics_wetroad": "Improved rain",
+    "settings_panel_graphics_tyres_smoke": "Improved tyre smoke",
+    "settings_panel_graphics_ssao": "Improved shadows",
+	"settings_panel_graphics_ssao_quality": "Shadow quality",
+    "settings_panel_graphics_fxaa": "FXAA",
+	"settings_panel_graphics_wraps_quality": "Vinyl quality",
+	"settings_panel_graphics_textures_quality": "Car textures quality",
+	"settings_panel_graphics_rain_drops": "Screen rain dops",
+	"settings_panel_graphics_improved_lights": "Improved Lights",
+	
+	// OVERALPANEL SETTINGS GAMEPLAY
+	"settings_panel_gameplay_coll": "Disable vehicles collision(BETA)",
+    "settings_panel_gameplay_smooth_steering": "Visual steering",
+	"settings_panel_gameplay_auto_gearshift": "Automatic gear shift",
+	
+	// OVERALPANEL SETTINGS SOUNDS
+	"settings_panel_sound_garage_music": "Music in garage",
+	"settings_panel_sound_garage_music_volume": "Music volume in garage",
+	"settings_panel_sound_car_sounds_volume": "Car sounds volume",
+	
+	// World Music Panel
+	"world_music_panel_volume": "Music volume",
+	
+	// Dimension Change
+	"dimension_change": "Dimension change:",
+	"dimension_change_information": "/dt *number dimension*\nTo switch to the general dimension, write /dt 0",
+	"dimension_change_incorrect": "Invalid dimension number",
+	"dimension_change_in_dimension": "You are already in this dimension",
+	"dimension_change_to_global": "You have been moved to a general dimension",
+	"dimension_change_to": "You have been moved to dimension: ",
 
 	// ==========================================
 	// ================ Markers =================
@@ -736,8 +870,8 @@
 	"carshop_buy_button": "Buy for $",
 	"carshop_buy_button_donat": "Buy for ¤",
 	"carshop_required_level": "Required level %s",
-	"carshop_no_money": "Not enough money",
-	"carshop_no_donat_money": "Not enough donat money",
+	"carshop_no_money": "Not enough $",
+	"carshop_no_donat_money": "Not enough ¤",
 	"carshop_no_slots": "No slots in garage",
 	"carshop_need_premium": "Premium required",
 	"carshop_buy_error_title": "Failed to buy car",
@@ -747,29 +881,9 @@
 	"carshop_drift_label_no": "No",
 
 	// Context menu
-	"context_menu_vehicle_door_lf_open": "Open left front door",
-	"context_menu_vehicle_door_rf_open": "Open right front door",
-	"context_menu_vehicle_door_lb_open": "Open left rear door",
-	"context_menu_vehicle_door_rb_open": "Open right rear door",
-	"context_menu_vehicle_door_lf_close": "Close left front door",
-	"context_menu_vehicle_door_rf_close": "Close right front door",
-	"context_menu_vehicle_door_lb_close": "Close left rear door",
-	"context_menu_vehicle_door_rb_close": "Close right rear door",
 
 	"context_menu_vehicle_lock": "Lock doors",
 	"context_menu_vehicle_unlock": "Unlock doors",
-
-	"context_menu_vehicle_enable_drift_mode": "Enable Drift Mode",
-	"context_menu_vehicle_disable_drift_mode": "Disable Drift Mode",
-
-	"context_menu_vehicle_lights_on": "Turn lights on",
-	"context_menu_vehicle_lights_off": "Turn lights off",
-
-	"context_menu_vehicle_handbrake_on": "Enable hand brake",
-	"context_menu_vehicle_handbrake_off": "Disable hand brake",
-
-	"context_menu_vehicle_engine_on": "Start engine",
-	"context_menu_vehicle_engine_off": "Stop engine",
 
 	"context_menu_player_profile": "Show player profile",
 	"context_menu_player_pm": "Send PM",
@@ -795,42 +909,6 @@
 	"context_menu_anim_cower_a": "Stay HandsUp",
 
 	// Duels
-	"duel_invite_error_title": "Error",
-	"duel_invite_duel_title": "Duel",
-	"duel_invite_local_nocar": "You must be in a car",
-	"duel_invite_local_not_owner": "You must be in your own car",
-	"duel_invite_remote_nocar": "Player must be in a car",
-	"duel_invite_remote_not_owner": "Player must be in his own car",
-	"duel_invite_too_far": "Player is too far from you",
-
-	"duel_invite_duel_with": "Duel with %s",
-	"duel_invite_call": "Call",
-	"duel_invite_cancel": "Cancel",
-	"duel_invite_bet_placeholder": "Bet amount",
-	"duel_invite_info_label": "To start duel with this player, enter bet amount and click 'Call'",
-
-	"duel_invite_error_player_left": "Player is not on the server",
-	"duel_invite_error_bad_bet_amount": "Invalid bet amount",
-	"duel_invite_error_bet_too_small": "You can't bet less than $%s",
-	"duel_invite_error_bet_too_big": "You can't bet more than $%s",
-	"duel_invite_error_not_enough_money": "Not enough money",
-	"duel_invite_error_player_not_enough_money": "Player has not enough money",
-	"duel_invite_invite_road_too_far": "You are too far from any road",
-
-	"duel_invite_invite_sent_body": "Duel invintation sent",
-	"duel_invite_invite_sent_chatmsg": "Duel invintation sent. Waiting for the response...",
-	"duel_invite_invite_player_cancelled": "Player didn't accept the duel",
-	"duel_invite_invite_server_cancelled": "Duel error",
-
-	"duel_accept_message": "Player %s wants to duel with you.\nBet: $%s",
-	"duel_accept_key_accept": "%s - accept (%s)",
-	"duel_accept_key_decline": "%s - decline",
-
-	"duel_winner_screen_you_won": "You won!",
-	"duel_winner_screen_you_lost": "You lost",
-	"duel_winner_screen_prize": "Prize",
-	"duel_winner_screen_time": "Time",
-	"duel_winner_screen_timeout": "Time is out!",
 
 	// Handling switching
 	"handling_switching_message_drift": "Switching to Drift mode...",
@@ -863,20 +941,6 @@
 	// Donation
 	"donation_tunrc_message_title": "Information",
 	"donation_tunrc_message_text": "You have successfully donate to your account!",
-
-	// Tofu delivery
-	"tofu_blip_text": "hemp delivery",
-	"tofu_finish_text": "You have delivered hemp!",
-	"tofu_prize_text": "Earned money",
-	"tofu_time_text": "Time passed",
-	"tofu_perfect_text": "for delivery without damage",
-	"tofu_fast_delivery_text": "for fast delivery",
-	"tofu_message_box_title": "hemp delivery",
-	"tofu_message_box_text": "You have already taken hemp! Now follow the path",
-
-	// Radio
-	"radio_off": "Radio Off",
-	"radio_user_tracks": "User Tracks",
 
 	// Sell vehicle
 	"sell_vehicle_title": "Sell to another player",

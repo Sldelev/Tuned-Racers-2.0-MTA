@@ -2,7 +2,7 @@ VehicleTuning = {}
 
 VehicleTuning.defaultTuningTable = {
 -- Цвета
-	BodyColor 		= {150, 150, 150},	-- Цвет кузова
+	BodyColor 		= {120, 120, 120},	-- Цвет кузова
 	WheelsColorR 	= {155, 155, 155},	-- Цвет задних дисков
 	WheelsColorF 	= {155, 155, 155},	-- Цвет передних дисков
 	BoltsColorR 	= {205, 205, 205},	-- Цвет задних дисков
@@ -12,7 +12,8 @@ VehicleTuning.defaultTuningTable = {
 	RollcageColor 	= {220, 220, 220},	-- Цвет каркаса
 	EngBlockColor 	= {200, 120, 120},	-- Цвет ГБЦ
 	NeonColor 		= false,			-- Цвет неона
-	SpoilerColor	= false,			-- Цвет спойлера
+	SpoilerColor	= false,			-- Цвет неона
+	ChromePower	= 12,			-- сила хрома
 
 	-- Дополнительно
 	Numberplate 	= "TRC2023", 	-- Текст номерного знака
@@ -21,13 +22,16 @@ VehicleTuning.defaultTuningTable = {
 	-- Колёса
 	WheelsAngleF 	= 0, -- Развал передних колёс
 	WheelsAngleR 	= 0, -- Развал задних колёс
-	WheelsSize		= 0.69, -- Размер 
+	WheelsSizeF		= 0.69, -- Размер 
+	WheelsSizeR		= 0.69, -- Размер 
 	WheelsWidthF 	= 0, -- Толщина передних колёс
 	WheelsWidthR	= 0, -- Толщина задних колёс
 	WheelsOffsetF	= 0, -- Вынос передних колёс
 	WheelsOffsetR	= 0, -- Вынос задних колёс
 	WheelsF 		= 0, -- Передние диски
 	WheelsR 		= 0, -- Задние диски
+	WheelsCaliperF 		= 1, -- Передние диски
+	WheelsCaliperR 		= 1, -- Задние диски
 	WheelsCastor  = 5, -- Кастор
 
 	-- Компоненты
@@ -78,11 +82,11 @@ VehicleTuning.defaultTuningTable = {
 	Boost		    = 250,
 
 	-- Улучшения
-	StreetHandling 	= 0, -- Уровень стрит-хандлинга
+	StreetHandling 	= 1, -- Уровень стрит-хандлинга
 	DriftHandling  	= 1, -- Уровень дрифт-хандлинга
 }
 
-function VehicleTuning.applyToVehicle(vehicle, tuningJSON, stickersJSON)
+function VehicleTuning.applyToVehicle(vehicle, tuningJSON, stickersJSON, windowsStickersJSON)
 	if not isElement(vehicle) then
 		return false
 	end
@@ -114,18 +118,16 @@ function VehicleTuning.applyToVehicle(vehicle, tuningJSON, stickersJSON)
 
 	-- Наклейки
 	pcall(function ()
-		local stickersTable
 		if type(stickersJSON) == "string" then
-			stickersTable = fromJSON(stickersJSON)
+			vehicle:setData("stickers", fromJSON(stickersJSON) or {})
 		end
-		if not stickersTable then
-			stickersTable = {}
+		if type(windowsStickersJSON) == "string" then
+			vehicle:setData("windows_stickers", fromJSON(windowsStickersJSON) or {})
 		end
-		vehicle:setData("stickers", stickersTable)
 	end)
 end
 
-function VehicleTuning.updateVehicleTuning(vehicleId, tuning, stickers)
+function VehicleTuning.updateVehicleTuning(vehicleId, tuning, stickers, windowsStickers)
 	if not vehicleId then
 		return false
 	end
@@ -137,10 +139,13 @@ function VehicleTuning.updateVehicleTuning(vehicleId, tuning, stickers)
 		end		
 	end
 	if stickers then
-		local stickersJSON = toJSON(stickers)
+		local stickersJSON = toJSON(stickers, true)
 		if stickersJSON then
 			update.stickers = stickersJSON
-		end			
+		end
+	end
+	if windowsStickers then
+		update.windows_stickers = toJSON(windowsStickers, true) or nil
 	end
 
 	return UserVehicles.updateVehicle(vehicleId, update)

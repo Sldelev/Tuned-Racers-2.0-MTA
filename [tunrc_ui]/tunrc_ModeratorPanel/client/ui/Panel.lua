@@ -47,7 +47,7 @@ function Panel.redrawPlayersList()
 	local indexEnd = math.min(#playersList, playersListOffset + playersShowCount)
 	for i = indexStart, indexEnd do
 		local item = { 
-			[1] = exports.tunrc_Utils:removeHexFromString(playersList[i].name),
+			[1] = exports.tunrc_Utils:removeHexFromString(playersList[i]:getData("username")),
 			player = playersList[i]
 		}
 		table.insert(showPlayers, item)
@@ -74,12 +74,11 @@ function Panel.showPlayerInfo(player)
 	end
 	UI:setVisible(ui.playerPanel, true)
 
-	UI:setText(ui.nicknameLabel, exports.tunrc_Utils:removeHexFromString(player.name))
-	UI:setText(ui.usernameLabel, "Login: " .. tostring(player:getData("username")))
+	UI:setText(ui.nicknameLabel, tostring(player:getData("username")))
 
 	UI:setText(ui.moneyLabel, 			exports.tunrc_Lang:getString("player_money") .. ": $" .. tostring(player:getData("money")))
 	UI:setText(ui.levelLabel, 			exports.tunrc_Lang:getString("player_level") .. ": " .. tostring(player:getData("level")))
-	UI:setText(ui.carsCountLabel,  	    exports.tunrc_Lang:getString("main_panel_account_cars_count") ..": " .. tostring(player:getData("garage_cars_count")))
+	UI:setText(ui.carsCountLabel,  	    exports.tunrc_Lang:getString("garage_cars_count") ..": " .. tostring(player:getData("garage_cars_count")))
 
 	local state = player:getData("tunrc_Core.state")
 	if not state then
@@ -88,9 +87,9 @@ function Panel.showPlayerInfo(player)
 	UI:setText(ui.locationLabel, 		"Location: " .. tostring(state))
 
 	if player:getData("isMuted") then
-		UI:setText(ui.muteButton, "Unmute")
+		UI:setText(ui.muteButtonLabel, exports.tunrc_Lang:getString("moderatorpanel_unmute"))
 	else
-		UI:setText(ui.muteButton, "Mute")
+		UI:setText(ui.muteButtonLabel, exports.tunrc_Lang:getString("moderatorpanel_mute"))
 	end
 
 	selectedPlayer = player
@@ -102,13 +101,16 @@ function Panel.hidePlayerInfo()
 	selectedPlayer = nil
 end
 
-addEventHandler("onClientResourceStart", resourceRoot, function ()
-	ui.panel = UI:createDpPanel {
+addEventHandler("onClientResourceStart", resourceRoot, function ()	
+	ui.panel = UI:createTrcRoundedRectangle {
 		x = (screenWidth - panelWidth) / 2,
 		y = (screenHeight - panelHeight) / 2,
 		width = panelWidth,
 		height = panelHeight,
-		type = "light"
+		radius = 20,
+		color = tocolor(245, 245, 245),
+		darkToggle = true,
+		darkColor = tocolor(20, 20, 20)
 	}
 	UI:addChild(ui.panel)
 	UI:setVisible(ui.panel, false)
@@ -121,14 +123,27 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
 		y = 0,
 		width = playerListWidth,
 		height = 50,
-		type = "light",
+		color = tocolor(200, 205, 210),
+		textHolderColor = tocolor(0, 0, 0),
+		textDarkHolderColor = tocolor(255,255,255),
+        hover = true,
+		hoverColor = tocolor(130, 130, 200),
+		darkToggle = true,
+		darkColor = tocolor(50, 50, 50),
+		hoverDarkColor = tocolor(30, 30, 30),
 		locale = "Search..."
 	})
-	UI:addChild(ui.panel, ui.playerSearchInput)	
+	UI:addChild(ui.panel, ui.playerSearchInput)
+	
 	ui.playersList = UI:createDpList {
 		x = 0, y = playerSearchInputHeight,
 		width = playerListWidth, height = panelHeight,
 		items = {},
+		color = tocolor(245,245,245),
+		hoverColor = tocolor(205,205,205),
+		darkToggle = true,
+		darkColor = tocolor(20, 20, 20),
+		hoverDarkColor = tocolor(40,40,40),
 		columns = {
 			{size = 1, offset = 0.06, align = "left"}
 		}
@@ -143,18 +158,24 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
 		x = playerListWidth, y = 0,
 		width = playerPanelWidth, height = playerPanelHeight,
 		locale = "Player not selected",
-		color = tocolor(0, 0, 0, 100),
+		color = tocolor (0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
 		fontType = "defaultLarge",
 		alignX = "center",
 		alignY = "center"
 	}	
 	UI:addChild(ui.panel, notSelectedLabel)
 
-	ui.playerPanel = UI:createDpPanel {
-		x = playerListWidth, y = 0,
+	ui.playerPanel  = UI:createTrcRoundedRectangle {
+		x = playerListWidth,
+		y = 0,
 		width = playerPanelWidth,
 		height = playerPanelHeight,
-		type = "light"
+		radius = 20,
+		color = tocolor(245, 245, 245),
+		darkToggle = true,
+		darkColor = tocolor(20, 20, 20)
 	}
 	UI:addChild(ui.panel, ui.playerPanel)
 
@@ -162,88 +183,159 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
 		x = 20, y = 15,
 		width = playerPanelWidth / 3, playerPanelHeight = 50,
 		text = "...",
-		type = "primary",
+		color = tocolor (0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
 		fontType = "defaultLarger"
 	}	
 	UI:addChild(ui.playerPanel, ui.nicknameLabel)
 
-	ui.usernameLabel = UI:createDpLabel {
-		x = 20 , y = 60,
-		width = playerPanelWidth, height = 50,
-		text = "...",
-		color = tocolor(0, 0, 0, 100),
-		fontType = "defaultSmall"
-	}
-	UI:addChild(ui.playerPanel, ui.usernameLabel)
-
 	-- Деньги
 	ui.moneyLabel = UI:createDpLabel {
-		x = 20, y = 100,
+		x = 20, y = 60,
 		width = playerPanelWidth, height = 50,
 		text = "",
 		fontType = "defaultSmall",
-		type = "dark",
+		color = tocolor (0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
 	}
 	UI:addChild(ui.playerPanel, ui.moneyLabel)
 
 	ui.levelLabel = UI:createDpLabel {
-		x = 20, y = 130,
+		x = 20, y = 90,
 		width = playerPanelWidth, height = 50,
 		text = "",
 		fontType = "defaultSmall",
-		type = "dark",
+		color = tocolor (0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
 	}
 	UI:addChild(ui.playerPanel, ui.levelLabel)	
 
 	ui.carsCountLabel = UI:createDpLabel {
-		x = 20, y = 160,
+		x = 20, y = 120,
 		width = playerPanelWidth, height = 50,
 		text = "",
 		fontType = "defaultSmall",
-		type = "dark",
+		color = tocolor (0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
 	}
 	UI:addChild(ui.playerPanel, ui.carsCountLabel)
 
 	ui.locationLabel = UI:createDpLabel {
-		x = 20, y = 190,
+		x = 20, y = 150,
 		width = playerPanelWidth, height = 50,
 		text = "Местоположение: -",
 		fontType = "defaultSmall",
-		type = "dark",
+		color = tocolor (0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
 	}
 	UI:addChild(ui.playerPanel, ui.locationLabel)			
 
 	-- 
 	local buttonsHeight = 45
-	ui.muteButton = UI:createDpButton {
-		x = 0,
-		y = playerPanelHeight - buttonsHeight,
-		width = playerPanelWidth / 3,
+	
+	ui.muteButton = UI:createTrcRoundedRectangle {
+		x = 5,
+		y = playerPanelHeight - buttonsHeight - 15,
+		width = playerPanelWidth / 3 - 10,
 		height = buttonsHeight,
-		text = "",
-		type = "primary"
+		radius = 15,
+		color = tocolor(200, 205, 210),
+		hover = true,
+		hoverColor = tocolor(130, 130, 200),
+		darkToggle = true,
+		darkColor = tocolor(50, 50, 50),
+		hoverDarkColor = tocolor(30, 30, 30),
+		shadow = true
 	}
 	UI:addChild(ui.playerPanel, ui.muteButton)
-
-	ui.kickButton = UI:createDpButton {
-		x = playerPanelWidth / 3,
-		y = playerPanelHeight - buttonsHeight,
-		width = playerPanelWidth / 3,
+	
+	ui.muteButtonLabel = UI:createDpLabel {
+		x = UI:getWidth(ui.muteButton) / 2,
+		y = UI:getHeight(ui.muteButton) / 2,
+		width = 0,
+		height = 0,
+		text = "Местоположение: -",
+		fontType = "defaultSmall",
+		color = tocolor (0, 0, 0),
+		darkToggle = true,
+		darkColor = tocolor(255, 255, 255),
+		alignX = "center",
+		alignY = "center"
+	}
+	UI:addChild(ui.muteButton, ui.muteButtonLabel)
+	
+	ui.kickButton = UI:createTrcRoundedRectangle {
+		x = playerPanelWidth / 3 + 2.5,
+		y = playerPanelHeight - buttonsHeight - 15,
+		width = playerPanelWidth / 3 - 10,
 		height = buttonsHeight,
-		text = "Kick",
-		type = "primary"
+		radius = 15,
+		color = tocolor(200, 205, 210),
+		hover = true,
+		hoverColor = tocolor(130, 130, 200),
+		darkToggle = true,
+		darkColor = tocolor(50, 50, 50),
+		hoverDarkColor = tocolor(30, 30, 30),
+		shadow = true,
+		locale = "moderatorpanel_kick"
 	}
 	UI:addChild(ui.playerPanel, ui.kickButton)
-
-	ui.banButton = UI:createDpButton {
+	
+	ui.banButton = UI:createTrcRoundedRectangle {
 		x = playerPanelWidth / 3 * 2,
-		y = playerPanelHeight - buttonsHeight,
-		width = playerPanelWidth / 3,
+		y = playerPanelHeight - buttonsHeight - 15,
+		width = playerPanelWidth / 3 - 10,
 		height = buttonsHeight,
-		text = "Ban",
-		type = "primary"
+		radius = 15,
+		color = tocolor(200, 205, 210),
+		hover = true,
+		hoverColor = tocolor(130, 130, 200),
+		darkToggle = true,
+		darkColor = tocolor(50, 50, 50),
+		hoverDarkColor = tocolor(30, 30, 30),
+		shadow = true,
+		locale = "moderatorpanel_ban"
 	}
-	UI:addChild(ui.playerPanel, ui.banButton)		
+	UI:addChild(ui.playerPanel, ui.banButton)
+	
+	ui.TpToPlButton = UI:createTrcRoundedRectangle {
+		x = playerPanelWidth / 3 * 2,
+		y = playerPanelHeight - buttonsHeight * 2 - 25,
+		width = playerPanelWidth / 3 - 10,
+		height = buttonsHeight,
+		radius = 15,
+		color = tocolor(200, 205, 210),
+		hover = true,
+		hoverColor = tocolor(130, 130, 200),
+		darkToggle = true,
+		darkColor = tocolor(50, 50, 50),
+		hoverDarkColor = tocolor(30, 30, 30),
+		shadow = true,
+		locale = "moderatorpanel_teleport_to_player"
+	}
+	UI:addChild(ui.playerPanel, ui.TpToPlButton)
+	
+	ui.TpPlToMeButton = UI:createTrcRoundedRectangle {
+		x = playerPanelWidth / 3 + 2.5,
+		y = playerPanelHeight - buttonsHeight * 2 - 25,
+		width = playerPanelWidth / 3 - 10,
+		height = buttonsHeight,
+		radius = 15,
+		color = tocolor(200, 205, 210),
+		hover = true,
+		hoverColor = tocolor(130, 130, 200),
+		darkToggle = true,
+		darkColor = tocolor(50, 50, 50),
+		hoverDarkColor = tocolor(30, 30, 30),
+		shadow = true,
+		locale = "moderatorpanel_teleport_player_to_me"
+	}
+	UI:addChild(ui.playerPanel, ui.TpPlToMeButton)		
 end)
 
 addEvent("tunrc_UI.click", false)
@@ -264,6 +356,22 @@ addEventHandler("tunrc_UI.click", resourceRoot, function (widget)
 		BanPanel.show(selectedPlayer)
 	elseif widget == ui.kickButton then		
 		triggerServerEvent("tunrc_Admin.executeCommand", resourceRoot, "kick", selectedPlayer)
+		Panel.hidePlayerInfo()
+	elseif widget == ui.TpToPlButton then		
+		local pos = selectedPlayer:getPosition()
+		if localPlayer.vehicle then
+			localPlayer.vehicle:setPosition(pos)
+		else
+			localPlayer:setPosition(pos)
+		end
+		Panel.hidePlayerInfo()
+	elseif widget == ui.TpPlToMeButton then		
+		local pos = localPlayer:getPosition()
+		if selectedPlayer.vehicle then
+			selectedPlayer.vehicle:setPosition(pos)
+		else
+			selectedPlayer:setPosition(pos)
+		end
 		Panel.hidePlayerInfo()
 	end
 end)

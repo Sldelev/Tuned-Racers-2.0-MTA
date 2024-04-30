@@ -12,22 +12,14 @@ function CarshopMenu.create()
         width   = width,
         height  = height,
 		radius = 20,
-		color = tocolor(0, 0, 0, 100)
+		color = tocolor(245, 245, 245),
+		darkToggle = true,
+		darkColor = tocolor(20, 20, 20),
+		shadow = true
 		}
     UI:addChild(panel)
 	UI:setVisible(panel, false)
 	
-	panelColor = UI:createTrcRoundedRectangle {
-		x       = -2,
-        y       = -4,
-        width   = width,
-        height  = height,
-		radius = 20,
-		color = tocolor(245, 245, 245),
-		darkToggle = true,
-		darkColor = tocolor(20, 20, 20)
-		}
-    UI:addChild(panel, panelColor)
 	-- название автомобиля
 	carNameLabel = UI:createDpLabel {
 		x = 10,
@@ -88,18 +80,6 @@ function CarshopMenu.create()
 		return "¤" .. tostring(Carshop.currentVehicleInfo.donatprice)
 	end)
 	
-	buyButtonShadow = UI:createTrcRoundedRectangle {
-		x       = 12,
-        y       = height - 43,
-        width   = width / 3,
-        height  = height / 3,
-		radius = 15,
-		color = tocolor(50, 50, 132, 20),
-		darkToggle = true,
-		darkColor = tocolor(0, 0, 0, 20)
-	}
-	UI:addChild(panel, buyButtonShadow)
-	
 	-- кнопка покупки
 	buyButton = UI:createTrcRoundedRectangle {
 		x       = 10,
@@ -112,7 +92,8 @@ function CarshopMenu.create()
 		hoverColor = tocolor(130, 130, 200),
 		darkToggle = true,
 		darkColor = tocolor(50, 50, 50),
-		hoverDarkColor = tocolor(30, 30, 30)
+		hoverDarkColor = tocolor(30, 30, 30),
+		shadow = true
 	}
 	UI:addChild(panel, buyButton)
 	
@@ -148,18 +129,6 @@ function CarshopMenu.create()
 		return exports.tunrc_Lang:getString("carshop_buy_button")
 	end)
 	
-	buyDonatButtonShadow = UI:createTrcRoundedRectangle {
-		x       = UI:getWidth(buyButtonShadow) + 25,
-        y       = height - 43,
-        width   = width / 3,
-        height  = height / 3,
-		radius = 15,
-		color = tocolor(50, 50, 132, 20),
-		darkToggle = true,
-		darkColor = tocolor(0, 0, 0, 20)
-	}
-	UI:addChild(panel, buyDonatButtonShadow)
-	
 	-- кнопка покупки
 	buyDonatButton = UI:createTrcRoundedRectangle {
 		x       = UI:getWidth(buyButton) + 25,
@@ -172,7 +141,8 @@ function CarshopMenu.create()
 		hoverColor = tocolor(130, 130, 200),
 		darkToggle = true,
 		darkColor = tocolor(50, 50, 50),
-		hoverDarkColor = tocolor(30, 30, 30)
+		hoverDarkColor = tocolor(30, 30, 30),
+		shadow = true
 	}
 	UI:addChild(panel, buyDonatButton)
 	

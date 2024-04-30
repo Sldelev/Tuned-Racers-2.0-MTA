@@ -2,6 +2,7 @@ Radar = {}
 Radar.visible = true
 local DRAW_POST_GUI = false
 local screenWidth, screenHeight = guiGetScreenSize()
+Radar.position = Vector3()
 
 local PROPERTY_RADAR_ROTATING = "ui.radar_rotate"
 
@@ -14,6 +15,12 @@ local SCALE_FACTOR = 1.5
 local arrowSize = 25
 local playerTextureSize = 25
 local blipTextureSize = 32
+
+local radarScale = math.max(0.80, screenHeight / 900)
+local radarSize = 256 * radarScale
+local renderMargin = 4
+local renderWidth = radarSize - renderMargin * 2
+local centerWidth = renderWidth / 2
 
 local maskShader
 local renderTarget
@@ -42,35 +49,6 @@ local allowedIcons = {
 	[33] = true
 }
 local blipTextures = {}
-
-
-local function drawRadarChunk(x, y, chunkX, chunkY)
-	local chunkID = chunkX + chunkY * CHUNKS_COUNT
-	if chunkID < 0 or chunkID > 143 or chunkX >= CHUNKS_COUNT or chunkY >= CHUNKS_COUNT or chunkX < 0 or chunkY < 0 then
-		return
-	end
-
-	local posX, posY = ((x - (chunkX) * CHUNK_SIZE) / CHUNK_SIZE) * chunkRenderSize,
-				       ((y - (chunkY) * CHUNK_SIZE) / CHUNK_SIZE) * chunkRenderSize
-	dxDrawImage(width / 2 - posX, width / 2 - posY, chunkRenderSize, chunkRenderSize, chunksTextures[chunkID])
-end
-
-local function drawRadarSection(x, y)
-	local chunkX = math.floor(x / CHUNK_SIZE)
-	local chunkY = math.floor(y / CHUNK_SIZE)
-
-	drawRadarChunk(x, y, chunkX - 1, chunkY)
-	drawRadarChunk(x, y, chunkX, chunkY)
-	drawRadarChunk(x, y, chunkX + 1, chunkY)
-
-	drawRadarChunk(x, y, chunkX - 1, chunkY - 1)
-	drawRadarChunk(x, y, chunkX, chunkY - 1)
-	drawRadarChunk(x, y, chunkX + 1, chunkY - 1)
-
-	drawRadarChunk(x, y, chunkX - 1, chunkY + 1)
-	drawRadarChunk(x, y, chunkX, chunkY + 1)
-	drawRadarChunk(x, y, chunkX + 1, chunkY + 1)
-end
 
 local function drawBlips()
 	local px, py, pz = getElementPosition(localPlayer)
@@ -115,12 +93,15 @@ local function drawPlayers()
 end
 
 local function drawRadar()
-	local x = (localPlayer.position.x + 3000) / 6000 * WORLD_SIZE
-	local y = (-localPlayer.position.y + 3000) / 6000 * WORLD_SIZE
 
-	local sectionX = x
-	local sectionY = y
-	drawRadarSection(sectionX, sectionY)
+	maptexturesize = 6000
+
+	local playerX, playerY, playerZ = getElementPosition(localPlayer)
+	local mapX = (playerX + (maptexturesize / 2)) / maptexturesize
+    local mapY = ((maptexturesize / 2) - playerY) / maptexturesize
+
+	dxDrawImage(-((mapX * maptexturesize) - centerWidth), -((mapY * maptexturesize) - centerWidth), maptexturesize, maptexturesize, mapTexture, 0, 0, 0, tocolor(245, 245, 245, 255))
+	
 	drawPlayers()
 	local color = tocolor(255, 255, 255)
 	if localPlayer.vehicle then
@@ -189,7 +170,7 @@ addEventHandler("onClientRender", root, function ()
 			maskShader,
 			0, 0, 0,
 			tocolor(255, 255, 255, 255),
-			DRAW_POST_GUI
+			true
 		)
 	end
 end)
@@ -233,12 +214,10 @@ function Radar.start()
 	maskTexture = dxCreateTexture("assets/textures/radar/mask.png")
 	maskShader:setValue("gUVRotCenter", 0.5, 0.5)
 	maskShader:setValue("sMaskTexture", maskTexture)
-	for i = 0, 143 do
-		chunksTextures[i] = dxCreateTexture("assets/textures/radar/map/radar" .. i .. ".png", "dxt5", true, "clamp")
-	end
 	camera = getCamera()
 	arrowTexture = DxTexture("assets/textures/radar/arrow.png")
 	playerTexture = DxTexture("assets/textures/radar/arrow.png")
+	mapTexture = DxTexture("assets/textures/radar/map/map.png")
 
 	for k,v in pairs(allowedIcons) do
 		blipTextures[k] = dxCreateTexture("assets/textures/radar/icons/" .. k .. ".png")
@@ -289,4 +268,13 @@ function Radar.drawImageOnMap(globalX, globalY, rotationZ, image, imgWidth, imgH
 	dxDrawImage((width -  imgWidth) / 2 - mapX,
 				(height - imgHeight) / 2 + mapY, imgWidth, imgHeight, image,
 				 -rotationZ, 0, 0, color)
+end
+
+function importMap(image)
+	mapTexture = image
+end
+
+function resetMap()
+	mapTexture = DxTexture("assets/textures/radar/map/map.png")
+	maptexturesize = 6000
 end

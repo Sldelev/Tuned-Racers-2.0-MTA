@@ -64,78 +64,9 @@ local function drawHorizontalPlane(x, y, z, sx, sy, direction, material, color)
 	)
 end
 
-local function drawVerticalPlane(x, y, z, sx, sy, direction, material, color)
-	direction = math.rad(direction)
-	local oz = sy / 2
-	local lx, ly = math.cos(direction) * sy, math.sin(direction) * sy
-	dxDrawMaterialLine3D(
-		x, y, z + oz, 
-		x, y, z - oz, 
-		material, 
-		sx,
-		color, 
-		x + lx,
-		y + ly,
-		z
-	)
-end
-
-local function drawCuboid(x, y, z, sx, sy, sz, direction, materialWall, materialTop, r, g, b, a)
-	local rad = math.rad(direction)
-	for i = 0, 3 do
-		local ox, oy = math.cos(rad) * sx / 2, math.sin(rad) * sy / 2
-		local sideSizeX, sideSizeY = sy, sz
-		if i == 1 or i == 3 then
-			sideSizeX, sideSizeY = sx, sz
-		end
-		local r = r * ((i + 1) / 4)
-		local g = g * ((i + 1) / 4)
-		local b = b * ((i + 1) / 4)
-		drawVerticalPlane(
-			x + ox,
-			y + oy,
-			z, 
-			sideSizeX,
-			sideSizeY, 
-			direction + 90 * i, 
-			materialWall, 
-			tocolor(r, g, b, a)
-		)
-		rad = rad + math.pi / 2
-	end
-	drawHorizontalPlane(
-		x,
-		y,
-		z + sz / 2,
-		sx, sy, 
-		direction + 90, 
-		materialTop, 
-		tocolor(r, g, b, a)
-	)	
-end
-
---[[local function drawBuilding(building)
-	local height = building[3]
-	if not height then
-		height = 0.2
-	end
-	local sx, sy = building[2].x * MAP_SIZE, building[2].y * MAP_SIZE
-	local x, y, z = building[1].x * MAP_SIZE + sx / 2, building[1].y * MAP_SIZE + sy / 2, height / 2 + 0.01
-	x = x - MAP_SIZE / 2
-	y = (y - MAP_SIZE / 2) * -1
-	drawCuboid(x, y, z, sx, sy, height, 0, textures.building, textures.top, building[4], building[4], building[4], buildingAlpha)
-end]]
-
 function MapWorld.update()
 	drawHorizontalPlane(0, 0, -0.1, MAP_SIZE * 3, MAP_SIZE * 3, 0, textures.fill, tocolor(10, 10, 10, 200))
 	drawHorizontalPlane(0, 0, 0, MAP_SIZE, MAP_SIZE, 90, textures.map, tocolor(255, 255, 255))
-
-	--[[if MapCamera.getHeight() < 12 then
-		buildingAlpha = math.min(255, (1 - (MapCamera.getHeight() - 5) / 7) * 255)
-		for i, building in ipairs(buildingsTable) do
-			drawBuilding(building)
-		end
-	end]]
 end
 
 addEventHandler("onClientResourceStart", resourceRoot, function ()
@@ -147,5 +78,3 @@ addEventHandler("onClientResourceStart", resourceRoot, function ()
 end)
 
 MapWorld.drawHorizontalPlane = drawHorizontalPlane
-MapWorld.drawMaterialLine3D = dxDrawMaterialLine3D
-MapWorld.drawVerticalPlane = drawVerticalPlane

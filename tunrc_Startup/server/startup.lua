@@ -1,21 +1,14 @@
 local SHOW_MESSAGE = true
 local KICK_PLAYERS = false
 
-local DISCORD_URL = "https://discordapp.com/api/webhooks/239880086801743872/JRfmTJxiZpeH4go0DU0yJE2JaOEcAhgLSOd35S8Mm2cPf5-ZSSbFexJWxyBeG3FzNwLO/slack"
-local DISCORD_INFO_INTERVAL = 60
-
 local startupResources = {
 	-- Экран загрузки должен загружаться раньше всех ресурсов
 	"tunrc_LoadingScreen",
 	"Crypt-reload",
-	
-	--Машины
-	"annis_zr350",
-	"annis_remus",
-	"vulcar_warrener_hkr",
 
 	-- Important
 	"geoip",
+	"tunrc_carsounds",
 
 	-- Assets
 	"tunrc_Assets",
@@ -44,16 +37,24 @@ local startupResources = {
 
 	"tunrc_LoginPanel",
 	"tunrc_TabPanel",
-	"tunrc_MainPanel",
 	"tunrc_ModeratorPanel",
-	"tunrc_CarInfoPanel",
 	"tunrc_GiftsPanel",
 	"tunrc_overallPanel",
 	"tunrc_HelpPanel",
+	
+	-- wheels
+	"tunrc_wheels",
+	
+	--Машины
+	-- Общие текстуры
+	"trc_shared_textures",
+	-- Сами автомобили
+	"annis_zr350",
+	"annis_remus",
+	"vulcar_warrener_hkr",
 
 	-- Gameplay
 	"tunrc_TutorialMessage",
-	"tunrc_Time",
 	"tunrc_SafeZones",
 	"tunrc_Particles",
 	"tunrc_Anims",
@@ -87,13 +88,6 @@ local startupResources = {
 
 	-- Third party
 	"blur_box",
-	"water_reflections",
-	"dynamic_lighting",
-	"dynamic_lighting_vehicles",
-	"shader_dynamic_sky",
-	"flame",
-	"svet",
-	"tunrc_alphafix",
 	
 	--maps
 	"Usui_map",
@@ -118,23 +112,35 @@ local startupResources = {
 	"tunrc_nagao",
 	"tunrc_nanohanadai",
 	"tunrc_tsuchi",
-
-	-- Non-important assets
-	"dl_ssao",
-	"dl_fxaa",
-	"tunrc_swr",
+	
+	-- lights scripts
 	"extended_custom_coronas",
 	"custom_vehicle_lights",
 	"improved_vehicle_lights",
-	"tunrc_wheels",
-	"tunrc_carsounds",
+	"tunrc_lgtex",
+	
+	-- shaders
+	"tunrc_map_nrm",
+	"shader_dynamic_sky",
+	"dynamic_lighting",
+	"dynamic_lighting_vehicles",
+	"tunrc_alphafix",
+	"dl_ssao",
+	"dl_fxaa",
+	"tunrc_swr",
+	"tunrc_RainScreenDrops",
+
+	-- Non-important assets
 	"tunrc_commands",
 	"tunrc_drawdistance",
 	"tunrc_fpsping",
-	"tunrc_lgtex",
 	"tunrc_setTimeWeather",
 	"tunrc_marker_creator",
 	"tunrc_dontfallbike",
+	"tunrc_Coll",
+	"tunrc_int",
+	"noclip",
+	"devmod",
 	
 }
 
@@ -158,15 +164,7 @@ local function processResourceByName(resourceName, start)
 	end
 end
 
-local function showDiscordMessage(message)
-	fetchRemote(
-		DISCORD_URL,
-		function ()end,
-		'{"text": "' .. tostring(message) ..'", "username": "' .. tostring(getServerName()) ..'"}')
-end
-
 addEventHandler("onResourceStart", resourceRoot, function ()
-	showDiscordMessage("Сервер снова **запущен**!")
 	local startedResourcesCount = 0
 	setMaxPlayers(250)
 	for i, resourceName in ipairs(startupResources) do
@@ -179,7 +177,6 @@ addEventHandler("onResourceStart", resourceRoot, function ()
 end)
 
 function shutdownGamemode(showMessage, kickPlayers)
-	showDiscordMessage("Сервер **выключен**.")
 	if showMessage then
 		for i = 1, 20 do
 			outputChatBox(" ", root, 255, 0, 0)
@@ -189,7 +186,7 @@ function shutdownGamemode(showMessage, kickPlayers)
 	-- Кик всех игроков перед выключением
 	if kickPlayers then
 		for i, player in ipairs(getElementsByType("player")) do
-			player:kick("Drift Paradise", "GAMEMODE RESTART/SHUTDOWN")
+			player:kick("TUNEDRACERS", "GAMEMODE RESTART/SHUTDOWN")
 		end
 	end
 	-- Выключение всех ресурсов
@@ -211,8 +208,3 @@ function shutdownServer()
 		shutdown("Server shutdown/restarting")
 	end, 3000, 1)
 end
-
-setTimer(function ()
-	local playersCount = tostring(#getElementsByType("player")) .. "/" .. tostring(getMaxPlayers())
-	showDiscordMessage("Количество игроков на сервере: **" .. playersCount .. "**")
-end, DISCORD_INFO_INTERVAL * 60 * 1000, 0)

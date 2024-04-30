@@ -46,6 +46,8 @@ local componentsFromData = {
 	["BodyRollcage"]	= true, -- каркас кузова( на пикапы)
 	["Doors"]	= true, -- двери
 	["Filters"]	= true, -- система впуска
+	["RearLightR"]	= true, -- фонарь справа
+	["RearLightL"]	= true, -- фонарь слева
 	
 	--компоненты салона
 	
@@ -54,12 +56,13 @@ local componentsFromData = {
 	["Stwheel"]	= true, 	-- срули NEW
 	["Dials"]	= true,		-- хуйни на дашборде с инфой NEW
 	["DoorCards"]	= true,	-- дверные карты NEW
+	["HandBrakes"]	= true,	-- ручники
+	["GearShifts"]	= true,	-- ручка кпп
 	["Interior"]	= true,	-- салон фул NEW
 }
 
 -- Апгрейды, которые нужно обновлять из даты
 local upgradesFromData = {
-	["Spoilers"] = {}
 }
 
 local function updateVehicleTuningComponent(vehicle, componentName, forceId)
@@ -75,9 +78,15 @@ local function updateVehicleTuningComponent(vehicle, componentName, forceId)
 		vehicle:setComponentVisible(name, false)
 		vehicle:setComponentVisible(componentName .. "Glass" .. tostring(i), false)
 		vehicle:setComponentVisible(componentName .. "Misc" .. tostring(i), false)
+		vehicle:setComponentVisible(componentName .. "Boost" .. tostring(i), false)
+		vehicle:setComponentVisible(componentName .. "RPM" .. tostring(i), false)
 		vehicle:setComponentVisible(componentName .. "Second" .. tostring(i), false)
 		vehicle:setComponentVisible(componentName .. "Third" .. tostring(i), false)
 		vehicle:setComponentVisible(componentName .. "Fourth" .. tostring(i), false)
+		vehicle:setComponentVisible(componentName .. "PosLocal" .. tostring(i), false)
+		vehicle:setComponentVisible(componentName .. "SecondPosLocal" .. tostring(i), false)
+		vehicle:setComponentVisible(componentName .. "ThirdPosLocal" .. tostring(i), false)
+		vehicle:setComponentVisible(componentName .. "FourthPosLocal" .. tostring(i), false)
 		if i > 0 and not vehicle:getComponentPosition(name) then
 			break
 		end
@@ -96,9 +105,15 @@ local function updateVehicleTuningComponent(vehicle, componentName, forceId)
 	vehicle:setComponentVisible(componentName .. tostring(id), true)
 	vehicle:setComponentVisible(componentName .. "Glass" .. tostring(id), true)
 	vehicle:setComponentVisible(componentName .. "Misc" .. tostring(id), true)
+	vehicle:setComponentVisible(componentName .. "Boost" .. tostring(id), true)
+	vehicle:setComponentVisible(componentName .. "RPM" .. tostring(id), true)
 	vehicle:setComponentVisible(componentName .. "Second" .. tostring(id), true)
 	vehicle:setComponentVisible(componentName .. "Third" .. tostring(id), true)
 	vehicle:setComponentVisible(componentName .. "Fourth" .. tostring(id), true)
+	vehicle:setComponentVisible(componentName .. "PosLocal" .. tostring(id), true)
+	vehicle:setComponentVisible(componentName .. "SecondPosLocal" .. tostring(id), true)
+	vehicle:setComponentVisible(componentName .. "ThirdPosLocal" .. tostring(id), true)
+	vehicle:setComponentVisible(componentName .. "FourthPosLocal" .. tostring(id), true)
 
 	if not isElement(vehicle) then return false end
 	if type(componentName) ~= "string" or not componentsFromData[componentName] then
@@ -112,10 +127,6 @@ local function updateVehicleTuningUpgrade(vehicle, upgradeName)
 		return false
 	end
 
-	if upgradeName == "Spoilers" then
-		updateVehicleTuningComponent(vehicle, upgradeName, -1)
-	end
-
 	for i, id in ipairs(upgradesFromData[upgradeName]) do
 		vehicle:removeUpgrade(id)
 	end
@@ -123,15 +134,6 @@ local function updateVehicleTuningUpgrade(vehicle, upgradeName)
 	local index = tonumber(vehicle:getData(upgradeName))
 	if not index then
 		return false
-	end
-	if upgradeName == "Spoilers" then
-		if index > #upgradesFromData[upgradeName] then
-			return updateVehicleTuningComponent(vehicle, upgradeName, index - #upgradesFromData[upgradeName])
-		elseif index == 0 then
-			return updateVehicleTuningComponent(vehicle, upgradeName, 0)
-		else
-			updateVehicleTuningComponent(vehicle, upgradeName, -1)
-		end
 	end
 	local id = upgradesFromData[upgradeName][index]
 	if id then
@@ -189,6 +191,10 @@ function getComponentsNames()
 	end
 	table.insert(l, "WheelsF")
 	table.insert(l, "WheelsR")
+	table.insert(l, "WheelsCaliperF")
+	table.insert(l, "WheelsCaliperR")
+	table.insert(l, "WheelsTiresF")
+	table.insert(l, "WheelsTiresR")
 	table.insert(l, "Exhaust")
 	return l
 end

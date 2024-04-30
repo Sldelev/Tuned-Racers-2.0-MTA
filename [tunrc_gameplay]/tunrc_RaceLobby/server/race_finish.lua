@@ -46,12 +46,15 @@ local function showPlayerRaceFinish(player, race, time, rank, score)
     if type(racePrizes[rank]) ~= "table" then
         racePrizes[rank] = {}
     end
+	
+	local DiscountPrize = 400
 
 	if score == nil then
-		score = 1
+		prize = racePrizes[rank].money
+	else
+		prize = racePrizes[rank].money + (score / DiscountPrize)
 	end
 	
-	local prize = racePrizes[rank].money + (score / 400)
     if type(prize) ~= "number" then
         outputDebugString("tunrc_RaceLobby: showPlayerRaceFinish - no prize")
         prize = 0

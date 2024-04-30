@@ -125,36 +125,33 @@ function PointsDrawing.draw()
 	if state == "showing" or state == "hiding" then
 	    local mulX = textX + textWidth + 5
 		local mulY = textY
-		dxDrawTextShadow(pointsCount, textX, textY, textX + textWidth, textY + textHeight, tocolor(themeColor[1], themeColor[2], themeColor[3], alpha), 1, font, "center", "center", 0, alpha)
-		dxDrawTextShadow(string.format('%.f',getDriftAngle()), mulX - 30, mulY + 60, textX + textWidth, textY + textHeight, tocolor(255, 255, 255, alpha), 0.5, font, "center", "center", 0, alpha)
+		exports.tunrc_Garage:dxDrawRoundedRectangle(textX - 5, textY, textWidth + 10, textHeight, 15, alpha, true, false, true, false)
+		exports.tunrc_Garage:TrcDrawText(pointsCount, textX, textY, textX + textWidth, textY + textHeight, alpha, font, "center", "center", 1, false, false)
 	elseif state == "show" then
 	    local mulX = textX + textWidth + 5
 		local mulY = textY
-		dxDrawTextShadow(pointsCount, textX, textY, textX + textWidth, textY + textHeight, tocolor(themeColor[1], themeColor[2], themeColor[3]), 1, font, "center", "center", textRotation)
-		dxDrawTextShadow(string.format('%.f',getDriftAngle()), mulX - 30, mulY + 60, textX + textWidth, textY + textHeight, tocolor(255, 255, 255), 0.5, font, "center", "center", textRotation)
+		exports.tunrc_Garage:dxDrawRoundedRectangle(textX - 5, textY, textWidth + 10, textHeight, 15, alpha, true, false, true, false)
+		exports.tunrc_Garage:TrcDrawText(pointsCount, textX, textY, textX + textWidth, textY + textHeight, 255, font, "center", "center", 1, false, false)
 		
-		if currentMultiplier > 0 and not isCollision then
-			local mulText = "x" .. tostring(currentMultiplier)
-			local mulTextWidth = dxGetTextWidth(mulText, 1, font2)
-			local mulX = textX + textWidth + 5
-			local mulY = textY			
-				
-			if multiplierAlpha > 0 then
-				dxDrawText(mulText, mulX, mulY + 30, mulX + mulTextWidth, mulY + textHeight / 2, tocolor(255, 255, 255, 255 * multiplierAlpha), 0.75, font, "center", "center", false, false, false, false, false, textRotation)
-			end
-			dxDrawTextShadow(mulText, mulX, mulY + 30, mulX + mulTextWidth, mulY + textHeight / 2, tocolor(255, 255, 255), 0.75, font, "center", "center", textRotation)
-		end
+		local mulText = "x" .. tostring(currentMultiplier)
+		local mulTextWidth = dxGetTextWidth(mulText, 0.5, font2)
+		local mulX = textX + textWidth + 20
+		local mulY = textY
+			
+		exports.tunrc_Garage:dxDrawRoundedRectangle(mulX - 10, mulY, mulTextWidth + 20, textHeight, 10, 255, true, false, true, false)
+		exports.tunrc_Garage:TrcDrawText(mulText, mulX, mulY, mulX + mulTextWidth, mulY + textHeight / 2, 255, font, "center", "center", 0.5, false, false)		
+		exports.tunrc_Garage:TrcDrawText(string.format('%.f',getDriftAngle()), mulX, mulY + (textHeight / 2), mulX + mulTextWidth, mulY + textHeight, 255, font, "center", "center", 0.5, false, false)
 
 		if bonusAnimation < 1 then
 			local bonusAlpha = (1 - bonusAnimation) * 255
 			local dy = -bonusOffset * bonusAnimation
-			dxDrawText(bonusText, textX, textY + dy, textX + textWidth, textY + textHeight + dy, tocolor(themeColor[1], themeColor[2], themeColor[3], bonusAlpha), 1, font2, "center", "top", false, false, false, false, false, 0)
+			exports.tunrc_Garage:TrcDrawText(bonusText, textX, textY + dy, textX + textWidth, textY + textHeight + dy, bonusAlpha, font2, "center", "center", 1, false, false)
 		end
 	end
 	if state == "hiding" and not isCollision then
 	local mulX = textX + textWidth + 5
 		local mulY = textY
-		dxDrawText(pointsCount, textX, textY, textX + textWidth, textY + textHeight, tocolor(255, 255, 255, hidingTextAlpha), hidingTextScale, font, "center", "center", false, false, false, false, false, currentPointsAngle)
+		exports.tunrc_Garage:TrcDrawText(pointsCount, textX, textY, textX + textWidth, textY + textHeight, hidingTextAlpha, font, "center", "center", 1, false, false)
 	end
 end
 

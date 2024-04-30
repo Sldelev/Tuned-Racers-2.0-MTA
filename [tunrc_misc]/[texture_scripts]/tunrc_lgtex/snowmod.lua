@@ -1,5 +1,8 @@
 -----------------------------------------------------------
 local snowTextures = {
+{"img/null.png", "splash_up"},
+{"img/null.png", "splash_up1"},
+{"img/null.png", "splash_up2"},
 {"img/lght.png", "coronaheadlightline"},
 {"img/coronastar.png", "coronastar"}
 }

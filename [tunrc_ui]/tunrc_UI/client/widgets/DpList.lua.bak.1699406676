@@ -1,0 +1,138 @@
+--- Список
+-- @module tunrc_UI.DpList
+
+DpList = {}
+
+local ITEM_HEIGHT = 45
+local targetFadeVal = 0
+local currentFadeVal = 0
+local fadeSpeed = 5
+
+function DpList.create(properties)
+	if type(properties) ~= "table" then
+		properties = {}
+	end
+
+	local widget = Widget.create(properties)
+	widget.text = exports.tunrc_Utils:defaultValue(properties.text, "")
+	widget.hovertext = exports.tunrc_Utils:defaultValue(properties.hovertext, "")
+	widget.alignX = exports.tunrc_Utils:defaultValue(properties.alignX, "center")
+	widget.alignY = exports.tunrc_Utils:defaultValue(properties.alignY, "center")
+	widget.items = exports.tunrc_Utils:defaultValue(properties.items, {})
+	widget.columns = exports.tunrc_Utils:defaultValue(properties.columns, {})
+	widget.activeItem = 1
+	widget.localeEnable = not not properties.localeEnable
+	
+	widget.darkToggle = properties.darkToggle
+	widget.darkColor = properties.darkColor
+	widget.hoverColor = properties.hoverColor
+	widget.hoverDarkColor = properties.hoverDarkColor
+	widget.fontSmall = properties.fontSmal
+	
+	-- state widget
+	widget.ToggleConfig = properties.ToggleConfig
+
+	if not properties.colors then
+		properties.colors = {}
+	end
+	widget.colors = {
+		normal = properties.colors.normal or tocolor(0, 0, 0),
+		hover = properties.colors.hover or tocolor(150, 150, 150),
+		down = properties.colors.down or tocolor(255, 255, 255),
+	}
+	local textColor = "gray_dark"
+	local textColorHover = "white"
+	if properties.fontSmall == true then
+		widget.font = Fonts.lightVerySmall
+	else
+		widget.font = Fonts.listItemText
+	end
+
+	function widget:draw()
+		local y = self.y
+		local itemY = 0
+		for i, item in ipairs(self.items) do
+			local isHover = isPointInRect(self.mouseX, self.mouseY, 0, itemY, self.width, ITEM_HEIGHT)
+			-- Фон
+			if isHover then
+				self.activeItem = i
+				if properties.darkToggle == true and exports.tunrc_Config:getProperty("ui.dark_mode") then 
+					self.color = properties.hoverDarkColor
+				else
+					self.color = properties.hoverColor
+				end
+				Drawing.text(self.x, self.y + 20, self.width, self.height, self.hovertext, align, "center", self.color, true, false)
+			else
+				if properties.darkToggle == true and exports.tunrc_Config:getProperty("ui.dark_mode") then 
+					self.color = properties.darkColor
+				else
+					self.color = properties.color
+				end
+			end
+			Drawing.rectangle(self.x, y, self.width, ITEM_HEIGHT, self.color)
+
+			-- Столбцы
+			local x = self.x
+			for j, column in ipairs(self.columns) do
+				if properties.localeEnable == true then
+					columnText = exports.tunrc_Lang:getString(item[j])
+				else
+					if not not properties.text then
+						columnText = properties.text
+					else
+						columnText = tostring(item[j])
+					end
+				end
+				local align = column.align or "center"
+				local columnWidth = column.size * self.width
+				if column.color and not isHover then
+					Drawing.setColor(Colors.color(column.color))
+				else
+					local alpha = 255
+					if column.alpha then
+						local a = column.alpha
+						if isHover then
+							a = 1 - a
+						end
+						alpha = alpha * a
+					end
+					if properties.darkToggle == true and exports.tunrc_Config:getProperty("ui.dark_mode") then 
+						Drawing.setColor(properties.color)
+					else
+						Drawing.setColor(properties.darkColor)
+					end
+
+				end
+				local drawX = x
+				if column.offset then
+					drawX = drawX + self.width * column.offset
+				end
+				
+				-- определение цвета для текста
+				if properties.darkToggle == true and exports.tunrc_Config:getProperty("ui.dark_mode") then
+					self.textColumnColor = properties.color
+				else
+					self.textColumnColor = properties.darkColor
+				end
+				
+				-- Основной текст листа
+				Drawing.text(drawX, y, columnWidth, ITEM_HEIGHT, columnText, align, "center", self.textColumnColor, true, true)
+				
+				if properties.ToggleConfig == true then 
+					Drawing.text(drawX - 40, y, columnWidth, ITEM_HEIGHT, exports.tunrc_Lang:getString("ui_shared_" .. tostring(exports.tunrc_Config:getProperty(item[2]))), "right", "center", self.textColumnColor, true, false)
+				end
+				x = x + columnWidth
+			end
+
+			y = y + ITEM_HEIGHT
+			itemY = itemY + ITEM_HEIGHT
+		end
+	end
+	return widget
+end
+
+local function update(dt)
+	dt = dt / 1000
+	currentFadeVal = currentFadeVal + (targetFadeVal - currentFadeVal) * fadeSpeed * dt
+end
+addEventHandler("onClientPreRender", root, update)

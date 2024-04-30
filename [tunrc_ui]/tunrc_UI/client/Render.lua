@@ -11,7 +11,7 @@ local renderTarget3D
 
 local targetFadeVal = 0
 local currentFadeVal = 0
-local fadeSpeed = 10
+local fadeSpeed = 5
 local fadeActive = false
 
 local forceRotationX, forceRotationY = 0, 0
@@ -23,17 +23,17 @@ local blurBox
 
 -- Отрисовка в 3D
 local function draw()
-	dxDrawRectangle(0, 0, screenWidth, screenHeight, tocolor(0, 0, 0, 230 * currentFadeVal))
+	if exports.tunrc_Config:getProperty("ui.dark_mode") == true then
+		dxDrawRectangle(0, 0, screenWidth, screenHeight, tocolor(0, 0, 0, 205 * currentFadeVal))
+	else
+		dxDrawRectangle(0, 0, screenWidth, screenHeight, tocolor(0, 0, 0, 0 * currentFadeVal))
+	end
 	-- Сброс цвета
 	Drawing.setColor()
 	-- Сброс системы координат
 	Drawing.origin()
 
 	local mouseX, mouseY = getMousePosition()
-	if MessageBox.isActive() then
-		mouseX = 0
-		mouseY = 0
-	end
 	mouseX = mouseX / screenWidth * screenWidthLimited
 	mouseY = mouseY / screenHeight * screenHeightLimited
 
@@ -45,36 +45,22 @@ local function draw()
 	end
 	oldMouseState = newMouseState
 
-	RenderTarget3D.set(renderTarget3D)
+	dxSetRenderTarget(renderTarget3D)
 	for resourceRoot, resourceInfo in pairs(Render.resources) do
 		Widget.draw(resourceInfo.rootWidget, mouseX, mouseY)
 	end
 	dxSetRenderTarget()
 
-	if Render.mouseClick and not MessageBox.isActive() then
+	if Render.mouseClick then
 		triggerEvent("tunrc_UI.clickInternal", resourceRoot)
 	end
-	if Render.clickedWidget and not MessageBox.isActive() then
+	if Render.clickedWidget then
 		triggerEvent("tunrc_UI.click", Render.clickedWidget.resourceRoot, Render.clickedWidget.id)
 		if type(Render.clickedWidget.click) == "function" then
 			Render.clickedWidget:click(mouseX, mouseY)
 		end
 	end
 	Render.mouseClick = false
-
-	-- Draw renderTarget3D
-	if renderTarget3D then
-		RenderTarget3D.draw(renderTarget3D, 0, 0, screenWidth, screenHeight)
-
-		local mouseX, mouseY = getMousePosition()
-		if not isCursorShowing() then
-			mouseX, mouseY = forceRotationX * screenWidth, forceRotationY * screenHeight
-		end
-		local rotationX = -(mouseX - screenWidth / 2) / screenWidth * MAX_TRANSORM_ANGLE
-		local rotationY = (mouseY - screenHeight / 2) / screenHeight * MAX_TRANSORM_ANGLE
-
-		RenderTarget3D.setTransform(renderTarget3D, rotationX, rotationY, 0)
-	end
 end
 
 local function update(dt)
@@ -87,8 +73,8 @@ local function update(dt)
 end
 
 function Render.start()
-	renderTarget3D = RenderTarget3D.create(screenWidthLimited, screenHeightLimited)
-	Drawing.POST_GUI = not not renderTarget3D.fallback
+	renderTarget3D = dxCreateRenderTarget(screenWidthLimited, screenHeightLimited)
+	Drawing.POST_GUI = true
 	addEventHandler("onClientRender", root, draw)
 	addEventHandler("onClientPreRender", root, update)
 

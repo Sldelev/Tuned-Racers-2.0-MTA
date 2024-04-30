@@ -29,6 +29,7 @@ function startGameClick(username, password)
 	currentPassword = password
 end
 
+
 addEvent("tunrc_Core.loginResponse", true)
 addEventHandler("tunrc_Core.loginResponse", root, function (success, err)
 	isAuthInProgress = false
@@ -129,7 +130,7 @@ addEventHandler("tunrc_Core.registerResponse", root, function (success, err)
 	end
 	clearRegisterForm()
 	gotoLoginPanel(currentUsername, currentPassword)
-	exports.tunrc_UI:showMessageBox("Drift Paradise", exports.tunrc_Lang:getString("login_panel_register_success"))
+	exports.tunrc_UI:showMessageBox("Tuned Racers", exports.tunrc_Lang:getString("login_panel_register_success"))
 end)
 
 -- Смена языка

@@ -4,8 +4,8 @@ addEvent( 'Crypt:onCryptFinish', false )
 
 local resourceInfo = {}
 local clientResourcesInfo = {}
-local thisServerKey = '0b4DYbbwA?N7ai0j|vW6HJ0D'
-local cryptDataKey = '0b4DYbbwA?N7ai0j|vW6HJ0D'
+local thisServerKey = 'D*NMWMGZJ22q*hrq~0cevrS2'
+local cryptDataKey = 'Nlu?4ckxbEqafxAprRj?{96O'
 local isServerCheck = false
 local isCheckRequestGet = false
 
@@ -190,17 +190,21 @@ local compileNextFile
 local function compiledCallBack( data, info, scriptPath )
 	isCompileProcessed = false
 	if info.success then
-
+		outputInfo( 'Успешная компиляция. HTTP STATUS: ' .. info.statusCode )
 	else
-		outputInfo( 'Ошибка компиляциии. HTTP STATUS: ' .. info.statusCode )
+		outputInfo( 'Ошибка компиляции. HTTP STATUS: ' .. info.statusCode )
 	end
-	if File.exists( scriptPath ) then
-		File.delete( scriptPath )
+	if info.success then
+		if File.exists( scriptPath ) then
+			File.delete( scriptPath )
+		end
+		local script = File.new( scriptPath )
+		script:write( data )
+		script:close()
+		outputInfo( scriptPath .. ' получено и сохранено' )
+	else
+		outputInfo(' Неудачная компиляция, файл не изменён' )
 	end
-	script = File.new( scriptPath )
-	script:write( data )
-	script:close()
-	outputInfo( scriptPath .. ' получено и сохранено' )
 	compileNextFile()
 end
 
@@ -208,18 +212,25 @@ function compileNextFile( )
 	if not isCompileProcessed then
 		local info = table.remove( compileStack )
 		if info then
-			local script = File( info[1], true )
+			local script = fileOpen( info[1], true )
 
 			if not script then
 				outputInfo( 'Ошибка открытия: ' .. filePath )
 				script:close()
 				return false
 			end
-
-			local fileContent = script:read( script:getSize() )
-			fetchRemote ( 'http://luac.mtasa.com/?compile=' .. (info[2] and 1 or 0).. '&debug=' .. (info[3] and 1 or 0) ..'&obfuscate=' .. info[4],
+			
+			outputInfo( 'Получение размера файла')
+			fileContent = script:read( script:getSize() )
+			if not fileContent then
+				outputInfo( 'Ошибка получения размера файла: ' .. filePath )
+				script:close()
+				return false
+			end
+			outputInfo( 'Получен размер файла' .. fileContent)
+			fetchRemote ( 'https://luac.mtasa.com/?compile=' .. (info[2] and 1 or 0).. '&debug=' .. (info[3] and 1 or 0) ..'&obfuscate=' .. info[4],
 				{
-					['queueName'] = 'Crypt-reload compile';
+					['queueName'] = 'trc_crypt';
 					['postData'] = fileContent;
 					['postIsBinary'] = true;
 					['method'] = 'POST';
@@ -275,6 +286,7 @@ function compileScript( filePath, compile, debug, obfuscate )
 	end
 
 	table.insert( compileStack, { filePath, compile, debug, obfuscate } )
+	outputInfo( 'Получены данные файлов для компиляции' .. filePath)
 
 	compileNextFile()
 

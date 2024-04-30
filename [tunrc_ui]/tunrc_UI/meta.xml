@@ -14,7 +14,7 @@
 	<script type="client" src="client/Drawing.lua"/>
 	<script type="client" src="client/Render.lua"/>
 	<script type="client" src="client/MessageBox.lua"/>
-	<script type="client" src="client/RenderTarget3D.lua"/>
+	<script type="client" src="client/NotificationBox.lua"/>
 	<script type="client" src="client/main.lua"/>
 	<script type="client" src="client/exports.lua"/>
 	<!-- Базовые виджеты -->
@@ -47,6 +47,7 @@
 	<file src="themes/light_brown.json"/>
 
 	<!-- Сгенерированный список экспортов -->
+	<export type="client" function="getMousePosition"/>
 	<export type="client" function="getScreenSize"/>
 	<export type="client" function="forceRotation"/>
 	<export type="client" function="getRenderTarget"/>
@@ -57,6 +58,7 @@
 	<export type="client" function="showMessageBox"/>
 	<export type="client" function="hideMessageBox"/>
 	<export type="client" function="isMessageBoxVisible"/>
+	<export type="client" function="showNotificationBox"/>
 	<export type="client" function="getRootWidget"/>
 	<export type="client" function="addChild"/>
 	<export type="client" function="removeChild"/>
@@ -75,6 +77,7 @@
 	<export type="client" function="createDpImageButton"/>
 	<export type="client" function="createDpCheckbox"/>
 	<export type="client" function="createTrcRoundedRectangle"/>
+	<export type="client" function="createTrcSlider"/>
 	<export type="client" function="getX"/>
 	<export type="client" function="setX"/>
 	<export type="client" function="getY"/>

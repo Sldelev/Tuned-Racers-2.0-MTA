@@ -13,6 +13,8 @@ function Image.create(properties)
 	widget.darkToggle = properties.darkToggle
 	widget.darkColor = properties.darkColor
 	widget.hoverDarkColor = properties.hoverDarkColor
+	widget.premium = properties.premium
+	
 	function widget:draw()
 		if exports.tunrc_Config:getProperty("ui.dark_mode") and properties.darkToggle == true then
 			if isPointInRect(self.mouseX, self.mouseY, 0, 0, self.width, self.height) and properties.hover == true then
@@ -26,9 +28,17 @@ function Image.create(properties)
 			else
 				self.color = properties.color
 			end
-		end	
-		if self.texture then
-			Drawing.image(self.x, self.y, self.width, self.height, self.texture, self.rotation)
+		end
+		if properties.premium == true then
+			if localPlayer:getData("isPremium") then
+				if self.texture then
+					Drawing.image(self.x, self.y, self.width, self.height, self.texture, self.rotation)
+				end
+			end
+		else
+			if self.texture then
+				Drawing.image(self.x, self.y, self.width, self.height, self.texture, self.rotation)
+			end
 		end
 	end
 	return widget

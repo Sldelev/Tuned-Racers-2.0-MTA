@@ -9,7 +9,9 @@ function UserVehicles.setup()
 		{ name="mileage", type="bigint", options="UNSIGNED NOT NULL DEFAULT 0"},
 		-- Тюнинг
 		{ name="tuning", type="MEDIUMTEXT" },
-		{ name="stickers", type="MEDIUMTEXT" }
+		{ name="stickers", type="MEDIUMTEXT" },
+		{ name="windows_stickers", type="MEDIUMTEXT" }
+		
 	}, "FOREIGN KEY (owner_id)\n\tREFERENCES users("..DatabaseTable.ID_COLUMN_NAME..")\n\tON DELETE CASCADE")
 end
 

@@ -3,8 +3,6 @@ local safeZonesList = {
     {Vector2( { x = -1973.110, y = 202.087} ), Vector2( { x = -2000.315, y = 85.75 })},
     -- LV
     {Vector2( { x = 2201.652, y = 984.078} ), Vector2( { x = 2106.835, y = 1033.057})},
-    -- Автомагазин
-    {Vector2(562, -1253), Vector2(537, -1293)},
 	--Гараж
 	 {Vector2(576, -1231), Vector2(615, -1272)},
 	 --Круг сф
@@ -35,8 +33,9 @@ function createSafeZone(pos1, pos2)
     local rectMax = Vector2(0, 0)
     rectMax.x = math.max(pos1.x, pos2.x)
     rectMax.y = math.max(pos1.y, pos2.y)
-    local size = rectMax - rectMin
-    local colShape = ColShape.Rectangle(rectMin, size)
+    local sizex = rectMax.x - rectMin.x
+    local sizey = rectMax.y - rectMin.y
+    local colShape = ColShape.Cuboid(rectMin.x, rectMin.y, 0, sizex, sizey, 50)
     colShape:setData("tunrc_SafeZone", true)
     return colShape
 end

@@ -2,6 +2,7 @@
 local vehiclesTable = {
 tunrc_zr350 = 477,
 tunrc_warrener_hkr = 549,
+bike_test = 522,
 tunrc_remus = 562
 }
 

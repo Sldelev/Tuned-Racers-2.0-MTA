@@ -4,10 +4,13 @@ local function handlePlayerFirstSpawn(player)
 	end
 
 	player:setData("tutorialActive", true)
-	player:setData("skin", 2)
+	player:setData("skin", math.random(0, 30))
 	player:setData("doCore.state", false)
 	player.model = 2
-
+	
+	local startMoney = exports.tunrc_Shared:getEconomicsProperty("start_money")
+	player:setData("money", startMoney)
+	
 	local startVehicleName = exports.tunrc_Shared:getGameplaySetting("start_vehicle")
 	if not startVehicleName then
 		return
@@ -36,22 +39,6 @@ addEventHandler("tunrc_Core.login", root, function (success)
 		end
 	end)
 end)
-
--- -- Выбор скина
--- addEvent("tunrc_SkinSelect.selectedSkin", true)
--- addEventHandler("tunrc_SkinSelect.selectedSkin", root, function (skin)
--- 	client:setData("tutorialActive", true)
--- 	client:setData("tunrc_Core.state", false)
--- 	client:setData("skin", skin)
--- 	client:spawn(0, 0, 0, 0, skin, 0)
--- 	client.model = skin
--- 	client.dimension = 0
-
--- 	-- Дать денег и отправить в магазин
--- 	local startMoney = exports.tunrc_Shared:getEconomicsProperty("start_money")
--- 	client:setData("money", startMoney)
--- 	triggerClientEvent(client, "tunrc_Carshop.forceEnter", resourceRoot)
--- end)
 
 addEvent("tunrc_Core.selfKick", true)
 addEventHandler("tunrc_Core.selfKick", root, function ()

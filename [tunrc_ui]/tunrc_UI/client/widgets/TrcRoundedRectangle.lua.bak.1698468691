@@ -1,0 +1,129 @@
+TrcRoundedRectangle = {}
+
+function TrcRoundedRectangle.create(properties)
+	if type(properties) ~= "table" then
+		properties = {}
+	end
+
+	local widget = Widget.create(properties)
+	widget.radius = properties.radius
+	widget.hover = properties.hover
+	widget.hoverColor = properties.hoverColor
+	widget.darkToggle = properties.darkToggle
+	widget.darkColor = properties.darkColor
+	widget.hoverDarkColor = properties.hoverDarkColor
+	
+	-- shadow
+	widget.shadow = not not properties.shadow
+	
+	-- circle
+	widget.circle = not not properties.circle
+	
+	--text
+	widget.font = Fonts.defaultSmall
+	
+	-- annotation
+	widget.annotation = properties.annotation
+	
+	function widget:draw()
+		-- Определение цвета для основного виджета
+		if exports.tunrc_Config:getProperty("ui.dark_mode") and properties.darkToggle == true then
+			if isPointInRect(self.mouseX, self.mouseY, 0, 0, self.width, self.height) and properties.hover == true then
+				self.color = properties.hoverDarkColor or tocolor(10,10,10)
+			else
+				self.color = properties.darkColor
+			end
+		else
+			if isPointInRect(self.mouseX, self.mouseY, 0, 0, self.width, self.height) and properties.hover == true then
+				self.color = properties.hoverColor or tocolor(105,105,105)
+			else
+				self.color = properties.color
+			end
+		end
+		
+		-- Определение цвета для текста
+		if exports.tunrc_Config:getProperty("ui.dark_mode") and properties.darkToggle == true then
+			self.textColor = tocolor(255,255,255)
+		else
+			self.textColor = tocolor(0,0,0)
+		end
+		
+		-- Отрисовка тени
+		if properties.shadow == true then
+			Drawing.rectangle(self.x + self.radius + 2, self.y + self.radius + 2, self.width - (self.radius*2), self.height - (self.radius*2), tocolor(0,0,0,20))
+			Drawing.nonCircle(self.x + self.radius + 2, self.y + self.radius + 2, self.radius, 180, 270, tocolor(0,0,0,20))
+			Drawing.nonCircle(self.x + self.radius + 2, (self.y + self.height) - self.radius + 2, self.radius, 90, 180, tocolor(0,0,0,20))
+			Drawing.nonCircle((self.x + self.width) - self.radius + 2, (self.y + self.height) - self.radius + 2, self.radius, 0, 90, tocolor(0,0,0,20))
+			Drawing.nonCircle((self.x + self.width) - self.radius + 2, self.y + self.radius + 2, self.radius, 270, 360, tocolor(0,0,0,20))
+			Drawing.rectangle(self.x + 2, self.y + self.radius + 2, self.radius, self.height - (self.radius*2), tocolor(0,0,0,20))
+			Drawing.rectangle(self.x + self.radius + 2, self.y + self.height-self.radius + 2, self.width-(self.radius*2), self.radius, tocolor(0,0,0,20))
+			Drawing.rectangle(self.x + self.width - self.radius + 2, self.y + self.radius + 2, self.radius, self.height - (self.radius*2), tocolor(0,0,0,20))
+			Drawing.rectangle(self.x + self.radius + 2, self.y + 2, self.width - (self.radius*2), self.radius, tocolor(0,0,0,20))
+		end
+		
+		-- отрисовка самого виджета
+		Drawing.rectangle(self.x + self.radius, self.y + self.radius, self.width - (self.radius*2), self.height - (self.radius*2), self.color)
+		Drawing.nonCircle(self.x + self.radius, self.y + self.radius, self.radius, 180, 270, self.color)
+		Drawing.nonCircle(self.x + self.radius, (self.y + self.height) - self.radius, self.radius, 90, 180, self.color)
+		Drawing.nonCircle((self.x + self.width) - self.radius, (self.y + self.height) - self.radius, self.radius, 0, 90, self.color)
+		Drawing.nonCircle((self.x + self.width) - self.radius, self.y + self.radius, self.radius, 270, 360, self.color)
+		Drawing.rectangle(self.x, self.y + self.radius, self.radius, self.height - (self.radius*2), self.color)
+		Drawing.rectangle(self.x + self.radius, self.y + self.height-self.radius, self.width-(self.radius*2), self.radius, self.color)
+		Drawing.rectangle(self.x + self.width - self.radius, self.y + self.radius, self.radius, self.height - (self.radius*2), self.color)
+		Drawing.rectangle(self.x + self.radius, self.y, self.width - (self.radius*2), self.radius, self.color)
+		
+		-- Отрисовка точки посередине
+		if properties.circle == true then
+			Drawing.circle(self.x + self.width / 2,  self.y + self.height / 2, 2, tocolor(255,255,255))
+		end
+		
+		-- Отрисовка текста
+		if properties.fontType and Fonts[properties.fontType] then
+			widget.font = Fonts[properties.fontType]
+		end
+		
+		-- Определение привязки текста
+		if not properties.alignX then
+			alignX = "center"
+		else
+			alignX = properties.alignX
+		end
+		
+		-- Определение локализации текста
+		if self.locale then
+			Drawing.text(
+				self.x, 
+				self.y, 
+				self.width, 
+				self.height, 
+				exports.tunrc_Lang:getString(self.locale), 
+				alignX, 
+				"center",
+				self.textColor,
+				false, 
+				true,
+				false
+			)
+		end
+		
+		-- Отрисовка аннотационного текста
+		if properties.annotation then
+			if isPointInRect(self.mouseX, self.mouseY, 0, 0, self.width, self.height) then
+				Drawing.text(
+					self.mouseX + 10, 
+					self.mouseY - self.height, 
+					self.width, 
+					self.height, 
+					exports.tunrc_Lang:getString(properties.annotation), 
+					"left", 
+					"top",
+					self.textColor,
+					false, 
+					true,
+					false
+				)
+			end
+		end
+	end
+	return widget
+end

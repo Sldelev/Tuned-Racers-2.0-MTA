@@ -11,7 +11,7 @@ function setVisible(visible)
 	if visible and localPlayer:getData("activeUI") then
 		return
 	end
-	if exports.tunrc_MainPanel:isVisible() or exports.tunrc_TabPanel:isVisible() then
+	if exports.tunrc_overallPanel:isVisible() or exports.tunrc_TabPanel:isVisible() then
 		return
 	end	
 	isVisible = visible

@@ -2,9 +2,6 @@ Panel = {}
 local screenWidth, screenHeight
 local renderTarget
 local headerColor = tocolor(29, 29, 29, 175)
-local itemColor = tocolor(42, 40, 41, 150)
-local lineColor = tocolor(255, 255, 255)
-local highlightedColor = tocolor(255, 255, 255)
 
 local panelWidth = 350
 local panelHeight
@@ -36,36 +33,32 @@ local function draw()
 	local panelX = screenWidth / 2 - panelWidth / 2
 	local themeColor = {exports.tunrc_UI:getThemeColor()}
 	y = y + 200
-	dxDrawRectangle(panelX, y, panelWidth, headerHeight * 2 + itemsCount * itemHeight, headerColor)
+	exports.tunrc_Garage:dxDrawRoundedRectangle(panelX, y, panelWidth, headerHeight * 2 + itemsCount * itemHeight, 15, 255, true, false, true, false)
 	local x = panelX
 	for i, column in ipairs(columns) do
 		local width = panelWidth * column.size
-		dxDrawText(exports.tunrc_Lang:getString(column.name), x, y, x + width, y + headerHeight, tocolor(255, 255, 255), 1, headerFont, "center", "center")
+		exports.tunrc_Garage:TrcDrawText(exports.tunrc_Lang:getString(column.name), x, y, x + width, y + headerHeight, 255, headerFont, "center", "center", 1)
 		x = x + width
 	end
 	y = y + headerHeight
 	local itemY = y
-	--dxDrawRectangle(screenWidth / 2 - panelWidth / 2, y, panelWidth, itemsCount * itemHeight, itemColor)
 	for i = scrollOffset + 1, math.min(itemsCount + scrollOffset, #playersList) do
 		local item = playersList[i]
-		local color = itemColor
-		if item.isGroup then
-			color = item.color
-		end
-		if item.isLocalPlayer then
-			color = highlightedColor
-		end
 		x = panelX
-		--dxDrawRectangle(x, y, panelWidth, itemHeight, color)
-		dxDrawRectangle(x, y, panelWidth, 2, lineColor)
+		if exports.tunrc_Config:getProperty("ui.dark_mode") == true then
+			lineColor = tocolor(205, 205, 205, 255)
+		else
+			lineColor = tocolor(60, 60, 60, 255)
+		end
+		dxDrawRectangle(x, y, panelWidth, 2, lineColor,true)
 		if item.isGroup then
-			dxDrawRectangle(panelX, y, panelWidth, itemHeight, tocolor(100, 100, 100, 175))
-			dxDrawText(item.text, x, y, x + panelWidth, y + headerHeight * 0.8, tocolor(themeColor[1], themeColor[2], themeColor[3]), 1, itemFont, "center", "center", true)
+			exports.tunrc_Garage:dxDrawRoundedRectangle(panelX, y, panelWidth, itemHeight, 0, 255, true, false, true, true)
+			exports.tunrc_Garage:TrcDrawText(item.text, x, y, x + panelWidth, y + headerHeight * 0.8, 255, itemFont, "center", "center", 1)
 		else
 			for j, column in ipairs(columns) do
 				local text = item[column.data]
 				local width = panelWidth * column.size
-				dxDrawText(tostring(text), x, y, x + width, y + headerHeight * 0.8, tocolor(255, 255, 255), 1, itemFont, "center", "center", true)
+				exports.tunrc_Garage:TrcDrawText(tostring(text), x, y, x + width, y + headerHeight * 0.8, 255, itemFont, "center", "center", 1)
 				x = x + width
 			end
 		end
@@ -73,7 +66,7 @@ local function draw()
 	end
 	x = panelX
 	y = itemY + itemsCount * itemHeight
-	dxDrawText(playersOnlineString .. ": " .. tostring(playersOnlineCount), x, y, x + panelWidth, y + headerHeight, tocolor(255, 255, 255), 1, headerFont, "center", "center")
+	exports.tunrc_Garage:TrcDrawText(playersOnlineString .. ": " .. tostring(playersOnlineCount), x, y, x + panelWidth, y + headerHeight, 255, headerFont, "center", "center", 1)
 	if renderTarget then
 		dxSetRenderTarget()
 	end
@@ -110,7 +103,6 @@ function Panel.start()
 	logoWidth = 415
 	logoHeight = textureHeight * 415 / textureWidth
 	panelHeight = logoHeight + 10 + headerHeight * 2 + itemsCount * itemHeight
-	highlightedColor = tocolor(exports.tunrc_UI:getThemeColor())
 
 	playersList = {}
 
@@ -122,7 +114,7 @@ function Panel.start()
 		table.insert(playersList, {
 			isLocalPlayer = isLocalPlayer,
 			id = player:getData("serverId") or 0,
-			name = exports.tunrc_Utils:removeHexFromString(player.name),
+			name = exports.tunrc_Utils:removeHexFromString(player:getData("username")),
 			money = "$" .. tostring(player:getData("money") or 0),
 			level = player:getData("level") or "-"
 		})

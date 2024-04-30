@@ -45,13 +45,14 @@ function login(username, password)
 	if AccountsConfig.HASH_PASSWORDS_CLIENTSIDE then
 		password = sha256(password)
 	end
+	
 	triggerServerEvent("tunrc_Core.loginRequest", resourceRoot, username, password)
 	return true
 end
 
 -- Result event:
 -- tunrc_Core.loginResponse
-function logout()
+function logout(reason)
 	triggerServerEvent("tunrc_Core.logoutRequest", resourceRoot)
 	return true
 end

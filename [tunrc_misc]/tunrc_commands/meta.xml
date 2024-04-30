@@ -1,0 +1,7 @@
+<meta>
+    <oop>true</oop>
+	<include resource="tunrc_UI"/>
+
+    <script src="dimension.lua" type="client"/>
+	<script src="setskin.lua" type="server"/>
+</meta>

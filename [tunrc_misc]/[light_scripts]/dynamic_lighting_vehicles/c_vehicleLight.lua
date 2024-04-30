@@ -8,15 +8,15 @@
 -- editable variables
 ---------------------------------------------------------------------------------------------------
 
-local vehLiTable = { leftEN ={}, rightEN ={}, left={},right={}, color ={}, isBlown={}, vehType={}, strOut={} }
+local vehLiTable = { leftEN ={}, rightEN ={}, left={},right={}, leftREN ={}, rightREN ={}, leftR={},rightR={}, color ={}, isBlown={}, vehType={}, strOut={} }
 
 local gWorldSelfShadow = false -- enables object self shadowing ( may be bugged for rotated objects on a custom map)
 local gLightTheta = math.rad(6) -- Theta is the inner cone angle (6)
-local gLightPhi = math.rad(60) -- Phi is the outer cone angle (18)
-local gLightFalloff = 10 -- light intensity attenuation between the phi and theta areas
-local gLightAttenuation = 100 -- 15
+local gLightPhi = math.rad(20) -- Phi is the outer cone angle (18)
+local gLightFalloff = 1.5 -- light intensity attenuation between the phi and theta areas
+local gLightAttenuation = 40 -- 15
 local flTimerUpdate = 200 -- the effect update time interval
-local lightMaxDistance = 160
+local lightMaxDistance = 60
 
 local excludeVehicleId = {441,464,501,465,564,571,594,606,607,610,611,584,608,450,591}
 local isEnabled = false
@@ -30,11 +30,16 @@ function getPositionFromElementOffset(element,offX,offY,offZ)
 end
 
 local function onPreRender()
-	for index,this in ipairs(getElementsByType("vehicle", root, true)) do
-		if vehLiTable.leftEN[this] or vehLiTable.rightEN[this] then
+
+	for index,this in ipairs(getElementsByType("vehicle")) do
+		if vehLiTable.leftEN[this] or vehLiTable.rightEN[this] or vehLiTable.rightREN[this] or vehLiTable.rightREN[this] then
+			local faraRid = getElementData(this,"FaraR")
+			local faraLid = getElementData(this,"FaraL")
+			local RearLightRid = getElementData(this,"RearLightR")
+			local RearLightLid = getElementData(this,"RearLightL")
 			local rx, ry, rz = getElementRotation(this, "ZXY")
 			rx = rx - 4
-			local x1,y1,z1,x2,y2,z2
+			local x1,y1,z1,x2,y2,z2,x3,y3,z3,x4,y4,z4
 			local col = vehLiTable.color[this]
 			local vehType = vehLiTable.vehType[this]
 			if vehType == "Bike" then
@@ -43,19 +48,51 @@ local function onPreRender()
 				x1,y1,z1 = getPositionFromElementOffset(this,-0.7,5.0,-0.9) -- (left,front,above)
 				x2,y2,z2 = getPositionFromElementOffset(this,0.7,5.0,-0.9) -- (left,front,above)
 			else
-				x1,y1,z1 = getPositionFromElementOffset(this,-0.7,0.8,-1.4) -- (left,front,above)
-				x2,y2,z2 = getPositionFromElementOffset(this,0.7,0.8,-1.4) -- (left,front,above)
+				if getVehicleComponentVisible(this, "FaraL" .. tostring(faraLid)) == true then
+					local lx,ly,lz = getVehicleComponentPosition(this, "FaraLMisc" .. tostring(faraLid) )
+					x1,y1,z1 = getPositionFromElementOffset(this,lx,ly,lz) -- (left,front,above)
+				end
+				if getVehicleComponentVisible(this, "FaraR" .. tostring(faraRid)) == true then
+					local lx,ly,lz = getVehicleComponentPosition(this, "FaraRMisc" .. tostring(faraRid) )
+					x2,y2,z2 = getPositionFromElementOffset(this,lx,ly + 0.4,lz) -- (left,front,above)
+				end
+				if getVehicleComponentVisible(this, "RearLightL" .. tostring(RearLightLid)) == true then
+					local lx,ly,lz = getVehicleComponentPosition(this, "RearLightLMisc" .. tostring(RearLightLid) )
+					x3,y3,z3 = getPositionFromElementOffset(this,lx,ly,lz) -- (left,front,above)
+				end
+				if getVehicleComponentVisible(this, "RearLightR" .. tostring(RearLightRid)) == true then
+					local lx,ly,lz = getVehicleComponentPosition(this, "RearLightRMisc" .. tostring(RearLightRid) )
+					x4,y4,z4 = getPositionFromElementOffset(this,lx,ly,lz) -- (left,front,above)
+				end
 			end
 			
 			if vehLiTable.leftEN[this] then
 				exports.dynamic_lighting:setLightDirection(vehLiTable.left[this],rx,ry,rz,true)
 				exports.dynamic_lighting:setLightPosition(vehLiTable.left[this],x1,y1,z1)
-				exports.dynamic_lighting:setLightColor(vehLiTable.left[this],col[1],col[2],col[3],1) 
+				exports.dynamic_lighting:setLightColor(vehLiTable.left[this],col[1],col[2],col[3],1)
 			end
 			if vehLiTable.rightEN[this] and vehType ~= "Bike" then
 				exports.dynamic_lighting:setLightDirection(vehLiTable.right[this],rx,ry,rz,true)
 				exports.dynamic_lighting:setLightPosition(vehLiTable.right[this],x2,y2,z2)
 				exports.dynamic_lighting:setLightColor(vehLiTable.right[this],col[1],col[2],col[3],1)  
+			end
+			if vehLiTable.leftREN[this] then
+				exports.dynamic_lighting:setLightDirection(vehLiTable.leftR[this],rx,ry,rz - 180,true)
+				exports.dynamic_lighting:setLightPosition(vehLiTable.leftR[this],x3,y3,z3)
+				exports.dynamic_lighting:setLightAttenuation(vehLiTable.leftR[this],3)
+				exports.dynamic_lighting:setLightTheta(vehLiTable.leftR[this],0.1)
+				exports.dynamic_lighting:setLightPhi(vehLiTable.leftR[this],15)
+				exports.dynamic_lighting:setLightFalloff(vehLiTable.leftR[this],50)
+				exports.dynamic_lighting:setLightColor(vehLiTable.leftR[this],5,0,0,0.1) 
+			end
+			if vehLiTable.rightREN[this] and vehType ~= "Bike" then
+				exports.dynamic_lighting:setLightDirection(vehLiTable.rightR[this],rx,ry,rz - 180,true)
+				exports.dynamic_lighting:setLightPosition(vehLiTable.rightR[this],x4,y4,z4)
+				exports.dynamic_lighting:setLightAttenuation(vehLiTable.rightR[this],3)
+				exports.dynamic_lighting:setLightTheta(vehLiTable.rightR[this],0.1)
+				exports.dynamic_lighting:setLightPhi(vehLiTable.rightR[this],15)
+				exports.dynamic_lighting:setLightFalloff(vehLiTable.rightR[this],50)
+				exports.dynamic_lighting:setLightColor(vehLiTable.rightR[this],5,0,0,0.1)  
 			end
 		end
 	end
@@ -83,6 +120,14 @@ function lightEffectStop(thisVeh)
 		destroyWorldLight(vehLiTable.right[thisVeh])
 		vehLiTable.rightEN[thisVeh]=false
 	end
+	if vehLiTable.leftREN[thisVeh] then
+		destroyWorldLight(vehLiTable.leftR[thisVeh])
+		vehLiTable.leftREN[thisVeh]=false
+	end
+	if vehLiTable.rightREN[thisVeh] then
+		destroyWorldLight(vehLiTable.rightR[thisVeh])
+		vehLiTable.rightREN[thisVeh]=false
+	end
 end
 
 function lightEffectManage(thisVeh,vehType)
@@ -101,6 +146,14 @@ function lightEffectManage(thisVeh,vehType)
 			destroyWorldLight(vehLiTable.right[thisVeh])
 			vehLiTable.rightEN[thisVeh]=false			
 		end
+		if vehLiTable.leftREN[thisVeh] then
+			destroyWorldLight(vehLiTable.leftR[thisVeh])
+			vehLiTable.leftREN[thisVeh]=false
+		end
+		if vehLiTable.rightREN[thisVeh] then
+			destroyWorldLight(vehLiTable.rightR[thisVeh])
+			vehLiTable.rightREN[thisVeh]=false
+		end
 		return
 	end
 	if ((getVehicleLightState ( thisVeh, 0 )==1 or getVehicleOverrideLights(thisVeh)==1)) and vehLiTable.leftEN[thisVeh] then 
@@ -111,6 +164,15 @@ function lightEffectManage(thisVeh,vehType)
 	if ((getVehicleLightState ( thisVeh, 1 )==1 or getVehicleOverrideLights(thisVeh)==1)) and vehLiTable.rightEN[thisVeh] then 
 		destroyWorldLight(vehLiTable.right[thisVeh])
 		vehLiTable.rightEN[thisVeh]=false	
+	end
+	if ((getVehicleLightState ( thisVeh, 0 )==1 or getVehicleOverrideLights(thisVeh)==1)) and vehLiTable.leftREN[thisVeh] then 
+		destroyWorldLight(vehLiTable.leftR[thisVeh])
+		vehLiTable.leftREN[thisVeh]=false		
+	end
+
+	if ((getVehicleLightState ( thisVeh, 1 )==1 or getVehicleOverrideLights(thisVeh)==1)) and vehLiTable.rightREN[thisVeh] then 
+		destroyWorldLight(vehLiTable.rightR[thisVeh])
+		vehLiTable.rightREN[thisVeh]=false	
 	end	
 	
 	if getVehicleEngineState(thisVeh) then
@@ -148,6 +210,42 @@ function lightEffectManage(thisVeh,vehType)
 			end
 		end
 	end
+	
+	if getVehicleEngineState(thisVeh) then
+		if (getVehicleLightState ( thisVeh, 0 )==0 and getVehicleOverrideLights(thisVeh)==0) then 
+			if isInNightTime() then
+				if vehLiTable.leftREN[thisVeh]~=true and (getVehicleOccupant( thisVeh ,0 ) or not vehLiTable.strOut[thisVeh]) then
+					if not ispastDist then
+						vehLiTable.leftR[thisVeh] = createWorldLight()
+						vehLiTable.leftREN[thisVeh]=true
+						lightSwitched=true
+					end
+				end
+			else
+				if vehLiTable.leftREN[thisVeh]==true then
+					destroyWorldLight(vehLiTable.leftR[thisVeh])
+					vehLiTable.leftREN[thisVeh]=false
+				end
+			end
+		end
+		
+		if (getVehicleLightState ( thisVeh, 1 )==0 and getVehicleOverrideLights(thisVeh)==0 and vehType~="Bike")  then
+			if isInNightTime() then 
+				if vehLiTable.rightREN[thisVeh]~=true and (getVehicleOccupant( thisVeh ,0 ) or not vehLiTable.strOut[thisVeh]) then
+					if not ispastDist then
+						vehLiTable.rightR[thisVeh] = createWorldLight()
+						vehLiTable.rightREN[thisVeh]=true
+						lightSwitched=true
+					end
+				end
+			else
+				if vehLiTable.rightREN[thisVeh]==true then
+					destroyWorldLight(vehLiTable.rightR[thisVeh])
+					vehLiTable.rightREN[thisVeh]=false
+				end
+			end
+		end
+	end
 
 	if (getVehicleLightState ( thisVeh, 0 )==0 and getVehicleOverrideLights(thisVeh)==2) and vehLiTable.leftEN[thisVeh]~=true then
 		if not ispastDist then
@@ -162,8 +260,22 @@ function lightEffectManage(thisVeh,vehType)
 			vehLiTable.rightEN[thisVeh]=true
 		end
 	end
+
+	if (getVehicleLightState ( thisVeh, 0 )==0 and getVehicleOverrideLights(thisVeh)==2) and vehLiTable.leftREN[thisVeh]~=true then
+		if not ispastDist then
+			vehLiTable.leftR[thisVeh] = createWorldLight()
+			vehLiTable.leftREN[thisVeh]=true
+		end
+	end
+	
+	if (getVehicleLightState ( thisVeh, 1 )==0 and getVehicleOverrideLights(thisVeh)==2) and vehLiTable.rightREN[thisVeh]~=true and vehType~="Bike" then
+		if not ispastDist then
+			vehLiTable.rightR[thisVeh] = createWorldLight()
+			vehLiTable.rightREN[thisVeh]=true
+		end
+	end
 	if lightSwitched then vehLiTable.strOut[thisVeh]=false end
-	if vehLiTable.rightEN[thisVeh] or vehLiTable.leftEN[thisVeh] then
+	if vehLiTable.rightEN[thisVeh] or vehLiTable.leftEN[thisVeh] or vehLiTable.leftREN[thisVeh] or vehLiTable.leftREN[thisVeh] then
 		local r,g,b = getVehicleHeadLightColor(thisVeh)
 		vehLiTable.color[thisVeh] = {r/255,g/255,b/255}
 	end
