@@ -12,13 +12,13 @@
 DatabaseConfig = {
 	dbType = "mysql",
 
-	host = "185.189.255.97",
-	port = 3306,
-	dbName = "gs78500",
+	host = Сюда пишешь айпи своей бд,
+	port = Сюда порт,
+	dbName = Тут название бд,
 
 	-- Auth
-	username = "gs78500",
-	password = "ejdio99j",
+	username = Логин от бд,
+	password = Пароль от бд,
 
 	options = {
 		autoreconnect = 1
