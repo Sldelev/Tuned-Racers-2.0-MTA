@@ -1,6 +1,6 @@
-local SHOP_KEY = "86740167D2992433CB"
-local SHOP_ID = 206480
-local TRADEMC_IP = "79.137.70.179"
+local SHOP_KEY = "Тут пишешь свой ключ магазина трейдмс"
+local SHOP_ID = "а тут айди магазина"
+local TRADEMC_IP = "79.137.70.179" --эта хуйня вроде всегда одинаковая
 local shopItems = {}
 
 local function onReceiveItems(responseData, responseInfo)
